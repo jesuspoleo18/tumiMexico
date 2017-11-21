@@ -222,7 +222,6 @@ a {
     padding: 0;
     position: relative;
     text-decoration: none;
-    vertical-align: baseline;
     outline: 0;
 }
 
@@ -334,10 +333,6 @@ img {
 ::-webkit-scrollbar-thumb {
     background-color: #DDDDDD;
 }
-
-input:focus:invalid {}
-
-input:required:valid {}
 
 
 /*
