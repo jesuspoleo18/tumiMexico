@@ -89,7 +89,7 @@ const confiGenerales = {
 
     triggerActions:function(){
 
-        let $triggerCart = $(".header-cart__content"),
+        let $triggerCart = $(".header-cart__content,.navigation-cart__container"),
             $triggerSearch = $(".navigation__searchTrigger"),
             $closeSearch = $(".navigation__closeBar"),
             $a = $('#offCanvasRight'),

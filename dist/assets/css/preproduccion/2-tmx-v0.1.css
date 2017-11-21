@@ -577,7 +577,7 @@ nav {
 }
 
 .navigation__sale {
-    color: #B92335;
+    color: #B92335 !important;
 }
 
 .navigation__searchTrigger:after {
@@ -610,7 +610,12 @@ nav {
     display: none;
 }
 
-.navigation__elements--mobile {}
+.navigation__elements--mobile {
+    border: 1px solid red;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 
 .navigation__left--mobile {}
 
