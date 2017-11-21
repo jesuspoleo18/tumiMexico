@@ -65,7 +65,7 @@ const confiGenerales = {
         });
         confiGenerales.backTop();
         // confiGenerales.stickyNav();
-        confiGenerales.megaMenu('.navigation__menu a', 'header,.megamenu-buscar.navigation__searchTrigger,.main-content');
+        confiGenerales.megaMenu('.navigation__menu a', 'header,.megamenu-buscar.navigation__searchTrigger,.home__content');
         // confiGenerales.compraAsyncVitrina();
         confiGenerales.checkEmptyCart();
         confiGenerales.quickViewAsyncBuy();
@@ -81,9 +81,10 @@ const confiGenerales = {
 
     changePlaceholders:function(){
         let $a = $(".btn-buscar"),
-            $b = $("<div class='search__icon'></div>");
+            $b = $("<div class='search__icon'></div>"),
+            $c = $(".search__icon");
         $a.attr({placeholder: " ", value:" " });
-        $a.append($b);
+        $c.length ? console.log("˙ω˙ icono agregado") : $a.before($b);
     },
 
     triggerActions:function(){
@@ -94,15 +95,18 @@ const confiGenerales = {
             $a = $('#offCanvasRight'),
             $b = $(".navigation__searchBar");
 
-        $triggerCart.on("click", function() {
+        $triggerCart.on("click", function(e) {
+            e.preventDefault();
             $a.foundation('open', event, "[data-toggle=offCanvasLeft]"); 
         });
 
-        $closeSearch.on("click", function () {
+        $closeSearch.on("click", function (e) {
+            e.preventDefault();
             $b.removeClass("active");
         });
 
-        $triggerSearch.on("click", function () {
+        $triggerSearch.on("click", function (e) {
+            e.preventDefault();
             $b.toggleClass("active");
             confiGenerales.changePlaceholders();
         });
@@ -305,7 +309,7 @@ const confiGenerales = {
 
     megaMenu: function (el, exit) {
 
-        let $exit = $("header,.megamenu-buscar.navigation__searchTrigger,.main-content"),
+        let $exit = $("header,.megamenu-buscar.navigation__searchTrigger,.home__content"),
             $responsive = $(window).width(),
             $viajes = $("#megamenu-viajes"),
             $mochilas = $("#megamenu-mochilas"),

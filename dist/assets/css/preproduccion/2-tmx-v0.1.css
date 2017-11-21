@@ -15,6 +15,7 @@ Primary use:  ecommerce.
 Rojo tumi: #B92335
 Gris tumi: #DDDDDD
 Gris fuerte tumi: #ccc
+Gris xfuerte tumi: #777
 
 ----------------------
 
@@ -98,6 +99,17 @@ f19.Mediaquerie sistema
 [a0.Global]
 
 ============================= */
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('/arquivos/ProximaNova-Regular.css');
+}
+
+@font-face {
+    font-family: 'Proxima Nova bold';
+    font-weight: bold;
+    src: url('/arquivos/ProximaNova-Bold.css');
+}
 
 html,
 body,
@@ -230,6 +242,10 @@ a:hover {
     text-decoration: underline;
 }
 
+a:visited {
+    color: #2E2A25;
+}
+
 
 /* change colours to suit your needs */
 
@@ -292,7 +308,7 @@ p,
 strong,
 a,
 .busca [type=text] {
-    font-family: 'Futura';
+    font-family: 'Proxima Nova';
 }
 
 .secret-lead {
@@ -388,6 +404,7 @@ img {
 
 .header-left__content a {
     font-size: .8rem;
+    font-weight: bold;
     padding: .8rem 1rem;
 }
 
@@ -413,6 +430,7 @@ img {
 
 .header-right__content a {
     font-size: .8rem;
+    font-weight: bold;
     padding: .8rem 1rem;
 }
 
@@ -451,7 +469,10 @@ img {
 
 ============================= */
 
-nav {}
+nav {
+    position: relative;
+    z-index: 10;
+}
 
 .navigation__content {
     display: block;
@@ -460,7 +481,9 @@ nav {}
 }
 
 .navigation__elements {
+    background-color: white;
     border-bottom: 1px solid #eee;
+    height: 48px;
     width: 100%;
     display: flex;
     align-items: flex-end;
@@ -470,11 +493,38 @@ nav {}
 .navigation__left,
 .navigation__center,
 .navigation__right {
-    width: 33.3%;
+    width: 20.3%;
 }
 
-.navigation__left {
+.navigation__elements.is-stuck .navigation__left,
+.navigation__elements.is-stuck .navigation__center,
+.navigation__elements.is-stuck .navigation__right {
+    width: 21.3%;
+}
+
+.navigation__elements.is-stuck .navigation__center {
+    width: 100%;
+}
+
+.navigation__left,
+.navigation__right {
     pointer-events: none;
+}
+
+.navigation__elements.is-stuck {
+    align-items: center;
+}
+
+.navigation__elements.is-stuck .navigation__left a,
+.navigation__elements.is-stuck .navigation__center {
+    display: flex;
+    align-items: flex-end;
+}
+
+.navigation__elements.is-stuck .navigation__left img,
+.navigation__elements.is-stuck .navigation__right {
+    opacity: 1;
+    pointer-events: initial;
 }
 
 .navigation__left img {
@@ -492,13 +542,16 @@ nav {}
 .navigation__menu {
     width: 100%;
     display: flex;
+    align-items: flex-end;
 }
 
 .navigation__menu a {
     font-size: .8rem;
+    font-family: 'Proxima Nova bold';
     font-weight: bold;
     text-decoration: none;
     text-align: center;
+    text-transform: uppercase;
     padding: 1rem 0;
     height: 100%;
     flex: 1;
@@ -536,6 +589,7 @@ nav {}
 }
 
 .navigation__right {
+    height: 100%;
     opacity: 0;
     pointer-events: none;
     display: flex;
@@ -543,9 +597,13 @@ nav {}
 }
 
 .navigation__cuenta {
-    padding-right: 3rem;
+    padding-right: 2rem;
     display: flex;
     align-items: center;
+}
+
+.navigation__cuenta a {
+    font-size: .8rem;
 }
 
 .navigation__content--mobile {
@@ -644,10 +702,13 @@ nav {}
     display: flex;
 }
 
-.header-cart__content:hover {
+.header-cart__content:hover,
+.navigation-cart__container:hover {
     background-color: #B92335;
 }
 
+.navigation-cart__container:hover .amount-items:before,
+.navigation-cart__container:hover .amount-items-em,
 .header-cart__content:hover .amount-items:before,
 .header-cart__content:hover .amount-items-em {
     color: white;
@@ -684,13 +745,33 @@ nav {}
     font-style: unset;
 }
 
+.navigation-cart__container .amount-items {
+    color: #B92335;
+}
+
+.navigation-cart__container .amount-items:before {
+    content: "\f23d";
+    font-size: .8rem;
+    font-family: 'FontAwesome';
+    padding-right: .8rem;
+}
+
+.navigation-cart__container .amount-items-em {
+    font-size: .7rem;
+    font-style: unset;
+}
+
 .navigation-cart__container {
-    padding-right: 1rem;
     position: relative;
     display: flex;
 }
 
-.navigation-cart__content {}
+.navigation-cart__content {
+    cursor: pointer;
+    padding: 0 .5rem;
+    display: flex;
+    align-items: center;
+}
 
 .navigation-cart__content .title,
 .navigation-cart__content .amount-kits,
@@ -863,13 +944,17 @@ nav {}
 .navigation__megamenu {
     /*     border:1px solid red; */
     background-color: transparent;
-    left: -15%;
+    left: -14.9%;
     position: absolute;
     top: calc(103%);
-    width: 130%;
+    width: 132%;
     z-index: 10;
     display: flex;
     justify-content: center;
+}
+
+.navigation__elements.is-stuck .navigation__megamenu {
+    top: calc(105%);
 }
 
 .navigation__megamenu a {
@@ -889,7 +974,6 @@ nav {}
 }
 
 .navigation__megamenu-content.display {
-    padding-top: .8rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -944,15 +1028,21 @@ nav {}
     border-bottom: 2px solid #BDC3C7;
     line-height: 16px;
     font-size: initial;
-    font-weight: initial;
+    font-weight: bold;
     margin-bottom: 1rem;
     max-height: 50px;
     padding: .8rem 0;
-    text-transform: uppercase;
+    text-transform: lowercase;
     width: 100%;
 }
 
+.orders .navigation__megamenu-block h3:first-letter,
+.navigation__megamenu-block h3:first-letter {
+    text-transform: uppercase;
+}
+
 .navigation__megamenu-block-elements a {
+    color: #777;
     font-size: .8rem;
     line-height: 27px;
 }
@@ -1009,7 +1099,6 @@ nav {}
     top: 45px;
     right: 0;
     width: 100%;
-    z-index: 10;
     display: flex;
     align-items: center;
 }
@@ -1061,9 +1150,9 @@ nav {}
 .search__icon:before {
     content: "\f002";
     font-family: "FontAwesome";
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     position: absolute;
-    top: 0;
+    top: 5px;
     right: 0;
     left: 0;
     bottom: 0;
@@ -1072,9 +1161,10 @@ nav {}
 
 .navigation__closeBar {
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     height: 100%;
     text-align: center;
+    padding-bottom: .2rem;
     width: 5%;
     display: flex;
     justify-content: center;
