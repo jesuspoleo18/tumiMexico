@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="es">
+
+    <!-- head -->
+    
+    <head>
+    
+        <vtex:contentPlaceHolder id="home-title" />
+    
+        <meta name="description" content="" />
+    
+        <vtex:template id="2-tmx-head" />
+    
+    </head> <!-- /.end head -->
+    
+    <!-- body -->
+
+    <body>
+        
+        <!-- off-canvas-wrap -->
+
+        <div class="off-canvas-wrapper">
+
+            <!-- inner-wrap -->
+
+            <div class="off-canvas-content" data-off-canvas-content="">
+                
+                <!-- header -->
+                <header> <vtex:template id="2-tmx-header"/></header> <!-- /.end header -->
+
+                <!-- navigation -->
+                <nav> <vtex:template id="2-tmx-navigator"/></nav> <!-- /.end navigation -->
+
+                <!-- main content -->
+                <main class="main-content">
+
+                    <!-- carousel container -->
+                    <div class="home-slide"> <vtex:contentPlaceHolder id="carousel-slides" /> </div> <!-- /.end carousel container -->
+
+                </main> <!-- /.end main content -->
+
+                <!-- facebook api -->
+                <vtex:template id="2-tmx-fbsdk" />
+
+                <!-- footer -->
+                <footer> <vtex:template id="2-tmx-footer" /> </footer> <!-- /.end footer -->
+
+            </div> <!-- /.end inner-wrap -->
+
+        </div> <!-- /.end off-canvas-wrap -->
+
+    </body> <!-- /.end body -->
+
+</html>
