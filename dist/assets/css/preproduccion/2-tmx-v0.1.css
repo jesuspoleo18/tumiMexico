@@ -1108,6 +1108,54 @@ nav {}
 
 ============================= */
 
+.home__content {}
+
+.home-slide {}
+
+.home__promesas-container {}
+
+.home__promesas-content {}
+
+.home__promesas-element {}
+
+.home__promesas-icon {}
+
+.home__promesas-text {}
+
+.home__categorias-container {}
+
+.home__categorias-content {}
+
+.home__categorias-element {}
+
+.home__categorias-element.col-1 {}
+
+.home__categorias-element.col-2 {}
+
+.home__categorias-element.col-3 {}
+
+.home__categorias-banner {}
+
+.home__categorias-texto {}
+
+.home__productos-container {}
+
+.home__productos-content {}
+
+.home__title {}
+
+.home__tabs-buttons-content {}
+
+.home__tabs-buttons {}
+
+.home__tabs-buttons.transparent {}
+
+.home__tabs-content {}
+
+.home__tabs-content.news {}
+
+.home__tabs-content.bestSellers {}
+
 
 /*
 [f1.Mediaquerie home]
