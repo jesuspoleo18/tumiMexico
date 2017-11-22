@@ -89,11 +89,13 @@ const confiGenerales = {
 
     triggerActions:function(){
 
-        let $triggerCart = $(".header-cart__content,.navigation-cart__container"),
+        let $triggerCart = $(".header-cart__content, .navigation-cart__container"),
             $triggerSearch = $(".navigation__searchTrigger"),
-            $closeSearch = $(".navigation__closeBar"),
+            $triggerSearchMobile = $(".navigation__buttonSearch--mobile"),
+            $closeSearch = $(".navigation__closeBar,.navigation__closeBar--mobile"),
             $a = $('#offCanvasRight'),
-            $b = $(".navigation__searchBar");
+            $b = $(".navigation__searchBar"),
+            $c = $(".navigation__searchBar--mobile");
 
         $triggerCart.on("click", function(e) {
             e.preventDefault();
@@ -103,11 +105,18 @@ const confiGenerales = {
         $closeSearch.on("click", function (e) {
             e.preventDefault();
             $b.removeClass("active");
+            $c.removeClass("active");
         });
 
         $triggerSearch.on("click", function (e) {
             e.preventDefault();
             $b.toggleClass("active");
+            confiGenerales.changePlaceholders();
+        });
+
+        $triggerSearchMobile.on("click", function (e) {
+            e.preventDefault();
+            $c.toggleClass("active");
             confiGenerales.changePlaceholders();
         });
     },

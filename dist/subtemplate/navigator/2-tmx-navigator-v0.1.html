@@ -485,7 +485,7 @@
 <div class="navigation__content--mobile" data-sticky-container="">
 
     <!-- navigation elements mobile -->
-    <div class="navigation__elements--mobile sticky" data-sticky=""  data-margin-top="0">
+    <div class="navigation__elements--mobile sticky" data-sticky-on="small" data-margin-top="0" data-top-anchor="header:bottom">
 
         <!-- navigation left mobile -->
         <div class="navigation__left--mobile" data-toggle="offCanvasLeft" data-transition="overlap">
@@ -500,7 +500,7 @@
         <!-- /.end navigation center mobile -->
 
         <!-- navigation right mobile -->
-        <div class="navigation__right--mobile" data-toggle="offCanvasRight" data-transition="overlap">
+        <div class="navigation__right--mobile">
 
             <!-- navigation search button -->
             <div class="navigation__buttonSearch--mobile">
@@ -509,7 +509,7 @@
             <!-- /.end navigation search button -->
 
             <!-- navigation cart container mobile -->
-            <div class="navigation-cart__container--mobile">
+            <div class="navigation-cart__container--mobile" data-toggle="offCanvasRight" data-transition="overlap">
                 <div class="navigation-cart__content--mobile">
                     <vtex.cmc:AmountItemsInCart/>
                 </div>
@@ -522,6 +522,9 @@
         <!-- navigation search bar -->
         <div class="navigation__searchBar--mobile">
             <vtex.cmc:fullTextSearchBox/>
+            <div class="navigation__closeBar--mobile">
+                <span>x</span>
+            </div>
         </div>
         <!-- /.end navigation search bar -->
 
