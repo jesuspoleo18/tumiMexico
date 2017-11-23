@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  16/11/2017
+Ultimo cambio:  23/11/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -29,9 +29,9 @@ b6.Account
 
 ============================= */
 
-const $home = $(".home");
-const $categDeptoBuscaResultadoBusca = $(".categoria, .departamento, .busca, .resultado-busca");
-const $producto = $(".producto");
+var $home = $(".home"),
+    $categDeptoBuscaResultadoBusca = $(".categoria, .departamento, .busca, .resultado-busca"),
+    $producto = $(".producto");
 
 /* 
 
@@ -51,13 +51,15 @@ $(function () {
 
 ============================= */
 
-const confiGenerales = {
+var confiGenerales = {
 
-    init: function () {
+    init: function init() {
 
         confiGenerales.mainLazyLoad();
-        confiGenerales.triggerActions();
         // confiGenerales.FormatoDecimales();
+        confiGenerales.stickySearch();
+        confiGenerales.infoTab();
+        confiGenerales.triggerActions();
         confiGenerales.elementosFormato();
         confiGenerales.accordion('.toggle-trigger', '.toggle-container');
         $(window).on("resize", function () {
@@ -76,30 +78,68 @@ const confiGenerales = {
             confiGenerales.checkEmptyCart();
         });
         console.log("confiGenerales.init()  ˙ω˙");
-
     },
 
-    changePlaceholders:function(){
-        let $a = $(".btn-buscar"),
+    stickySearch: function stickySearch() {
+        var $el = $(".ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all");
+
+        $(window).scroll(function () {
+
+            if ($(this).scrollTop() > 1) {
+                $($el).addClass('sticky');
+                $($el).removeClass('fixed');
+            } else {
+                $($el).removeClass("sticky");
+            }
+        });
+    },
+
+    infoTab: function infoTab() {
+        var $news = $("[data-click='news']"),
+            $sellers = $("[data-click='sellers']"),
+            $newsTab = $(".home__tabs-content.news"),
+            $bestSellerTab = $(".home__tabs-content.bestSellers");
+
+        $news.addClass("active");
+        $newsTab.addClass("active");
+        $news.on("click", function (e) {
+            e.preventDefault();
+            $(this).addClass("active");
+            $sellers.removeClass("active");
+            $newsTab.addClass("active");
+            $bestSellerTab.removeClass("active");
+        });
+        $sellers.on("click", function (e) {
+            e.preventDefault();
+            $(this).addClass("active");
+            $news.removeClass("active");
+            $newsTab.removeClass("active");
+            $bestSellerTab.addClass("active");
+        });
+    },
+
+    changePlaceholders: function changePlaceholders() {
+        var $a = $(".btn-buscar"),
             $b = $("<div class='search__icon'></div>"),
             $c = $(".search__icon");
-        $a.attr({placeholder: " ", value:" " });
+        $a.attr({ placeholder: " ", value: " " });
         $c.length ? console.log("˙ω˙ icono agregado") : $a.before($b);
     },
 
-    triggerActions:function(){
+    triggerActions: function triggerActions() {
 
-        let $triggerCart = $(".header-cart__content, .navigation-cart__container"),
+        var $triggerCart = $(".header-cart__content, .navigation-cart__container"),
             $triggerSearch = $(".navigation__searchTrigger"),
             $triggerSearchMobile = $(".navigation__buttonSearch--mobile"),
             $closeSearch = $(".navigation__closeBar,.navigation__closeBar--mobile"),
+            $input = $(".navigation__searchBar [role='textbox']"),
             $a = $('#offCanvasRight'),
             $b = $(".navigation__searchBar"),
             $c = $(".navigation__searchBar--mobile");
 
-        $triggerCart.on("click", function(e) {
+        $triggerCart.on("click", function (e) {
             e.preventDefault();
-            $a.foundation('open', event, "[data-toggle=offCanvasLeft]"); 
+            $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
         });
 
         $closeSearch.on("click", function (e) {
@@ -112,76 +152,74 @@ const confiGenerales = {
             e.preventDefault();
             $b.toggleClass("active");
             confiGenerales.changePlaceholders();
+            $input.focus();
         });
 
         $triggerSearchMobile.on("click", function (e) {
             e.preventDefault();
             $c.toggleClass("active");
             confiGenerales.changePlaceholders();
+            $input.focus();
         });
     },
 
-    mainLazyLoad: function () {
+    mainLazyLoad: function mainLazyLoad() {
 
         var files = ["https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.2.0/lazyload.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
             return $.getScript(files);
-        }))
-            .then(function () {
+        })).then(function () {
 
-                let $productoContainer = $(".producto-prateleira"),
-                    $producto = $(".producto");
+            var $productoContainer = $(".producto-prateleira"),
+                $producto = $(".producto");
 
-                $productoContainer.each(function () {
+            $productoContainer.each(function () {
 
-                    let $thisImg = $(this).find(".producto-prateleira__imagen--url .imagen div"),
-                        $thisDiv = $(this).find(".producto-prateleira__imagen--url .imagen"),
-                        $thisParent = $(this).find(".producto-prateleira__imagen--url .imagen [data-was-processed='true']");
+                var $thisImg = $(this).find(".producto-prateleira__imagen--url .imagen div"),
+                    $thisDiv = $(this).find(".producto-prateleira__imagen--url .imagen"),
+                    $thisParent = $(this).find(".producto-prateleira__imagen--url .imagen [data-was-processed='true']");
 
-                    if ($thisImg.length) {
+                if ($thisImg.length) {
 
-                        if ($thisParent.length) {
-                            $thisParent.parent().addClass("load");
-                        }
-                        // console.log("Texting");
-                    } else {
-                        $thisDiv.append("<div></div>");
-                        if ($thisParent.length) {
-                            $thisParent.parent().addClass("load");
-                        }
+                    if ($thisParent.length) {
+                        $thisParent.parent().addClass("load");
                     }
-
-                });
-
-                // if($home.length || $categDepto.length || $producto.length ){
-
-                let home = new LazyLoad({
-
-                    elements_selector: "img",
-                    threshold: 50,
-
-                    callback_load: function (element) {
-                        // console.log("lazy loaded");
-                    },
-                    callback_set: function (element) {
-                        // console.log("lazy set");
-                    },
-                    callback_processed: function (elementsLeft) {
-                        // console.log("lazy proceced");
+                    // console.log("Texting");
+                } else {
+                    $thisDiv.append("<div></div>");
+                    if ($thisParent.length) {
+                        $thisParent.parent().addClass("load");
                     }
-
-                });
-
-                // }
-
-            }, function err(jqxhr, textStatus, errorThrown) {
-                console.log(textStatus);
+                }
             });
 
+            // if($home.length || $categDepto.length || $producto.length ){
+
+            var home = new LazyLoad({
+
+                elements_selector: "img",
+                threshold: 50,
+
+                callback_load: function callback_load(element) {
+                    // console.log("lazy loaded");
+                },
+                callback_set: function callback_set(element) {
+                    // console.log("lazy set");
+                },
+                callback_processed: function callback_processed(elementsLeft) {
+                    // console.log("lazy proceced");
+                }
+
+            });
+
+            // }
+        }, function err(jqxhr, textStatus, errorThrown) {
+            console.log(textStatus);
+        });
     },
 
-    FormatoDecimales: function (seletor) {
+    FormatoDecimales: function FormatoDecimales(seletor) {
 
         $(seletor).each(function () {
 
@@ -195,28 +233,29 @@ const confiGenerales = {
                 novoConteudoPreco = novoConteudoPreco.replace(padrao, '$1').replace(',', '.');
 
                 $(this).html(novoConteudoPreco);
-
             }
-
         });
-
     },
 
-    elementosFormato: function () {
+    elementosFormato: function elementosFormato() {
 
-        let $ajaxStopElems = '.skuListPrice,.oldPrice, .skuBestInstallmentValue, em.total-cart-em, td.monetary, span.best-price.new-product-price, td.quantity-price.hidden-phone.hidden-tablet,span.payment-value-monetary,span.payment-installments, .producto-prateleira__info--bestPrice div, .producto-prateleira__info--oldPrice div',
+        var $ajaxStopElems = '.skuListPrice,.oldPrice, .skuBestInstallmentValue, em.total-cart-em, td.monetary, span.best-price.new-product-price, td.quantity-price.hidden-phone.hidden-tablet,span.payment-value-monetary,span.payment-installments, .producto-prateleira__info--bestPrice div, .producto-prateleira__info--oldPrice div',
             $porcentaje = $('.porcentaje');
 
         if ($porcentaje.lenght) {
 
             $porcentaje.each(function () {
 
-                let valor = $(this).text();
-                if (valor == 0) { $(this).remove(); } else { $(this).text(valor.split(',')[0] + '%'); }
-
+                var valor = $(this).text();
+                if (valor == 0) {
+                    $(this).remove();
+                } else {
+                    $(this).text(valor.split(',')[0] + '%');
+                }
             });
-
-        } else { console.log("porcentaje desactivado"); }
+        } else {
+            console.log("porcentaje desactivado");
+        }
 
         // confiGenerales.FormatoDecimales($ajaxStopElems);
         porcentaje();
@@ -234,19 +273,16 @@ const confiGenerales = {
 
                 if (valor == 0) {
                     $(this).remove();
-                }
-                else {
+                } else {
                     $(this).text(valor.replace(',0', ''));
                 }
-
             });
         }
-
     },
 
-    accordion: function (trigger, content) {
+    accordion: function accordion(trigger, content) {
 
-        let $responsive = $(window).width();
+        var $responsive = $(window).width();
 
         if ($responsive < 768) {
 
@@ -261,12 +297,11 @@ const confiGenerales = {
         } else {
             $(content).show();
         }
-
     },
 
-    backTop: function () {
+    backTop: function backTop() {
 
-        let offset = 300,
+        var offset = 300,
             offset_opacity = 1200,
             scroll_top_duration = 700,
             $back_to_top = $('.back-to-top');
@@ -274,7 +309,7 @@ const confiGenerales = {
         //hide or show the "back to top" link
         $(window).scroll(function () {
 
-            ($(this).scrollTop() > offset) ? $back_to_top.addClass('back-to-top-is-visible') : $back_to_top.removeClass('back-to-top-is-visible back-to-top-fade-out');
+            $(this).scrollTop() > offset ? $back_to_top.addClass('back-to-top-is-visible') : $back_to_top.removeClass('back-to-top-is-visible back-to-top-fade-out');
 
             if ($(this).scrollTop() > offset_opacity) {
                 $back_to_top.addClass('back-to-top-fade-out');
@@ -287,13 +322,12 @@ const confiGenerales = {
             event.preventDefault();
 
             $('body,html').animate({
-                scrollTop: 0,
+                scrollTop: 0
             }, scroll_top_duration);
         });
-
     },
 
-    stickyNav: function (el) {
+    stickyNav: function stickyNav(el) {
 
         $("#mobile-nav").removeClass('sticky');
 
@@ -304,21 +338,17 @@ const confiGenerales = {
                 $(el).addClass('sticky');
                 $(el).removeClass('fixed');
                 $("#mobile-nav").addClass('sticky');
-
             } else {
 
                 $(el).removeClass("sticky");
                 $("#mobile-nav").removeClass('fixed sticky');
-
             }
-
         });
-
     },
 
-    megaMenu: function (el, exit) {
+    megaMenu: function megaMenu(el, exit) {
 
-        let $exit = $("header,.megamenu-buscar.navigation__searchTrigger,.home__content"),
+        var $exit = $("header,.megamenu-buscar.navigation__searchTrigger,.home__content"),
             $responsive = $(window).width(),
             $viajes = $("#megamenu-viajes"),
             $mochilas = $("#megamenu-mochilas"),
@@ -335,7 +365,7 @@ const confiGenerales = {
                 // entra mouse
                 $(this).on("mouseenter", function () {
 
-                    let $a = $(this).attr("class"),
+                    var $a = $(this).attr("class"),
                         $this = $(this);
 
                     confiGenerales.mainLazyLoad();
@@ -344,51 +374,40 @@ const confiGenerales = {
 
                         menuItems($this, $exit);
                         outMegamenu($viajes);
-
                     } else if ($a == 'megamenu-mochilas') {
 
                         menuItems($this, $exit);
                         outMegamenu($mochilas);
-
                     } else if ($a == 'megamenu-equipaje') {
 
                         menuItems($this, $exit);
                         outMegamenu($equipaje);
-
                     } else if ($a == 'megamenu-accesorios') {
 
                         menuItems($this, $exit);
                         outMegamenu($accesorios);
-
                     } else if ($a == 'megamenu-colecciones') {
 
                         menuItems($this, $exit);
                         outMegamenu($colecciones);
-
                     } else if ($a == 'megamenu-ideasRegalos') {
 
                         menuItems($this, $exit);
                         outMegamenu($ideasRegalos);
-
                     } else if ($a == 'megamenu-sale navigation__sale') {
 
                         menuItems($this, $exit);
                         outMegamenu($sale);
-
                     } else if ($a == 'megamenu-colecciones') {
 
                         menuItems($this, $exit);
                         outMegamenu($accesorios);
-
                     }
-
                 });
-
             });
-
         }
 
-        function menuItems(ele,exit){
+        function menuItems(ele, exit) {
             ele.addClass("active");
             ele.siblings().removeClass("active");
 
@@ -396,7 +415,6 @@ const confiGenerales = {
 
                 ele.removeClass("active");
                 $(exit).removeClass("active");
-
             });
         }
 
@@ -411,29 +429,26 @@ const confiGenerales = {
                 ele.removeClass("display", 500);
 
                 $(exit).removeClass("display", 500);
-
             });
 
             ele.siblings().removeClass("display");
-
         }
-
     },
 
-    compraAsyncVitrina: function () {
+    compraAsyncVitrina: function compraAsyncVitrina() {
 
-        let $contentAsync = $(".producto-prateleira__info--precio-container"),
+        var $contentAsync = $(".producto-prateleira__info--precio-container"),
             $btnAsync = $('.btn-add-buy-button-asynchronous');
 
         $contentAsync.each(function () {
 
-            let $thisBtn = $(this).find($btnAsync);
+            var $thisBtn = $(this).find($btnAsync);
 
             $thisBtn.unbind('click');
 
             $thisBtn.bind('click', function (e) {
 
-                let url = $(this).attr('href').split("?")[1],
+                var url = $(this).attr('href').split("?")[1],
                     param = url.split("&"),
                     item = {
                         id: param[0].split("=")[1],
@@ -447,18 +462,14 @@ const confiGenerales = {
 
                     $('#agregadoExito').foundation('reveal', 'open');
                     console.log(orderForm);
-
                 });
-
             });
-
         });
-
     },
 
-    checkEmptyCart: function () {
+    checkEmptyCart: function checkEmptyCart() {
 
-        let $emptyBag = $(".middle-container__content-popCart .emptyBag"),
+        var $emptyBag = $(".middle-container__content-popCart .emptyBag"),
             $NoEmptyBag = $(".middle-container__content-popCart .emptyBag.active"),
             $cartNumber = $(".middle-container__content-cart"),
             $cartFooter = $(".middle-container__content-popCart .cartFooter"),
@@ -475,7 +486,6 @@ const confiGenerales = {
             $emptyBag.addClass("active");
             $cartNumber.removeClass("active");
             $cartFooter.removeClass("clearfix");
-
         }
         if ($montoValor > 0) {
 
@@ -487,16 +497,15 @@ const confiGenerales = {
             $cartNumber.addClass("active");
             $cartFooter.removeClass("clearfix");
         }
-
     },
 
-    quickViewAsyncBuy: function () {
+    quickViewAsyncBuy: function quickViewAsyncBuy() {
 
-        let $iframeContentTop = $('#TB_iframeContent', top.document);
+        var $iframeContentTop = $('#TB_iframeContent', top.document);
 
         $iframeContentTop.on("load", function () {
 
-            let $iframeBuySuccess = $(".TB_compraExitosa"),
+            var $iframeBuySuccess = $(".TB_compraExitosa"),
                 $thisBtn = $(".buy-button.buy-button-ref"),
                 $descripcion = $(".quickview-container__informacion--basica-content .descripcion-larga"),
                 $ean = $(".quickview-container__informacion--basica-content .ean"),
@@ -527,7 +536,7 @@ const confiGenerales = {
                     dataType: 'json',
                     type: 'GET',
                     crossDomain: true,
-                    success: function (data) {
+                    success: function success(data) {
 
                         // producto.descripcion = data[0]['Descripción Larga'];
                         // producto.caracteristica = data[0].Características[0];
@@ -569,9 +578,7 @@ const confiGenerales = {
                             // window.parent.confiGenerales.refreshMiniCart();
                             $iframeBuySuccess.show();
                         });
-
                     });
-
                 });
 
                 miniaturaSlickQuickview();
@@ -585,21 +592,17 @@ const confiGenerales = {
                         var $templateaT = '<div class="logo-marca"><img src=/arquivos/logo-AT.png></div>';
 
                         $location.prepend($templateaT);
-
                     } else if (producto.marca == 'Samsonite Black Label') {
 
                         var $templatesmxBlack = '<div class="logo-marca"><img src=/arquivos/logo-smxNegro-3.png></div>';
 
                         $location.prepend($templatesmxBlack);
-
                     } else if (producto.marca == 'Samsonite') {
 
                         var $templatesmx = '<div class="logo-marca"><img src=/arquivos/logo-smxAzul-3.png></div>';
 
                         $location.prepend($templatesmx);
-
                     }
-
                 }
 
                 function dotInfo() {
@@ -634,9 +637,7 @@ const confiGenerales = {
                             useTransform: true
 
                         });
-
                     }
-
                 }
 
                 function seeMore() {
@@ -645,50 +646,42 @@ const confiGenerales = {
 
                     $.when.apply($, $.map(files, function (file) {
                         return $.getScript(files);
-                    }))
-                        .then(function () {
+                    })).then(function () {
 
-                            var $el = $(".quickview-container__informacion--basica-content .descripcion-larga");
+                        var $el = $(".quickview-container__informacion--basica-content .descripcion-larga");
 
-                            $($el).readmore({
-                                speed: 100,
-                                collapsedHeight: 50,
-                                moreLink: '<a class="seeMore" href="#">Ler mais</a>',
-                                lessLink: '<a class="seeLess" href="#">Leia menos</a>'
-                            });
-
-                        }, function err(jqxhr, textStatus, errorThrown) {
-                            console.log(textStatus);
+                        $($el).readmore({
+                            speed: 100,
+                            collapsedHeight: 50,
+                            moreLink: '<a class="seeMore" href="#">Ler mais</a>',
+                            lessLink: '<a class="seeLess" href="#">Leia menos</a>'
                         });
-
+                    }, function err(jqxhr, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    });
                 }
-
             }); // /.fin getCurrentProductWithVariations.
-
         });
-
     },
 
-    refreshMiniCart: function () {
+    refreshMiniCart: function refreshMiniCart() {
 
         vtexjs.checkout.getOrderForm();
         $("#TB_overlay", document.body).remove();
         $("#TB_window", document.body).remove();
-
     },
 
-    masterData: function () {
+    masterData: function masterData() {
 
         $('#contacto-submit').on("click", function (e) {
 
             e.preventDefault();
             contacto();
-
         });
 
         $('#newsletter_submit').on("click", function (e) {
 
-            let $femenino = $('#sn_femenino:checked'),
+            var $femenino = $('#sn_femenino:checked'),
                 $masculino = $('#sn_masculino:checked'),
                 $errorGenderMessage = '<span>Por favor, complete todos los campos</span>';
 
@@ -700,7 +693,6 @@ const confiGenerales = {
             }
 
             e.preventDefault();
-
         });
 
         function newsletter() {
@@ -721,18 +713,16 @@ const confiGenerales = {
                 type: 'POST',
                 url: '//api.vtexcrm.com.br/lojasamsonite/dataentities/SN/documents',
 
-                success: function (data) {
+                success: function success(data) {
 
                     $('#NewsAprob').foundation('reveal', 'open');
                     clearData();
-
                 },
-                error: function (data) {
+                error: function error(data) {
 
                     $('#NewsError').foundation('reveal', 'open');
                 }
             });
-
         }
 
         function clearData() {
@@ -750,7 +740,6 @@ const confiGenerales = {
             if ($accepted.length) {
                 $(".estatico-content__contenido input[type='text'],.estatico-content__contenido input[type='email']").val('');
             }
-
         }
 
         function contacto() {
@@ -774,36 +763,32 @@ const confiGenerales = {
                 type: 'POST',
                 url: '//api.vtexcrm.com.br/lojasamsonite/dataentities/SC/documents',
 
-                success: function (data) {
+                success: function success(data) {
 
                     $('#NewsAprob').foundation('reveal', 'open');
                     clearData();
-
                 },
-                error: function (data) {
+                error: function error(data) {
 
                     $('#NewsError').foundation('reveal', 'open');
                 }
             });
-
         }
-
     },
 
-    replaceHref: function () {
+    replaceHref: function replaceHref() {
 
-        let $accept = $(".categoria, .departamento, .home, .producto, .resultado-busca, .brand");
+        var $accept = $(".categoria, .departamento, .home, .producto, .resultado-busca, .brand");
 
         if ($accept.length) {
 
-            let $a = $('.thickbox');
+            var $a = $('.thickbox');
 
             $a.each(function (key, val) {
                 $(val).attr('href', $(val).attr('href').replace("http://", "https://"));
             });
         }
-
-    },
+    }
 
 };
 
@@ -813,16 +798,16 @@ const confiGenerales = {
 
 ============================= */
 
-const home = {
+var home = {
 
-    init: function () {
+    init: function init() {
 
         if ($home.length) {
             home.carousel('.home-slide');
         }
     },
 
-    carousel: function (uno) {
+    carousel: function carousel(uno) {
 
         $(".helperComplement").remove();
 
@@ -851,7 +836,6 @@ const home = {
             }]
 
         });
-
     }
 };
 
@@ -874,9 +858,9 @@ const home = {
 ============================= */
 
 var busca = {
-    init: function () { },
+    init: function init() { },
 
-    fraseBusqueda: function () {
+    fraseBusqueda: function fraseBusqueda() {
 
         var $buscavazia = $(".estatico.buscavazia"),
             $resultadoBusca = $(".resultado-busca"),
@@ -889,31 +873,27 @@ var busca = {
                 $el = $(".frase__content");
 
             $el.append(url);
-
         } else if ($resultadoBusca.length) {
 
-            var href = window.location.href,
-                url = href.split('/')[3],
+            var hrefUrl = window.location.href,
+                theUrl = hrefUrl.split('/')[3],
                 $body = $("body.resultado-busca"),
                 $parent = $(".resultado-content"),
-                $el = $(".resultado-content .resultado"),
-                $template = '<div class="cuatro__container"> <div class="cuatro__container--img"> <img src="/arquivos/sbr-sin-resultado.png" /> </div> <div class="cuatro__container--texto"> <div class="texto__content">Sua busca para:<strong class="resultado">' + url + '</strong>não encontrou nenhum resultado.</div> </div> </div>';
+                $ele = $(".resultado-content .resultado"),
+                $template = '<div class="cuatro__container"> <div class="cuatro__container--img"> <img src="/arquivos/sbr-sin-resultado.png" /> </div> <div class="cuatro__container--texto"> <div class="texto__content">Sua busca para:<strong class="resultado">' + theUrl + '</strong>não encontrou nenhum resultado.</div> </div> </div>';
 
             if ($productoEncontrado.length) {
 
-                $el.append(url);
-
+                $ele.append(theUrl);
             } else {
 
                 $body.addClass('no-encontro');
                 $parent.html($template);
             }
-
         }
-
     },
 
-    resultadoBusqueda: function () {
+    resultadoBusqueda: function resultadoBusqueda() {
 
         var $accept = $("body.resultado-busca, body.brand");
 
@@ -932,17 +912,14 @@ var busca = {
 
                 $hideSideBar.remove();
                 $body.addClass("no-encontro-filtros");
-
             }
             if (coleccion.includes('busca?fq')) {
                 $coleccionParent.html("Os resultados da <strong>coleção</strong> são:");
             }
 
             $resultText.html(decodeURIComponent(urlText));
-
         }
-
-    },
+    }
 };
 
 /* 
