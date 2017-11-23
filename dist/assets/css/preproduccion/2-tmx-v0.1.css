@@ -973,7 +973,7 @@ nav {
 }
 
 .navigation__miniCart--mobile .title:before {
-    content: "ArtÃƒÆ’Ã‚Â­culos en la cesta";
+    content: "Art\0000­culos en la cesta";
 }
 
 .navigation-cart__container--mobile .title,
@@ -1679,7 +1679,6 @@ nav {
 }
 
 .home__categorias-texto {
-    /*     border:1px solid red; */
     /*     border:1px solid red; */
     color: white;
     position: absolute;
