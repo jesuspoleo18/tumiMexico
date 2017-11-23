@@ -54,7 +54,8 @@ b5.Mediaquerie footer
 
 --------- Vitrinas -------------
 
-c0.
+c0.Prateleira
+c1.Mediaquerie prateleira
 
 --------- Controladores -------------
 
@@ -747,9 +748,32 @@ nav {
 
 
 /*
-[c0.]
+[c0.Prateleira]
 
 ============================= */
+
+.prateleira {}
+
+
+/*
+[c0.Mediaquerie prateleira]
+
+============================= */
+
+
+/* small */
+
+@media only screen and (max-width: 40em) {}
+
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
+
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {}
 
 
 /*
@@ -875,7 +899,7 @@ nav {
 }
 
 .navigation__miniCart--mobile .title:before {
-    content: "ArtÃ­culos en la cesta";
+    content: "ArtÃƒÆ’Ã‚Â­culos en la cesta";
 }
 
 .navigation-cart__container--mobile .title,
@@ -1493,23 +1517,72 @@ nav {
     font-weight: bold;
 }
 
-.home__productos-container {}
+.home__productos-container {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.home__productos-content {}
+.home__productos-content {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-.home__title {}
+.home__title {
+    margin-bottom: .8rem;
+    width: auto;
+}
 
-.home__tabs-buttons-content {}
+.home__title h3 {
+    font-size: 1.4rem;
+}
 
-.home__tabs-buttons {}
+.home__tabs-buttons-content {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.home__tabs-buttons {
+    font-weight: bold;
+    font-family: 'Proxima Nova bold';
+    font-size: .8rem;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    width: 30%;
+}
+
+.home__tabs-buttons:first-child:after {
+    content: "/";
+    position: absolute;
+    right: 0;
+}
 
 .home__tabs-buttons.transparent {}
 
-.home__tabs-content {}
+.home__tabs-content {
+    border: 1px solid red;
+    width: 100%;
+}
 
-.home__tabs-content.news {}
+.home__tabs-content.news,
+.home__tabs-content.bestSellers {
+    display: none;
+}
 
-.home__tabs-content.bestSellers {}
+.home__tabs-content.news,
+.home__tabs-content.bestSellers {
+    display: none;
+}
+
+.home__tabs-content.news.active {
+    display: flex;
+}
 
 
 /*

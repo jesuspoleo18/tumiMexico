@@ -1,0 +1,116 @@
+#set($id = $product.Id)
+#set($idSku = $product.productVariantId)
+#set($uri = $product.Uri)
+#set($escapedName = $product.HtmlEscapedName)
+
+<!-- prateleira container -->
+<div class="prateleira__container">
+
+    <!-- prateleira content -->
+    <div class="prateleira__content">
+
+        <!-- imagen de prateleira -->
+        <div class="prateleira__img-container">
+
+            <!-- quickview -->
+            <div class="prateleira__quickview">
+                <div class="quickview__btn">$product.QuickView</div>
+            </div>
+
+            <!-- wishlist -->
+            <div class="prateleira__wishlist">
+                $product.InsertSku
+                <div class="wishlist__btn">$product.ButtonBuyGiftList</div>
+            </div>
+
+            <!-- imagen -->
+            <a class="prateleira__img" title="$escapedName" href="$uri">
+                <div class="img">$product.GetImageTag(30)</div>
+            </a>
+
+        </div>
+        <!-- /.fin imagen de prateleira -->
+
+        #if($product.HightLight)
+            <h3>$product.HightLight</h3>
+        #end
+
+        <!-- percent -->
+        <div id="percent" class="prateleira__percent-container">
+            <div class="prateleira__percent-content">
+                $product.ListPriceMinusBestPriceInPercent
+            </div>
+        </div>
+
+        <!-- informacion adicional de producto -->
+        <div class="prateleira__info">
+
+            <!-- marca -->
+            <div class="prateleira__brand-container">
+                <div class="prateleira__brand-content">
+                    $product.Brand
+                </div>
+            </div>
+
+            <!-- nombre producto -->
+            <a class="producto-prateleira__info--nombre" title="$escapedName" href="$uri">
+                <div class="info-nombre">
+                    $product.Name
+                </div>
+            </a>
+
+            <!-- if, have stock -->
+
+            #if ($product.IsInStock)
+
+            <div class="prateleira__price-container">
+
+                <a class="prateleira__price-content" title="$escapedName" href="$uri">
+
+                    <!-- si, tiene mejor precio... -->
+
+                    #if ($product.HasBestPrice)
+
+                        <div class="prateleira__oldprice">
+                            <div>$product.ListPrice</div>
+                        </div>
+
+                        <div class="prateleira__bestprice promo">
+                            <div>$product.BestPrice</div>
+                        </div>
+
+                        <div class="prateleira__buybtn">
+                            $product.BottomBuyAsynchronous
+                        </div>
+
+                    <!-- if not, then... -->
+
+                    #else
+
+                        <div class="prateleira__bestprice">
+                            <div>$product.BestPrice</div>
+                        </div>
+
+                        <div class="prateleira__buybtn">
+                            $product.BottomBuyAsynchronous
+                        </div>
+
+                    #end
+
+                </a>
+
+            </div>
+
+            #else
+
+            <div class="prateleira__outstock">
+                <p>Proximamente</p>
+            </div>
+
+            #end
+
+        </div>
+    </div>
+    <!-- /.end prateleira content -->
+</div>
+<!-- /.end prateleira container -->
