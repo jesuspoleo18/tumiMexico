@@ -742,6 +742,169 @@ nav {
 
 ============================= */
 
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__content {
+    background-color: #DDDDDD;
+    width: 100%;
+}
+
+.footer__info {
+    /*     border:1px solid red; */
+    border-right: 2px solid white;
+    display: flex;
+    align-items: center;
+}
+
+.footer__navigation {
+    border-right: 2px solid white;
+    padding: 1.5rem 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__col-1 {}
+
+.footer__col-2 {}
+
+.footer__col-3 {}
+
+.footer__title {
+    color: #777;
+    font-weight: bold;
+    font-family: 'Proxima Nova bold';
+    font-size: .88rem;
+    text-transform: uppercase;
+    margin-bottom: .8rem;
+    width: 100%;
+}
+
+.footer__title.sub {
+    margin-top: .8rem;
+}
+
+.footer__elements {}
+
+.footer__elements a {
+    font-size: .88rem;
+    line-height: 28px;
+}
+
+.footer__nearlocation {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.footer__nearlocation .footer__title {
+    text-align: center;
+}
+
+.footer__map {
+    background-color: #B92335;
+    height: 200px;
+    width: 300px;
+}
+
+.footer__rrss {
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.footer__rrss .footer__title {
+    width: 100%;
+    text-align: center;
+}
+
+.footer__socialmedia,
+.footer__newsletter,
+.footer__tumiregister {
+    height: 100%;
+    width: 33.3%;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__socialmedia a:nth-child(3) {
+    margin: 0 1rem;
+}
+
+.footer__newsletter,
+.footer__tumiregister {
+    padding: 1rem 0;
+}
+
+.footer__newsletter {
+    width: 35.9%;
+}
+
+.footer__newsletter {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+}
+
+.footer__forms {
+    position: relative;
+    width: 60%;
+}
+
+.footer__forms .fa {
+    position: absolute;
+    top: 33%;
+    right: 4%;
+    z-index: 2;
+}
+
+.footer__input {
+    margin: 0;
+}
+
+.submit__newsletter,
+.submit__tracer {
+    border: 1px solid white;
+    height: 90%;
+    position: absolute;
+    top: 5%;
+    right: 0;
+    width: 40px;
+    z-index: 1;
+}
+
+.footer__tumiregister {}
+
+.submit__tracer {}
+
+.footer__bottom {
+    background-color: white;
+    padding: .8rem 1.5rem;
+    display: flex;
+}
+
+.footer__logo,
+.footer__copyrights {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.footer__copyrights {
+    font-size: .8rem;
+    justify-content: flex-end;
+}
+
 
 /*
 [b5.Mediaquerie footer]
@@ -973,7 +1136,7 @@ nav {
 }
 
 .navigation__miniCart--mobile .title:before {
-    content: "Art\0000­culos en la cesta";
+    content: "Art\00ED culos en la cesta";
 }
 
 .navigation-cart__container--mobile .title,

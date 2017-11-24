@@ -12,9 +12,9 @@
         <!-- imagen de prateleira -->
         <div class="prateleira__img-container">
 
-            <!-- quickview -->
-            <div class="prateleira__quickview">
-                <div class="quickview__btn">$product.QuickView</div>
+            <!-- compare -->
+            <div class="prateleira__compare">
+                <div class="compare__btn">$product.Compare</div>
             </div>
 
             <!-- wishlist -->
@@ -71,26 +71,36 @@
 
                     #if ($product.HasBestPrice)
 
+                        <!-- old price -->
                         <div class="prateleira__oldprice">
                             <div>$product.ListPrice</div>
                         </div>
 
+                        <!-- promo price -->
                         <div class="prateleira__bestprice promo">
                             <div>$product.BestPrice</div>
                         </div>
 
+                        <!-- buy button -->
                         <div class="prateleira__buybtn">
                             $product.BottomBuyAsynchronous
+                        </div>
+
+                        <!-- quickview -->
+                        <div class="prateleira__quickview">
+                            <div class="quickview__btn">$product.QuickView</div>
                         </div>
 
                     <!-- if not, then... -->
 
                     #else
 
+                        <!-- best price -->
                         <div class="prateleira__bestprice">
                             <div>$product.BestPrice</div>
                         </div>
 
+                        <!-- buy button -->
                         <div class="prateleira__buybtn">
                             $product.BottomBuyAsynchronous
                         </div>
@@ -103,6 +113,7 @@
 
             #else
 
+            <!-- out stock -->
             <div class="prateleira__outstock">
                 <p>Proximamente</p>
             </div>
