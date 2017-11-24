@@ -61,10 +61,7 @@ var confiGenerales = {
         confiGenerales.infoTab();
         confiGenerales.triggerActions();
         confiGenerales.elementosFormato();
-        confiGenerales.accordion('.toggle-trigger', '.toggle-container');
-        $(window).on("resize", function () {
-            confiGenerales.accordion('.toggle-trigger', '.toggle-container');
-        });
+        confiGenerales.accordion('.footer__title', '.footer__elements');
         confiGenerales.backTop();
         // confiGenerales.stickyNav();
         confiGenerales.megaMenu('.navigation__menu a', 'header,.megamenu-buscar.navigation__searchTrigger,.home__content');

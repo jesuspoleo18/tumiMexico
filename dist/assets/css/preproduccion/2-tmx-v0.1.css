@@ -827,6 +827,19 @@ footer {
     text-align: center;
 }
 
+.footer__rrss .footer__elements {
+    /*     border:1px solid red; */
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer__socialmedia .footer__elements {
+    /*     border:1px solid blue; */
+    width: 20%;
+    justify-content: space-between;
+}
+
 .footer__socialmedia,
 .footer__newsletter,
 .footer__tumiregister {
@@ -836,10 +849,6 @@ footer {
     flex-flow: wrap;
     justify-content: center;
     align-items: center;
-}
-
-.footer__socialmedia a:nth-child(3) {
-    margin: 0 1rem;
 }
 
 .footer__newsletter,
@@ -858,11 +867,12 @@ footer {
 
 .footer__forms {
     position: relative;
-    width: 60%;
+    width: 100%;
 }
 
 .footer__forms .fa {
     position: absolute;
+    pointer-events: none;
     top: 33%;
     right: 4%;
     z-index: 2;
@@ -875,6 +885,7 @@ footer {
 .submit__newsletter,
 .submit__tracer {
     border: 1px solid white;
+    cursor: pointer;
     height: 90%;
     position: absolute;
     top: 5%;
@@ -910,6 +921,96 @@ footer {
 [b5.Mediaquerie footer]
 
 ============================= */
+
+
+/* small */
+
+@media only screen and (max-width: 40em) {
+    .footer__title,
+    .footer__rrss .footer__title,
+    .footer__nearlocation .footer__title {
+        text-align: left;
+    }
+    .footer__title {
+        margin-top: 1rem;
+    }
+    .footer__socialmedia,
+    .footer__newsletter,
+    .footer__tumiregister {
+        border: 0;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    .footer__info {
+        border: 0;
+        flex-flow: wrap;
+    }
+    .footer__navigation {
+        border: 0;
+        padding: 0 1rem;
+        order: 2;
+        width: 100%;
+        flex-flow: wrap;
+    }
+    .footer__col-1,
+    .footer__col-2,
+    .footer__col-3 {
+        width: 100%;
+    }
+    .footer__nearlocation {
+        order: 1;
+        padding: 1rem;
+        width: 100%;
+    }
+    .footer__rrss {
+        border: 0;
+        padding: 1rem;
+        flex-flow: wrap;
+    }
+    .footer__forms {
+        width: 100%;
+    }
+    .footer__bottom {
+        background-color: white;
+        padding: 1rem;
+        display: flex;
+        flex-flow: wrap;
+    }
+    .footer__logo,
+    .footer__copyrights {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer__logo {
+        display: none;
+    }
+    .footer__copyrights {
+        font-size: .8rem;
+        flex-flow: wrap;
+        margin-top: .5rem;
+        justify-content: center;
+    }
+    .footer__copyrights p,
+    .footer__copyrights a {
+        text-align: center;
+        width: 100%;
+    }
+    .footer__copyrights a:nth-child(2) {
+        padding: 1rem 0;
+    }
+}
+
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
+
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {}
 
 
 /*
@@ -949,7 +1050,14 @@ footer {
 .prateleira__img,
 .img {
     /*     border:1px solid orange; */
+    position: relative;
     width: 100%;
+}
+
+.prateleira__compare {
+    border: 1px solid gray;
+    position: absolute;
+    z-index: 2;
 }
 
 .img img {
@@ -1727,12 +1835,12 @@ footer {
 @media only screen and (max-width: 40em) {
     .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
         /*         display:block !important; */
-        top: 16.3% !important;
+        top: 26.3% !important;
         left: 0 !important;
         width: 100% !important;
     }
     .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all.sticky {
-        top: 13% !important;
+        top: 21.5% !important;
         left: 0 !important;
         width: 100% !important;
     }
@@ -1940,6 +2048,32 @@ footer {
 [f1.Mediaquerie home]
 
 ============================= */
+
+
+/* small */
+
+@media only screen and (max-width: 40em) {
+    .home__promesas-content,
+    .home__categorias-container {
+        display: none;
+    }
+    .home__tabs-buttons-content {
+        width: 100%;
+    }
+    .home__tabs-buttons {
+        width: 40%;
+    }
+}
+
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
+
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {}
 
 
 /*
