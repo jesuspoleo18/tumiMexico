@@ -941,6 +941,11 @@ footer {
         justify-content: flex-start;
         width: 100%;
     }
+    .footer__newsletter,
+    .footer__tumiregister {
+        margin: 0;
+        padding: 0;
+    }
     .footer__info {
         border: 0;
         flex-flow: wrap;
@@ -959,12 +964,12 @@ footer {
     }
     .footer__nearlocation {
         order: 1;
-        padding: 1rem;
+        padding: 0 1rem;
         width: 100%;
     }
     .footer__rrss {
         border: 0;
-        padding: 1rem;
+        padding: 0 1rem;
         flex-flow: wrap;
     }
     .footer__forms {
@@ -999,6 +1004,17 @@ footer {
     }
     .footer__copyrights a:nth-child(2) {
         padding: 1rem 0;
+    }
+    .footer__title:before {
+        color: #B92335;
+        content: "\f055";
+        font-family: 'FontAwesome';
+        padding-right: 1rem
+    }
+    .footer__title.active:before {
+        content: "\f056";
+        font-family: 'FontAwesome';
+        padding-right: 1rem
     }
 }
 
@@ -1066,15 +1082,19 @@ footer {
     position: relative;
 }
 
-.compare__btn label {}
+.compare__btn label {
+    color: #777;
+    font-family: 'Proxima Nova';
+    font-size: .8rem;
+    margin-right: 2rem;
+}
 
 .compare__btn input {
-    top: 8%;
+    top: 10%;
     position: absolute;
-    left: -22%;
-    border: 1px solid #7F8C8D;
-    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    right: 0%;
+    border: 1px solid #ccc;
+    background-color: white;
     cursor: pointer;
     height: 20px;
     width: 20px;
@@ -1166,7 +1186,19 @@ footer {
 
 /* small */
 
-@media only screen and (max-width: 40em) {}
+@media only screen and (max-width: 40em) {
+    .prateleira__compare {
+        display: none;
+    }
+    .prateleira__buybtn {
+        margin-top: .5rem;
+    }
+    .btn-add-buy-button-asynchronous {
+        border: 1px solid black;
+        padding: .2rem 0;
+        width: 90%;
+    }
+}
 
 
 /* medium */
@@ -2028,6 +2060,7 @@ footer {
 }
 
 .home__productos-container {
+    margin-bottom: 2rem;
     padding: 1rem 0;
     display: flex;
     justify-content: center;
