@@ -64,7 +64,7 @@ var confiGenerales = {
         confiGenerales.accordion('.footer__title', '.footer__elements');
         confiGenerales.backTop();
         // confiGenerales.stickyNav();
-        confiGenerales.megaMenu('.navigation__menu a', 'header,.megamenu-buscar.navigation__searchTrigger,.home__content');
+        confiGenerales.megaMenu('.navigation__menu a', 'header,.megamenu-buscar.navigation__searchTrigger, main, footer');
         // confiGenerales.compraAsyncVitrina();
         confiGenerales.checkEmptyCart();
         confiGenerales.quickViewAsyncBuy();
@@ -345,7 +345,7 @@ var confiGenerales = {
 
     megaMenu: function megaMenu(el, exit) {
 
-        var $exit = $("header,.megamenu-buscar.navigation__searchTrigger,.home__content"),
+        var $exit = $("header,.megamenu-buscar.navigation__searchTrigger, main,footer"),
             $responsive = $(window).width(),
             $viajes = $("#megamenu-viajes"),
             $mochilas = $("#megamenu-mochilas"),

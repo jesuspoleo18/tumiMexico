@@ -59,10 +59,12 @@ c1.Mediaquerie prateleira principal
 
 --------- Controladores -------------
 
-d0.Mini cart.
-d1.Mediaquerie mini cart.
+d0.Mini cart
+d1.Mediaquerie mini cart
 d2.Zoom
 d3.Mediaquerie zoom
+d4.Breadcrumb
+d5.Mediaquerie breadcrumb
 
 --------- Componentes -------------
 
@@ -78,6 +80,8 @@ e8.Buscador
 e9.Mediaquerie buscador
 e10.Resultado desplegable de buscador
 e11.Mediaquerie resultado desplegable de buscador
+e12.Producto sticky
+e13.Mediaquerie producto sticky
 
 --------- Estilos de pagina -------------
 
@@ -109,6 +113,13 @@ f19.Mediaquerie sistema
 [a0.Global]
 
 ============================= */
+
+:root {
+    --borderRojo: 1px solid red;
+    --borderAzul: 1px solid blue;
+    --borderNegro: 1px solid black;
+    --borderNaranja: 1px solid orange;
+}
 
 @font-face {
     font-family: 'Proxima Nova';
@@ -1405,7 +1416,7 @@ footer {
     background-color: #fff;
     padding: 0;
     text-align: center;
-    background-image: url(/arquivos/sbr-syncBuy.gif);
+    /*     background-image: url(/arquivos/sbr-syncBuy.gif); */
     background-repeat: no-repeat;
     background-position: center center;
     z-index: 10;
@@ -1509,6 +1520,33 @@ footer {
         min-height: 1200px;
     }
 }
+
+
+/*
+[d4.Breadcrumb]
+
+============================= */
+
+
+/*
+[d5.Mediaquerie breadcrumb]
+
+============================= */
+
+
+/* small */
+
+@media only screen and (max-width:40em) {}
+
+
+/* medium */
+
+@media only screen and (min-width:40.063em) and (max-width:64em) {}
+
+
+/* xlarge */
+
+@media only screen and (min-width:90.063em) {}
 
 
 /*
@@ -2107,6 +2145,16 @@ footer {
 
 ============================= */
 
+.producto-sticky-container.true {
+    display: none;
+}
+
+
+/*
+[f0.Home]
+
+============================= */
+
 .home__promesas-container {
     background-color: #ebebeb;
     margin-bottom: 2rem;
@@ -2330,6 +2378,25 @@ footer {
 
 .product__container--mobile {
     display: none;
+}
+
+.product__content {
+    width: 100%;
+}
+
+.product__container {
+    border: var(--borderRojo);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product__container .product__content {
+    border: var(--borderAzul);
+    width: 80%;
+    display: flex;
+    flex-flow: wrap;
 }
 
 
