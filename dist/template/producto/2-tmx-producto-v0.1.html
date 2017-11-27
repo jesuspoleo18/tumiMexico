@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce"
+    lang="es">
+
+<!-- head -->
+
+<head>
+
+    <title> <vtex.cmc:productPageTitle /> </title>
+    <meta name="description" content="" />
+    <vtex:template id="2-tmx-head" />
+
+</head>
+<!-- /.end head -->
+
+<!-- body -->
+
+<body>
+
+    <!-- off-canvas-wrap -->
+    <div class="off-canvas-wrapper">
+
+        <!-- inner-wrap -->
+        <div class="off-canvas-content" data-off-canvas-content="">
+
+            <!-- header -->
+            <header id="header">
+                <vtex:template id="2-tmx-header" />
+            </header>
+            <!-- /.end header -->
+
+            <!-- navigation -->
+            <nav>
+                <vtex:template id="2-tmx-navigator" />
+            </nav>
+            <!-- /.end navigation -->
+
+            <!-- main content -->
+            <main class="product__content">
+
+                <!-- product container mobile -->
+                <section class="product__container--mobile">
+
+                    <!-- product name mobile -->
+                    <div class="product__name--mobile">
+                        <vtex.cmc:productName />
+                    </div>
+                    <!-- /.end product name mobile -->
+
+                    <!-- product description mobile -->
+                    <div class="producto__description--mobile">
+                        <vtex.cmc:productDescriptionShort />
+                    </div>
+                    <!-- /.end product description mobile -->
+
+                    <!-- product img mobile -->
+                    <div class="product__img--mobile">
+
+                        <vtex.cmc:ProductImage zoom="off" />
+                        <!-- <vtex.cmc:HightLight/> -->
+                        <!-- <vtex.cmc:discountHightLight/> -->
+                    </div>
+                    <!-- /.end product img mobile -->
+
+                </section>
+                <!-- /.end product container mobile -->
+
+                <!-- product container -->
+                <section class="product__container">
+
+                    <!-- product content -->
+                    <div class="product__content">
+
+                        <!-- product breadcrumb -->
+                        <div class="product__breadcrumb">
+                            <vtex.cmc:breadCrumb />
+                        </div>
+                        <!-- /.end product breadcrumb -->
+
+                        <!-- product left side -->
+                        <div class="product__left-side">
+
+                            <!-- product left side container -->
+                            <div class="product__left-side-container">
+
+                                <!-- product img container -->
+                                <div class="product__img-container">
+                                    <!-- img control -->
+                                    <vtex.cmc:ProductImage zoom="on" />
+
+                                    <!-- product share container -->
+                                    <div class="product__share-container">
+
+                                        <!-- product share content -->
+                                        <div class="product__share-content">
+
+                                            <!-- title -->
+                                            <h6 class="product__share-title">Compartir</h6>
+                                            <!-- icons -->
+                                            <div class="product_share-icons">
+                                                <vtex:contentPlaceHolder id="redes-sociales" />
+                                            </div>
+
+                                        </div>
+                                        <!-- ./end product share content -->
+
+                                    </div>
+                                    <!-- /.end product share container -->
+                                </div>
+                                <!-- /.end product img container -->
+
+                                <!-- product instagram feed -->
+                                <div class="product__instagram-feed"> </div>
+                                <!-- /.end product instagram feed -->
+
+                            </div>
+                            <!-- /.end product left side container -->
+
+                        </div>
+                        <!-- /.end product imagen -->
+
+                        <!-- product right side -->
+                        <div class="product__right-side">
+
+                            <!-- product right side container -->
+                            <div class="product__right-side-container">
+
+                                <!-- product name -->
+                                <div class="product__name">
+                                    <vtex.cmc:productName />
+                                </div>
+                                <!-- /.end product name -->
+
+                                <!-- product ean -->
+                                <div class="product__ean">
+                                    <h6>Cod:</h6>
+                                    <div class="ean"></div>
+                                </div>
+                                <!-- /.end product ean -->
+
+                                <!-- product price -->
+                                <div class="product__price">
+                                    <vtex.cmc:skuPrice/>
+                                </div>
+                                <!-- /.end product price -->
+
+                                <!-- product available container -->
+                                <div class="product__available-container">
+                                    <!-- product available content -->
+                                    <div class="product__available-content">
+                                        <p class="product__available-text">Produto disponível</p>
+                                    </div>
+                                    <!-- /.end product available content -->
+                                </div>
+                                <!-- product available container -->
+
+                                <!-- produc sku selection container -->
+                                <div class="product__sku-container">
+                                    <vtex.cmc:skuSelection />
+                                </div>
+                                <!-- /.end produc sku selection container -->
+
+                                <!-- product shop container -->
+                                <div class="product__shop-container">
+                                    <!-- product shop content -->
+                                    <div class="product__shop-content">
+                                        <vtex.cmc:BuyButton />
+                                    </div>
+                                </div>
+                                <!-- /.end product shop container -->
+
+                                <!-- product info container -->
+                                <div class="product__info-container">
+
+                                    <!-- product info content -->
+                                    <div class="product__info-content">
+                                        <!-- about this item -->
+                                        <div class="product__info-trigger">Sobre este artículo</div>
+                                        <div class="product__info-content">
+                                            <vtex.cmc:ProductDescription/>
+                                        </div>
+                                        <!-- /.end about this item -->
+
+                                        <!-- specifications -->
+                                        <div class="product__info-trigger">Características y especificaciones</div>
+                                        <div class="product__info-content">
+                                            <vtex.cmc:productSpecification/>
+                                        </div>
+                                        <!-- /.end specifications -->
+
+                                        <!-- rate this -->
+                                        <div class="product__info-trigger">Clasificaciones y críticas</div>
+                                        <div class="product__info-content">
+                                            <!-- evaluation rate -->
+                                            <div class="product__rate">
+                                                <vtex.cmc:evaluationRate/>
+                                            </div>
+                                            <!-- product review -->
+                                            <div class="product__evaluation">
+                                                <vtex.cmc:UserReview/>
+                                            </div>
+                                        </div>
+                                        <!-- /.end rate this -->
+
+                                        <!-- help -->
+                                        <div class="product__info-trigger">Ayuda</div>
+                                        <div class="product__info-content">
+                                            <!-- email -->
+                                            <div class="product__email">
+                                                <div class="product__email-icon"></div>
+                                                <a href="#">Enviar</a>
+                                            </div>
+                                            <!-- /.end email -->
+                                            <!-- call us -->
+                                            <div class="product__call">
+                                                <div class="product__call-icon"></div>
+                                                <a href="#">Enviar</a>
+                                            </div>
+                                            <!-- /.end call us -->
+                                        </div>
+                                        <!-- /.end help -->
+                                    </div>
+                                    <!-- /.end product info content -->
+
+                                </div>
+                                <!--/.end product info container -->
+
+                            </div>
+                            <!-- /.end product right side container -->
+
+                        </div>
+                        <!-- /.end product right side -->
+
+                        <!-- recomended -->
+                        <div class="product__recomended-container">
+
+                            <vtex:contentPlaceHolder id="titulo-recomendaciones" />
+
+                            <div class="product__recomended-content">
+
+                                <vtex:contentPlaceHolder id="productos-recomendados" />
+
+                            </div>
+
+                        </div>
+                        <!-- /.end recomended -->
+
+                        <!-- product extra container -->
+                        <div class="product__extra-container">
+
+                            <!-- product extra content -->
+                            <div class="product__extra-content">
+
+                                <!-- title -->
+                                <div class="product__extra-title">TUMI hacia la innovación a través del diseño</div>
+                                <!-- tabs button -->
+                                <div class="product__extra-tabs-button"></div>
+                                <!-- tabs content -->
+                                <div class="product__extra-tabs-content"></div>
+                            </div>
+                            <!-- /.end product extra content -->
+
+                        </div>
+                        <!-- /.end product extra container -->
+
+                        <!-- recently seen -->
+                        <div class="product__recently-container">
+
+                            <vtex:contentPlaceHolder id="titulo-quien-vio-vio-tambien" />
+
+                            <div class="product__recently-content">
+
+                                <vtex:contentPlaceHolder id="quien-vio-vio-tambien" />
+
+                                <vtex.cmc:navigationHistory/>
+
+                            </div>
+
+                        </div>
+                        <!-- /.end recently seen -->
+
+                    </div>
+                    <!-- /.end producto content -->
+
+                    <!-- producto sticky container -->
+                    <section class="producto-sticky-container true">
+
+                        <!-- producto sticky content -->
+
+                        <div class="producto-sticky-content">
+
+                            <div class="producto-sticky-container--info">
+
+                                <div class="producto-sticky-container--info-imagen">
+
+                                    <vtex.cmc:ProductImage />
+
+                                </div>
+
+                                <div class="producto-sticky-container--info-texto">
+
+                                    <vtex.cmc:productName />
+
+                                    <div class="descripcion-larga"></div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="producto-sticky-container--compra">
+
+                                <div class="compra-qtd-btn">
+
+                                    <vtex.cmc:BuyButton />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /.end producto sticky content -->
+
+                    </section>
+                    <!-- /.end producto sticky container -->
+
+                </section>
+                <!-- /.end producto container -->
+
+            </main>
+            <!-- /.end main content -->
+
+            <!-- navigation history -->
+            <!-- <vtex.cmc:navigationHistory/> -->
+
+            <!-- facebook api -->
+            <vtex:template id="2-tmx-fbsdk" />
+
+            <!-- footer -->
+            <footer>
+                <vtex:template id="2-tmx-footer" /> 
+            </footer>
+            <!-- /.end footer -->
+
+        </div>
+        <!-- /.end inner-wrap -->
+
+    </div>
+    <!-- /.end off-canvas-wrap -->
+
+</body>
+<!-- /.end body -->
+
+</html>
