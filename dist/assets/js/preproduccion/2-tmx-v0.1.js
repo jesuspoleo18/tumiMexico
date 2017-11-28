@@ -1258,7 +1258,7 @@ var producto = {
             $(this).toggleClass("active").next().slideToggle("slow");
             return false;
         });
-    },
+    }
 };
 
 /* 
