@@ -851,10 +851,11 @@ var producto = {
 
         if ($producto.length) {
 
+            producto.traducciones();
             producto.qtdControl();
             producto.textoProducto();
             producto.carousel('.carousel-interesar');
-            //producto.accordion('.descripcion-title','.descripcion-content');
+            producto.accordion('.product__accordion-trigger','.product__accordion-content');
             producto.compraFichaProducto();
             producto.productoSticky();
             producto.miniatura();
@@ -863,6 +864,11 @@ var producto = {
 
         // producto.elementosFormato();
 
+    },
+
+    traducciones:function () {
+        var $breadCrumb = $(".bread-crumb ul li:eq(0)");
+        $breadCrumb.html("Página de inicio");
     },
 
     qtdControl: function () {
@@ -982,7 +988,7 @@ var producto = {
             if (JSON.stringify(producto.stock) === 'false') {
 
                 var $erase = $(".pull-left.box-qtd, .despacho, .producto-sticky-container--compra .buy-button.buy-button-ref, .producto-sticky-container--compra .portal-notify-me-ref, .basica-precio .cuotas-container, .product__available-container"),
-                    $toAppend = $(".producto-sticky-container--compra .compra-qtd-btn"),
+                    $toAppend = $(".producto-sticky-container--compra .product__shop-content"),
                     $noDisponible = '<h2 class="no-disponible">Produto no disponible</h2>';
 
                 $erase.remove();
@@ -1078,8 +1084,8 @@ var producto = {
             var url = $(this).attr('href').split("?")[1],
                 param = url.split("&"),
                 $url = $(this).attr('href'),
-                // qtyBox = $(this).attr('href', $url.replace('qty=1', 'qty='+ parseInt( $('.compra-qtd-btn .box-qtd .qtd').val() ) ) ),
-                qtyBox = parseInt($('.compra-qtd-btn .box-qtd .qtd').val()),
+                $a = $('#offCanvasRight'),
+                qtyBox = parseInt($('.product__shop-content .box-qtd .qtd').val()),
                 item = {
                     id: param[0].split("=")[1],
                     quantity: qtyBox,
@@ -1087,9 +1093,21 @@ var producto = {
                     seller: param[2].split("=")[1]
                 };
 
-            vtexjs.checkout.addToCart([item], null, 1).done(function (orderForm) {
+            vtexjs.checkout.addToCart([item], null, 3).done(function (orderForm) {
+                
+                var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.5/sweetalert2.all.min.js"];
 
-                $('#agregadoExito').foundation('reveal', 'open');
+                $.when.apply($, $.map(files, function (file) {
+                    return $.getScript(files);
+                }))
+                .then(function () {
+
+                    $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+
+                }, function err(jqxhr, textStatus, errorThrown) {
+                    console.log(textStatus);
+                });
+
                 console.log(orderForm);
 
             });
@@ -1154,9 +1172,9 @@ var producto = {
 
         function miniaturaActiva() {
 
-            var $el = $(".thumbs li"),
-                $element = $(".thumbs li:eq(0)"),
-                $otherImgs = $(".thumbs li");
+            var $el = $(".product__img-container .thumbs li"),
+                $element = $(".product__img-container .thumbs li:eq(0)"),
+                $otherImgs = $(".product__img-container .thumbs li");
 
             if ($el.length > 0) {
 
@@ -1174,8 +1192,8 @@ var producto = {
 
         function miniaturaCarrusel() {
 
-            var $el = $(".thumbs li"),
-                $init = $(".thumbs"),
+            var $el = $(".product__img-container .thumbs li"),
+                $init = $(".product__img-container .thumbs"),
                 $responsive = $(window).width();
 
             if ($responsive < 1024) {
@@ -1234,21 +1252,12 @@ var producto = {
 
     accordion: function (trigger, content) {
 
-        var $responsive = $(window).width();
+        $(content).hide();
 
-        if ($responsive < 768) {
-
-            console.log("accordion");
-
-            $(content).hide();
-
-            $(trigger).on("click", function () {
-                $(this).toggleClass("active").nextAll().slideToggle("slow");
-                return false;
-            });
-        } else {
-            $(content).show();
-        }
+        $(trigger).on("click", function () {
+            $(this).toggleClass("active").next().slideToggle("slow");
+            return false;
+        });
     },
 };
 

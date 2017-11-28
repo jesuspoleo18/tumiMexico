@@ -342,15 +342,6 @@ button:focus {
     outline: 0;
 }
 
-.btn,
-.buy-button.buy-button-ref {
-    color: #7F8C8D;
-    cursor: pointer;
-    background-color: #eee;
-    border: none;
-    line-height: 35px;
-}
-
 img {
     outline: 0;
 }
@@ -1052,12 +1043,13 @@ footer {
 .prateleira__quickview,
 .prateleira__wishlist,
 .prateleira__percent-container,
-.prateleira__brand-container {
+.prateleira__brand-container,
+.prateleira h2 {
     display: none;
 }
 
 .prateleira {
-    /*     border:1px solid blue; */
+    /*         border:1px solid blue; */
     position: relative;
     width: 100%;
     display: flex;
@@ -1532,6 +1524,10 @@ footer {
 
 .product__breadcrumb {
     /*     border:var(--borderNegro); */
+    font-size: .8rem;
+    font-family: 'Proxima Nova';
+    margin-top: 2rem;
+    margin-bottom: .5rem;
     width: 100%;
 }
 
@@ -1543,6 +1539,30 @@ footer {
 .bread-crumb ul {
     width: 100%;
     display: flex;
+}
+
+.bread-crumb ul li,
+.bread-crumb ul li a {
+    display: block;
+    color: #777;
+    font-weight: bold;
+    padding: 0 .5rem;
+    position: relative;
+}
+
+.bread-crumb ul li:after {
+    content: "/";
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.bread-crumb ul li:first-child {
+    padding-left: 0;
+}
+
+.bread-crumb ul li:last-child {
+    padding-right: 0;
 }
 
 
@@ -2701,10 +2721,18 @@ footer {
 .product__ean {
     font-size: .8rem;
     padding: .5rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.ean {
+    font-size: .7rem;
+    font-family: 'Proxima Nova';
+    padding-left: .5rem;
 }
 
 .product__price {
-    margin: 1rem 0;
+    margin: .8rem 0;
 }
 
 .skuBestPrice {
@@ -2731,19 +2759,57 @@ footer {
 
 .product__shop-container,
 .product__shop-content {
+    height: 40px;
     width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product__shop-container {
+    margin: 1rem 0;
+}
+
+.pull-left.box-qtd {
+    position: relative;
+    height: 100%;
+    width: 15%;
+}
+
+.qtd.pull-left {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.bts.pull-left {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.bts.pull-left .btn.btn-mais,
+.bts.pull-left .btn.btn-menos {
+    /*     border:1px solid red; */
+    border: 1px solid #ccc;
+    cursor: pointer;
+    line-height: 0;
+    padding: .56rem .3rem;
+}
+
+.bts.pull-left .btn.btn-mais {
+    border-bottom: 0;
 }
 
 .buy-button.buy-button-ref {
     background-color: #B92335;
     color: white;
     display: block;
+    height: 100%;
     text-align: center;
-    margin-top: 1rem;
     position: relative;
     visibility: hidden;
-    width: 100%;
+    width: 80%;
 }
 
 .buy-button.buy-button-ref:before {
@@ -2752,11 +2818,18 @@ footer {
     font-family: 'Proxima Nova bold';
     font-size: .8rem;
     letter-spacing: 1px;
-    display: block;
+    height: 100%;
     text-transform: uppercase;
     visibility: visible;
     position: absolute;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portal-notify-me-ref {
+    display: none;
 }
 
 .product__info-container,
@@ -2770,23 +2843,22 @@ footer {
     margin-top: 2rem;
 }
 
-.product__info-trigger {
-    border-top: 2px solid #ccc;
+.product__accordion-trigger {
     border-bottom: 2px solid #ccc;
     font-family: 'Proxima Nova';
     padding: .6rem 0;
     width: 100%;
 }
 
-.product__info-trigger:first-child {
-    border-bottom: 0;
+.product__accordion-trigger:first-child {
+    border-top: 2px solid #ccc;
 }
 
-.product__info-trigger:last-child {
+.product__accordion-trigger:last-child {
     border-top: 0;
 }
 
-.product__info-trigger:before {
+.product__accordion-trigger:before {
     color: #B92335;
     content: "\f067";
     font-family: 'FontAwesome';
@@ -2797,6 +2869,30 @@ footer {
     content: "\f068";
     font-family: 'FontAwesome';
     padding-right: 1rem
+}
+
+.product__recomended-container,
+.product__recently-container {
+    margin-top: 5rem;
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.product__recomended-title,
+.product__recently-title {
+    border-bottom: 2px solid #ccc;
+    font-family: 'Proxima Nova';
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    width: 100%;
+}
+
+.product__recomended-content,
+.product__recently-content {
+    width: 100%;
 }
 
 
