@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  23/11/2017
+Ultimo cambio:  28/11/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -42,6 +42,7 @@ var $home = $(".home"),
 $(function () {
     $(document).foundation();
     confiGenerales.init();
+    producto.init();
     home.init();
 });
 
@@ -841,6 +842,415 @@ var home = {
 [b3.Producto]
 
 ============================= */
+
+var producto = {
+
+    init: function () {
+
+        var $producto = $("body.producto");
+
+        if ($producto.length) {
+
+            producto.qtdControl();
+            producto.textoProducto();
+            producto.carousel('.carousel-interesar');
+            //producto.accordion('.descripcion-title','.descripcion-content');
+            producto.compraFichaProducto();
+            producto.productoSticky();
+            producto.miniatura();
+            console.log("controles de producto (●´ω｀●)");
+        }
+
+        // producto.elementosFormato();
+
+    },
+
+    qtdControl: function () {
+
+        var $btnComprarProduto = $('.buy-button.buy-button-ref'),
+            $notifyme = $(this).find(".notifyme.sku-notifyme:visible"),
+            qty = { cantidad: "" };
+
+        if ($btnComprarProduto.length) {
+
+            // $btnComprarProduto.on("click", function(){
+
+            //     var $this = $(this),
+            //         url   = $this.attr('href');
+
+            //     if( url.indexOf('qty=1') > 0 ){
+            //         $this.attr('href', url.replace('qty=1', 'qty='+ parseInt( $('.product__shop-content .box-qtd .qtd').val() ) ) );
+            //     }
+            // });
+
+            var $recebeQtyForm = $btnComprarProduto.parents('.product__shop-content');
+
+            if ($recebeQtyForm.length) {
+
+                vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
+
+                    // console.log(product.skus[0].availablequantity);
+                    qty.cantidad = product.skus[0].availablequantity;
+
+                });
+
+                $recebeQtyForm.prepend(
+
+                    '<div class="pull-left box-qtd">' +
+                    '   <input type="text" class="qtd pull-left" value="1" />' +
+                    '   <div class="bts pull-left">' +
+                    '       <button class="btn btn-mais">+</button>' +
+                    '       <button class="btn btn-menos">-</button>' +
+                    '   </div>' +
+                    '</div>'
+                );
+
+                $(document).on('keypress', '.product__shop-content .box-qtd .qtd', function (e) {
+
+                    var tecla = (window.event) ? event.keyCode : e.which;
+                    if ((tecla > 47 && tecla < 58)) {
+                        return true;
+                    } else {
+                        if (tecla == 8 || tecla == 0) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                });
+
+                $(document).on('keyup', '.product__shop-content .box-qtd .qtd', function (e) {
+
+                    $('.product__shop-content .box-qtd .qtd').val($(this).val());
+                });
+
+                $(document).on('blur', '.product__shop-content .box-qtd .qtd', function (e) {
+
+                    var $this = $(this);
+
+                    if ($this.val() === '' || parseInt($this.val()) < 1) {
+                        $('.product__shop-content .box-qtd .qtd').val(1);
+                    } else {
+                        $('.product__shop-content .box-qtd .qtd').val($this.val());
+                    }
+
+                });
+
+                $(document).on('click', '.product__shop-content .box-qtd .btn', function () {
+
+                    var $this = $(this),
+                        $qtd = $('.product__shop-content .box-qtd .qtd'),
+                        valor = parseInt($qtd.val());
+
+                    if ($this.hasClass('btn-mais')) {
+
+                        $qtd.val(valor + 1);
+
+                        if (parseInt($('.product__shop-content .box-qtd .qtd').val()) === qty.cantidad) {
+                            console.log("tope de cantidad");
+                            $(".btn-mais").prop('disabled', true);
+                        } else {
+                            console.log("no se está ejecutando el anterior");
+                        }
+
+                    } else if ($this.hasClass('btn-menos')) {
+
+                        if (valor > 1) {
+                            $qtd.val(valor - 1);
+                            $(".btn-mais").removeAttr('disabled');
+                        }
+                    }
+
+                });
+
+            }
+
+        }
+
+    },
+
+    textoProducto: function () {
+
+        var producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", cantidad: "" },
+            $ean = $(".ean");
+
+        vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
+
+            producto.stock = product.available;
+            producto.cantidad = product.skus[0].availablequantity;
+
+            if (JSON.stringify(producto.stock) === 'false') {
+
+                var $erase = $(".pull-left.box-qtd, .despacho, .producto-sticky-container--compra .buy-button.buy-button-ref, .producto-sticky-container--compra .portal-notify-me-ref, .basica-precio .cuotas-container, .product__available-container"),
+                    $toAppend = $(".producto-sticky-container--compra .compra-qtd-btn"),
+                    $noDisponible = '<h2 class="no-disponible">Produto no disponible</h2>';
+
+                $erase.remove();
+                $toAppend.append($noDisponible);
+
+            } else { console.log("available"); }
+
+            producto.id = product.productId;
+            console.log(product);
+        });
+
+        $.ajax({
+            url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + producto.id + "",
+            dataType: 'json',
+            type: 'GET',
+            crossDomain: true,
+            success: function (data) {
+                console.log(data);
+                producto.descripcion = data[0]['Descripción Larga'];
+                producto.ean = data[0].items[0].ean;
+                producto.marca = data[0].brand;
+
+                $ean.append(producto.ean);
+                // dotInfo();
+            }
+        });
+
+        function dotInfo() {
+
+            var $texto = $(".caracteristicas-content .productDescription").text(),
+                $container = $(".caracteristicas-content .productDescription"),
+                $result = $texto.replace(/\*/g, '<p class="space"></p><span class="dot">• </span>');
+
+            $container.html($result);
+        }
+
+    },
+
+    carousel: function (el) {
+
+        $(".helperComplement").remove();
+
+        $(".producto-container__coleccion .prateleira").children().addClass("carousel-interesar");
+
+        $(el).on("init", function () {
+
+            $(this).addClass('active');
+
+        });
+
+        $(el).slick({
+
+            autoplay: true,
+            autoplaySpeed: 2500,
+            slide: 'li',
+            slidesToScroll: 1,
+            slidesToShow: 4,
+            speed: 500,
+            responsive: [
+                {
+                    breakpoint: 980,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 650,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                }
+            ]
+
+        });
+
+        $('.carousel-interesar, .carousel-agregadoExito').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+            confiGenerales.mainLazyLoad();
+            // console.log(nextSlide);
+        });
+
+    },
+
+    compraFichaProducto: function () {
+
+        var $btnFichaProducto = $(".buy-button.buy-button-ref");
+
+        $btnFichaProducto.unbind('click');
+
+        $btnFichaProducto.bind('click', function () {
+
+            var url = $(this).attr('href').split("?")[1],
+                param = url.split("&"),
+                $url = $(this).attr('href'),
+                // qtyBox = $(this).attr('href', $url.replace('qty=1', 'qty='+ parseInt( $('.compra-qtd-btn .box-qtd .qtd').val() ) ) ),
+                qtyBox = parseInt($('.compra-qtd-btn .box-qtd .qtd').val()),
+                item = {
+                    id: param[0].split("=")[1],
+                    quantity: qtyBox,
+                    // quantity: param[1].split("=")[1], 
+                    seller: param[2].split("=")[1]
+                };
+
+            vtexjs.checkout.addToCart([item], null, 1).done(function (orderForm) {
+
+                $('#agregadoExito').foundation('reveal', 'open');
+                console.log(orderForm);
+
+            });
+
+            return false;
+
+        });
+
+    },
+
+    productoSticky: function () {
+
+        var $elShow = $(".producto-sticky-container"),
+            $responsive = $(window).width();
+
+        if ($responsive > 768) {
+
+            console.log("true");
+
+            $(window).scroll(function () {
+
+                if ($(this).scrollTop() > 800) {
+
+                    $elShow.addClass('sticky', 500);
+                    $elShow.removeClass('fixed');
+
+                } else {
+
+                    $elShow.removeClass('sticky fixed', 500);
+
+                }
+
+            });
+
+        } else if ($responsive < 768) {
+
+            console.log("NOT true");
+
+            $(window).scroll(function () {
+
+                if ($(this).scrollTop() > 1) {
+
+                    $elShow.addClass('sticky', 500);
+                    $elShow.removeClass('fixed');
+
+                } else {
+
+                    $elShow.removeClass('sticky fixed', 500);
+
+                }
+
+            });
+
+        }
+
+    },
+
+    miniatura: function () {
+
+        miniaturaActiva();
+        miniaturaCarrusel();
+
+        function miniaturaActiva() {
+
+            var $el = $(".thumbs li"),
+                $element = $(".thumbs li:eq(0)"),
+                $otherImgs = $(".thumbs li");
+
+            if ($el.length > 0) {
+
+                $element.addClass('active');
+
+                $otherImgs.each(function () {
+                    $(this).on("click", function () {
+                        $(this).addClass('active');
+                        $(this).siblings().removeClass('active');
+                    });
+                });
+
+            }
+        }
+
+        function miniaturaCarrusel() {
+
+            var $el = $(".thumbs li"),
+                $init = $(".thumbs"),
+                $responsive = $(window).width();
+
+            if ($responsive < 1024) {
+
+                if ($el.length > 3) {
+
+                    $init.slick({
+
+                        arrows: true,
+                        prevArrow: "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                        nextArrow: "<i class='fa fa-angle-right' aria-hidden='true'></i>",
+                        autoplay: false,
+                        button: false,
+                        dots: false,
+                        fade: false,
+                        infinite: true,
+                        slidesToScroll: 1,
+                        slidesToShow: 3,
+                        speed: 800,
+                        useTransform: true,
+                        vertical: false
+
+                    });
+
+                }
+
+            } else {
+
+                if ($el.length > 3) {
+
+                    $init.slick({
+
+                        arrows: true,
+                        prevArrow: "<i class='fa fa-angle-left' aria-hidden='true'></i>",
+                        nextArrow: "<i class='fa fa-angle-right' aria-hidden='true'></i>",
+                        autoplay: false,
+                        button: false,
+                        dots: false,
+                        fade: false,
+                        infinite: true,
+                        slidesToScroll: 1,
+                        slidesToShow: 3,
+                        speed: 800,
+                        useTransform: true,
+                        vertical: true
+
+                    });
+
+                }
+
+            }
+
+        }
+
+    },
+
+    accordion: function (trigger, content) {
+
+        var $responsive = $(window).width();
+
+        if ($responsive < 768) {
+
+            console.log("accordion");
+
+            $(content).hide();
+
+            $(trigger).on("click", function () {
+                $(this).toggleClass("active").nextAll().slideToggle("slow");
+                return false;
+            });
+        } else {
+            $(content).show();
+        }
+    },
+};
 
 /* 
 
