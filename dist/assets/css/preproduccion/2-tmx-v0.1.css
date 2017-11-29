@@ -65,6 +65,8 @@ d2.Zoom
 d3.Mediaquerie zoom
 d4.Breadcrumb
 d5.Mediaquerie breadcrumb
+d6.Opinion de usuario
+d7.Mediaquerue opinion de usuario
 
 --------- Componentes -------------
 
@@ -1592,6 +1594,501 @@ footer {
 
 
 /*
+[d6.Opinion de usuario]
+
+============================= */
+
+.rating-demonstrativo.avaliacao10 {}
+
+.rating-produto {
+    float: none !important;
+}
+
+#resenha ul.resenhas {
+    margin: 0;
+    border-top: 1px solid #cccccc;
+    padding-top: 20px;
+}
+
+.evaluationConsumer strong {
+    display: none;
+}
+
+.evaluationConsumer span {
+    font-size: 0.875rem;
+    display: block;
+    color: #515151;
+    font-weight: 700;
+}
+
+.product__rate,
+.product__rate.top strong {
+    display: none;
+}
+
+.product__rate.top {
+    display: block;
+}
+
+.product__rate.top:before {
+    border-bottom: 1px solid #777;
+    color: #777;
+    content: "Opinión de los consumidores";
+    font-family: 'Proxima Nova';
+    font-size: .8rem;
+}
+
+.product__rate.top #spnRatingProdutoTop {
+    display: block;
+    position: relative;
+    margin-top: .5rem;
+}
+
+#spnRatingProdutoTop {
+    margin-bottom: 5px;
+    font-size: 0;
+}
+
+.ratingTop {
+    overflow: hidden;
+}
+
+.ratingTop strong {
+    display: none;
+}
+
+.ratingTop a {
+    color: #dd9100;
+    cursor: pointer;
+}
+
+.rating-produto,
+.rating-wrapper .rating,
+.rateProduct {
+    height: 24px;
+    width: 92px;
+}
+
+.rating-demonstrativo {
+    height: 24px;
+    width: 18px;
+    float: right !important;
+    position: relative;
+    top: -7px;
+    font-size: 12px !important;
+    color: #666;
+    /* margin-top: 0 !important; */
+}
+
+.ratingStar,
+.rating-produto,
+.rating-wrapper div,
+.rateProduct {
+    width: 60px;
+    height: 16px;
+    display: block;
+    background: url('http://www.itsalif.info/blogfiles/rating/star-rating.png') 0 0 no-repeat;
+}
+
+#ulPubliqueResenha .publique {
+    /* position: absolute; */
+    /* right: 75%; */
+    /* top: -83px; */
+    /* text-align: center; */
+    /* margin: 0 auto; */
+}
+
+#ulPubliqueResenha .publique a {
+    background: #404040;
+    color: #ffffff;
+    padding: 15px 25px;
+    /* text-transform: uppercase; */
+    /* cursor: pointer; */
+    /* display: block; */
+    /* text-align: center; */
+    /* overflow: hidden; */
+    /* width: 180px; */
+    /* line-height: 38px; */
+    /* font-weight: bold; */
+}
+
+#ulPubliqueResenha .publique a:hover {
+    opacity: .5;
+}
+
+ul.rating {
+    clear: both;
+    float: left;
+    overflow: hidden;
+    padding-top: 20px;
+    width: 50%;
+    margin: 0;
+    /* background: chartreuse; */
+}
+
+ul.rating li {
+    clear: both;
+    padding: 5px 0;
+}
+
+ul.rating li span {
+    color: #999;
+    font-size: 12px;
+    text-transform: none;
+    line-height: 30px;
+}
+
+.voteRatingStar {
+    float: left;
+    padding-left: 20px;
+}
+
+#opiniao_de_usuario .links-resenha-usuario .ver-todos-comentarios {
+    position: absolute;
+    right: 20px;
+    top: -20px;
+}
+
+.avalie-produto {
+    float: right;
+    padding: 60px 0 80px 0;
+    width: 50%;
+    text-align: center;
+    /* background: blueviolet; */
+}
+
+#opcoes-avalie {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+    width: 150px;
+    display: none;
+}
+
+#opcoes-avalie p {
+    display: none;
+    margin: 0;
+}
+
+.rating-avalie-wrapper {
+    margin: 0 auto;
+    width: 91px;
+}
+
+.voteRatingBar {
+    width: 400px;
+    float: left;
+    margin: 0 8px;
+    background: url(/arquivos/bgratingBar.png) no-repeat center;
+    background-size: contain;
+}
+
+.voteRatingBar,
+.voteRatingBar span {
+    height: 29px;
+    display: block;
+}
+
+.voteRatingBar span {
+    background: #dd9100;
+}
+
+.emptyRatingStar,
+.filledRatingStar {
+    float: left;
+    height: 24px;
+    width: 18px;
+    font-size: 0;
+}
+
+.filledRatingStar {
+    background-position: 0 -24px;
+}
+
+
+/* #rtAvaliacao_Star_5 { background-position: 0 0; }
+#rtAvaliacao_Star_4 { background-position: -12px 0; } 
+#rtAvaliacao_Star_3 { background-position: -24px 0; }
+#rtAvaliacao_Star_2 { background-position: -36px 0; }
+#rtAvaliacao_Star_1 { background-position: -48px 0; }
+#rtAvaliacao_Star_0 { background-position: -60px 0; }
+ 
+.rating-5  { background-position: -48px -16px; }
+.rating-15 { background-position: -36px -16px; }
+.rating-25 { background-position: -24px -16px; }
+.rating-35 { background-position: -12px -16px; }
+.rating-45 { background-position: 0 -16px; } */
+
+.a05,
+.a10,
+.avaliacao05,
+.avaliacao10,
+.evaluation05,
+.evaluation10,
+.rating.a05,
+.rating.a10 {
+    background-position: -10px 0;
+    margin-right: 10px;
+}
+
+.a15,
+.a20,
+.avaliacao15,
+.avaliacao20,
+.evaluation15,
+.evaluation20,
+.rating.a15,
+.rating.a20 {
+    background-position: 0px -48px;
+    margin-right: 10px;
+}
+
+.a25,
+.a30,
+.avaliacao25,
+.avaliacao30,
+.evaluation25,
+.evaluation30,
+.rating.a25,
+.rating.a30 {
+    background-position: 0px -70px;
+    margin-right: 10px;
+}
+
+.a35,
+.a40,
+.avaliacao35,
+.avaliacao40,
+.evaluation35,
+.evaluation40,
+.rating.a35,
+.rating.a40 {
+    background-position: 0 -94px;
+    margin-right: 10px;
+}
+
+.a45,
+.a50,
+.avaliacao45,
+.avaliacao50,
+.evaluation45,
+.evaluation50,
+.rating.a45,
+.rating.a50 {
+    background-position: 0 -117px;
+    margin-right: 10px;
+}
+
+.avaliacao50:before,
+.avaliacao40:before,
+.avaliacao30:before,
+.avaliacao20:before,
+.avaliacao10:before {
+    content: "5";
+    display: block;
+    color: #000;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: -12px;
+    top: 29%;
+}
+
+.avaliacao40:before {
+    content: "4";
+}
+
+.avaliacao30:before {
+    content: "3";
+}
+
+.avaliacao20:before {
+    content: "2";
+}
+
+.avaliacao10:before {
+    content: "1";
+}
+
+.media span {
+    display: block;
+    float: left;
+}
+
+.media em {}
+
+.media em span {
+    float: left;
+    color: #999;
+    font-size: 12px;
+    text-transform: none;
+    line-height: 24px;
+    display: none;
+}
+
+#spnRatingProdutoBottom {
+    float: left !important;
+    margin: 0px 10px;
+}
+
+.media em span {}
+
+#ulPubliqueResenha {
+    float: right;
+    text-align: center;
+    margin: -60px 0;
+    width: 50%;
+    /* background: red; */
+}
+
+.links-resenha-usuario {
+    clear: both;
+    position: relative;
+    margin-bottom: 40px;
+    visibility: hidden;
+}
+
+.avalie-produto h5,
+.media span {
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #dd9100;
+    font-weight: bold;
+}
+
+.user-review hr {
+    display: none;
+}
+
+#userReviewShowAllComments {
+    color: #dd9100;
+    line-height: 20px;
+}
+
+.user-review h4 {
+    display: none;
+    color: #000000;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+
+.email-resenha {
+    font-size: 0;
+    visibility: hidden;
+}
+
+.email-resenha::before {
+    content: 'e-mail no es publicado';
+    font-size: 1rem;
+    visibility: visible;
+}
+
+.util .considera-util {
+    font-size: 0.688rem;
+    color: #bc1f53;
+}
+
+.opiniao-ajudou {
+    font-size: 0.688rem;
+    color: #bc1f53;
+    font-weight: 700;
+}
+
+.opiniao-ajudou ul.bts {
+    margin: 0;
+}
+
+.opiniao-ajudou ul.bts li a {
+    font-size: 0.625rem;
+    color: #478904;
+    font-weight: 700;
+    float: left;
+    margin-top: 5px;
+    margin-right: 20px;
+    margin-bottom: 45px;
+}
+
+.opiniao-ajudou ul.bts li.nao a {
+    color: #666666;
+}
+
+.opiniao-ajudou ul.bts li.sim::before {
+    content: '\f087';
+    color: #478904;
+    font-family: FontAwesome;
+    margin-right: 5px;
+    float: left;
+}
+
+.opiniao-ajudou ul.bts li.nao::before {
+    content: '\f088';
+    color: #666666;
+    font-family: FontAwesome;
+    margin-right: 5px;
+    float: left;
+}
+
+.resenhas .quem {
+    clear: both;
+}
+
+#publishUserReview {
+    background: #f9f9f9;
+    padding: 10px 30px;
+    margin-top: 50px;
+    padding-bottom: 40px;
+}
+
+#publishUserReview .header h1 {
+    display: none;
+}
+
+#publishUserReview .header h2 {
+    margin-top: 40px;
+}
+
+#publishUserReview .header .close {
+    display: none;
+}
+
+#publishUserReview ul {
+    margin: 0;
+}
+
+#publishUserReview p.opiniaoInfo {
+    display: block;
+    color: #000000;
+    font-size: 0.813rem;
+    font-weight: 700;
+    line-height: 1.3rem;
+    position: relative;
+}
+
+#publishUserReview .avaliar {
+    float: left;
+}
+
+#publishUserReview .avaliar a,
+#publishUserReview .footer .close a {
+    background: #404040;
+    color: #ffffff;
+    padding: 10px 15px;
+    margin-right: 15px;
+}
+
+#publishUserReview .avaliar a:hover,
+#publishUserReview .footer .close a:hover {
+    opacity: .5;
+}
+
+
+/*
+[d6.Mediaquerie opinion de usuario]
+
+============================= */
+
+
+/*
 [e0.Despacho y disponibilidad en tienda]
 
 ============================= */
@@ -2512,7 +3009,7 @@ table thead {
 .pinterest-container.share:before,
 .twitter-container.share:before {
     color: white;
-    background-color: #B92335;
+    background-color: #285583;
     border-radius: 0;
     font-family: 'FontAwesome';
     font-size: 1rem;
@@ -2923,6 +3420,7 @@ table thead {
 }
 
 .product__ean {
+    color: #777;
     font-size: .8rem;
     padding: .5rem 0;
     display: flex;
@@ -3069,10 +3567,15 @@ table thead {
     padding-right: 1rem
 }
 
-.product__info-trigger.active:before {
+.product__accordion-trigger.active:before {
     content: "\f068";
     font-family: 'FontAwesome';
-    padding-right: 1rem
+    padding-right: 1rem;
+}
+
+.product__accordion-content {
+    padding: 1rem 0;
+    width: 100%;
 }
 
 .product__recomended-container,
@@ -3082,6 +3585,10 @@ table thead {
     width: 100%;
     display: flex;
     flex-flow: wrap;
+}
+
+.product__recently-container {
+    margin-bottom: 3rem;
 }
 
 .product__recomended-title,
@@ -3100,6 +3607,44 @@ table thead {
 .product__recently-content,
 .product__extra-content {
     width: 100%;
+}
+
+h4.group.Atributos-Tumi {
+    display: none;
+}
+
+#caracteristicas table tr.even,
+#caracteristicas table tr {
+    font-family: 'Proxima Nova';
+    background-color: transparent;
+}
+
+#caracteristicas table td,
+#caracteristicas table th {
+    font-size: .8rem;
+    text-align: left;
+    text-transform: lowercase;
+    min-width: 120px!important;
+    max-width: 120px!important
+}
+
+#caracteristicas table th {
+    color: #555555;
+    font-family: 'Proxima Nova Bold';
+    text-transform: uppercase;
+}
+
+#caracteristicas table td:first-letter,
+#caracteristicas table th:first-letter {
+    text-transform: uppercase;
+}
+
+#caracteristicas .name-field.Caracteristicas,
+#caracteristicas .name-field.Descripcion-Larga,
+#caracteristicas .value-field.Caracteristicas,
+#caracteristicas .value-field.Descripcion-Larga,
+#caracteristicas h4 {
+    display: none;
 }
 
 
