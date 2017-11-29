@@ -67,6 +67,8 @@ d4.Breadcrumb
 d5.Mediaquerie breadcrumb
 d6.Opinion de usuario
 d7.Mediaquerue opinion de usuario
+d8.Quickview
+d9.Mediaquerie quickview
 
 --------- Componentes -------------
 
@@ -1042,11 +1044,15 @@ footer {
 
 ============================= */
 
-.prateleira__quickview,
+
+/* .prateleira__quickview, */
+
 .prateleira__wishlist,
 .prateleira__percent-container,
 .prateleira__brand-container,
-.prateleira h2 {
+.prateleira h2,
+.home .prateleira__compare,
+.producto .prateleira__compare {
     display: none;
 }
 
@@ -1062,11 +1068,16 @@ footer {
     position: relative;
     width: 100%;
     display: flex;
+    justify-content: space-between;
 }
 
 .prateleira ul li {
     /*     border:1px solid black; */
-    width: 33.3%;
+    /*     background-color:#F8F8F8; */
+    background-color: #eee;
+    padding: 1rem 0;
+    padding-bottom: 3rem;
+    width: 32.3%;
 }
 
 .prateleira__container,
@@ -1166,6 +1177,7 @@ footer {
 
 .prateleira__buybtn,
 .wrapper-buy-button-asynchronous {
+    position: relative;
     display: flex;
     justify-content: center;
 }
@@ -1179,16 +1191,41 @@ footer {
 }
 
 .btn-add-buy-button-asynchronous {
-    border: 2px solid black;
-    font-weight: bold;
     text-align: center;
-    padding: .4rem 0;
+    position: relative;
+    visibility: hidden;
     width: 60%;
+}
+
+.btn-add-buy-button-asynchronous:before {
+    content: "A\00F1 adir al carrito";
+    color: white;
+    background-color: #B92335;
+    visibility: visible;
+    padding: .4rem 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.prateleira__quickview,
+.prateleira__buybtn {
+    opacity: 0;
+    -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+    -moz-transition: opacity .3s 0s, visibility 0s .3s;
+    -o-transition: opacity .3s 0s, visibility 0s .3s;
+    transition: opacity .3s 0s, visibility 0s .3s
+}
+
+.prateleira__container:hover .prateleira__quickview,
+.prateleira__container:hover .prateleira__buybtn {
+    opacity: 1;
 }
 
 
 /*
-[c0.Mediaquerie prateleira principal]
+[c1.Mediaquerie prateleira principal]
 
 ============================= */
 
@@ -1626,6 +1663,14 @@ footer {
     display: none;
 }
 
+.product__evaluation,
+.user-review,
+.avaliacao {
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+}
+
 .product__rate.top {
     display: block;
 }
@@ -1658,7 +1703,7 @@ footer {
 }
 
 .ratingTop a {
-    color: #dd9100;
+    color: #777;
     cursor: pointer;
 }
 
@@ -1670,12 +1715,12 @@ footer {
 }
 
 .rating-demonstrativo {
-    height: 24px;
-    width: 18px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    height: 29px;
+    width: 29px;
     float: right !important;
     position: relative;
-    top: -7px;
-    font-size: 12px !important;
     color: #666;
     /* margin-top: 0 !important; */
 }
@@ -1690,26 +1735,12 @@ footer {
     background: url('http://www.itsalif.info/blogfiles/rating/star-rating.png') 0 0 no-repeat;
 }
 
-#ulPubliqueResenha .publique {
-    /* position: absolute; */
-    /* right: 75%; */
-    /* top: -83px; */
-    /* text-align: center; */
-    /* margin: 0 auto; */
-}
+#ulPubliqueResenha .publique {}
 
 #ulPubliqueResenha .publique a {
     background: #404040;
     color: #ffffff;
     padding: 15px 25px;
-    /* text-transform: uppercase; */
-    /* cursor: pointer; */
-    /* display: block; */
-    /* text-align: center; */
-    /* overflow: hidden; */
-    /* width: 180px; */
-    /* line-height: 38px; */
-    /* font-weight: bold; */
 }
 
 #ulPubliqueResenha .publique a:hover {
@@ -1721,26 +1752,39 @@ ul.rating {
     float: left;
     overflow: hidden;
     padding-top: 20px;
-    width: 50%;
+    width: 100%;
     margin: 0;
-    /* background: chartreuse; */
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
 }
 
 ul.rating li {
-    clear: both;
-    padding: 5px 0;
+    display: block;
+    /*     border:1px solid #ccc; */
+    padding-bottom: 1rem;
+    position: relative;
+    width: 48%;
+}
+
+ul.rating li:nth-child(1),
+ul.rating li:nth-child(2) {
+    /*     margin-top:2rem; */
 }
 
 ul.rating li span {
-    color: #999;
+    color: #ccc;
+    display: block;
     font-size: 12px;
     text-transform: none;
     line-height: 30px;
+    width: 100%;
 }
 
 .voteRatingStar {
-    float: left;
-    padding-left: 20px;
+    display: block;
+    position: absolute;
+    left: 0;
 }
 
 #opiniao_de_usuario .links-resenha-usuario .ver-todos-comentarios {
@@ -1750,11 +1794,7 @@ ul.rating li span {
 }
 
 .avalie-produto {
-    float: right;
-    padding: 60px 0 80px 0;
-    width: 50%;
-    text-align: center;
-    /* background: blueviolet; */
+    width: 100%;
 }
 
 #opcoes-avalie {
@@ -1771,16 +1811,15 @@ ul.rating li span {
 }
 
 .rating-avalie-wrapper {
-    margin: 0 auto;
-    width: 91px;
+    width: 100%;
+}
+
+.rating-avalie-wrapper a {
+    display: flex;
 }
 
 .voteRatingBar {
-    width: 400px;
-    float: left;
-    margin: 0 8px;
     background: url(/arquivos/bgratingBar.png) no-repeat center;
-    background-size: contain;
 }
 
 .voteRatingBar,
@@ -1790,12 +1829,12 @@ ul.rating li span {
 }
 
 .voteRatingBar span {
-    background: #dd9100;
+    background: #777;
 }
 
 .emptyRatingStar,
 .filledRatingStar {
-    float: left;
+    display: block;
     height: 24px;
     width: 18px;
     font-size: 0;
@@ -1852,7 +1891,6 @@ ul.rating li span {
 .rating.a25,
 .rating.a30 {
     background-position: 0px -70px;
-    margin-right: 10px;
 }
 
 .a35,
@@ -1890,8 +1928,8 @@ ul.rating li span {
     width: 20px;
     height: 20px;
     position: absolute;
-    left: -12px;
-    top: 29%;
+    top: 5%;
+    right: 0;
 }
 
 .avaliacao40:before {
@@ -1934,10 +1972,9 @@ ul.rating li span {
 .media em span {}
 
 #ulPubliqueResenha {
-    float: right;
+    margin-top: 2rem;
     text-align: center;
-    margin: -60px 0;
-    width: 50%;
+    width: 100%;
     /* background: red; */
 }
 
@@ -1952,7 +1989,7 @@ ul.rating li span {
 .media span {
     text-transform: uppercase;
     font-size: 13px;
-    color: #dd9100;
+    color: #777;
     font-weight: bold;
 }
 
@@ -1961,7 +1998,7 @@ ul.rating li span {
 }
 
 #userReviewShowAllComments {
-    color: #dd9100;
+    color: #777;
     line-height: 20px;
 }
 
@@ -2034,9 +2071,13 @@ ul.rating li span {
 
 #publishUserReview {
     background: #f9f9f9;
+    display: none;
     padding: 10px 30px;
     margin-top: 50px;
-    padding-bottom: 40px;
+}
+
+.reveal #publishUserReview {
+    display: block;
 }
 
 #publishUserReview .header h1 {
@@ -2083,7 +2124,72 @@ ul.rating li span {
 
 
 /*
-[d6.Mediaquerie opinion de usuario]
+[d7.Mediaquerie opinion de usuario]
+
+============================= */
+
+
+/*
+[d8.Quickview]
+
+============================= */
+
+.prateleira__quickview {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    right: 0;
+    z-index: 3;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.quickview__btn {
+    font-size: .7rem;
+    margin: 0;
+    padding: .4rem 0;
+    text-transform: uppercase
+}
+
+.quickview__btn a {
+    background-color: white;
+    border: 1px solid black;
+    color: transparent;
+    display: block;
+    padding: .5rem 0 .4rem 0;
+    position: relative;
+    width: 180px
+}
+
+.quickview__btn a:hover:before {
+    text-decoration: underline;
+}
+
+.quickview__btn a:before {
+    content: "compra r\00E1pida";
+    color: black;
+    font-size: .6rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%
+}
+
+
+/*
+[d9.Mediaquerie quickview]
 
 ============================= */
 
@@ -3607,6 +3713,51 @@ table thead {
 .product__recently-content,
 .product__extra-content {
     width: 100%;
+}
+
+.producto__help {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 1rem;
+    display: flex;
+}
+
+.product__email-icon,
+.product__call-icon {
+    display: flex;
+}
+
+.product__email-icon:before,
+.product__call-icon:before {
+    content: "";
+    color: #777;
+    font-family: 'FontAwesome';
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
+}
+
+.product__email-icon:before {
+    content: "\f003";
+}
+
+.product__call-icon:before {
+    content: "\f095";
+}
+
+.producto__help a {
+    margin-top: 1rem;
+    font-size: .8rem;
+    text-align: center;
+}
+
+.product__email a {
+    text-decoration: underline;
+}
+
+.product__email,
+.product__call {
+    /*     border:var(--borderAzul); */
+    width: 50%;
 }
 
 h4.group.Atributos-Tumi {

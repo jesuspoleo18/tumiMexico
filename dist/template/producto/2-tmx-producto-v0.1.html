@@ -7,7 +7,8 @@
 
 <head>
 
-    <title> <vtex.cmc:productPageTitle /> </title>
+    <title>
+        <vtex.cmc:productPageTitle /> </title>
     <meta name="description" content="" />
     <vtex:template id="2-tmx-head" />
 
@@ -212,18 +213,22 @@
                                         <!-- help -->
                                         <div class="product__accordion-trigger">Ayuda</div>
                                         <div class="product__accordion-content">
-                                            <!-- email -->
-                                            <div class="product__email">
-                                                <div class="product__email-icon"></div>
-                                                <a href="#">Enviar</a>
+                                            <!-- product help -->
+                                            <div class="producto__help">
+                                                <!-- email -->
+                                                <div class="product__email">
+                                                    <div class="product__email-icon"></div>
+                                                    <a href="#">Enviar</a>
+                                                </div>
+                                                <!-- /.end email -->
+                                                <!-- call us -->
+                                                <div class="product__call">
+                                                    <div class="product__call-icon"></div>
+                                                    <a href="tel:1-800-299-8864">1-800-299-8864</a>
+                                                </div>
+                                                <!-- /.end call us -->
                                             </div>
-                                            <!-- /.end email -->
-                                            <!-- call us -->
-                                            <div class="product__call">
-                                                <div class="product__call-icon"></div>
-                                                <a href="tel:1-800-299-8864">1-800-299-8864</a>
-                                            </div>
-                                            <!-- /.end call us -->
+                                            <!-- /.end product help -->
                                         </div>
                                         <!-- /.end help -->
                                     </div>
@@ -344,7 +349,15 @@
 
             <!-- footer -->
             <footer>
-                <vtex:template id="2-tmx-footer" /> 
+                <!-- modal user review -->
+                <div class="reveal large" id="userReview" data-reveal="" data-close-on-click="true" data-animation-in="scale-in-up" data-animation-out="scale-out-down">
+                    <button class="close-button" data-close="" aria-label="Close reveal" type="button">
+                        <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
+                    </button>
+                </div> 
+                <!-- /.end  modal user review -->
+                
+                <vtex:template id="2-tmx-footer" />
             </footer>
             <!-- /.end footer -->
 
