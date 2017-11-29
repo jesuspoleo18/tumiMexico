@@ -815,7 +815,7 @@ var home = {
         $(uno).slick({
 
             arrows: false,
-            autoplay: false,
+            autoplay: true,
             autoplaySpeed: 2500,
             button: false,
             dots: true,
@@ -857,7 +857,7 @@ var producto = {
             producto.traducciones();
             producto.qtdControl();
             producto.textoProducto();
-            producto.carousel('.carousel-interesar');
+            producto.carousel('.carousel-recomendados,.carousel-vistosReciente');
             producto.accordion('.product__accordion-trigger','.product__accordion-content');
             producto.compraFichaProducto();
             producto.productoSticky();
@@ -1049,44 +1049,77 @@ var producto = {
 
     carousel: function (el) {
 
-        $(".helperComplement").remove();
+        var $count = $(".product__recomended-content .prateleira").find(".img"),
+            $responsive = $(window).width();
 
-        $(".producto-container__coleccion .prateleira").children().addClass("carousel-interesar");
+        $(".helperComplement").remove();
+        $(".product__recomended-content .prateleira").children().addClass("carousel-recomendados");
+        $(".product__recently-content .prateleira").children().addClass("carousel-vistosReciente");
 
         $(el).on("init", function () {
-
             $(this).addClass('active');
-
         });
 
-        $(el).slick({
+        if ($responsive > 768) {
 
-            autoplay: true,
-            autoplaySpeed: 2500,
-            slide: 'li',
-            slidesToScroll: 1,
-            slidesToShow: 4,
-            speed: 500,
-            responsive: [
-                {
-                    breakpoint: 980,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
+            if ($count.length > 3) {
+                $(el).slick({
+
+                    autoplay: true,
+                    autoplaySpeed: 2500,
+                    slide: 'li',
+                    slidesToScroll: 1,
+                    slidesToShow: 4,
+                    speed: 500,
+                    dots: true,
+                    responsive: [{
+                            breakpoint: 980,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 650,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        }
+                    ]
+
+                });
+            }
+        }else{
+            $(el).slick({
+
+                autoplay: true,
+                autoplaySpeed: 2500,
+                slide: 'li',
+                slidesToScroll: 1,
+                slidesToShow: 4,
+                speed: 500,
+                dots: true,
+                responsive: [{
+                        breakpoint: 980,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 650,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
                     }
-                },
-                {
-                    breakpoint: 650,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                }
-            ]
+                ]
 
-        });
+            });
+        }
 
-        $('.carousel-interesar, .carousel-agregadoExito').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+        $('.carousel-recomendados,.carousel-vistosReciente').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
             confiGenerales.mainLazyLoad();
             // console.log(nextSlide);
         });
