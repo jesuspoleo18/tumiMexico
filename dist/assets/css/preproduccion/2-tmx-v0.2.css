@@ -1676,7 +1676,7 @@ footer {
 .product__rate.top:before {
     font-family: 'Proxima Nova';
     font-size: .8rem;
-    content: 'OpiniÃ³n de los consumidores';
+    content: 'Opini\00F3n de los consumidores';
     color: #777;
     border-bottom: 1px solid #777;
 }
@@ -2251,6 +2251,8 @@ ul.rating li span {
     color: #b92335 !important;
 }
 
+.carousel-contentBestSellers .slick-dots,
+.carousel-contenNews .slick-dots,
 .carousel-recomendados .slick-dots,
 .carousel-vistosReciente .slick-dots {
     position: absolute;
@@ -2260,6 +2262,8 @@ ul.rating li span {
     background-color: transparent;
 }
 
+.carousel-contentBestSellers .slick-dots li,
+.carousel-contenNews .slick-dots li,
 .carousel-recomendados .slick-dots li,
 .carousel-vistosReciente .slick-dots li {
     padding: 0;
@@ -2273,17 +2277,14 @@ ul.rating li span {
 
 
 /* small */
-
-@media only screen and (max-width: 40em) {}
+@media only screen and (max-width: 40em) { }
 
 
 /* medium */
-
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {}
 
 
 /* xlarge */
-
 @media only screen and (min-width: 90.063em) {
     .home-slide {
         max-height: 780px;
@@ -2567,6 +2568,7 @@ right-off-canvas-menu {
 
 .off-canvas.position-right .cartCheckout:before {
     content: 'Proceda a finalizar su compra';
+    font-size: .8rem;
 }
 
 .v2-vtexsc-cart.vtexsc-cart.mouseActivated.preLoaded {
@@ -2591,7 +2593,8 @@ table thead {
 
 @media only screen and (max-width: 40em) {
     .navigation__off-canvas--mobile.position-right.off-canvas.position-right.is-transition-overlap.is-open {
-        width: initial;
+        padding: 2.5rem .7rem;
+        width: 80%;
     }
 }
 
@@ -3248,7 +3251,14 @@ table thead {
 
 /* xlarge */
 
-@media only screen and (min-width: 90.063em) {}
+@media only screen and (min-width: 90.063em) {
+    .producto-sticky-container.sticky {
+        top: 5%;
+    }
+    .producto-sticky-container--compra .buy-button.buy-button-ref {
+        height: 100%;
+    }
+}
 
 
 /*
@@ -3636,10 +3646,14 @@ table thead {
         display: none;
     }
     .home__tabs-buttons-content {
+        display: none;
         width: 100%;
     }
     .home__tabs-buttons {
         width: 40%;
+    }
+    .home__tabs-content {
+        margin-top: .3rem;
     }
 }
 
@@ -4138,6 +4152,19 @@ h4.group.Atributos-Tumi {
 @media only screen and (min-width: 90.063em) {
     .product__container .product__content {
         width: 57%;
+    }
+    .product__shop-content {
+        height: 50px;
+    }
+    .pull-left.box-qtd {
+        height: 100%;
+    }
+    .qtd.pull-left {
+        height: 50px;
+    }
+    .bts.pull-left .btn.btn-mais,
+    .bts.pull-left .btn.btn-menos {
+        padding: .72rem .3rem;
     }
 }
 

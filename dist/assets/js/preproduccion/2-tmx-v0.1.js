@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  29/11/2017
+Ultimo cambio:  30/11/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -808,11 +808,20 @@ var home = {
         }
     },
 
-    carousel: function carousel(uno) {
+    carousel: function carousel(main, producto) {
+
+        var $count = $(".home__tabs-content.news .prateleira").find(".img"),
+            $responsive = $(window).width();
 
         $(".helperComplement").remove();
 
-        $(uno).slick({
+        if ($responsive > 768) {
+
+            if ($count.length > 3) { $(producto).slick({ autoplay: true, autoplaySpeed: 2500, slide: 'li', slidesToScroll: 1, slidesToShow: 4, speed: 500, dots: true, responsive: [{ breakpoint: 980, settings: { slidesToShow: 2, slidesToScroll: 1 } }, { breakpoint: 650, settings: { slidesToShow: 2, slidesToScroll: 2 } } ] }); }
+        
+        }
+
+        $(main).slick({
 
             arrows: false,
             autoplay: true,
@@ -837,6 +846,7 @@ var home = {
             }]
 
         });
+        
     }
 };
 
