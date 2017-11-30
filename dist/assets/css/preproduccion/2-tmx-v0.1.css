@@ -4266,6 +4266,56 @@ h4.group.Atributos-Tumi {
 ============================= */
 
 
+/* small */
+
+@media only screen and (max-width: 40em) {
+    .depto__content {
+        display: none;
+    }
+}
+
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+    .depto__main-banner-text {
+        /*         border:var(--borderNegro); */
+        top: 10%;
+        padding-left: 2rem;
+        width: 60%;
+    }
+    .depto__banner-title {
+        font-size: 1.7rem;
+    }
+    .depto__banner-text {
+        font-size: .8rem;
+    }
+    .depto__products-container {
+        width: 90%;
+    }
+    .depto__products-title {
+        font-size: 1.2rem
+    }
+}
+
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {
+    .depto__main-banner-content {
+        /*         border:var(--borderNegro); */
+        width: 100%;
+    }
+    .depto__main-banner-img a,
+    .depto__main-banner-img img {
+        width: 100%;
+    }
+    .depto__main-banner-text {
+        padding-left: 3rem;
+    }
+}
+
+
 /*
 [f12.Busca]
 

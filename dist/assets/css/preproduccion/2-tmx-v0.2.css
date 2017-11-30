@@ -3,8 +3,8 @@
 [Stylesheet - principal ]
 
 Projecto:  Tumi Mexico - 2017
-Version: 0.1
-Ultimo cambio:  29/11/2017
+Version: 0.2
+Ultimo cambio:  30/11/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -1676,7 +1676,7 @@ footer {
 .product__rate.top:before {
     font-family: 'Proxima Nova';
     font-size: .8rem;
-    content: 'Opinión de los consumidores';
+    content: 'OpiniÃ³n de los consumidores';
     color: #777;
     border-bottom: 1px solid #777;
 }
@@ -4159,11 +4159,161 @@ h4.group.Atributos-Tumi {
 
 ============================= */
 
+.depto {}
+
+.depto__content,
+.depto__main-banner-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.depto__main-banner-content {
+    /*     border:var(--borderAzul); */
+    top: 0;
+    position: absolute;
+    z-index: 0;
+}
+
+.depto__main-banner-text {
+    color: white;
+    top: 20%;
+    left: 0;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.depto__banner-title {
+    font-size: 3rem;
+    width: 100%;
+}
+
+.depto__banner-text {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.depto__banner-btn {
+    color: white;
+    border: 1px solid white;
+    font-weight: bold;
+    font-size98rem;
+    padding: 1rem 0;
+    width: 30%;
+}
+
+.depto__banner-btn:hover {
+    text-decoration: none;
+}
+
+.depto__products-container {
+    /*     border:var(--borderNegro); */
+    border-radius: 3px;
+    background-color: white;
+    margin-top: 29%;
+    margin-bottom: 3rem;
+    padding: .5rem;
+    width: 80%;
+    z-index: 1;
+}
+
+.depto__products-content {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.depto__products-element {
+    padding: 1rem 0;
+    width: 33.3%;
+}
+
+.depto__products-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.depto__products-title {
+    color: #777;
+    font-size: 1.7rem;
+}
+
+.depto__products-btn {
+    font-weight: bold;
+    font-size: .9rem;
+    padding: .7rem;
+}
+
+.depto__products-btn:after {
+    content: ">";
+    padding-left: .5rem;
+}
+
 
 /*
 [f11.Mediaquerie departamento]
 
 ============================= */
+
+
+/* small */
+
+@media only screen and (max-width: 40em) {
+    .depto__content {
+        display: none;
+    }
+}
+
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+    .depto__main-banner-text {
+        /*         border:var(--borderNegro); */
+        top: 10%;
+        padding-left: 2rem;
+        width: 60%;
+    }
+    .depto__banner-title {
+        font-size: 1.7rem;
+    }
+    .depto__banner-text {
+        font-size: .8rem;
+    }
+    .depto__products-container {
+        width: 90%;
+    }
+    .depto__products-title {
+        font-size: 1.2rem
+    }
+}
+
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {
+    .depto__main-banner-content {
+        /*         border:var(--borderNegro); */
+        width: 100%;
+    }
+    .depto__main-banner-img a,
+    .depto__main-banner-img img {
+        width: 100%;
+    }
+    .depto__main-banner-text {
+        padding-left: 3rem;
+    }
+}
 
 
 /*
