@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  30/11/2017
+Ultimo cambio:  04/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -271,6 +271,10 @@ a:hover {
 
 a:visited {
     color: #2e2a25;
+}
+
+.depto__content a:visited {
+    color: white;
 }
 
 
@@ -2277,14 +2281,17 @@ ul.rating li span {
 
 
 /* small */
-@media only screen and (max-width: 40em) { }
+
+@media only screen and (max-width: 40em) {}
 
 
 /* medium */
+
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {}
 
 
 /* xlarge */
+
 @media only screen and (min-width: 90.063em) {
     .home-slide {
         max-height: 780px;
