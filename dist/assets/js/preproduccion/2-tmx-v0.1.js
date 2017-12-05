@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  30/11/2017
+Ultimo cambio:  05/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -78,7 +78,7 @@ var confiGenerales = {
         console.log("confiGenerales.init()  ˙ω˙");
     },
 
-    stickySearch: function() {
+    stickySearch: function () {
         var $el = $(".ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all");
 
         $(window).scroll(function () {
@@ -92,7 +92,7 @@ var confiGenerales = {
         });
     },
 
-    infoTab: function() {
+    infoTab: function () {
         var $news = $("[data-click='news']"),
             $sellers = $("[data-click='sellers']"),
             $newsTab = $(".home__tabs-content.news"),
@@ -116,7 +116,7 @@ var confiGenerales = {
         });
     },
 
-    changePlaceholders: function() {
+    changePlaceholders: function () {
         var $a = $(".btn-buscar"),
             $b = $("<div class='search__icon'></div>"),
             $c = $(".search__icon");
@@ -124,7 +124,7 @@ var confiGenerales = {
         $c.length ? console.log("˙ω˙ icono agregado") : $a.before($b);
     },
 
-    triggerActions: function() {
+    triggerActions: function () {
 
         var $triggerCart = $(".header-cart__content, .navigation-cart__container"),
             $triggerSearch = $(".navigation__searchTrigger"),
@@ -161,7 +161,7 @@ var confiGenerales = {
         });
     },
 
-    mainLazyLoad: function() {
+    mainLazyLoad: function () {
 
         var files = ["https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.2.0/lazyload.min.js"];
 
@@ -217,7 +217,7 @@ var confiGenerales = {
         });
     },
 
-    FormatoDecimales: function(seletor) {
+    FormatoDecimales: function (seletor) {
 
         $(seletor).each(function () {
 
@@ -235,7 +235,7 @@ var confiGenerales = {
         });
     },
 
-    elementosFormato: function() {
+    elementosFormato: function () {
 
         var $ajaxStopElems = '.skuListPrice,.oldPrice, .skuBestInstallmentValue, em.total-cart-em, td.monetary, span.best-price.new-product-price, td.quantity-price.hidden-phone.hidden-tablet,span.payment-value-monetary,span.payment-installments, .producto-prateleira__info--bestPrice div, .producto-prateleira__info--oldPrice div',
             $porcentaje = $('.porcentaje');
@@ -278,7 +278,7 @@ var confiGenerales = {
         }
     },
 
-    accordion: function(trigger, content) {
+    accordion: function (trigger, content) {
 
         var $responsive = $(window).width();
 
@@ -297,7 +297,7 @@ var confiGenerales = {
         }
     },
 
-    backTop: function() {
+    backTop: function () {
 
         var offset = 300,
             offset_opacity = 1200,
@@ -325,7 +325,7 @@ var confiGenerales = {
         });
     },
 
-    stickyNav: function(el) {
+    stickyNav: function (el) {
 
         $("#mobile-nav").removeClass('sticky');
 
@@ -344,7 +344,7 @@ var confiGenerales = {
         });
     },
 
-    megaMenu: function(el, exit) {
+    megaMenu: function (el, exit) {
 
         var $exit = $("header,.megamenu-buscar.navigation__searchTrigger, main,footer"),
             $responsive = $(window).width(),
@@ -433,7 +433,7 @@ var confiGenerales = {
         }
     },
 
-    compraAsyncVitrina: function() {
+    compraAsyncVitrina: function () {
 
         var $contentAsync = $(".prateleira__price-container"),
             $btnAsync = $('.btn-add-buy-button-asynchronous');
@@ -468,7 +468,7 @@ var confiGenerales = {
         });
     },
 
-    checkEmptyCart: function() {
+    checkEmptyCart: function () {
 
         var $emptyBag = $(".middle-container__content-popCart .emptyBag"),
             $NoEmptyBag = $(".middle-container__content-popCart .emptyBag.active"),
@@ -500,7 +500,7 @@ var confiGenerales = {
         }
     },
 
-    quickViewAsyncBuy: function() {
+    quickViewAsyncBuy: function () {
 
         var $iframeContentTop = $('#TB_iframeContent', top.document);
 
@@ -665,14 +665,14 @@ var confiGenerales = {
         });
     },
 
-    refreshMiniCart: function() {
+    refreshMiniCart: function () {
 
         vtexjs.checkout.getOrderForm();
         $("#TB_overlay", document.body).remove();
         $("#TB_window", document.body).remove();
     },
 
-    masterData: function() {
+    masterData: function () {
 
         $('#contacto-submit').on("click", function (e) {
 
@@ -777,7 +777,7 @@ var confiGenerales = {
         }
     },
 
-    replaceHref: function() {
+    replaceHref: function () {
 
         var $accept = $(".categoria, .departamento, .home, .producto, .resultado-busca, .brand");
 
@@ -817,8 +817,8 @@ var home = {
 
         if ($responsive > 768) {
 
-            if ($count.length > 3) { $(producto).slick({ autoplay: true, autoplaySpeed: 2500, slide: 'li', slidesToScroll: 1, slidesToShow: 4, speed: 500, dots: true, responsive: [{ breakpoint: 980, settings: { slidesToShow: 2, slidesToScroll: 1 } }, { breakpoint: 650, settings: { slidesToShow: 2, slidesToScroll: 2 } } ] }); }
-        
+            if ($count.length > 3) { $(producto).slick({ autoplay: true, autoplaySpeed: 2500, slide: 'li', slidesToScroll: 1, slidesToShow: 4, speed: 500, dots: true, responsive: [{ breakpoint: 980, settings: { slidesToShow: 2, slidesToScroll: 1 } }, { breakpoint: 650, settings: { slidesToShow: 2, slidesToScroll: 2 } }] }); }
+
         }
 
         $(main).slick({
@@ -846,7 +846,7 @@ var home = {
             }]
 
         });
-        
+
     }
 };
 
@@ -868,11 +868,11 @@ var producto = {
             producto.qtdControl();
             producto.textoProducto();
             producto.carousel('.carousel-recomendados,.carousel-vistosReciente');
-            producto.accordion('.product__accordion-trigger','.product__accordion-content');
+            producto.accordion('.product__accordion-trigger', '.product__accordion-content');
             producto.compraFichaProducto();
             producto.productoSticky();
             producto.miniatura();
-            setTimeout(producto.userReview,3000);
+            setTimeout(producto.userReview, 3000);
             console.log("controles de producto (●´ω｀●)");
         }
 
@@ -880,12 +880,12 @@ var producto = {
 
     },
 
-    traducciones:function () {
+    traducciones: function () {
         var $breadCrumb = $(".bread-crumb ul li:eq(0)");
         $breadCrumb.html("Página de inicio");
     },
 
-    userReview:function(){
+    userReview: function () {
         var $buttonReview = $("#lnkPubliqueResenha"),
             $content = $("#publishUserReview"),
             $target = "#userReview";
@@ -896,7 +896,7 @@ var producto = {
             openModal($target);
         });
 
-        function openModal(modal){
+        function openModal(modal) {
             $(modal).foundation("open");
         }
     },
@@ -1083,34 +1083,6 @@ var producto = {
                     speed: 500,
                     dots: true,
                     responsive: [{
-                            breakpoint: 980,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 650,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 2
-                            }
-                        }
-                    ]
-
-                });
-            }
-        }else{
-            $(el).slick({
-
-                autoplay: true,
-                autoplaySpeed: 2500,
-                slide: 'li',
-                slidesToScroll: 1,
-                slidesToShow: 4,
-                speed: 500,
-                dots: true,
-                responsive: [{
                         breakpoint: 980,
                         settings: {
                             slidesToShow: 2,
@@ -1124,6 +1096,34 @@ var producto = {
                             slidesToScroll: 2
                         }
                     }
+                    ]
+
+                });
+            }
+        } else {
+            $(el).slick({
+
+                autoplay: true,
+                autoplaySpeed: 2500,
+                slide: 'li',
+                slidesToScroll: 1,
+                slidesToShow: 4,
+                speed: 500,
+                dots: true,
+                responsive: [{
+                    breakpoint: 980,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 650,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                }
                 ]
 
             });
@@ -1157,22 +1157,22 @@ var producto = {
                 };
 
             vtexjs.checkout.addToCart([item], null, 3).done(function (orderForm) {
-                
+
                 var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.5/sweetalert2.all.min.js"];
 
                 $.when.apply($, $.map(files, function (file) {
                     return $.getScript(files);
                 }))
-                .then(function () {
+                    .then(function () {
 
-                    $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
-                    setTimeout(function(){
-                        $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
-                    },2000);
+                        $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+                        setTimeout(function () {
+                            $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
+                        }, 2000);
 
-                }, function err(jqxhr, textStatus, errorThrown) {
-                    console.log(textStatus);
-                });
+                    }, function err(jqxhr, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    });
 
                 console.log(orderForm);
 
