@@ -1131,6 +1131,12 @@ footer {
     .footer__tumiregister .footer__elements {
         width: 80%;
     }
+    .footer__rrss .footer__elements {
+        display: flex !important;
+    }
+    .footer__socialmedia .footer__elements {
+        margin-bottom: 1rem;
+    }
     .footer__title.active {
         padding-bottom: .8rem;
     }
@@ -3788,6 +3794,9 @@ table thead {
     .home__categorias-texto {
         padding: 0 .5rem;
         text-align: center;
+    }
+    .home__tabs-buttons-content {
+        width: 50%;
     }
 }
 

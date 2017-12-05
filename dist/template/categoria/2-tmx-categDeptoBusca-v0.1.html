@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce"
+    lang="es">
+
+<!-- head -->
+
+<head>
+
+    <title> <vtex.cmc:productPageTitle /> </title>
+    <meta name="description" content="" />
+    <vtex:template id="2-tmx-head" />
+
+</head>
+<!-- /.end head -->
+
+<!-- body -->
+
+<body>
+
+    <!-- off-canvas-wrap -->
+    <div class="off-canvas-wrapper">
+
+        <!-- inner-wrap -->
+        <div class="off-canvas-content" data-off-canvas-content="">
+
+            <!-- header -->
+            <header id="header">
+                <vtex:template id="2-tmx-header" />
+            </header>
+            <!-- /.end header -->
+
+            <!-- navigation -->
+            <nav>
+                <vtex:template id="2-tmx-navigator" />
+            </nav>
+            <!-- /.end navigation -->
+
+            <!-- main content -->
+            <main class="categ__container">
+
+                <!-- banner content -->
+                 <div class="categ__banner-container">
+                     <div class="categ__banner-img"><vtex:contentPlaceHolder id="banner-categoria" /></div>
+                     <div class="categ__banner-txt"><vtex:contentPlaceHolder id="banner-texto" /></div>
+                 </div>
+                <!-- /.fin banner content -->
+
+                <!-- categ content -->
+                <div class="categ__content">
+
+                    <!-- categ options -->
+                    <div class="categ__options">
+                        <!-- left -->
+                        <div class="categ__options-left">
+                            <div class="categ__breadcrumb"> <vtex.cmc:breadCrumb /> </div>
+                            <div class="categ__title"><vtex.cmc:searchTitle /></div>
+                            <div class="categ__description"></div>
+                        </div>
+                        <!-- right -->
+                        <div class="categ__options-right">
+                            <div class="categ__compare"></div>
+                        </div>
+                    </div> 
+                    <!-- /.fin categ options -->
+
+                    <!-- search navigator -->
+                    <div class="categ__aside"><vtex.cmc:searchNavigator /></div>
+                    <!-- /.fin search navigator -->
+
+                    <!-- productos -->
+                    <div class="categ__products"><vtex.cmc:searchResult layout="4b993ece-b799-4600-99d7-a084d9d5e0af" itemCount="3" columnCount="3" /></div>
+                    <!-- /.fin productos -->
+
+                </div>
+                <!-- /.fin categ content -->
+
+            </main>
+            <!-- /.end main content -->
+
+            <!-- facebook api -->
+            <vtex:template id="2-tmx-fbsdk" />
+
+            <!-- footer -->
+            <footer>
+                <vtex:template id="2-tmx-footer" />
+            </footer>
+            <!-- /.end footer -->
+
+        </div>
+        <!-- /.end inner-wrap -->
+
+    </div>
+    <!-- /.end off-canvas-wrap -->
+
+</body>
+<!-- /.end body -->
+
+</html>
