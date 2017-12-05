@@ -39,12 +39,12 @@ Thumbs.db
 # imagenes #
 ######################
 
-.jpg
-.png
+*.jpg
+*.png
 
 # diseño #
 ######################
 
-.psd
-.ai
-.id
+*.psd
+*.ai
+*.id
