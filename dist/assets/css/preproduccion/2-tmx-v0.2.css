@@ -2427,12 +2427,12 @@ body.mochila .Hide.Atributos.HideEstilo.active {
 
 .navigation-tabs h3,
 .navigation-tabs h5 {
-    border-top: 1px solid rgba(0, 0, 0, .15);
+    border-top: 2px solid #ccc;
+    /*     border-bottom:2px solid #ccc; */
     color: black;
     cursor: pointer;
     font-size: 1.1rem;
-    margin-bottom: .5rem;
-    padding-top: .5rem;
+    padding: .5rem 0;
     padding-left: 1rem;
     position: relative;
 }
@@ -2446,8 +2446,12 @@ body.mochila .Hide.Atributos.HideEstilo.active {
 
 body.mochilas .Hide.Atributos.HideColeccion,
 body.mochilas .Hide.Atributos.HideColeccion.active,
-.navigation-tabs .Hide.HideMarca,
-.navigation-tabs .Hide.HideMarca.active,
+
+/* .navigation-tabs .Hide.HideMarca, */
+
+
+/* .navigation-tabs .Hide.HideMarca.active, */
+
 .Marca.selected {
     border-top: 0;
 }
@@ -2481,7 +2485,7 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
     font-family: 'FontAwesome';
     font-size: .7rem;
     font-weight: lighter;
-    top: 40%;
+    top: 33%;
     right: initial;
     left: 0;
     position: absolute;
@@ -2534,6 +2538,7 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
     border: none;
     margin: 0 auto;
     margin-left: 1.5rem;
+    margin-bottom: .5rem;
     height: auto;
     max-height: 80px;
     /*     overflow-y: auto !Important; */
@@ -4618,7 +4623,7 @@ h4.group.Atributos-Tumi {
 }
 
 .categ__content {
-    border: var(--borderRojo);
+    /*    border:var(--borderRojo); */
     width: 80%;
     display: flex;
     justify-content: space-between;
@@ -4626,7 +4631,7 @@ h4.group.Atributos-Tumi {
 }
 
 .categ__options {
-    border: var(--borderRojo);
+    /*     border:var(--borderRojo); */
     width: 100%;
 }
 
@@ -4640,7 +4645,7 @@ h4.group.Atributos-Tumi {
 }
 
 .categ__options {
-    margin: 2rem 0 1rem 0;
+    margin: 1rem 0 1rem 0;
 }
 
 

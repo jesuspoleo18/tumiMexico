@@ -30,7 +30,7 @@ b6.Account
 ============================= */
 
 var $home = $(".home"),
-    $categDeptoBuscaResultadoBusca = $(".categoria, .departamento, .busca, .resultado-busca"),
+    $categDeptoBuscaResultadoBusca = $(".categoria, .depto, .busca, .resultado-busca"),
     $producto = $(".producto");
 
 /* 
@@ -42,8 +42,9 @@ var $home = $(".home"),
 $(function () {
     $(document).foundation();
     confiGenerales.init();
-    producto.init();
     home.init();
+    producto.init();
+    categDepto.init();
 });
 
 /* 
@@ -779,7 +780,7 @@ var confiGenerales = {
 
     replaceHref: function () {
 
-        var $accept = $(".categoria, .departamento, .home, .producto, .resultado-busca, .brand");
+        var $accept = $(".categoria, .depto, .home, .producto, .resultado-busca, .brand");
 
         if ($accept.length) {
 
@@ -1334,6 +1335,175 @@ var producto = {
 
 ============================= */
 
+var categDepto = {
+
+    init: function () {
+
+        var $categDepto = $("body.depto, body.categoria, body.resultado-busca, body.brand"),
+            $mix = ("body.depto, body.categoria, body.resultado-busca, body.estatico.buscavazia, body.resultado-busca.no-encontro.no-encontro-filtros");
+
+        if ($categDepto.length) {
+
+            categDepto.categDeptoAccordion('.search-single-navigator h4,.search-single-navigator h5', '.search-single-navigator h3');
+            categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
+            categDepto.infinityScroll();
+            //setInterval(categDepto.traducciones,800);
+            setInterval(confiGenerales.mainLazyLoad, 800);
+            console.log("controles de categDepto !-_-");
+
+        }
+
+    },
+    categDeptoAccordion: function (trigger, secondTrigger) {
+
+        var $categDepto = $(".depto, .categoria, .resultado-busca");
+
+        if ($categDepto.length) {
+
+            var $open = $(".HideGRUPO-DE-COR"),
+                $marca = $(".navigation-tabs .Marca, .navigation-tabs h5.Hide.HideMarca"),
+                $activeColor = $(".GRUPO.DE.COR.even, .GRUPO.DE.COR.Atributos, .GRUPO.DE.COR,.GRUPO.DE.COR.even.Características"),
+                $otherMenuOpen = $(".Hide.even.Atributos.HideGRUPO-DE-COR, .Hide.even.Características.HideESTRUTURA,.ESTRUTURA, .Hide.even.Características.HideGRUPO-DE-COR, .Hide.Atributos.HideTalla,.Hide.Atributos.HideColeccion"),
+                $content = $('.navigation-tabs .search-single-navigator ul'),
+                $verFiltros = $content.find('.ver-filtros');
+
+            // $otherMenuOpen = $(".Hide.even.Atributos.HideForma, .Hide.even.Atributos.HideColeccion,.even.Atributos.Forma,.Hide.Atributos.HideForma,.Hide.Atributos.HideColeccion, .Atributos.Coleccion, .Atributos.Forma, .Atributos.Grupo-Color, .HideFaixa-de-preco, .Faixa-de-preco");
+
+            $(trigger).next().hide();
+
+            $(secondTrigger).next().hide();
+
+            $(secondTrigger).next().next().hide();
+
+            $(trigger).on("click", function () {
+
+                $(this).toggleClass("active").next().slideToggle("slow");
+
+                if ($(".categ__aside .HideGRUPO-DE-COR.active").length) {
+
+                    console.log("true");
+                    $activeColor.css({
+                        "display": "flex",
+                        "flex-flow": "row wrap",
+                        "justify-content": "flex-start"
+                    });
+
+                } else { console.log("false"); }
+                return false;
+            });
+
+            $(secondTrigger).on("click", function () {
+                $(this).toggleClass("active").nextAll("h4,.filtro-ativo").slideToggle("slow");
+                return false;
+            });
+
+            if ($verFiltros.length) {
+                $verFiltros.parent().prev().addClass('selected').next().slideDown();
+            }
+
+            // $open.on("click", function(){
+            //     $activeColor.toggleClass("active");
+            // });
+
+            // $activeColor.addClass("active").next().slideToggle("slow");
+            // $activeColor.toggleClass("active").next().slideToggle("slow");
+            $otherMenuOpen.addClass("active").next().slideToggle("slow");
+
+            if ($open.hasClass('active')) {
+                $activeColor.css({
+                    "display": "flex",
+                    "flex-flow": "row wrap",
+                    "justify-content": "flex-start"
+                });
+            }
+
+            // $marca.css({
+            //     "display": "block"
+            // });
+
+        }
+
+    },
+    asideSticky: function (trigger) {
+
+        var files = ["/arquivos/hc-sticky.min.js"];
+
+        $.when.apply($, $.map(files, function (file) {
+            return $.getScript(files)
+        }))
+            .then(function () {
+
+                $(trigger).hcSticky({
+                    top: 80,
+                    bottomEnd: 100,
+                    responsive: true
+                });
+
+            }, function err(jqxhr, textStatus, errorThrown) {
+                // handle error
+            });
+
+    },
+    infinityScroll: function () {
+
+        var files = ["/arquivos/QD_infinityScroll.min.js"];
+
+        $.when.apply($, $.map(files, function (file) {
+            return $.getScript(files)
+        }))
+            .then(function () {
+
+                console.log("cargo el infinity");
+
+                var $responsive = $(window).width(),
+                    $desktop = $(".prateleira[id*=ResultItems]:first");
+
+                if ($responsive > 650) {
+
+                    // console.log("tablet pa arriba");
+
+                    $desktop.QD_infinityScroll({
+                        // Última prateleira/vitrine na página
+                        lastShelf: ">div:last",
+                        // Elemento com mensagem de carregando ao iniciar a requisição da página seguinte
+                        elemLoading: '<!-- Infinity Scroll - Loading message --><div id="scrollLoading" class="qd-is-loading">Cargando...</div>',
+                        // Opção p/ definir a URL manualmente, ficando automático apenas a paginação. A url deve terminar com "...&PageNumber="
+                        searchUrl: null,
+                        // Define em qual seletor a ação de observar a rolagem será aplicado (ex.: $(window).scroll(...))
+                        scrollBy: document,
+                        // Callback quando uma requisição ajax da prateleira é completada
+                        callback: function () {
+                            console.log("se cargaron más productos desktop");
+                            confiGenerales.replaceHref();
+                            confiGenerales.wishlistOnclick();
+                            confiGenerales.compraAsyncVitrina();
+                            confiGenerales.mainLazyLoad();
+                        },
+                        // Cálculo do tamanho do footer para que uma nova página seja chamada antes do usuário chegar ao "final" do site
+                        getShelfHeight: function ($this) {
+                            return ($this.scrollTop() + $this.height());
+                        },
+                        // Opção para fazer a paginação manualmente, uma nova página só é chamada quando executado o comando dentro desta função. Útil para ter um botão "Mostrar mais produtos"
+                        // Ela recebe como parâmetro: 1 função que chama a próxima página (caso ela exista)
+                        paginate: null,
+                        // Esta função é quem controla onde o conteúdo será inserido. Ela recebe como parâmetro: O ùltimo bloco inserido e os dados da nova requisição AJAX
+                        insertContent: function (currentItems, ajaxData) {
+                            currentItems.after(ajaxData);
+                        },
+                        // Função para permitir ou não que a rolagem infinita execute na página esta deve retornar "true" ou "false"
+                        authorizeScroll: function () {
+                            return true;
+                        }
+                    });
+
+                }
+
+            }, function err(jqxhr, textStatus, errorThrown) {
+                // handle error
+            });
+
+    }
+};
 /* 
 
 [b5.Busca, resultado de busca, 404 y error 500]
@@ -1389,7 +1559,7 @@ var busca = {
                 $resultText = $(".resultado-busca-result .result"),
                 $filter = $(".Hide.HideMarca"),
                 $body = $("body.resultado-busca,body.brand"),
-                $hideSideBar = $(".content__aside");
+                $hideSideBar = $(".categ__aside");
 
             if ($filter.length == 0) {
 
