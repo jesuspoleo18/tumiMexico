@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  04/12/2017
+Ultimo cambio:  07/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -1364,6 +1364,10 @@ footer {
         padding: .2rem 0;
         border: 1px solid black;
     }
+    .btn-add-buy-button-asynchronous:before {
+        padding: .4rem 0;
+        content: 'Comprar';
+    }
 }
 
 
@@ -2379,7 +2383,7 @@ ul.rating li span {
 }
 
 .carousel-contentBestSellers .slick-dots,
-.carousel-contenNews .slick-dots,
+.carousel-news .slick-dots,
 .carousel-recomendados .slick-dots,
 .carousel-vistosReciente .slick-dots {
     position: absolute;
@@ -2389,11 +2393,18 @@ ul.rating li span {
     background-color: transparent;
 }
 
-.carousel-contentBestSellers .slick-dots li,
-.carousel-contenNews .slick-dots li,
+.carousel-news .slick-dots {
+    background-color: white;
+    bottom: 0;
+    display: flex;
+}
+
+.carousel-news .slick-dots li,
 .carousel-recomendados .slick-dots li,
 .carousel-vistosReciente .slick-dots li {
+    background-color: white;
     padding: 0;
+    width: auto;
 }
 
 
@@ -3761,6 +3772,59 @@ table thead {
     justify-content: space-between;
 }
 
+.home__categorias-content.mobile {
+    display: none;
+}
+
+.home__categorias-title {
+    background-color: #eee;
+    color: #777;
+    font-size: 1.2rem;
+    padding: .5rem 0;
+    text-align: center;
+    width: auto;
+}
+
+.home__categorias-element--mobile,
+.home__categorias-banner--mobile {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.home__categorias-banner--mobile {
+    width: 100%;
+}
+
+.home__categorias-banner--mobile img {
+    width: 100%;
+}
+
+.home__categorias-banner--mobile .left,
+.home__categorias-banner--mobile .right {
+    background-color: rgba(185, 35, 53, 0.8);
+    border-bottom: 3px solid #B92335;
+    color: white;
+    font-size: .8rem;
+    padding: .5rem;
+    position: absolute;
+    bottom: 1%;
+}
+
+.home__categorias-banner--mobile .left {
+    left: 0;
+}
+
+.home__categorias-banner--mobile .right {
+    right: 0;
+}
+
+.home__categorias-banner--mobile h3:after {
+    content: "\f178";
+    font-family: 'FontAwesome';
+    padding-left: .5rem;
+}
+
 
 /*
 [f1.Mediaquerie home]
@@ -3771,8 +3835,11 @@ table thead {
 /* small */
 
 @media only screen and (max-width: 40em) {
+    .home__promesas-container {
+        margin-bottom: 0;
+    }
     .home__promesas-content,
-    .home__categorias-container {
+    .home__categorias-content {
         display: none;
     }
     .home__tabs-buttons-content {
@@ -3784,6 +3851,13 @@ table thead {
     }
     .home__tabs-content {
         margin-top: .3rem;
+    }
+    .home__categorias-content.mobile {
+        display: block;
+        width: 100%;
+    }
+    .home__productos-container {
+        margin-bottom: 0;
     }
 }
 
