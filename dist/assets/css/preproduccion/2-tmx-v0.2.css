@@ -69,6 +69,8 @@ d6.Opinion de usuario
 d7.Mediaquerue opinion de usuario
 d8.Quickview
 d9.Mediaquerie quickview
+d10.Search navigator
+d11.Mediaquerie search navigator
 
 --------- Componentes -------------
 
@@ -1717,11 +1719,12 @@ footer {
 
 .bread-crumb ul li,
 .bread-crumb ul li a {
+    color: #777;
+    display: block;
+    font-size: .8rem;
     font-weight: bold;
     position: relative;
-    display: block;
     padding: 0 .5rem;
-    color: #777;
 }
 
 .bread-crumb ul li:after {
@@ -2337,6 +2340,220 @@ ul.rating li span {
 
 
 /*
+[d10.Search navigator]
+
+============================= */
+
+.navigation-tabs {}
+
+.navigation-tabs .menu-navegue,
+
+/* .navigation-tabs .Hide.HideMarca, */
+
+
+/* .navigation-tabs .Marca,
+.navigation-tabs h5.Hide.HideMarca, */
+
+.navigation-tabs h4,
+.Atributos.HideMaterial,
+.Atributos.HideEstilo,
+.HideTipo-de-Producto,
+.productClusterSearchableIds.even,
+.Atributos.HideIDADE,
+
+/* .Atributos.HideColor, */
+
+.Edad.Atributos,
+.Estilo.Atributos,
+.ver-filtros,
+.HideTIPO-DE-PRODUTO.even.Atributos,
+.HideTIPO-DE-PRODUTO,
+.search-single-navigator h3,
+.Hide.Atributos.HideGENERO,
+.HideGENERO,
+.HideIDADE,
+.Hide.even.Atributos.HideRuedas {
+    display: none !important;
+}
+
+body.mochila .Hide.Atributos.HideEstilo,
+body.mochila .Hide.Atributos.HideEstilo.active {
+    display: block !important;
+}
+
+.filtro-ativo {
+    padding-left: .5rem !important;
+}
+
+.navigation-tabs h3,
+.navigation-tabs h4,
+.Tipo.de.Producto,
+.Grupo.Color,
+.navigation-tabs ul li,
+.navigation-tabs ul a {
+    display: block;
+    border: none;
+    font-size: .9rem;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0rem;
+    width: 100%;
+}
+
+.navigation-tabs ul a {
+    margin-bottom: 0;
+}
+
+.ver-filtros {
+    color: #003a7c;
+    display: block !important;
+    font-weight: bold;
+    margin-bottom: .5rem !important;
+    padding: .4rem !important;
+    width: 100% !important;
+}
+
+.ver-filtros:before {
+    content: "\f177";
+    font-family: 'FontAwesome';
+    margin-right: .4rem;
+}
+
+.navigation-tabs h3.selected,
+.navigation-tabs h4.selected {
+    color: #003a7c;
+    display: block;
+}
+
+.navigation-tabs h3,
+.navigation-tabs h5 {
+    border-top: 1px solid rgba(0, 0, 0, .15);
+    color: black;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-bottom: .5rem;
+    padding-top: .5rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+
+/* .Hide.even.Atributos.HideCubierta,
+.even.Atributos.Cubierta, */
+
+
+/* .Hide.even.Atributos.HideCubierta.active, */
+
+body.mochilas .Hide.Atributos.HideColeccion,
+body.mochilas .Hide.Atributos.HideColeccion.active,
+.navigation-tabs .Hide.HideMarca,
+.navigation-tabs .Hide.HideMarca.active,
+.Marca.selected {
+    border-top: 0;
+}
+
+.navigation-tabs h3 a,
+.navigation-tabs h5 a {
+    color: black;
+    text-transform: uppercase;
+}
+
+.navigation-tabs h4,
+.Tipo.de.Producto,
+.GRUPO.DE.COR,
+.Material.Atributos,
+.Material.Carateristicas,
+.Talla.even.Carateristicas {
+    margin-left: .5rem;
+}
+
+.even.Atributos.Material {
+    margin-left: 0;
+}
+
+.navigation-tabs h3.even:after,
+.navigation-tabs h3:after,
+.navigation-tabs h5.even:after,
+.navigation-tabs h5:after {
+    content: "\f067";
+    color: #777;
+    display: block;
+    font-family: 'FontAwesome';
+    font-size: .7rem;
+    font-weight: lighter;
+    top: 40%;
+    right: initial;
+    left: 0;
+    position: absolute;
+}
+
+.navigation-tabs h3.even:after,
+.navigation-tabs h3:after {
+    position: absolute;
+    top: 0;
+}
+
+.navigation-tabs h3.even.active:after,
+.navigation-tabs h3.active:after,
+.navigation-tabs h5.even.active:after,
+.navigation-tabs h5.active:after {
+    content: "\f068";
+    font-family: 'FontAwesome';
+    font-size: .7rem;
+    font-weight: lighter;
+    color: #777;
+}
+
+.navigation-tabs ul li {
+    margin-bottom: .5rem;
+}
+
+.navigation-tabs .last {
+    /*     display: none; */
+}
+
+.search-single-navigator a,
+.search-single-navigator h3 {
+    font-size: .8rem;
+    border: none;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    padding: 0;
+    width: 100%;
+}
+
+.search-single-navigator h3 {
+    margin-bottom: .5rem;
+}
+
+.search-single-navigator a {
+    margin: 0;
+}
+
+.search-single-navigator ul {
+    border: none;
+    margin: 0 auto;
+    margin-left: 1.5rem;
+    height: auto;
+    max-height: 80px;
+    /*     overflow-y: auto !Important; */
+    /*     overflow-x: hidden; */
+    padding: 0;
+    width: 90%;
+}
+
+ul.even {
+    margin-bottom: 0;
+}
+
+
+/*
+[d11.Mediaquerie search navigator]
+
+============================= */
+
+
+/*
 [e0.Despacho y disponibilidad en tienda]
 
 ============================= */
@@ -2897,6 +3114,9 @@ table thead {
 }
 
 .navigation__searchBar.active {
+    -webkit-box-shadow: 0 3px 4px 0 rgba(50, 50, 50, .2);
+    -moz-box-shadow: 0 3px 4px 0 rgba(50, 50, 50, .2);
+    box-shadow: 0 3px 4px 0 rgba(50, 50, 50, .2);
     position: absolute;
     top: 45px;
     right: 0;
@@ -3803,12 +4023,11 @@ table thead {
 .home__categorias-banner--mobile .left,
 .home__categorias-banner--mobile .right {
     background-color: rgba(185, 35, 53, 0.8);
-    border-bottom: 3px solid #B92335;
     color: white;
     font-size: .8rem;
     padding: .5rem;
     position: absolute;
-    bottom: 1%;
+    bottom: 1.5%;
 }
 
 .home__categorias-banner--mobile .left {
@@ -4385,6 +4604,44 @@ h4.group.Atributos-Tumi {
 [f8.Categoria]
 
 ============================= */
+
+.categ__banner-container,
+.categ__title {
+    display: none;
+}
+
+.categ__container {
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.categ__content {
+    border: var(--borderRojo);
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+.categ__options {
+    border: var(--borderRojo);
+    width: 100%;
+}
+
+.categ__aside {
+    /*     border:var(--borderAzul); */
+    width: 20%;
+}
+
+.categ__products {
+    width: 78%;
+}
+
+.categ__options {
+    margin: 2rem 0 1rem 0;
+}
 
 
 /*
