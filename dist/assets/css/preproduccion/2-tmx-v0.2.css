@@ -90,6 +90,8 @@ e12.Producto sticky
 e13.Mediaquerie producto sticky
 e14.Redes sociales
 e15.Mediaquerie redes sociales
+e16.Return to top
+e17.Mediaquerie return to top
 
 --------- Estilos de pagina -------------
 
@@ -3628,7 +3630,7 @@ table thead {
 
 
 /*
-[e13.Redes sociales ]
+[e14.Redes sociales ]
 
 ============================= */
 
@@ -3811,12 +3813,10 @@ table thead {
     overflow: hidden;
 }
 
-
 /*
-[e14.Mediaquerie redes sociales ]
+[e15.Mediaquerie redes sociales ]
 
 ============================= */
-
 
 /* small */
 
@@ -3832,6 +3832,68 @@ table thead {
 
 @media only screen and (min-width: 90.063em) {}
 
+/*
+[e16.Return to top]
+
+============================= */
+
+.back-to-top,
+.orders .back-to-top {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    /* image replacement properties */
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    background: rgba(0, 58, 124, 1) url(/arquivos/sbr-backTop-arrow.png) no-repeat center 50%;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+    -moz-transition: opacity .3s 0s, visibility 0s .3s;
+    -o-transition: opacity .3s 0s, visibility 0s .3s;
+    transition: opacity .3s 0s, visibility 0s .3s;
+}
+
+.back-to-top.back-to-top-is-visible,
+.back-to-top.back-to-top-fade-out,
+.no-touch .back-to-top:hover {
+    -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+    -moz-transition: opacity .3s 0s, visibility 0s 0s;
+    -o-transition: opacity .3s 0s, visibility 0s 0s;
+    transition: opacity .3s 0s, visibility 0s 0s;
+}
+
+.back-to-top.back-to-top-is-visible {
+    /* the button becomes visible */
+    visibility: visible;
+    opacity: 1;
+    z-index: 890;
+}
+
+.back-to-top.back-to-top-fade-out {
+    /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+    opacity: .5;
+}
+
+.no-touch .back-to-top:hover {
+    background-color: #e86256;
+    opacity: 1;
+}
+
+.qd-is-return-top {
+    display: none !important;
+}
+
+/*
+[e17.Mediaquerie return to top]
+
+============================= */
 
 /*
 [f0.Home]
