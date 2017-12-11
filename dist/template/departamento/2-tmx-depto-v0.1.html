@@ -7,7 +7,7 @@
 
 <head>
 
-    <title> <vtex.cmc:productPageTitle /> </title>
+    <title> <vtex.cmc:searchTitle /> </title>
     <meta name="description" content="" />
     <vtex:template id="2-tmx-head" />
 
@@ -18,79 +18,90 @@
 
 <body>
 
-    <!-- off-canvas-wrap -->
-    <div class="off-canvas-wrapper">
-
-        <!-- inner-wrap -->
-        <div class="off-canvas-content" data-off-canvas-content="">
-
-            <!-- header -->
-            <header id="header">
-                <vtex:template id="2-tmx-header" />
-            </header>
-            <!-- /.end header -->
-
-            <!-- navigation -->
-            <nav>
-                <vtex:template id="2-tmx-navigator" />
-            </nav>
-            <!-- /.end navigation -->
-
-            <!-- main content -->
-            <main class="depto__content">
-
-                <!-- main banner container -->
-                <div class="depto__main-banner-container">
-
-                    <!-- main banner content -->
-                    <div class="depto__main-banner-content">
-
-                        <!-- main banner text -->
-                        <div class="depto__main-banner-text"><vtex:contentPlaceHolder id="text" /></div>
-                        <!-- main banner img -->
-                        <div class="depto__main-banner-img"><vtex:contentPlaceHolder id="main-banner" /></div>
-
-                    </div>
-                    <!-- /.end main banner content -->
-
+    <!-- barba wrapper -->
+    <div id="barba-wrapper">
+        <!-- barba container -->
+        <div class="barba-container">
+            <!-- off-canvas-wrap -->
+            <div class="off-canvas-wrapper">
+        
+                <!-- inner-wrap -->
+                <div class="off-canvas-content" data-off-canvas-content="">
+        
+                    <!-- header -->
+                    <header id="header">
+                        <vtex:template id="2-tmx-header" />
+                    </header>
+                    <!-- /.end header -->
+        
+                    <!-- navigation -->
+                    <nav>
+                        <vtex:template id="2-tmx-navigator" />
+                    </nav>
+                    <!-- /.end navigation -->
+        
+                    <!-- main content -->
+                    <main class="depto__content">
+        
+                        <!-- main banner container -->
+                        <div class="depto__main-banner-container">
+        
+                            <!-- main banner content -->
+                            <div class="depto__main-banner-content">
+        
+                                <!-- main banner text -->
+                                <div class="depto__main-banner-text">
+                                    <vtex:contentPlaceHolder id="text" />
+                                </div>
+                                <!-- main banner img -->
+                                <div class="depto__main-banner-img">
+                                    <vtex:contentPlaceHolder id="main-banner" />
+                                </div>
+        
+                            </div>
+                            <!-- /.end main banner content -->
+        
+                        </div>
+                        <!-- /.end main banner container -->
+        
+                        <!-- depto products container -->
+                        <div class="depto__products-container">
+        
+                            <!-- depto products content -->
+                            <div class="depto__products-content">
+        
+                                <vtex:contentPlaceHolder id="products-banners-text" />
+        
+                            </div>
+                            <!-- /.end depto products content -->
+        
+                        </div>
+                        <!-- /.end depto products container -->
+        
+                    </main>
+                    <!-- /.end main content -->
+        
+                    <!-- navigation history -->
+                    <!-- <vtex.cmc:navigationHistory/> -->
+        
+                    <!-- facebook api -->
+                    <vtex:template id="2-tmx-fbsdk" />
+        
+                    <!-- footer -->
+                    <footer>
+                        <vtex:template id="2-tmx-footer" />
+                    </footer>
+                    <!-- /.end footer -->
+        
                 </div>
-                <!-- /.end main banner container -->
-
-                <!-- depto products container -->
-                <div class="depto__products-container">
-
-                    <!-- depto products content -->
-                    <div class="depto__products-content">
-
-                        <vtex:contentPlaceHolder id="products-banners-text" />
-
-                    </div>
-                    <!-- /.end depto products content -->
-
-                </div>
-                <!-- /.end depto products container -->
-
-            </main>
-            <!-- /.end main content -->
-
-            <!-- navigation history -->
-            <!-- <vtex.cmc:navigationHistory/> -->
-
-            <!-- facebook api -->
-            <vtex:template id="2-tmx-fbsdk" />
-
-            <!-- footer -->
-            <footer>
-                <vtex:template id="2-tmx-footer" />
-            </footer>
-            <!-- /.end footer -->
-
+                <!-- /.end inner-wrap -->
+        
+            </div>
+            <!-- /.end off-canvas-wrap -->
         </div>
-        <!-- /.end inner-wrap -->
-
+        <!-- /.end barba container -->
     </div>
-    <!-- /.end off-canvas-wrap -->
-
+    <!-- /.end barba wrapper -->
 </body>
 <!-- /.end body -->
 

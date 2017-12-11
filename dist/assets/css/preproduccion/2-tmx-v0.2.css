@@ -71,6 +71,8 @@ d8.Quickview
 d9.Mediaquerie quickview
 d10.Search navigator
 d11.Mediaquerie search navigator
+d12.Search result time.
+d13.Mediaquerie search result time.
 
 --------- Componentes -------------
 
@@ -90,8 +92,6 @@ e12.Producto sticky
 e13.Mediaquerie producto sticky
 e14.Redes sociales
 e15.Mediaquerie redes sociales
-e16.Return to top
-e17.Mediaquerie return to top
 
 --------- Estilos de pagina -------------
 
@@ -1178,8 +1178,14 @@ footer {
     display: none;
 }
 
+.vitrine {
+    display: block;
+    position: relative;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
 .prateleira {
-    /*         border:1px solid blue; */
     position: relative;
     display: flex;
     width: 100%;
@@ -2560,6 +2566,271 @@ ul.even {
 ============================= */
 
 
+/* small */
+
+@media only screen and (max-width: 40em) {}
+
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
+
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {}
+
+
+/*
+[d12.Search result time]
+
+============================= */
+
+.searchResultsTime {
+    padding-right: 1rem;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.compare,
+.filterBy,
+.pager.top,
+.searchResultsTime .resultado-busca-tempo,
+.searchResultsTime .resultado-busca-termo,
+.searchResultsTime:nth-of-type(2) {
+    display: none;
+}
+
+.resultado-busca-filtro {
+    width: 100%;
+}
+
+.resultado-busca-numero .label,
+.resultado-busca-numero .value {
+    color: black;
+    background-color: transparent;
+    font-size: .7rem;
+    padding: 0;
+}
+
+.resultado-busca-numero .label {
+    color: #777;
+    visibility: hidden;
+    position: relative;
+}
+
+.resultado-busca-numero .label:before {
+    content: "Produtos encontrados :";
+    visibility: visible;
+    position: absolute;
+}
+
+.resultado-busca-numero .value {
+    color: #777;
+    font-weight: bold;
+}
+
+.orderBy {
+    /*     border:var(--borderNegro); */
+    width: 100%;
+    position: relative;
+}
+
+.resultado-busca-numero .sub {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sub:last-child {
+    display: none;
+}
+
+.sub .resultado-busca-filtro fieldset label {
+    float: left;
+    font-size: .7rem;
+    margin: 0;
+    margin-top: .5rem;
+    width: 30%;
+    text-align: right;
+    display: none;
+}
+
+.sub .resultado-busca-filtro fieldset select {
+    background-color: transparent;
+    border-radius: 0;
+    border: 1px solid #ccc;
+    font-size: .8rem;
+    font-family: 'Proxima Nova';
+    float: right;
+    min-height: 30px!important;
+    max-height: 30px!important;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100%;
+}
+
+.pager.bottom {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+ul.pages {
+    position: relative;
+    min-width: 20%;
+    max-width: 40%;
+    margin: 0;
+    padding: 0 0 0 1rem;
+}
+
+ul.pages li {
+    display: inline-block;
+    font-size: .8rem;
+    margin: .5rem;
+}
+
+ul.pages li.page-number {
+    color: #bdc3c7;
+}
+
+ul.pages li.page-number.pgCurrent {
+    border: 1px solid black;
+    color: black;
+    font-weight: bold;
+    background-color: transparent;
+    margin-left: 0;
+    padding: .2rem .5rem;
+}
+
+.pages li.first.pgEmpty {
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+    width: 20px;
+}
+
+.pages li.first {
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+    width: 20px;
+}
+
+.pages li.first.pgEmpty:after {
+    color: black;
+    display: inline-block;
+    font-family: 'FontAwesome';
+    margin: 0;
+    padding: 0;
+    visibility: visible;
+    content: "\f100";
+}
+
+.pages li.first:after {
+    color: black;
+    display: inline-block;
+    font-family: 'FontAwesome';
+    margin: 0;
+    padding: 0;
+    visibility: visible;
+    content: "\f100";
+}
+
+.pages li.previous.pgEmpty {
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+    width: 20px;
+}
+
+.pages li.previous {
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+    width: 20px;
+}
+
+.pages li.previous.pgEmpty:after {
+    content: "\f104";
+    font-family: 'FontAwesome';
+    display: inline-block;
+    color: black;
+    visibility: visible;
+    padding: 0;
+    margin: 0;
+}
+
+.pages li.previous:after {
+    content: "\f104";
+    font-family: 'FontAwesome';
+    display: inline-block;
+    color: black;
+    visibility: visible;
+    padding: 0;
+    margin: 0;
+}
+
+.pages li.next {
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+    width: 20px;
+}
+
+.pages li.next:after {
+    content: "\f105";
+    font-family: 'FontAwesome';
+    display: inline-block;
+    color: black;
+    visibility: visible;
+    padding: 0;
+    margin: 0 .2rem;
+}
+
+.pages li.last {
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+    width: 20px;
+}
+
+.pages li.last:after {
+    content: "\f101";
+    font-family: 'FontAwesome';
+    display: inline-block;
+    color: black;
+    visibility: visible;
+    padding: 0;
+    margin: 0;
+}
+
+
+/*
+[d13.Mediaquerie search result time]
+
+============================= */
+
+
+/* small */
+
+@media only screen and (max-width: 40em) {}
+
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
+
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {}
+
+
 /*
 [e0.Despacho y disponibilidad en tienda]
 
@@ -3630,7 +3901,7 @@ table thead {
 
 
 /*
-[e14.Redes sociales ]
+[e13.Redes sociales ]
 
 ============================= */
 
@@ -3813,10 +4084,12 @@ table thead {
     overflow: hidden;
 }
 
+
 /*
-[e15.Mediaquerie redes sociales ]
+[e14.Mediaquerie redes sociales ]
 
 ============================= */
+
 
 /* small */
 
@@ -3832,68 +4105,6 @@ table thead {
 
 @media only screen and (min-width: 90.063em) {}
 
-/*
-[e16.Return to top]
-
-============================= */
-
-.back-to-top,
-.orders .back-to-top {
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    position: fixed;
-    bottom: 80px;
-    right: 10px;
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    /* image replacement properties */
-    overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap;
-    background: rgba(0, 58, 124, 1) url(/arquivos/sbr-backTop-arrow.png) no-repeat center 50%;
-    visibility: hidden;
-    opacity: 0;
-    -webkit-transition: opacity .3s 0s, visibility 0s .3s;
-    -moz-transition: opacity .3s 0s, visibility 0s .3s;
-    -o-transition: opacity .3s 0s, visibility 0s .3s;
-    transition: opacity .3s 0s, visibility 0s .3s;
-}
-
-.back-to-top.back-to-top-is-visible,
-.back-to-top.back-to-top-fade-out,
-.no-touch .back-to-top:hover {
-    -webkit-transition: opacity .3s 0s, visibility 0s 0s;
-    -moz-transition: opacity .3s 0s, visibility 0s 0s;
-    -o-transition: opacity .3s 0s, visibility 0s 0s;
-    transition: opacity .3s 0s, visibility 0s 0s;
-}
-
-.back-to-top.back-to-top-is-visible {
-    /* the button becomes visible */
-    visibility: visible;
-    opacity: 1;
-    z-index: 890;
-}
-
-.back-to-top.back-to-top-fade-out {
-    /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
-    opacity: .5;
-}
-
-.no-touch .back-to-top:hover {
-    background-color: #e86256;
-    opacity: 1;
-}
-
-.qd-is-return-top {
-    display: none !important;
-}
-
-/*
-[e17.Mediaquerie return to top]
-
-============================= */
 
 /*
 [f0.Home]
@@ -4685,7 +4896,7 @@ h4.group.Atributos-Tumi {
 }
 
 .categ__content {
-    /*    border:var(--borderRojo); */
+    margin-bottom: 3rem;
     width: 80%;
     display: flex;
     justify-content: space-between;
@@ -4693,12 +4904,13 @@ h4.group.Atributos-Tumi {
 }
 
 .categ__options {
-    /*     border:var(--borderRojo); */
+    border-bottom: 3px solid #ccc;
+    padding-bottom: 1rem;
+    margin: 1rem 0 1rem 0;
     width: 100%;
 }
 
 .categ__aside {
-    /*     border:var(--borderAzul); */
     width: 20%;
 }
 
@@ -4706,8 +4918,10 @@ h4.group.Atributos-Tumi {
     width: 78%;
 }
 
-.categ__options {
-    margin: 1rem 0 1rem 0;
+.categ__products .main {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: flex-end;
 }
 
 

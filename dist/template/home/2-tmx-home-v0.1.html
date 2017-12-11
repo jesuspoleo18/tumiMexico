@@ -20,138 +20,145 @@
 
 <body>
 
-    <!-- off-canvas-wrap -->
-
-    <div class="off-canvas-wrapper">
-
-        <!-- inner-wrap -->
-
-        <div class="off-canvas-content" data-off-canvas-content="">
-
-            <!-- header -->
-            <header id="header">
-                <vtex:template id="2-tmx-header" />
-            </header>
-            <!-- /.end header -->
-
-            <!-- navigation -->
-            <nav>
-                <vtex:template id="2-tmx-navigator" />
-            </nav>
-            <!-- /.end navigation -->
-
-            <!-- main content -->
-            <main class="home__content">
-
-                <!-- carousel container -->
-                <div class="home-slide">
-                    <vtex:contentPlaceHolder id="carousel-slides" /> </div>
-                <!-- /.end carousel container -->
-
-                <!-- promesas -->
-                <div class="home__promesas-container">
-                    <!-- promesas content -->
-                    <div class="home__promesas-content">
-                        <!-- promesas elementos -->
-                        <div class="home__promesas-element col-1">
-                            <a href="#">
-                                <div class="home__promesas-icon">
-                                    <img src="/arquivos/tmx-gift-icon.png" alt="gift icon" width="28" height="28" />
+    <!-- barba wrapper -->
+    <div id="barba-wrapper">
+        <!-- barba container -->
+        <div class="barba-container">
+            <!-- off-canvas-wrap -->
+            <div class="off-canvas-wrapper">
+        
+                <!-- inner-wrap -->
+        
+                <div class="off-canvas-content" data-off-canvas-content="">
+        
+                    <!-- header -->
+                    <header id="header">
+                        <vtex:template id="2-tmx-header" />
+                    </header>
+                    <!-- /.end header -->
+        
+                    <!-- navigation -->
+                    <nav>
+                        <vtex:template id="2-tmx-navigator" />
+                    </nav>
+                    <!-- /.end navigation -->
+        
+                    <!-- main content -->
+                    <main class="home__content">
+        
+                        <!-- carousel container -->
+                        <div class="home-slide">
+                            <vtex:contentPlaceHolder id="carousel-slides" /> </div>
+                        <!-- /.end carousel container -->
+        
+                        <!-- promesas -->
+                        <div class="home__promesas-container">
+                            <!-- promesas content -->
+                            <div class="home__promesas-content">
+                                <!-- promesas elementos -->
+                                <div class="home__promesas-element col-1">
+                                    <a href="#">
+                                        <div class="home__promesas-icon">
+                                            <img src="/arquivos/tmx-gift-icon.png" alt="gift icon" width="28" height="28" />
+                                        </div>
+                                        <div class="home__promesas-text">
+                                            <vtex:contentPlaceHolder id="texto-giftIdeas" />
+                                        </div>
+                                    </a>
                                 </div>
-                                <div class="home__promesas-text">
-                                    <vtex:contentPlaceHolder id="texto-giftIdeas" />
+        
+                                <div class="home__promesas-element col-2">
+                                    <a href="#">
+                                        <div class="home__promesas-icon">
+                                            <img src="/arquivos/tmx-shipping-icon.png" alt="shipping icon" width="28" height="28" />
+                                        </div>
+                                        <div class="home__promesas-text">
+                                            <vtex:contentPlaceHolder id="texto-freeShipping" />
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-
-                        <div class="home__promesas-element col-2">
-                            <a href="#">
-                                <div class="home__promesas-icon">
-                                    <img src="/arquivos/tmx-shipping-icon.png" alt="shipping icon" width="28" height="28" />
-                                </div>
-                                <div class="home__promesas-text">
-                                    <vtex:contentPlaceHolder id="texto-freeShipping" />
-                                </div>
-                            </a>
-                        </div>
-                        <!-- /.end promesas elementos -->
-                    </div>
-                    <!-- /.end promesas content -->
-                </div>
-                <!-- /.end promesas -->
-
-                <!-- categorias -->
-                <div class="home__categorias-container">
-                    <!-- categorias desktop content -->
-                    <div class="home__categorias-content">
-                        <!-- categorias elements -->
-                        <vtex:contentPlaceHolder id="banners-categoria-desktop" />
-                        <!-- /.end categorias elements -->
-                    </div>
-                    <!-- /.end categorias desktop content -->
-
-                    <!-- categorias desktop content -->
-                    <div class="home__categorias-content mobile">
-                        <!-- categorias title -->
-                        <vtex:contentPlaceHolder id="banners-categoria-title" />
-                        <!-- /.end categorias title -->
-                        
-                        <!-- categorias elements -->
-                        <vtex:contentPlaceHolder id="banners-categoria-mobile" />
-                        <!-- /.end categorias elements -->
-                    </div>
-                    <!-- /.end categorias desktop content -->
-                </div>
-                <!--/.end  categorias -->
-
-                <!-- product recomendation -->
-                <div class="home__productos-container">
-                    <!-- product recomendation content -->
-                    <div class="home__productos-content">
-                        <!-- title -->
-                        <div class="home__title">
-                            <vtex:contentPlaceHolder id="titulo-productos-recomendados" />
-                        </div>
-                        <!-- /.end title -->
-
-                        <!-- tabs buttons content -->
-                        <div class="home__tabs-buttons-content">
-                            <a class="home__tabs-buttons transparent" data-click="news" href="#">What's new</a>
-                            <a class="home__tabs-buttons transparent" data-click="sellers" href="#">Best sellers</a>
-                        </div>
-                        <!-- /.end tabs buttons content -->
-
-                        <!-- tabs content -->
-                        <div class="home__tabs-content">
-                            <div class="home__tabs-content news">
-                                <vtex:contentPlaceHolder id="coleccion-productos-nuevos" />
+                                <!-- /.end promesas elementos -->
                             </div>
-                            <div class="home__tabs-content bestSellers">
-                                <vtex:contentPlaceHolder id="coleccion-mejor-vendidos" />
-                            </div>
+                            <!-- /.end promesas content -->
                         </div>
-                        <!-- /.end tabs content -->
-                    </div>
-                    <!-- /.end product recomendation content -->
+                        <!-- /.end promesas -->
+        
+                        <!-- categorias -->
+                        <div class="home__categorias-container">
+                            <!-- categorias desktop content -->
+                            <div class="home__categorias-content">
+                                <!-- categorias elements -->
+                                <vtex:contentPlaceHolder id="banners-categoria-desktop" />
+                                <!-- /.end categorias elements -->
+                            </div>
+                            <!-- /.end categorias desktop content -->
+        
+                            <!-- categorias desktop content -->
+                            <div class="home__categorias-content mobile">
+                                <!-- categorias title -->
+                                <vtex:contentPlaceHolder id="banners-categoria-title" />
+                                <!-- /.end categorias title -->
+                                
+                                <!-- categorias elements -->
+                                <vtex:contentPlaceHolder id="banners-categoria-mobile" />
+                                <!-- /.end categorias elements -->
+                            </div>
+                            <!-- /.end categorias desktop content -->
+                        </div>
+                        <!--/.end  categorias -->
+        
+                        <!-- product recomendation -->
+                        <div class="home__productos-container">
+                            <!-- product recomendation content -->
+                            <div class="home__productos-content">
+                                <!-- title -->
+                                <div class="home__title">
+                                    <vtex:contentPlaceHolder id="titulo-productos-recomendados" />
+                                </div>
+                                <!-- /.end title -->
+        
+                                <!-- tabs buttons content -->
+                                <div class="home__tabs-buttons-content">
+                                    <a class="home__tabs-buttons transparent" data-click="news" href="#">What's new</a>
+                                    <a class="home__tabs-buttons transparent" data-click="sellers" href="#">Best sellers</a>
+                                </div>
+                                <!-- /.end tabs buttons content -->
+        
+                                <!-- tabs content -->
+                                <div class="home__tabs-content">
+                                    <div class="home__tabs-content news">
+                                        <vtex:contentPlaceHolder id="coleccion-productos-nuevos" />
+                                    </div>
+                                    <div class="home__tabs-content bestSellers">
+                                        <vtex:contentPlaceHolder id="coleccion-mejor-vendidos" />
+                                    </div>
+                                </div>
+                                <!-- /.end tabs content -->
+                            </div>
+                            <!-- /.end product recomendation content -->
+                        </div>
+                        <!-- /.end recomendaciones de productos -->
+        
+                    </main>
+                    <!-- /.end main content -->
+        
+                    <!-- facebook api -->
+                    <vtex:template id="2-tmx-fbsdk" />
+        
+                    <!-- footer -->
+                    <footer>
+                        <vtex:template id="2-tmx-footer" /> </footer>
+                    <!-- /.end footer -->
+        
                 </div>
-                <!-- /.end recomendaciones de productos -->
-
-            </main>
-            <!-- /.end main content -->
-
-            <!-- facebook api -->
-            <vtex:template id="2-tmx-fbsdk" />
-
-            <!-- footer -->
-            <footer>
-                <vtex:template id="2-tmx-footer" /> </footer>
-            <!-- /.end footer -->
-
+                <!-- /.end inner-wrap -->
+        
+            </div>
+            <!-- /.end off-canvas-wrap -->
         </div>
-        <!-- /.end inner-wrap -->
-
+        <!-- /.end barba container -->
     </div>
-    <!-- /.end off-canvas-wrap -->
+    <!-- /.end barba wrapper -->
 
 </body>
 <!-- /.end body -->
