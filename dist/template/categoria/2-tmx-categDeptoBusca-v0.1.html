@@ -7,7 +7,8 @@
 
 <head>
 
-    <title> <vtex.cmc:productPageTitle /> </title>
+    <title>
+        <vtex.cmc:searchTitle /> </title>
     <meta name="description" content="" />
     <vtex:template id="2-tmx-head" />
 
@@ -40,10 +41,14 @@
             <main class="categ__container">
 
                 <!-- banner content -->
-                 <div class="categ__banner-container">
-                     <div class="categ__banner-img"><vtex:contentPlaceHolder id="banner-categoria" /></div>
-                     <div class="categ__banner-txt"><vtex:contentPlaceHolder id="banner-texto" /></div>
-                 </div>
+                <div class="categ__banner-container">
+                    <div class="categ__banner-img">
+                        <vtex:contentPlaceHolder id="banner-categoria" />
+                    </div>
+                    <div class="categ__banner-txt">
+                        <vtex:contentPlaceHolder id="banner-texto" />
+                    </div>
+                </div>
                 <!-- /.fin banner content -->
 
                 <!-- categ content -->
@@ -53,23 +58,30 @@
                     <div class="categ__options">
                         <!-- left -->
                         <div class="categ__options-left">
-                            <div class="categ__breadcrumb"> <vtex.cmc:breadCrumb /> </div>
-                            <div class="categ__title"><vtex.cmc:searchTitle /></div>
+                            <div class="categ__breadcrumb">
+                                <vtex.cmc:breadCrumb /> </div>
+                            <div class="categ__title">
+                                <vtex.cmc:searchTitle />
+                            </div>
                             <div class="categ__description"></div>
                         </div>
                         <!-- right -->
                         <div class="categ__options-right">
                             <div class="categ__compare"></div>
                         </div>
-                    </div> 
+                    </div>
                     <!-- /.fin categ options -->
 
                     <!-- search navigator -->
-                    <div class="categ__aside"><vtex.cmc:searchNavigator /></div>
+                    <div class="categ__aside">
+                        <vtex.cmc:searchNavigator />
+                    </div>
                     <!-- /.fin search navigator -->
 
                     <!-- productos -->
-                    <div class="categ__products"><vtex.cmc:searchResult layout="4b993ece-b799-4600-99d7-a084d9d5e0af" itemCount="3" columnCount="3" /></div>
+                    <div class="categ__products">
+                        <vtex.cmc:searchResult layout="4b993ece-b799-4600-99d7-a084d9d5e0af" itemCount="3" columnCount="3" />
+                    </div>
                     <!-- /.fin productos -->
 
                 </div>

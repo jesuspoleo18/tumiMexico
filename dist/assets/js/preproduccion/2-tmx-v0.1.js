@@ -21,7 +21,6 @@ b3.Producto
 b4.Categ/depto
 b5.Busca, resultado de busca, 404 y error 500
 b6.Account
-b7.Barba
 
 -------------------------fin---------------------------------*/
 /* 
@@ -46,7 +45,6 @@ $(function () {
     home.init();
     producto.init();
     categDepto.init();
-    BarbaWidget.init();
 });
 
 /* 
@@ -1583,49 +1581,4 @@ var busca = {
 
 ============================= */
 
-/* 
 
-[b7.Barba]
-
-============================= */
-
-var BarbaWidget = {
-    init: function () {
-        var scope = this;
-        Barba.Pjax.start();
-        Barba.Prefetch.init();
-        Barba.Pjax.getTransition = function () {
-            return scope.fadeTransition;
-        };
-        $(document).foundation();
-        confiGenerales.init();
-        home.init();
-        producto.init();
-        categDepto.init();
-    },
-    fadeTransition: Barba.BaseTransition.extend({
-        start: function () {
-            Promise
-                .all([this.newContainerLoading, this.fadeOut()])
-                .then(this.fadeIn.bind(this));
-        },
-        fadeOut: function () {
-            return $(this.oldContainer).animate({ opacity: 0 }).promise();
-        },
-        fadeIn: function () {
-            var _this = this,
-                $el = $(this.newContainer);
-
-            $(this.oldContainer).hide();
-
-            $el.css({
-                visibility: 'visible',
-                opacity: 0
-            });
-
-            $el.animate({ opacity: 1 }, 400, function () {
-                _this.done();
-            });
-        }
-    })
-};
