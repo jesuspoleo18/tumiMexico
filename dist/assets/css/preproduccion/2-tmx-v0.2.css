@@ -1913,6 +1913,11 @@ ul.rating li {
     padding-bottom: 1rem;
 }
 
+ul.rating li:nth-child(1),
+ul.rating li:nth-child(2) {
+    /*     margin-top:2rem; */
+}
+
 ul.rating li span {
     font-size: 12px;
     line-height: 30px;
@@ -2355,6 +2360,8 @@ ul.rating li span {
 
 ============================= */
 
+.navigation-tabs {}
+
 .navigation-tabs .menu-navegue,
 
 /* .navigation-tabs .Hide.HideMarca, */
@@ -2521,6 +2528,10 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
     margin-bottom: .5rem;
 }
 
+.navigation-tabs .last {
+    /*     display: none; */
+}
+
 .search-single-navigator a,
 .search-single-navigator h3 {
     font-size: .8rem;
@@ -2585,7 +2596,7 @@ ul.even {
 
 .searchResultsTime {
     padding-right: 1rem;
-    width: 50%;
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -2594,8 +2605,12 @@ ul.even {
 
 /* .compare, */
 
-.filterBy,
-.pager.top,
+
+/* .filterBy, */
+
+
+/* .pager.top, */
+
 .searchResultsTime .resultado-busca-tempo,
 .searchResultsTime .resultado-busca-termo,
 .searchResultsTime:nth-of-type(2) {
@@ -2604,6 +2619,7 @@ ul.even {
 
 .resultado-busca-filtro {
     width: 100%;
+    display: flex;
 }
 
 .resultado-busca-numero .label,
@@ -2616,25 +2632,47 @@ ul.even {
 
 .resultado-busca-numero .label {
     color: #777;
+    display: none;
     visibility: hidden;
     position: relative;
 }
 
-.resultado-busca-numero .label:before {
+.resultado-busca-numero .label:after {
     content: "Produtos encontrados :";
-    visibility: visible;
+    visibility: hidden;
     position: absolute;
 }
 
 .resultado-busca-numero .value {
-    color: #777;
+    color: #999999;
     font-weight: bold;
 }
 
-.orderBy {
-    /*     border:var(--borderNegro); */
+.resultado-busca-numero .value:after {
+    content: "items";
+    padding-left: .4rem;
+}
+
+.orderBy,
+.filterBy {
+    /*         border:var(--borderNegro); */
+    height: 40px;
     width: 100%;
     position: relative;
+}
+
+.orderBy:before,
+.filterBy:before {
+    content: "\f078";
+    font-family: "FontAwesome";
+    font-size: .55rem;
+    top: 40%;
+    right: 5%;
+    position: absolute;
+}
+
+.orderBy {
+    margin-right: .8rem;
 }
 
 .resultado-busca-numero .sub {
@@ -2658,14 +2696,15 @@ ul.even {
 }
 
 .sub .resultado-busca-filtro fieldset select {
+    background-image: none;
     background-color: transparent;
     border-radius: 0;
     border: 1px solid #ccc;
-    font-size: .8rem;
+    font-size: .7rem;
     font-family: 'Proxima Nova';
+    font-weight: 600;
     float: right;
-    min-height: 30px!important;
-    max-height: 30px!important;
+    height: 100%;
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
@@ -2679,31 +2718,32 @@ ul.even {
     display: none;
 }
 
-ul.pages {
-    position: relative;
-    min-width: 20%;
-    max-width: 40%;
-    margin: 0;
-    padding: 0 0 0 1rem;
-}
-
 ul.pages li {
-    display: inline-block;
     font-size: .8rem;
     margin: .5rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 ul.pages li.page-number {
+    display: none;
     color: #bdc3c7;
+    pointer-events: none;
 }
 
 ul.pages li.page-number.pgCurrent {
-    border: 1px solid black;
-    color: black;
+    color: #999999;
+    display: block;
     font-weight: bold;
     background-color: transparent;
-    margin-left: 0;
-    padding: .2rem .5rem;
+    text-align: center;
+}
+
+ul.pages li.page-number.pgCurrent:after {
+    content: "de";
+    margin: 0 .6rem;
 }
 
 .pages li.first.pgEmpty {
@@ -2714,6 +2754,7 @@ ul.pages li.page-number.pgCurrent {
 }
 
 .pages li.first {
+    display: none;
     visibility: hidden;
     padding: 0;
     margin: 0;
@@ -2744,6 +2785,7 @@ ul.pages li.page-number.pgCurrent {
     visibility: hidden;
     padding: 0;
     margin: 0;
+    position: relative;
     width: 20px;
 }
 
@@ -2755,13 +2797,15 @@ ul.pages li.page-number.pgCurrent {
 }
 
 .pages li.previous.pgEmpty:after {
-    content: "\f104";
+    content: "\f177";
     font-family: 'FontAwesome';
     display: inline-block;
     color: black;
     visibility: visible;
     padding: 0;
     margin: 0;
+    left: 0;
+    position: absolute;
 }
 
 .pages li.previous:after {
@@ -2782,16 +2826,20 @@ ul.pages li.page-number.pgCurrent {
 }
 
 .pages li.next:after {
-    content: "\f105";
+    content: "\f178";
     font-family: 'FontAwesome';
+    font-size: .8rem;
     display: inline-block;
     color: black;
     visibility: visible;
     padding: 0;
     margin: 0 .2rem;
+    left: 0;
+    position: absolute;
 }
 
 .pages li.last {
+    display: none;
     visibility: hidden;
     padding: 0;
     margin: 0;
@@ -4486,6 +4534,11 @@ table thead {
     justify-content: space-between;
 }
 
+.product__left-side,
+.product__right-side {
+    /*     border:var(--borderNaranja); */
+}
+
 .product__left-side {
     width: 55%;
 }
@@ -4987,6 +5040,20 @@ h4.group.Atributos-Tumi {
 
 .categ__filters .sub {
     display: block;
+    width: 50%;
+}
+
+.categ__filters .pager.top {
+    margin-left: 1rem;
+    width: 20%;
+}
+
+.categ__filters .pages {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .categ__aside {
@@ -5034,6 +5101,8 @@ h4.group.Atributos-Tumi {
 
 ============================= */
 
+.depto {}
+
 .depto__content,
 .depto__main-banner-container {
     position: relative;
@@ -5077,12 +5146,13 @@ h4.group.Atributos-Tumi {
     color: white;
     border: 1px solid white;
     font-weight: bold;
-    font-size: 8rem;
+    font-size: .8rem;
     padding: 1rem 0;
     width: 30%;
 }
 
 .depto__banner-btn:hover {
+    color: white;
     text-decoration: none;
 }
 

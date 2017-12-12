@@ -1352,7 +1352,7 @@ var categDepto = {
 
             categDepto.categDeptoAccordion('.search-single-navigator h4,.search-single-navigator h5', '.search-single-navigator h3');
             categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
-            categDepto.infinityScroll();
+            // categDepto.infinityScroll();
             categDepto.categOptions();
             //setInterval(categDepto.traducciones,800);
             setInterval(confiGenerales.mainLazyLoad, 800);
@@ -1511,7 +1511,9 @@ var categDepto = {
 
     },
     categOptions: function(){
-        var $compare = $categDeptoBuscaResultadoBusca.find(".compare:eq(0)"),
+        var $filterBy = $('.filterBy'),
+            $pager = $(".pager.top"),
+            $compare = $categDeptoBuscaResultadoBusca.find(".compare:eq(0)"),
             $containerCompare = $(".categ__compare"),
             $containerFilter = $(".categ__filters"),
             $categTitle = $(".categ__title"),
@@ -1524,6 +1526,8 @@ var categDepto = {
         $categTitle.html("Mochilas y Macutos");
         $categDescripcion.html("Modernas, duraderas, cómodas y elegantes. Nuestras mochilas y bandoleras son perfectas para profesionales y estudiantes. Encontrará desde mochilas para portátiles, bolsos para fin de semana y mucho más.");
         $searchResultsTime.appendTo($containerFilter);
+        $filterBy.html($filterBy.children().eq("0").remove());
+        $containerFilter.append($pager);
     }
 };
 
