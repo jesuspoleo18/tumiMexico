@@ -1429,7 +1429,7 @@ var categDepto = {
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files)
+            return $.getScript(files);
         }))
             .then(function () {
 
@@ -1449,7 +1449,7 @@ var categDepto = {
         var files = ["/arquivos/QD_infinityScroll.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files)
+            return $.getScript(files);
         }))
             .then(function () {
 
@@ -1502,6 +1502,13 @@ var categDepto = {
                 // handle error
             });
 
+    },
+    compare: function(){
+        var $compare = $categDeptoBuscaResultadoBusca.find(".compare");
+
+        if($compare.length){
+            
+        }
     }
 };
 /* 
