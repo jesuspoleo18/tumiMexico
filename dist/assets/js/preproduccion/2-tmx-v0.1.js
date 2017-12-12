@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  07/12/2017
+Ultimo cambio:  12/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -29,7 +29,8 @@ b6.Account
 
 ============================= */
 
-var $home = $(".home"),
+var $body = $("body"),
+    $home = $(".home"),
     $categDeptoBuscaResultadoBusca = $(".categoria, .depto, .busca, .resultado-busca"),
     $producto = $(".producto");
 
@@ -55,7 +56,7 @@ $(function () {
 
 var confiGenerales = {
 
-    init: function init() {
+    init: function() {
 
         confiGenerales.mainLazyLoad();
         // confiGenerales.FormatoDecimales();
@@ -72,6 +73,7 @@ var confiGenerales = {
         confiGenerales.quickViewAsyncBuy();
         confiGenerales.masterData();
         confiGenerales.replaceHref();
+        confiGenerales.bodyPaint();
         $(window).on('orderFormUpdated.vtex', function (evt, orderForm) {
             // console.log("actualizó");
             confiGenerales.checkEmptyCart();
@@ -218,7 +220,7 @@ var confiGenerales = {
         });
     },
 
-    FormatoDecimales: function (seletor) {
+    formatoDecimales: function (seletor) {
 
         $(seletor).each(function () {
 
@@ -790,6 +792,10 @@ var confiGenerales = {
                 $(val).attr('href', $(val).attr('href').replace("http://", "https://"));
             });
         }
+    },
+
+    bodyPaint: function(){
+        $body.fadeTo(500, 1);
     }
 
 };
@@ -1347,6 +1353,7 @@ var categDepto = {
             categDepto.categDeptoAccordion('.search-single-navigator h4,.search-single-navigator h5', '.search-single-navigator h3');
             categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
             categDepto.infinityScroll();
+            categDepto.categOptions();
             //setInterval(categDepto.traducciones,800);
             setInterval(confiGenerales.mainLazyLoad, 800);
             console.log("controles de categDepto !-_-");
@@ -1503,14 +1510,23 @@ var categDepto = {
             });
 
     },
-    compare: function(){
-        var $compare = $categDeptoBuscaResultadoBusca.find(".compare");
+    categOptions: function(){
+        var $compare = $categDeptoBuscaResultadoBusca.find(".compare:eq(0)"),
+            $containerCompare = $(".categ__compare"),
+            $containerFilter = $(".categ__filters"),
+            $categTitle = $(".categ__title"),
+            $categDescripcion = $(".categ__description"),
+            $searchResultsTime = $(".searchResultsTime:eq(0), .sub:eq(0)");
 
         if($compare.length){
-            
+            $compare.appendTo($containerCompare);
         }
+        $categTitle.html("Mochilas y Macutos");
+        $categDescripcion.html("Modernas, duraderas, cómodas y elegantes. Nuestras mochilas y bandoleras son perfectas para profesionales y estudiantes. Encontrará desde mochilas para portátiles, bolsos para fin de semana y mucho más.");
+        $searchResultsTime.appendTo($containerFilter);
     }
 };
+
 /* 
 
 [b5.Busca, resultado de busca, 404 y error 500]
@@ -1587,5 +1603,3 @@ var busca = {
 [b6.Account]
 
 ============================= */
-
-

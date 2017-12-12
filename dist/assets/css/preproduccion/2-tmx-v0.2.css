@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  07/12/2017
+Ultimo cambio:  12/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -73,6 +73,8 @@ d10.Search navigator
 d11.Mediaquerie search navigator
 d12.Search result time.
 d13.Mediaquerie search result time.
+d14.Compare
+d15.Mediaquerie compare
 
 --------- Componentes -------------
 
@@ -222,6 +224,10 @@ video {
 
 body {
     line-height: 1;
+}
+
+html {
+    background-color: white !important;
 }
 
 article,
@@ -1180,8 +1186,6 @@ footer {
 
 .vitrine {
     display: block;
-    position: relative;
-    margin-top: 1.5rem;
     width: 100%;
 }
 
@@ -1735,6 +1739,10 @@ footer {
     padding: 0 .5rem;
 }
 
+.bread-crumb ul li:first-child a {
+    padding: 0;
+}
+
 .bread-crumb ul li:after {
     position: absolute;
     top: 0;
@@ -1903,11 +1911,6 @@ ul.rating li {
     width: 48%;
     /*     border:1px solid #ccc; */
     padding-bottom: 1rem;
-}
-
-ul.rating li:nth-child(1),
-ul.rating li:nth-child(2) {
-    /*     margin-top:2rem; */
 }
 
 ul.rating li span {
@@ -2352,8 +2355,6 @@ ul.rating li span {
 
 ============================= */
 
-.navigation-tabs {}
-
 .navigation-tabs .menu-navegue,
 
 /* .navigation-tabs .Hide.HideMarca, */
@@ -2520,10 +2521,6 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
     margin-bottom: .5rem;
 }
 
-.navigation-tabs .last {
-    /*     display: none; */
-}
-
 .search-single-navigator a,
 .search-single-navigator h3 {
     font-size: .8rem;
@@ -2594,7 +2591,9 @@ ul.even {
     justify-content: flex-end;
 }
 
-.compare,
+
+/* .compare, */
+
 .filterBy,
 .pager.top,
 .searchResultsTime .resultado-busca-tempo,
@@ -2812,6 +2811,60 @@ ul.pages li.page-number.pgCurrent {
 
 /*
 [d13.Mediaquerie search result time]
+
+============================= */
+
+
+/* small */
+
+@media only screen and (max-width: 40em) {}
+
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
+
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {}
+
+
+/*
+[d14.Compare]
+
+============================= */
+
+.btn-comparar {
+    font-size: .8rem;
+    text-decoration: underline;
+}
+
+.categ__compare .compare {
+    color: white;
+    /*     border:var(--borderNegro); */
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.categ__compare .compare strong:before {
+    content: "COMPARE:";
+    font-size: .8rem;
+}
+
+.categ__compare .compare strong {
+    color: #777;
+}
+
+.categ__compare .compare strong span {
+    margin: 0 1rem;
+    position: relative;
+}
+
+
+/*
+[d15.Mediaquerie compare]
 
 ============================= */
 
@@ -4433,11 +4486,6 @@ table thead {
     justify-content: space-between;
 }
 
-.product__left-side,
-.product__right-side {
-    /*     border:var(--borderNaranja); */
-}
-
 .product__left-side {
     width: 55%;
 }
@@ -4883,9 +4931,17 @@ h4.group.Atributos-Tumi {
 
 ============================= */
 
-.categ__banner-container,
 .categ__title {
-    display: none;
+    font-family: 'Proxima Nova';
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+.categ__description {
+    font-size: .9rem;
+    font-family: 'Proxima Nova';
+    line-height: 20px;
+    padding-bottom: 1rem;
 }
 
 .categ__container {
@@ -4904,10 +4960,33 @@ h4.group.Atributos-Tumi {
 }
 
 .categ__options {
-    border-bottom: 3px solid #ccc;
-    padding-bottom: 1rem;
     margin: 1rem 0 1rem 0;
     width: 100%;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.categ__options-left,
+.categ__options-right {
+    width: 50%;
+}
+
+.categ__options-bottom {
+    border-top: 3px solid #ccc;
+    padding-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.categ__filters {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.categ__filters .sub {
+    display: block;
 }
 
 .categ__aside {
@@ -4931,12 +5010,29 @@ h4.group.Atributos-Tumi {
 ============================= */
 
 
+/* small */
+
+@media only screen and (max-width: 40em) {}
+
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
+
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {
+    .categ__content {
+        width: 55%;
+    }
+}
+
+
 /*
 [f10.Departamento]
 
 ============================= */
-
-.depto {}
 
 .depto__content,
 .depto__main-banner-container {
@@ -4981,7 +5077,7 @@ h4.group.Atributos-Tumi {
     color: white;
     border: 1px solid white;
     font-weight: bold;
-    font-size98rem;
+    font-size: 8rem;
     padding: 1rem 0;
     width: 30%;
 }
