@@ -1574,9 +1574,9 @@ var categDepto = {
         }, 800);
         $currentPage.each(function () {
             if ($(this).text() == "1") {
-                $preveArrow.addClass("hide");
+                $prevArrow.addClass("hide");
             } else {
-                $preveArrow.removeClass("hide");
+                $prevArrow.removeClass("hide");
             }
         });
 
