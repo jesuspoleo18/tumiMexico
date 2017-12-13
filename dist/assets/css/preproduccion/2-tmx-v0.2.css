@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  12/12/2017
+Ultimo cambio:  13/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -1196,11 +1196,20 @@ footer {
     align-items: center;
 }
 
-.prateleira ul {
+.prateleira ul,
+.prateleira.n2colunas ul {
     position: relative;
     display: flex;
     width: 100%;
     justify-content: space-between;
+}
+
+.prateleira.n2colunas ul {
+    justify-content: flex-start;
+}
+
+.prateleira.n2colunas ul li.last {
+    margin-left: 1rem;
 }
 
 .prateleira ul li {
@@ -1252,7 +1261,13 @@ footer {
     background-color: white;
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
+}
+
+.compare__btn input[type=checkbox]:checked{
+    border:none;
+    background-color:black;
+    background: url('/arquivos/checked-min.jpg') center center no-repeat;
+    background-size: 25px 25px;
 }
 
 .img img {
@@ -1913,11 +1928,6 @@ ul.rating li {
     padding-bottom: 1rem;
 }
 
-ul.rating li:nth-child(1),
-ul.rating li:nth-child(2) {
-    /*     margin-top:2rem; */
-}
-
 ul.rating li span {
     font-size: 12px;
     line-height: 30px;
@@ -2360,40 +2370,34 @@ ul.rating li span {
 
 ============================= */
 
-.navigation-tabs {}
-
 .navigation-tabs .menu-navegue,
-
 /* .navigation-tabs .Hide.HideMarca, */
-
-
 /* .navigation-tabs .Marca,
 .navigation-tabs h5.Hide.HideMarca, */
-
 .navigation-tabs h4,
 .Atributos.HideMaterial,
 .Atributos.HideEstilo,
 .HideTipo-de-Producto,
 .productClusterSearchableIds.even,
 .Atributos.HideIDADE,
-
 /* .Atributos.HideColor, */
-
 .Edad.Atributos,
 .Estilo.Atributos,
 .ver-filtros,
 .HideTIPO-DE-PRODUTO.even.Atributos,
 .HideTIPO-DE-PRODUTO,
 .search-single-navigator h3,
+.search-multiple-navigator h3,
 .Hide.Atributos.HideGENERO,
 .HideGENERO,
 .HideIDADE,
+.search-single-navigator,
 .Hide.even.Atributos.HideRuedas {
     display: none !important;
 }
-
+.search-multiple-navigator,
 body.mochila .Hide.Atributos.HideEstilo,
-body.mochila .Hide.Atributos.HideEstilo.active {
+body.mochila .Hide.Atributos.HideEstilo.active{
     display: block !important;
 }
 
@@ -2447,7 +2451,7 @@ body.mochila .Hide.Atributos.HideEstilo.active {
     /*     border-bottom:2px solid #ccc; */
     color: black;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: .5rem 0;
     padding-left: 1rem;
     position: relative;
@@ -2456,18 +2460,11 @@ body.mochila .Hide.Atributos.HideEstilo.active {
 
 /* .Hide.even.Atributos.HideCubierta,
 .even.Atributos.Cubierta, */
-
-
 /* .Hide.even.Atributos.HideCubierta.active, */
-
 body.mochilas .Hide.Atributos.HideColeccion,
 body.mochilas .Hide.Atributos.HideColeccion.active,
-
 /* .navigation-tabs .Hide.HideMarca, */
-
-
 /* .navigation-tabs .Hide.HideMarca.active, */
-
 .Marca.selected {
     border-top: 0;
 }
@@ -2528,10 +2525,6 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
     margin-bottom: .5rem;
 }
 
-.navigation-tabs .last {
-    /*     display: none; */
-}
-
 .search-single-navigator a,
 .search-single-navigator h3 {
     font-size: .8rem;
@@ -2566,6 +2559,35 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
 ul.even {
     margin-bottom: 0;
 }
+
+.search-multiple-navigator input {
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    margin:0;
+    margin-right:.5rem;
+    margin-bottom:.3rem;
+    height: 15px;
+    width: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.search-multiple-navigator input[type=checkbox]:checked{
+    background-color:black;
+    background: url('/arquivos/checked-min.jpg') center center no-repeat;
+    background-size: 18px 18px;
+}
+
+.search-multiple-navigator label{
+    font-family: 'Proxima Nova';
+    font-size:.8rem;    
+}
+
+.search-multiple-navigator label:last-child{
+    padding-bottom:1rem;
+}
+
 
 
 /*
@@ -2727,6 +2749,12 @@ ul.pages li {
     align-items: center;
 }
 
+ul.pages li.pager__count{
+    color: #999999;
+    margin:0;
+    margin-right:.5rem;
+}
+
 ul.pages li.page-number {
     display: none;
     color: #bdc3c7;
@@ -2739,6 +2767,7 @@ ul.pages li.page-number.pgCurrent {
     font-weight: bold;
     background-color: transparent;
     text-align: center;
+    margin-right:0;
 }
 
 ul.pages li.page-number.pgCurrent:after {
@@ -4534,11 +4563,6 @@ table thead {
     justify-content: space-between;
 }
 
-.product__left-side,
-.product__right-side {
-    /*     border:var(--borderNaranja); */
-}
-
 .product__left-side {
     width: 55%;
 }
@@ -5008,8 +5032,14 @@ h4.group.Atributos-Tumi {
     margin-bottom: 3rem;
     width: 80%;
     display: flex;
-    justify-content: space-between;
     flex-flow: wrap;
+}
+
+.categ__elements {
+    width: 100%;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
 }
 
 .categ__options {
@@ -5029,7 +5059,67 @@ h4.group.Atributos-Tumi {
     padding-top: 1rem;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+.categ__options-bottom.bottom{
+    border:none;
+    justify-content:flex-end;
+}
+
+.categ__options-bottom.bottom .categ__filters{
+    width:63%;
+}
+
+.categ__options-bottom.bottom .categ__showFilters{
+    display:none;
+}
+
+.categ__showFilters {
+    /*     border:var(--borderNegro); */
+    width: 40%;
+}
+
+.categ__btn-filter {
+    background-color: #ebebeb;
+    border-radius: 3px;
+    color: #777;
+    font-family: 'Proxima Nova';
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .03rem;
+    text-decoration: none !important;
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.categ__btn-filter.active {
+    background-color: #777;
+    color: white;
+}
+
+.categ__btn-filter.active:before {
+    content: "";
+}
+
+.categ__btn-filter.active:after {
+    content: "\f054";
+    color: #ccc;
+    font-family: 'FontAwesome';
+    font-size: .6rem;
+    font-weight: lighter;
+    padding-left: .3rem;
+}
+
+.categ__btn-filter:before {
+    content: "\f053";
+    font-family: 'FontAwesome';
+    font-size: .6rem;
+    font-weight: lighter;
+    padding-right: .3rem;
 }
 
 .categ__filters {
@@ -5060,8 +5150,20 @@ h4.group.Atributos-Tumi {
     width: 20%;
 }
 
+.categ__aside.hide {
+    display: none;
+}
+
 .categ__products {
     width: 78%;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.categ__products.active {
+    width: 100%;
 }
 
 .categ__products .main {
@@ -5100,8 +5202,6 @@ h4.group.Atributos-Tumi {
 [f10.Departamento]
 
 ============================= */
-
-.depto {}
 
 .depto__content,
 .depto__main-banner-container {

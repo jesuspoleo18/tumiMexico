@@ -78,7 +78,9 @@
                         <!-- filter -->
                         <div class="categ__options-bottom">
                             <!-- filter buttom -->
-                            <div class="categ__showFilters"></div>
+                            <div class="categ__showFilters">
+                                <a class="categ__btn-filter">Ocultar Filtros</a>
+                            </div>
                             <!-- filters -->
                             <div class="categ__filters"></div>
                         </div>
@@ -86,17 +88,23 @@
                     </div>
                     <!-- /.fin categ options -->
 
-                    <!-- search navigator -->
-                    <div class="categ__aside">
-                        <vtex.cmc:searchNavigator />
-                    </div>
-                    <!-- /.fin search navigator -->
+                    <!-- main element -->
+                    <div class="categ__elements">
 
-                    <!-- productos -->
-                    <div class="categ__products">
-                        <vtex.cmc:searchResult layout="4b993ece-b799-4600-99d7-a084d9d5e0af" itemCount="3" columnCount="3" />
+                        <!-- search navigator -->
+                        <div class="categ__aside">
+                            <vtex.cmc:searchNavigator />
+                        </div>
+                        <!-- /.fin search navigator -->
+    
+                        <!-- productos -->
+                        <div class="categ__products">
+                            <vtex.cmc:searchResult layout="4b993ece-b799-4600-99d7-a084d9d5e0af" itemCount="3" columnCount="3" />
+                        </div>
+                        <!-- /.fin productos -->
+                        
                     </div>
-                    <!-- /.fin productos -->
+                    <!-- /.end main element -->
 
                 </div>
                 <!-- /.fin categ content -->

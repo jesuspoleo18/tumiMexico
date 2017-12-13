@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  12/12/2017
+Ultimo cambio:  13/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -56,7 +56,7 @@ $(function () {
 
 var confiGenerales = {
 
-    init: function() {
+    init: function () {
 
         confiGenerales.mainLazyLoad();
         // confiGenerales.FormatoDecimales();
@@ -794,7 +794,7 @@ var confiGenerales = {
         }
     },
 
-    bodyPaint: function(){
+    bodyPaint: function () {
         $body.fadeTo(500, 1);
     }
 
@@ -1350,7 +1350,7 @@ var categDepto = {
 
         if ($categDepto.length) {
 
-            categDepto.categDeptoAccordion('.search-single-navigator h4,.search-single-navigator h5', '.search-single-navigator h3');
+            categDepto.categDeptoAccordion('.search-multiple-navigator h4,.search-multiple-navigator h5', '.search-multiple-navigator h3');
             categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
             // categDepto.infinityScroll();
             categDepto.categOptions();
@@ -1510,24 +1510,76 @@ var categDepto = {
             });
 
     },
-    categOptions: function(){
+    categOptions: function () {
+
         var $filterBy = $('.filterBy'),
+            $btnFilter = $(".categ__btn-filter"),
+            $aside = $(".categ__aside"),
+            $categProducts = $(".categ__products"),
+            $categElements = $(".categ__elements"),
             $pager = $(".pager.top"),
             $compare = $categDeptoBuscaResultadoBusca.find(".compare:eq(0)"),
             $containerCompare = $(".categ__compare"),
             $containerFilter = $(".categ__filters"),
             $categTitle = $(".categ__title"),
             $categDescripcion = $(".categ__description"),
+            $mix = $(".categ__content"),
+            $categOptionsBottom = $(".categ__options-bottom"),
+            $navigatorInput = $("input"),
+            $currentPage = $(".page-number.pgCurrent"),
+            $prevArrow = $(".previous.pgEmpty");
+            $effectOut = function (el) {
+                return el.fadeOut(500);
+            },
+            $effectIn = function (el) {
+                return el.fadeIn(500);
+            },
             $searchResultsTime = $(".searchResultsTime:eq(0), .sub:eq(0)");
 
-        if($compare.length){
-            $compare.appendTo($containerCompare);
-        }
+        if ($compare.length) { $compare.appendTo($containerCompare); }
         $categTitle.html("Mochilas y Macutos");
         $categDescripcion.html("Modernas, duraderas, cómodas y elegantes. Nuestras mochilas y bandoleras son perfectas para profesionales y estudiantes. Encontrará desde mochilas para portátiles, bolsos para fin de semana y mucho más.");
         $searchResultsTime.appendTo($containerFilter);
         $filterBy.html($filterBy.children().eq("0").remove());
         $containerFilter.append($pager);
+        $categOptionsBottom.clone().appendTo(".categ__products").addClass("bottom");
+        $navigatorInput.on("click", function () { if ($(this).attr('checked')) { $(this).attr('checked', 'checked'); } else { $(this).removeAttr('checked'); } });
+        $btnFilter.toggle(function () {
+            $(this).text("Mostrar Filtros").addClass("active");
+            $.when($effectOut($categElements)).done(function () {
+                $aside.addClass("hide");
+                $categProducts.addClass("active");
+                $effectIn($categElements);
+            });
+
+        }, function () {
+            $(this).text("Ocultar Filtros").removeClass("active");
+            $.when($effectOut($categElements)).done(function () {
+                $aside.removeClass("hide");
+                $categProducts.removeClass("active");
+                $effectIn($categElements);
+            });
+        });
+
+        var $pagesAmount = $(".categ__options-bottom.bottom .pager.top .page-number").length,
+            $template = '<li class="pager__count"></li>',
+            $addTo = $(".next.pgEmpty"),
+            $pagerCount = $(".pager__count");
+
+        $addTo.before($template);
+        setTimeout(function () {
+            $(".pager__count").each(function () {
+                $(this).text($pagesAmount);
+            });
+        }, 800);
+        $currentPage.each(function () {
+            if ($(this).text() == "1") {
+                $preveArrow.addClass("hide");
+            } else {
+                $preveArrow.removeClass("hide");
+            }
+        });
+
     }
 };
 
