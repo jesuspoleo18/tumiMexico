@@ -80,6 +80,7 @@
                             <!-- filter buttom -->
                             <div class="categ__showFilters">
                                 <a class="categ__btn-filter">Ocultar Filtros</a>
+                                <a class="categ__btn-filter--mobile" data-toggle="offCanvasLeftFilter" data-transition="overlap">Filtros <span class="filters__amout"></span></a>
                             </div>
                             <!-- filters -->
                             <div class="categ__filters"></div>
@@ -99,7 +100,7 @@
     
                         <!-- productos -->
                         <div class="categ__products">
-                            <vtex.cmc:searchResult layout="4b993ece-b799-4600-99d7-a084d9d5e0af" itemCount="3" columnCount="3" />
+                            <vtex.cmc:searchResult layout="4b993ece-b799-4600-99d7-a084d9d5e0af" itemCount="3" columnCount="6" />
                         </div>
                         <!-- /.fin productos -->
                         
@@ -109,6 +110,22 @@
                 </div>
                 <!-- /.fin categ content -->
 
+                <!-- off canvas left filters -->
+                <div class="off-canvas position-left" id="offCanvasLeftFilter" data-off-canvas="">
+                    
+                    <button class="navigation__closebutton--left close-button" aria-label="Close menu" type="button" data-close="">
+                        <span>x</span>
+                    </button>
+
+                    <!-- mobile search navigator -->
+                    <div class="categ__aside mobile">
+                        <vtex.cmc:searchNavigator />
+                    </div>
+                    <!-- /.fin mobile search navigator -->
+                    
+                </div>
+                <!-- /.end off canvas left filters -->
+                
             </main>
             <!-- /.end main content -->
 

@@ -1527,7 +1527,7 @@ var categDepto = {
             $categOptionsBottom = $(".categ__options-bottom"),
             $navigatorInput = $("input"),
             $currentPage = $(".page-number.pgCurrent"),
-            $prevArrow = $(".previous.pgEmpty");
+            $prevArrow = $(".previous.pgEmpty"),
             $effectOut = function (el) {
                 return el.fadeOut(500);
             },
@@ -1551,7 +1551,6 @@ var categDepto = {
                 $categProducts.addClass("active");
                 $effectIn($categElements);
             });
-
         }, function () {
             $(this).text("Ocultar Filtros").removeClass("active");
             $.when($effectOut($categElements)).done(function () {
@@ -1575,8 +1574,10 @@ var categDepto = {
         $currentPage.each(function () {
             if ($(this).text() == "1") {
                 $prevArrow.addClass("hide");
+                $(".categ__options-bottom.bottom .previous.pgEmpty").addClass("hide");
             } else {
                 $prevArrow.removeClass("hide");
+                $(".categ__options-bottom.bottom .previous.pgEmpty").removeClass("hide");
             }
         });
 
