@@ -7,8 +7,7 @@
 
 <head>
 
-    <title>
-        <vtex.cmc:productPageTitle /> </title>
+    <title> <vtex.cmc:productPageTitle /> </title>
     <meta name="description" content="" />
     <vtex:template id="2-tmx-head" />
 
@@ -163,9 +162,19 @@
 
                                 <!-- produc sku selection container -->
                                 <div class="product__sku-container">
-                                    <vtex.cmc:skuSelection />
+                                    <vtex.cmc:skuSelection mode="radio" />
                                 </div>
                                 <!-- /.end produc sku selection container -->
+
+                                <!-- product airline guide -->
+                                <div class="product__airlineGuide">
+                                    <div class="airlineGuide__content">
+                                        <i class="fa fa-plane" aria-hidden="true"></i>
+                                        <p class="main">Carry -On Guía de Aerolíneas</p>
+                                        <p class="small">Requisitos de tamaño de Carrier</p>
+                                        <a data-toggle="airlineGuide">Ver la lista</a>
+                                    </div>
+                                </div>
 
                                 <!-- product shop container -->
                                 <div class="product__shop-container">
@@ -178,7 +187,6 @@
 
                                 <!-- product info container -->
                                 <div class="product__info-container">
-
                                     <!-- product info content -->
                                     <div class="product__info-content">
                                         <!-- about this item -->
@@ -232,7 +240,6 @@
                                         <!-- /.end help -->
                                     </div>
                                     <!-- /.end product info content -->
-
                                 </div>
                                 <!--/.end product info container -->
 

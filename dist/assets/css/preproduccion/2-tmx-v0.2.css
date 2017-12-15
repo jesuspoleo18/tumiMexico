@@ -1876,7 +1876,7 @@ footer {
 }
 
 .product__rate.top {
-    display: block;
+    display: none;
 }
 
 .product__rate.top:before {
@@ -4593,7 +4593,8 @@ table thead {
 
 ============================= */
 
-.product__container--mobile {
+.product__container--mobile,
+.product__shop-content .pull-left.box-qtd {
     display: none;
 }
 
@@ -4625,7 +4626,7 @@ table thead {
 }
 
 .product__right-side {
-    width: 40%;
+    width: 35%;
 }
 
 .product__left-side-container,
@@ -4639,9 +4640,9 @@ table thead {
     position: absolute;
     z-index: 2;
     /*     border:var(--borderNegro); */
-    top: 30%;
+    top: 38%;
     left: 2%;
-    max-width: 10%;
+    max-width: 7%;
 }
 
 .thumbs .active img {
@@ -4661,10 +4662,7 @@ table thead {
 .product__name {
     font-family: 'Proxima Nova';
     font-size: 1.5rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
+    line-height:28px;
 }
 
 .product__ean {
@@ -4673,6 +4671,7 @@ table thead {
     padding: .5rem 0;
     color: #777;
     align-items: center;
+    display:none;
 }
 
 .ean {
@@ -4720,15 +4719,92 @@ table thead {
     margin: 1rem 0;
 }
 
+.product__sku-container{
+    /*     border:1px solid red; */
+    margin-top:3rem;
+    margin-bottom:.7rem;
+    width:100%;
+    height:50px;
+}
+
+.product__airlineGuide{
+    border-top:2px solid #ccc;
+    border-bottom:2px solid #ccc;
+    padding:.8rem 0;
+    display:flex;
+    justify-content:center;
+}
+
+.airlineGuide__content{
+    display:flex;
+    flex-flow:wrap;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.airlineGuide__content .fa{
+    color:#2E2A25;
+    font-size:1.8rem;
+    position:relative;
+    width:100%;
+    height:35px;
+    display:flex;
+    justify-content:center;
+}
+
+.airlineGuide__content .fa.fa-plane:before{
+    display:block;
+    transform: rotate(42deg);
+    position:absolute;
+}
+
+.airlineGuide__content .main{
+    font-family: 'Proxima Nova';
+    font-weight:bold;
+    font-size:.9rem;    
+    text-align:center;
+    width:100%;
+}
+
+.airlineGuide__content .small{
+    color:#777;
+    font-size:.8rem;
+    text-align:center;
+    width:100%;
+}
+
+.airlineGuide__content a{
+    font-size:.8rem;
+    text-align:center;
+    margin-top:.8rem;
+    text-decoration:underline;
+    width:100%;
+}
+
 .pull-left.box-qtd {
+    float:initial;
     position: relative;
-    width: 15%;
+    width: 10%;
     height: 100%;
 }
 
+.pull-left.box-qtd:before{
+    content:"cant.:";
+    color:#2E2A25;
+    font-family: 'Proxima Nova bold';
+    font-size:.8rem;
+    text-transform:uppercase;
+    top:-50%;
+    position:absolute;
+}
+
 .qtd.pull-left {
+    box-shadow:none;
+    border:1px solid #ccc;
+    color:#777;
+    font-size:.8rem;
     margin: 0;
-    padding-left: 1rem;
+    padding-left: .9rem;
 }
 
 .bts.pull-left {
@@ -4736,6 +4812,7 @@ table thead {
     right: 0;
     display: flex;
     flex-direction: column;
+    display:none;
 }
 
 .bts.pull-left .btn.btn-mais,
@@ -4755,7 +4832,7 @@ table thead {
     position: relative;
     display: block;
     visibility: hidden;
-    width: 80%;
+    width: 100%;
     height: 100%;
     text-align: center;
     color: white;
@@ -4794,7 +4871,8 @@ table thead {
 }
 
 .product__accordion-trigger {
-    font-family: 'Proxima Nova';
+    font-family:'Proxima Nova';
+    font-size:.9rem;
     width: 100%;
     padding: .6rem 0;
     border-bottom: 2px solid #ccc;
@@ -4809,10 +4887,11 @@ table thead {
 }
 
 .product__accordion-trigger:before {
+    font-size:.7rem;
     font-family: 'FontAwesome';
-    padding-right: 1rem;
+    padding-right: .5rem;
     content: '\f067';
-    color: #b92335;
+    color:#2E2A25;
 }
 
 .product__accordion-trigger.active:before {

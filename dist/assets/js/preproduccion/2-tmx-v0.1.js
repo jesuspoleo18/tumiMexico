@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  13/12/2017
+Ultimo cambio:  15/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -878,7 +878,7 @@ var producto = {
             producto.carousel('.carousel-recomendados,.carousel-vistosReciente');
             producto.accordion('.product__accordion-trigger', '.product__accordion-content');
             producto.compraFichaProducto();
-            producto.productoSticky();
+            // producto.productoSticky();
             producto.miniatura();
             setTimeout(producto.userReview, 3000);
             console.log("controles de producto (●´ω｀●)");
@@ -913,84 +913,45 @@ var producto = {
 
         var $btnComprarProduto = $('.buy-button.buy-button-ref'),
             $notifyme = $(this).find(".notifyme.sku-notifyme:visible"),
+            $templateQty = '<div class="pull-left box-qtd"><input type="text" class="qtd pull-left" value="1" /><div class="bts pull-left"><button class="btn btn-mais">+</button><button class="btn btn-menos">-</button></div></div>',
             qty = { cantidad: "" };
 
         if ($btnComprarProduto.length) {
 
-            // $btnComprarProduto.on("click", function(){
-
-            //     var $this = $(this),
-            //         url   = $this.attr('href');
-
-            //     if( url.indexOf('qty=1') > 0 ){
-            //         $this.attr('href', url.replace('qty=1', 'qty='+ parseInt( $('.product__shop-content .box-qtd .qtd').val() ) ) );
-            //     }
-            // });
-
-            var $recebeQtyForm = $btnComprarProduto.parents('.product__shop-content');
+            var $recebeQtyForm = $('.product__sku-container, .product__shop-content');
 
             if ($recebeQtyForm.length) {
 
                 vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
-
                     // console.log(product.skus[0].availablequantity);
                     qty.cantidad = product.skus[0].availablequantity;
-
                 });
 
-                $recebeQtyForm.prepend(
+                $recebeQtyForm.prepend($templateQty);
 
-                    '<div class="pull-left box-qtd">' +
-                    '   <input type="text" class="qtd pull-left" value="1" />' +
-                    '   <div class="bts pull-left">' +
-                    '       <button class="btn btn-mais">+</button>' +
-                    '       <button class="btn btn-menos">-</button>' +
-                    '   </div>' +
-                    '</div>'
-                );
-
-                $(document).on('keypress', '.product__shop-content .box-qtd .qtd', function (e) {
-
-                    var tecla = (window.event) ? event.keyCode : e.which;
-                    if ((tecla > 47 && tecla < 58)) {
-                        return true;
-                    } else {
-                        if (tecla == 8 || tecla == 0) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-                });
-
-                $(document).on('keyup', '.product__shop-content .box-qtd .qtd', function (e) {
-
-                    $('.product__shop-content .box-qtd .qtd').val($(this).val());
-                });
-
-                $(document).on('blur', '.product__shop-content .box-qtd .qtd', function (e) {
+                $(document).on('blur', '.product__shop-content .box-qtd .qtd, .product__sku-container .box-qtd .qtd', function (e) {
 
                     var $this = $(this);
 
                     if ($this.val() === '' || parseInt($this.val()) < 1) {
-                        $('.product__shop-content .box-qtd .qtd').val(1);
+                        $('.product__shop-content .box-qtd .qtd, .product__sku-container .box-qtd .qtd').val(1);
                     } else {
-                        $('.product__shop-content .box-qtd .qtd').val($this.val());
+                        $('.product__shop-content .box-qtd .qtd, .product__sku-container .box-qtd .qtd').val($this.val());
                     }
 
                 });
 
-                $(document).on('click', '.product__shop-content .box-qtd .btn', function () {
+                $(document).on('click', '.product__shop-content .box-qtd .btn, .product__sku-container .box-qtd .btn', function () {
 
                     var $this = $(this),
-                        $qtd = $('.product__shop-content .box-qtd .qtd'),
+                        $qtd = $('.product__shop-content .box-qtd .qtd, .product__sku-container .box-qtd .qtd'),
                         valor = parseInt($qtd.val());
 
                     if ($this.hasClass('btn-mais')) {
 
                         $qtd.val(valor + 1);
 
-                        if (parseInt($('.product__shop-content .box-qtd .qtd').val()) === qty.cantidad) {
+                        if (parseInt($('.product__shop-content .box-qtd .qtd, .product__sku-container .box-qtd .qtd').val()) === qty.cantidad) {
                             console.log("tope de cantidad");
                             $(".btn-mais").prop('disabled', true);
                         } else {
