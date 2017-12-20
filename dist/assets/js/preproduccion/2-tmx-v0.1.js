@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  15/12/2017
+Ultimo cambio:  19/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -32,7 +32,8 @@ b6.Account
 var $body = $("body"),
     $home = $(".home"),
     $categDeptoBuscaResultadoBusca = $(".categoria, .depto, .busca, .resultado-busca"),
-    $producto = $(".producto");
+    $producto = $(".producto"),
+    $responsive = $(window).width();
 
 /* 
 
@@ -67,7 +68,7 @@ var confiGenerales = {
         confiGenerales.accordion('.footer__title', '.footer__elements');
         confiGenerales.backTop();
         // confiGenerales.stickyNav();
-        confiGenerales.megaMenu('.navigation__menu a', 'header,.megamenu-buscar.navigation__searchTrigger, main, footer');
+        confiGenerales.megaMenu('header,.megamenu-buscar.navigation__searchTrigger, main, footer, .navigation__right');
         confiGenerales.compraAsyncVitrina();
         confiGenerales.checkEmptyCart();
         confiGenerales.quickViewAsyncBuy();
@@ -283,8 +284,6 @@ var confiGenerales = {
 
     accordion: function (trigger, content) {
 
-        var $responsive = $(window).width();
-
         if ($responsive < 768) {
 
             console.log("accordion");
@@ -347,93 +346,44 @@ var confiGenerales = {
         });
     },
 
-    megaMenu: function (el, exit) {
-
-        var $exit = $("header,.megamenu-buscar.navigation__searchTrigger, main,footer"),
-            $responsive = $(window).width(),
-            $viajes = $("#megamenu-viajes"),
-            $mochilas = $("#megamenu-mochilas"),
-            $equipaje = $("#megamenu-equipaje"),
-            $accesorios = $("#megamenu-accesorios"),
-            $colecciones = $("#megamenu-colecciones"),
-            $ideasRegalos = $("#megamenu-ideasRegalos"),
-            $sale = $("#megamenu-sale");
-
+    megaMenu: function (exit) {
+            
         if ($responsive > 768) {
 
-            $(el).each(function () {
+            var $navigationMenuItem = $('.navigation__menu a'),
+                $megamenu = $(".navigation__megamenu-content");
 
-                // entra mouse
+            $navigationMenuItem.each(function () {
                 $(this).on("mouseenter", function () {
+                    var $menuItemAttr = $(this).attr("class");
 
-                    var $a = $(this).attr("class"),
-                        $this = $(this);
+                    confiGenerales.menuItems($(this), exit);
 
-                    confiGenerales.mainLazyLoad();
+                    $megamenu.each(function () {
+                        var $megamenuAttr = $(this).attr("id");
+                        if ($menuItemAttr == $megamenuAttr) {
+                            $(this).addClass('display');
+                            $(this).siblings().removeClass('display');
+                        }
+                    });
 
-                    if ($a == 'megamenu-viajes') {
-
-                        menuItems($this, $exit);
-                        outMegamenu($viajes);
-                    } else if ($a == 'megamenu-mochilas') {
-
-                        menuItems($this, $exit);
-                        outMegamenu($mochilas);
-                    } else if ($a == 'megamenu-equipaje') {
-
-                        menuItems($this, $exit);
-                        outMegamenu($equipaje);
-                    } else if ($a == 'megamenu-accesorios') {
-
-                        menuItems($this, $exit);
-                        outMegamenu($accesorios);
-                    } else if ($a == 'megamenu-colecciones') {
-
-                        menuItems($this, $exit);
-                        outMegamenu($colecciones);
-                    } else if ($a == 'megamenu-ideasRegalos') {
-
-                        menuItems($this, $exit);
-                        outMegamenu($ideasRegalos);
-                    } else if ($a == 'megamenu-sale navigation__sale') {
-
-                        menuItems($this, $exit);
-                        outMegamenu($sale);
-                    } else if ($a == 'megamenu-colecciones') {
-
-                        menuItems($this, $exit);
-                        outMegamenu($accesorios);
-                    }
+                    $(exit).on("mouseenter", function () {
+                        $megamenu.removeClass("display");
+                    });
                 });
             });
+
         }
+    },
 
-        function menuItems(ele, exit) {
-            ele.addClass("active");
-            ele.siblings().removeClass("active");
+    menuItems: function (ele, exit) {
+        ele.addClass("active");
+        ele.siblings().removeClass("active");
 
-            $(exit).on("hover", function () {
-
-                ele.removeClass("active");
-                $(exit).removeClass("active");
-            });
-        }
-
-        function outMegamenu(ele) {
-
-            ele.addClass('display', 500);
-
-            // $(exit).addClass("display", 500);
-
-            $(exit).on("hover", function () {
-
-                ele.removeClass("display", 500);
-
-                $(exit).removeClass("display", 500);
-            });
-
-            ele.siblings().removeClass("display");
-        }
+        $(exit).on("hover", function () {
+            ele.removeClass("active");
+            $(exit).removeClass("active");
+        });
     },
 
     compraAsyncVitrina: function () {
@@ -817,8 +767,7 @@ var home = {
 
     carousel: function carousel(main, producto) {
 
-        var $count = $(".home__tabs-content.news .prateleira").find(".img"),
-            $responsive = $(window).width();
+        var $count = $(".home__tabs-content.news .prateleira").find(".img");
 
         $(".helperComplement").remove();
         $(".home__tabs-content.news .prateleira").children().addClass("carousel-news");
@@ -872,6 +821,7 @@ var producto = {
 
         if ($producto.length) {
 
+            producto.mainImgCarousel();
             producto.traducciones();
             producto.qtdControl();
             producto.textoProducto();
@@ -886,6 +836,57 @@ var producto = {
 
         // producto.elementosFormato();
 
+    },
+
+    mainImgCarousel: function(){
+
+        var mainProductId;
+
+        if($responsive <= 725){
+
+            vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
+                console.log(product.productId);
+                mainProductId = product.productId;
+            });
+
+            $.ajax({
+                url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + mainProductId + "",
+                dataType: 'json',
+                type: 'GET',
+                crossDomain: true,
+                success: function success(data) {
+                    console.log(data[0].items[0].images);
+
+                    var arr = data[0].items[0].images,
+                        $zoomPad = $(".product__img--mobile .zoomPad"),
+                        $elements = [];
+
+                    $.each(arr, function (i, val) {
+                        var a = val.imageTag,
+                            b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-600-").replace(/-height\b/g, "-600").replace(/\s*(width)="[^"]+"\s*/g, " width='600'").replace(/\s*(height)="[^"]+"\s*/g, " height='600'"),
+                            $el = '<div class="slide-thumb">' + b + '</div>';
+                        $elements.push($el);
+                    });
+
+                    $zoomPad.html($elements);
+
+                    $zoomPad.slick({
+                        arrows: false,
+                        autoplay: false,
+                        autoplaySpeed: 2500,
+                        button: false,
+                        dots: true,
+                        fade: false,
+                        infinite: true,
+                        slidesToScroll: 1,
+                        slidesToShow: 1,
+                        speed: 800,
+                        useTransform: true
+                    });
+                }
+            });
+
+        }
     },
 
     traducciones: function () {
@@ -1423,8 +1424,7 @@ var categDepto = {
 
                 console.log("cargo el infinity");
 
-                var $responsive = $(window).width(),
-                    $desktop = $(".prateleira[id*=ResultItems]:first");
+                var $desktop = $(".prateleira[id*=ResultItems]:first");
 
                 if ($responsive > 650) {
 
