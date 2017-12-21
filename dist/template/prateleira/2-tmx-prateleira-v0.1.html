@@ -6,13 +6,13 @@
 <!-- prateleira container -->
 <div class="prateleira__container">
 
+    <div class="prateleira__imgLoader"></div>
+
     <!-- prateleira content -->
     <div class="prateleira__content">
 
         <!-- imagen de prateleira -->
         <div class="prateleira__img-container">
-
-            <div class="prateleira__imgLoader"></div>
 
             <!-- compare -->
             <div class="prateleira__compare">
@@ -54,14 +54,6 @@
                 </div>
             </div>
 
-            <!-- info de producto -->
-            <div class="pratelira__data">
-                <div class="prateleira__id">$product.Id</div>
-                <div class="prateleira__name">$product.Name</div>
-                <div class="prateleira__uri">$product.Uri</div>
-            </div>
-            <!-- /.fin info de producto -->
-
             <!-- nombre producto -->
             <a class="producto__nombre-container" title="$escapedName" href="$uri">
                 <div class="producto__nombre-content">
@@ -101,6 +93,14 @@
                             <div class="quickview__btn">$product.QuickView</div>
                         </div>
 
+                        <!-- info de producto -->
+                        <div class="pratelira__data">
+                            <div class="prateleira__id">$product.Id</div>
+                            <div class="prateleira__name">$product.Name</div>
+                            <div class="prateleira__uri">$product.Uri</div>
+                        </div>
+                        <!-- /.fin info de producto -->
+
                     <!-- if not, then... -->
 
                     #else
@@ -119,6 +119,14 @@
                         <div class="prateleira__quickview">
                             <div class="quickview__btn">$product.QuickView</div>
                         </div>
+
+                        <!-- info de producto -->
+                        <div class="pratelira__data">
+                            <div class="prateleira__id">$product.Id</div>
+                            <div class="prateleira__name">$product.Name</div>
+                            <div class="prateleira__uri">$product.Uri</div>
+                        </div>
+                        <!-- /.fin info de producto -->
 
                     #end
 

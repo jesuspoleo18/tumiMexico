@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  19/12/2017
+Ultimo cambio:  21/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -347,7 +347,7 @@ var confiGenerales = {
     },
 
     megaMenu: function (exit) {
-            
+
         if ($responsive > 768) {
 
             var $navigationMenuItem = $('.navigation__menu a'),
@@ -838,11 +838,11 @@ var producto = {
 
     },
 
-    mainImgCarousel: function(){
+    mainImgCarousel: function () {
 
         var mainProductId;
 
-        if($responsive <= 725){
+        if ($responsive <= 725) {
 
             vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
                 console.log(product.productId);
@@ -1312,6 +1312,7 @@ var categDepto = {
 
         if ($categDepto.length) {
 
+            categDepto.carouselPrateleira();
             categDepto.categDeptoAccordion('.search-multiple-navigator h4,.search-multiple-navigator h5', '.search-multiple-navigator h3');
             categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
             // categDepto.infinityScroll();
@@ -1322,6 +1323,90 @@ var categDepto = {
 
         }
 
+    },
+    carouselPrateleira: function () {
+
+        if ($responsive > 768) {
+
+            var catalogProductId,
+                $prat = $(".prateleira__container");
+
+            $prat.each(function () {
+
+                $(this).on("mouseenter", function () {
+                    var _thisParent = $(this).parent().find(".prateleira__price-container"),
+                        _thisImg = $(this).find(".prateleira__img .img"),
+                        $loader = $(this).find(".prateleira__imgLoader"),
+                        $validate = $(this).find(".slick-slide"),
+                        $img = $(this).find(".prateleira__img"),
+                        $template = '<div class="slide-thumb hover"></div>',
+                        $pratContent = $(this).find(".prateleira__content");
+
+                    if ($validate.length > 0) {
+                        console.log("vitrina ejecutada");
+                    } else if ($validate.length == 0) {
+
+                        $($template).prependTo(_thisImg);
+
+                        _thisParent.each(function () {
+                            var _thisId = $(this).find(".wrapper-buy-button-asynchronous").attr("class").split("bba")[1];
+                            catalogProductId = _thisId;
+                            // console.log(_thisId);
+
+                            $.ajax({
+                                url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + catalogProductId + "",
+                                dataType: 'json',
+                                type: 'GET',
+                                crossDomain: true,
+                                success: function success(data) {
+                                    // console.log(data[0].items[0].images);
+
+                                    var arr = data[0].items[0].images,
+                                        $elements = [];
+
+                                    $.each(arr.slice(1, 10), function (i, val) {
+                                        var a = val.imageTag,
+                                            b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-350-").replace(/-height\b/g, "-350").replace(/\s*(width)="[^"]+"\s*/g, " width='350'").replace(/\s*(height)="[^"]+"\s*/g, " height='350'"),
+                                            $el = '<div class="slick-thumb">' + b + '</div>';
+                                        // console.log(b);
+                                        $elements.push(b);
+                                        _thisImg.append($el);
+                                    });
+
+                                    var z = '' + $elements[0] + '',
+                                        $slickThumb = _thisImg.find(".slide-thumb.hover");
+
+                                    _thisImg.find("img:eq(0)").appendTo($slickThumb);
+
+                                    _thisImg.slick({
+                                        arrows: true,
+                                        autoplay: false,
+                                        autoplaySpeed: 2500,
+                                        button: false,
+                                        dots: false,
+                                        fade: true,
+                                        infinite: true,
+                                        slidesToScroll: 1,
+                                        slidesToShow: 1,
+                                        speed: 800,
+                                        useTransform: true
+                                    });
+                                    $img.on("click", function (e) {
+                                        e.preventDefault();
+                                    });
+                                    if($slickThumb.length){
+                                        // console.log("cantidad de slicks-thumbs!: " + $slickThumb.length);
+                                        $(z).appendTo($slickThumb);
+                                        // $slickThumb.css("border", "1px solid red");
+                                    }
+                                }
+                            });
+                        });
+                    }
+                });
+            });
+
+        }
     },
     categDeptoAccordion: function (trigger, secondTrigger) {
 

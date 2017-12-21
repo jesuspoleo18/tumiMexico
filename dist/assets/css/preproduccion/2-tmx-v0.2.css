@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  20/12/2017
+Ultimo cambio:  21/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -570,7 +570,7 @@ nav {
 }
 
 .navigation__left img {
-    max-height: 47px;
+    max-width: 124px;
     opacity: 0;
 }
 
@@ -646,6 +646,7 @@ nav {
 
 .navigation__cuenta a {
     font-size: .8rem;
+    font-weight:bold;
 }
 
 .navigation__content--mobile {
@@ -1186,7 +1187,8 @@ footer {
 .prateleira__brand-container,
 .prateleira h2,
 .home .prateleira__compare,
-.producto .prateleira__compare {
+.producto .prateleira__compare,
+.pratelira__data {
     display: none;
 }
 
@@ -1219,8 +1221,9 @@ footer {
 }
 
 .prateleira ul li {
+    height:100%;
     width: 32.3%;
-    padding: 1.5rem 0;
+    padding:0 1rem;
     padding-top:0;
     /*     border:1px solid black; */
     /*     background-color:#F8F8F8; */
@@ -1233,8 +1236,45 @@ footer {
 .prateleira__img,
 .img {
     /*     border:1px solid orange; */
+    height:100%;
     position: relative;
     width: 100%;
+}
+
+.prateleira__container{
+    padding-bottom:3rem;
+}
+
+.prateleira__content{
+    opacity:1;
+    -webkit-transition: opacity .3s 0s;
+    -moz-transition: opacity .3s 0s;
+    -o-transition: opacity .3s 0s;
+    transition: opacity .3s 0s;
+}
+
+.prateleira__content.active{
+    opacity:0;
+}
+
+.prateleira__imgLoader{
+    opacity:0;
+    -webkit-transition: opacity .3s 0s;
+    -moz-transition: opacity .3s 0s;
+    -o-transition: opacity .3s 0s;
+    transition: opacity .3s 0s;
+}
+
+.prateleira__imgLoader.active{
+    background:url("/arquivos/tmx-loader.gif")center center no-repeat;
+    background-size:50px 50px;
+    background-color:rgba(255, 255, 255, 1);
+    display:block;
+    height:100%;
+    position:absolute;
+    opacity:1;
+    width:100%;
+    z-index:5;
 }
 
 .prateleira__compare {
@@ -2356,7 +2396,6 @@ ul.rating li span {
 .quickview__btn {
     font-size: .7rem;
     margin: 0;
-    padding: .4rem 0;
     text-transform: uppercase;
 }
 
@@ -3103,6 +3142,30 @@ ul.pages li.page-number.pgCurrent:after {
     position:relative;
 }
 
+.slide-thumb.hover{
+    position:relative;
+}
+
+.slide-thumb.hover img:nth-child(1){
+    opacity:1;
+    position:relative;
+    z-index:2;
+    -webkit-transition: opacity .2s ease;
+    -moz-transition: opacity .2s ease;
+    -o-transition: opacity .2s ease;
+    transition: opacity .2s ease;
+}
+
+.slide-thumb.hover img:nth-child(1):hover{
+    opacity:0;
+}
+
+.slide-thumb.hover img:nth-child(2){
+    top:0;
+    position:absolute;
+    z-index:1;
+}
+
 .product__container--mobile .slick-dots{
     background-color:transparent;
     display:block;
@@ -3112,6 +3175,44 @@ ul.pages li.page-number.pgCurrent:after {
 
 .product__container--mobile .slick-dots li button:before{
     font-size: 8px;
+}
+
+.prateleira__container .slick-next, 
+.prateleira__container .slick-prev {
+   opacity:0;
+   -webkit-transition: opacity .2s ease;
+    -moz-transition: opacity .2s ease;
+    -o-transition: opacity .2s ease;
+    transition: opacity .2s ease;
+}
+
+.prateleira__container:hover .slick-next, 
+.prateleira__container:hover .slick-prev {
+    opacity:1;
+}
+
+.prateleira__container .slick-prev{
+    left:-4%;
+    z-index:2;
+}
+
+.prateleira__container .slick-next{
+    right:-4%;
+}
+
+.prateleira__container .slick-next:before, 
+.prateleira__container .slick-prev:before{
+    content:"";
+    color:black;
+    font-family:'FontAwesome';
+}
+
+.prateleira__container .slick-prev:before{
+    content:"\f177";
+}
+
+.prateleira__container .slick-next:before{
+    content:"\f178";
 }
 
 /*
@@ -3496,7 +3597,7 @@ table thead {
 
 .navigation__megamenu-content.display {
     display: flex;
-    width: 100%;
+    width: 95%;
     justify-content: space-between;
 }
 
