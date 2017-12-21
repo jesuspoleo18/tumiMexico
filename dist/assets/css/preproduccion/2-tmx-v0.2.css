@@ -420,8 +420,13 @@ img {
 
 .header__top-bar {
     width: 100%;
-    text-align: center;
     background-color: #b92335;
+    display:flex;
+    justify-content:center;
+}
+
+.top-bar__text{
+    margin-right:5.5rem;
 }
 
 .top-bar__text a {
@@ -597,6 +602,10 @@ nav {
     text-decoration: none;
     text-transform: uppercase;
     flex: 1;
+}
+
+.megamenu-ideasRegalos{
+    display:none;
 }
 
 .navigation__menu a.active:before {
@@ -1476,9 +1485,9 @@ footer {
     .prateleira ul li{
         width:49%;
     }
-    .prateleira ul li.last{
+    /*     .prateleira ul li.last{
         margin-top:1rem;
-    }
+    } */
 
     .prateleira .carousel-recomendados li.last,
     .prateleira .carousel-vistosReciente li.last{
@@ -3200,6 +3209,27 @@ ul.pages li.page-number.pgCurrent:after {
     right:-4%;
 }
 
+.home .slick-next.slick-arrow{
+    right:3%;
+    z-index:2;
+}
+
+.home .slick-prev.slick-arrow{
+    left:2%;
+    z-index:2;
+}
+
+.home .slick-next:before, 
+.home .slick-prev:before{
+    font-size:2rem;
+    font-weight:700;
+}
+
+.home .slick-next:hover:before, 
+.home .slick-prev:hover:before{
+    color:#B92335;
+}
+
 .prateleira__container .slick-next:before, 
 .prateleira__container .slick-prev:before{
     content:"";
@@ -4567,6 +4597,7 @@ table thead {
     background-color: #ebebeb;
     justify-content: center;
     align-items: center;
+    display:none;
 }
 
 .home__promesas-content {
@@ -4605,6 +4636,7 @@ table thead {
 }
 
 .home__categorias-container {
+    margin-top:2rem;
     display: flex;
     /*     border:1px solid red; */
     width: 100%;
@@ -5804,6 +5836,30 @@ h4.group.Atributos-Tumi {
     z-index: 0;
 }
 
+.depto__main-banner-breadcrumb{
+    /*     border:var(--borderAzul); */
+    position:absolute;
+    top:4%;
+    width:100%;
+    z-index:1;
+}
+
+.depto__main-banner-breadcrumb .breadcrumb{
+    padding-left:2rem;
+    display:flex;
+}
+
+.depto__main-banner-breadcrumb .breadcrumb li:nth-child(1) a:after{
+    content:"/";
+    padding:0 1rem;
+}
+
+.depto__main-banner-breadcrumb .breadcrumb a{
+    color:white;
+    font-size:.8rem;
+    text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}
+
 .depto__main-banner-text {
     color: white;
     top: 20%;
@@ -5814,6 +5870,11 @@ h4.group.Atributos-Tumi {
     display: flex;
     flex-flow: wrap;
     justify-content: center;
+}
+
+.equipajes .depto__main-banner-text{
+    left:initial;
+    right:0;
 }
 
 .depto__banner-title {

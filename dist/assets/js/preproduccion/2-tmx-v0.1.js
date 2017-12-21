@@ -764,7 +764,6 @@ var home = {
             home.carousel('.home-slide', '.carousel-news');
         }
     },
-
     carousel: function carousel(main, producto) {
 
         var $count = $(".home__tabs-content.news .prateleira").find(".img");
@@ -773,18 +772,16 @@ var home = {
         $(".home__tabs-content.news .prateleira").children().addClass("carousel-news");
 
         if ($responsive < 768) {
-
             if ($count.length > 2) { $(producto).slick({ autoplay: true, autoplaySpeed: 2500, slide: 'li', slidesToScroll: 1, slidesToShow: 2, speed: 500, dots: true, responsive: [{ breakpoint: 980, settings: { slidesToShow: 2, slidesToScroll: 1 } }, { breakpoint: 650, settings: { slidesToShow: 2, slidesToScroll: 1 } }] }); }
-
         }
 
         $(main).slick({
 
-            arrows: false,
+            arrows: true,
             autoplay: true,
             autoplaySpeed: 2500,
             button: false,
-            dots: true,
+            dots: false,
             fade: false,
             infinite: true,
             slidesToScroll: 1,
@@ -837,7 +834,6 @@ var producto = {
         // producto.elementosFormato();
 
     },
-
     mainImgCarousel: function () {
 
         var mainProductId;
@@ -888,12 +884,10 @@ var producto = {
 
         }
     },
-
     traducciones: function () {
         var $breadCrumb = $(".bread-crumb ul li:eq(0)");
         $breadCrumb.html("Página de inicio");
     },
-
     userReview: function () {
         var $buttonReview = $("#lnkPubliqueResenha"),
             $content = $("#publishUserReview"),
@@ -909,7 +903,6 @@ var producto = {
             $(modal).foundation("open");
         }
     },
-
     qtdControl: function () {
 
         var $btnComprarProduto = $('.buy-button.buy-button-ref'),
@@ -974,7 +967,6 @@ var producto = {
         }
 
     },
-
     textoProducto: function () {
 
         var producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", cantidad: "" },
@@ -1026,7 +1018,6 @@ var producto = {
         }
 
     },
-
     carousel: function (el) {
 
         var $count = $(".product__recomended-content .prateleira").find(".img"),
@@ -1105,7 +1096,6 @@ var producto = {
         });
 
     },
-
     compraFichaProducto: function () {
 
         var $btnFichaProducto = $(".buy-button.buy-button-ref");
@@ -1153,7 +1143,6 @@ var producto = {
         });
 
     },
-
     productoSticky: function () {
 
         var $elShow = $(".producto-sticky-container"),
@@ -1200,7 +1189,6 @@ var producto = {
         }
 
     },
-
     miniatura: function () {
 
         miniaturaActiva();
@@ -1285,7 +1273,6 @@ var producto = {
         }
 
     },
-
     accordion: function (trigger, content) {
 
         $(content).hide();
