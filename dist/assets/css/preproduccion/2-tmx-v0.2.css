@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  26/12/2017
+Ultimo cambio:  27/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -5995,11 +5995,13 @@ h4.group.Atributos-Tumi {
 .depto__collection-container{
     width:100%;
     display:flex;
+    flex-flow:wrap;
     justify-content:center;
 }
 
 .depto__collection-content{
-    margin:4rem 0;
+    margin-top:4rem;
+    margin-bottom:0;
     width:90%;
     display:flex;
     flex-flow:wrap;
@@ -6049,6 +6051,55 @@ h4.group.Atributos-Tumi {
     text-transform:uppercase;
 }
 
+.depto__highlights-container{
+    border-top:2px solid #777;
+    margin-top:3rem;
+    width:100%;
+    display:flex;
+    flex-flow:wrap;
+}
+
+.depto__highlights-container .depto__collection-banner{
+    padding:2rem;
+    display:flex;
+    flex-direction:column;
+}
+
+.depto__highlights-container .depto__collection-banner:nth-child(1){
+    border-right:2px solid #777;
+}
+
+.depto__highlights-container .depto__collection-texto{
+    position:relative;
+    order:1;
+}
+
+.depto__highlights-container .depto__collection-banner img{
+    order:3;
+}
+
+.depto__highlights-container .depto__collection-texto a{
+    color:black;
+    font-size:1.3rem;
+    font-family: 'Proxima Nova Bold';
+    text-shadow: none;
+}
+
+.depto__highlights-container .depto__collection-texto a span{
+    color:#777;
+    display:block;
+    font-size:1rem;
+    font-weight:initial;
+    font-family: 'Proxima Nova';
+    text-transform:lowercase;
+    margin-top:1rem;
+    line-height:26px;
+}
+
+.depto__collection-texto a span:first-letter{
+    text-transform:uppercase;
+}
+
 /*
 [f11.Mediaquerie departamento]
 
@@ -6085,6 +6136,23 @@ h4.group.Atributos-Tumi {
     .depto__products-title {
         font-size: 1.2rem
     }
+    .depto__collection-content{
+        margin-top:1rem;
+        width:95%;
+    }
+    .depto__collection-texto a span{
+        font-size:.8rem;
+    }
+    .depto__highlights-container .depto__collection-texto a span{
+        font-size:.8rem;
+    }
+    .depto__message-content{
+        width:90%;
+    }
+    .depto__message-content a,
+    .depto__message-content a span{
+        font-size:.8rem;
+    }
 }
 
 
@@ -6101,6 +6169,9 @@ h4.group.Atributos-Tumi {
     }
     .depto__main-banner-text {
         padding-left: 3rem;
+    }
+    .depto__highlights-container .depto__collection-banner{
+        padding:5rem;
     }
 }
 
