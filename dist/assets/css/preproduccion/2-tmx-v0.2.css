@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  21/12/2017
+Ultimo cambio:  26/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -3169,7 +3169,8 @@ ul.pages li.page-number.pgCurrent:after {
     opacity:0;
 }
 
-.slide-thumb.hover img:nth-child(2){
+.slide-thumb.hover img:nth-child(2),
+.slide-thumb.hover img:nth-child(3){
     top:0;
     position:absolute;
     z-index:1;
@@ -5833,7 +5834,12 @@ h4.group.Atributos-Tumi {
     /*     border:var(--borderAzul); */
     top: 0;
     position: absolute;
+    width:100%;
     z-index: 0;
+}
+
+.colecciones .depto__main-banner-content{
+    position:relative;
 }
 
 .depto__main-banner-breadcrumb{
@@ -5870,6 +5876,10 @@ h4.group.Atributos-Tumi {
     display: flex;
     flex-flow: wrap;
     justify-content: center;
+}
+
+.depto__main-banner-img video{
+    display:block;
 }
 
 .equipajes .depto__main-banner-text{
@@ -5947,6 +5957,97 @@ h4.group.Atributos-Tumi {
     padding-left: .5rem;
 }
 
+.depto__message-container{
+    background-color:black;
+    padding:.6rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.depto__message-content{
+    border:var(--borderNegro);
+    text-align:center;
+    width:80%;
+}
+
+.depto__message-content a{
+    color:white;
+    letter-spacing:10px;
+    font-size:1.3rem;
+    text-transform:uppercase;
+    text-decoration:none;
+}
+
+.depto__message-content a span{
+    display:block;
+    letter-spacing:initial;
+    font-size:1.2rem;
+    position:relative;
+    margin-top:.6rem;
+    text-transform:lowercase;
+}
+
+.depto__message-content a span:first-letter{
+    text-transform:uppercase;
+}
+
+.depto__collection-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+.depto__collection-content{
+    margin:4rem 0;
+    width:90%;
+    display:flex;
+    flex-flow:wrap;
+    justify-content:space-between;
+}
+
+.depto__collection-banner{
+    display:block;
+    position:relative;
+    width:50%;
+}
+
+.depto__collection-banner img{
+    display:block;
+    width:100%;
+}
+
+.depto__collection-texto{
+    padding-bottom:.8rem;
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.depto__collection-texto a{
+    font-size:2rem;
+    font-weight:bold;
+    font-family: 'Proxima Nova Bold';
+    text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+    text-transform:uppercase;
+    text-align:center;
+    text-decoration:none;
+}
+
+.depto__collection-texto a span{
+    display:block;
+    font-size:1.4rem;
+    font-weight:initial;
+    font-family: 'Proxima Nova';
+    text-transform:lowercase;
+    margin-top:1rem;
+    line-height:26px;
+}
+
+.depto__collection-texto a span:first-letter{
+    text-transform:uppercase;
+}
 
 /*
 [f11.Mediaquerie departamento]

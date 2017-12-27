@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  21/12/2017
+Ultimo cambio:  26/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -1354,7 +1354,7 @@ var categDepto = {
                                     $.each(arr.slice(1, 10), function (i, val) {
                                         var a = val.imageTag,
                                             b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-350-").replace(/-height\b/g, "-350").replace(/\s*(width)="[^"]+"\s*/g, " width='350'").replace(/\s*(height)="[^"]+"\s*/g, " height='350'"),
-                                            $el = '<div class="slick-thumb">' + b + '</div>';
+                                            $el = '<div class="slide-thumb hover">' + b + '</div>';
                                         // console.log(b);
                                         $elements.push(b);
                                         _thisImg.append($el);
@@ -1561,6 +1561,7 @@ var categDepto = {
             $navigatorInput = $("input"),
             $currentPage = $(".page-number.pgCurrent"),
             $prevArrow = $(".previous.pgEmpty"),
+            $resizeCarousel = $(".prateleira__img .img.slick-initialized"),
             $effectOut = function (el) {
                 return el.fadeOut(500);
             },
