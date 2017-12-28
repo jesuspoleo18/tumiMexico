@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  26/12/2017
+Ultimo cambio:  28/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -65,7 +65,7 @@ var confiGenerales = {
         confiGenerales.infoTab();
         confiGenerales.triggerActions();
         confiGenerales.elementosFormato();
-        confiGenerales.accordion('.footer__title', '.footer__elements');
+        // confiGenerales.accordion('.footer__title', '.footer__elements');
         confiGenerales.backTop();
         // confiGenerales.stickyNav();
         confiGenerales.megaMenu('header,.megamenu-buscar.navigation__searchTrigger, main, footer, .navigation__right');
@@ -771,7 +771,7 @@ var home = {
         $(".helperComplement").remove();
         $(".home__tabs-content.news .prateleira").children().addClass("carousel-news");
 
-        if ($responsive < 768) {
+        if ($responsive < 758) {
             if ($count.length > 2) { $(producto).slick({ autoplay: true, autoplaySpeed: 2500, slide: 'li', slidesToScroll: 1, slidesToShow: 2, speed: 500, dots: true, responsive: [{ breakpoint: 980, settings: { slidesToShow: 2, slidesToScroll: 1 } }, { breakpoint: 650, settings: { slidesToShow: 2, slidesToScroll: 1 } }] }); }
         }
 
