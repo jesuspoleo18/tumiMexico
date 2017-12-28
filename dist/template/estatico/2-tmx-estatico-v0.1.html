@@ -38,12 +38,39 @@
             <main class="static__container">
                 <!-- static content -->
                 <div class="static__content">
-
                     <!-- static options -->
-                    <div class="static__options">
-                        
+                    <div class="static__options-container">
+
+                        <!-- buscavacia text content -->
+                        <div class="buscavacia__text-content">
+                            <h1 class="buscavacia__text-title">Lo sentimos, no se han encontrado resultados para:</h1>
+                            <p class="buscavacia__text-result"></p>
+                            <div class="buscavacia__searchAgain">
+                                <h3>Intenta una nueva búsqueda haciendo click</h3>
+                                <a href="#" class="buscavazia__searchTrigger">aquí</a>
+                            </div>
+                        </div>
+                        <!-- /.end buscavacia text content -->
+
+                        <!-- error text content -->
+                        <div class="errorCuatro__text-content">
+                            <h1 class="errorCuatro__text-title">Lo sentimos, se ha producido un error o la página que búscabas no pudo ser encontrada.</h1>
+                            <div class="errorCuatro__searchAgain">
+                                <h3>Intenta una nueva búsqueda haciendo click</h3>
+                                <a href="#" class="errorCuatro__searchTrigger">aquí</a>
+                            </div>
+                            <div class="errorCuatro__goHome">
+                                <a href="/">O regresa al home.</a>
+                            </div>
+                        </div>
+                        <!-- /.end error text content -->
+
                     </div> <!-- /.end static options -->
 
+                    <div class="static__recomendations">
+                        <h1 class="static__collection-title">Tal vez te interese</h1>
+                        <vtex:contentPlaceHolder id="static-product-recomendation" />
+                    </div>
                 </div> <!-- /.end static content -->
             </main>
             <!-- /.end static container -->

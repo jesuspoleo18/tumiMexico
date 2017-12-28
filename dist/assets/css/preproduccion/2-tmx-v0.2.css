@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  27/12/2017
+Ultimo cambio:  28/12/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -117,8 +117,10 @@ f14.Marca
 f15.Mediaquerie marca
 f16.Giftlist
 f17.Mediaquerie giftlist
-f18.Sistema
-f19.Mediaquerie sistema
+f18.Estatico
+f19.Mediaquerie estatico
+f20.Sistema
+f21.Mediaquerie sistema
 
 -------------------------fin---------------------------------*/
 
@@ -489,25 +491,28 @@ img {
 
 
 /* small */
-
 @media only screen and (max-width: 40em) {
     .header__elements {
         display: none;
+    }
+    .top-bar__text{
+        margin:0;
     }
 }
 
 
 /* medium */
-
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
     .header__elements {
         display: none;
+    }
+    .top-bar__text{
+        margin:0;
     }
 }
 
 
 /* xlarge */
-
 @media only screen and (min-width: 90.063em) {}
 
 
@@ -1065,7 +1070,6 @@ footer {
         padding-bottom: 4rem;
     }
     .footer__title{
-        color:;
         text-align: center;
     }
     .footer__socialmedia,
@@ -1286,6 +1290,9 @@ footer {
     .footer__socialmedia{
         justify-content:flex-start;
         width:100%;
+    }
+    .footer__rrss .footer__title{
+        display:none;
     }
 }
 
@@ -1965,6 +1972,10 @@ footer {
     font-weight: bold;
     position: relative;
     padding: 0 .5rem;
+}
+
+.bread-crumb ul li{
+    min-width:54px;
 }
 
 .bread-crumb ul li:first-child a {
@@ -6340,12 +6351,171 @@ h4.group.Atributos-Tumi {
 
 
 /*
-[f18.Sistema]
+[f18.Estatico]
 
 ============================= */
 
+.static__container,
+.static__content,
+.static__options-container{
+    position:relative;
+    width:100%;
+    display:flex;
+    flex-flow:wrap;
+    justify-content:center;
+    align-items:center;
+}
+
+.static__options-container{
+    background-color:#2E2A25;
+    padding:2rem 0;
+    width:100%;
+}
+
+.buscavacia__text-content,
+.errorCuatro__text-content{
+    display:none;
+}
+
+.static.buscavazia .buscavacia__text-content,
+.static.cuatro .errorCuatro__text-content{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.buscavacia__text-title,
+.errorCuatro__text-title{
+    color:white;
+    font-family: 'Proxima Nova bold';
+    font-size:1.8rem;
+    text-align:center;
+    text-transform:uppercase;
+}
+
+.errorCuatro__text-title{
+    width:80%;
+}
+
+.buscavacia__text-result{
+    color:white;
+    font-family: 'Proxima Nova';
+    font-size:1.5rem;
+    text-align:center;
+    text-transform:uppercase;
+}
+
+.buscavacia__text-result:before,
+.buscavacia__text-result:after{
+    content:"''";
+}
+
+.buscavacia__searchAgain,
+.errorCuatro__searchAgain{
+    color:white;
+    font-family: 'Proxima Nova';
+    font-size:.9rem;
+    margin-top:2rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.buscavazia__searchTrigger,
+.errorCuatro__searchTrigger{
+    background-color:#B92335;
+    border-radius:2px;
+    color:white;
+    text-align:center;
+    margin-top:1rem;
+    padding:.5rem 0;
+    width:30%;
+}
+
+.errorCuatro__searchTrigger:hover,
+.errorCuatro__searchTrigger:visited,
+.buscavazia__searchTrigger:hover,
+.buscavazia__searchTrigger:visited{
+    color:white;
+    text-decoration:none;
+}
+
+.static__recomendations{
+    margin-top:3rem;
+    margin-bottom:3rem;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.static__collection-title{
+    border-bottom:2px solid #ccc;
+    font-family: 'Proxima Nova';
+    font-size:1.5rem;
+    font-weight:bold;
+    text-transform:uppercase;
+    text-align:center;
+    margin-bottom:3rem;
+    padding-bottom:.5rem;
+    width:100%;
+}
+
+.errorCuatro__goHome{
+    margin-top:.8rem;
+}
+
+.errorCuatro__goHome a{
+    color:white;
+    font-size:.8rem;
+    text-decoration:underline;
+}
 
 /*
-[f19.Mediaquerie sistema]
+[f19.Mediaquerie estatico]
+
+============================= */
+
+/* small */
+@media only screen and (max-width: 40em) {
+    .static.buscavazia .buscavacia__text-content{
+        width:90%;
+    }
+    .buscavacia__text-title,
+    .buscavacia__text-result{
+        font-size:1rem;
+    }
+    .buscavacia__text-result{
+        margin-top:1rem;
+    }
+    .buscavacia__searchAgain{
+        margin-top:1.4rem;
+    }
+}
+
+/* medium */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+    .static.buscavazia .buscavacia__text-content{
+        width:90%;
+    }
+    .buscavacia__text-title,
+    .buscavacia__text-result{
+        font-size:1.5rem;
+    }
+}
+
+/* xlarge */
+@media only screen and (min-width: 90.063em) { }
+
+/*
+[f20.Sistema]
+
+============================= */
+
+/*
+[f21.Mediaquerie sistema]
 
 ============================= */

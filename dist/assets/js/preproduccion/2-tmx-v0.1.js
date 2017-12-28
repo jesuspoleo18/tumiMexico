@@ -47,6 +47,7 @@ $(function () {
     home.init();
     producto.init();
     categDepto.init();
+    busca.init();
 });
 
 /* 
@@ -1625,42 +1626,50 @@ var categDepto = {
 ============================= */
 
 var busca = {
-    init: function init() { },
+    init: function init() {
 
-    fraseBusqueda: function fraseBusqueda() {
+        busca.fraseBusqueda();
+        busca.resultadoBusqueda();
+    },
 
-        var $buscavazia = $(".estatico.buscavazia"),
-            $resultadoBusca = $(".resultado-busca"),
-            $productoEncontrado = $(".vitrine.resultItemsWrapper");
+    fraseBusqueda: function() {
+
+        var $buscavazia = $(".static.buscavazia, .static.cuatro"),
+            $resultadoBusca = $(".resultado-busca");
 
         if ($buscavazia.length) {
 
             var href = window.location.href,
                 url = href.split('=')[1],
-                $el = $(".frase__content");
+                $el = $(".buscavacia__text-result"),
+                $searchTrigger = $(".navigation__searchTrigger,.navigation__buttonSearch--mobile"),
+                $linkToTrigger = $(".buscavazia__searchTrigger,.errorCuatro__searchTrigger");
 
             $el.append(url);
+            $linkToTrigger.on("click", function(){
+                $searchTrigger.click();
+            });
         } else if ($resultadoBusca.length) {
 
             var hrefUrl = window.location.href,
                 theUrl = hrefUrl.split('/')[3],
                 $body = $("body.resultado-busca"),
-                $parent = $(".resultado-content"),
-                $ele = $(".resultado-content .resultado"),
-                $template = '<div class="cuatro__container"> <div class="cuatro__container--img"> <img src="/arquivos/sbr-sin-resultado.png" /> </div> <div class="cuatro__container--texto"> <div class="texto__content">Sua busca para:<strong class="resultado">' + theUrl + '</strong>não encontrou nenhum resultado.</div> </div> </div>';
+                $parent = $(".categ__container"),
+                $productoEncontrado = $(".vitrine.resultItemsWrapper"),
+                $template = '< div class="buscavacia__text-content" > <h1 class="buscavacia__text-title">Lo sentimos, no se han encontrado resultados para:</h1> <p class="buscavacia__text-result"></p> <div class="buscavacia__searchAgain"> <h3>Intenta una nueva búsqueda haciendo click</h3> <a href="#" class="buscavazia__searchTrigger">aquí</a> </div> </div>',
+                $ele = $(".resultado-content .resultado");
 
             if ($productoEncontrado.length) {
-
-                $ele.append(theUrl);
+                console.log("hay productos");
             } else {
-
                 $body.addClass('no-encontro');
                 $parent.html($template);
+                $(".buscavacia__text-result").html(theUrl);
             }
         }
     },
 
-    resultadoBusqueda: function resultadoBusqueda() {
+    resultadoBusqueda: function() {
 
         var $accept = $("body.resultado-busca, body.brand");
 
@@ -1673,18 +1682,21 @@ var busca = {
                 $resultText = $(".resultado-busca-result .result"),
                 $filter = $(".Hide.HideMarca"),
                 $body = $("body.resultado-busca,body.brand"),
+                $btnFilter = $(".categ__btn-filter, .categ__btn-filter--mobile"),
                 $hideSideBar = $(".categ__aside");
 
             if ($filter.length == 0) {
 
                 $hideSideBar.remove();
+                $btnFilter.hide();
                 $body.addClass("no-encontro-filtros");
+                $btnFilter.click();
             }
-            if (coleccion.includes('busca?fq')) {
-                $coleccionParent.html("Os resultados da <strong>coleção</strong> são:");
-            }
+            // if (coleccion.includes('busca?fq')) {
+            //     $coleccionParent.html("Os resultados da <strong>coleção</strong> são:");
+            // }
 
-            $resultText.html(decodeURIComponent(urlText));
+            // $resultText.html(decodeURIComponent(urlText));
         }
     }
 };
