@@ -143,6 +143,13 @@
                                 </div>
                                 <!-- /.end product name -->
 
+                                <!-- product related -->
+                                <div class="product__related">
+                                    <div class="product__collection">TEGRA-LITE®</div>
+                                    <a href="#" class="product__toCollection">Ver toda la colección</a>
+                                </div>
+                                <!-- /.end product related -->
+
                                 <!-- product ean -->
                                 <div class="product__ean">
                                     <h6>Cod:</h6>
@@ -344,11 +351,21 @@
                 </section>
                 <!-- /.end producto container -->
 
+                <!-- related seen products container -->
+                <div class="relatedSeenProducts__container">
+                    <h4 class="relatedSeenProducts__title">Productos Relacionados</h4>
+                    <a class="relatedSeenProducts__trigger">Close</a>
+                    <!-- related seen products content -->
+                    <div class="relatedSeenProducts__content">
+                        <vtex:contentPlaceHolder id="quien-vio-vio-tambien" />
+                        <vtex.cmc:navigationHistory/>
+                    </div>
+                    <!-- /.end related seen products content -->
+                </div>
+                <!-- /.end related seen products container -->
+
             </main>
             <!-- /.end main content -->
-
-            <!-- navigation history -->
-            <!-- <vtex.cmc:navigationHistory/> -->
 
             <!-- facebook api -->
             <vtex:template id="2-tmx-fbsdk" />

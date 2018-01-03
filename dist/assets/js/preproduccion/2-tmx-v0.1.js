@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio:  28/12/2017
+Ultimo cambio: 03/1/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -21,6 +21,7 @@ b3.Producto
 b4.Categ/depto
 b5.Busca, resultado de busca, 404 y error 500
 b6.Account
+b7.Quickview
 
 -------------------------fin---------------------------------*/
 /* 
@@ -48,6 +49,7 @@ $(function () {
     producto.init();
     categDepto.init();
     busca.init();
+    quickviewControl.init();
 });
 
 /* 
@@ -72,7 +74,6 @@ var confiGenerales = {
         confiGenerales.megaMenu('header,.megamenu-buscar.navigation__searchTrigger, main, footer, .navigation__right');
         confiGenerales.compraAsyncVitrina();
         confiGenerales.checkEmptyCart();
-        confiGenerales.quickViewAsyncBuy();
         confiGenerales.masterData();
         confiGenerales.replaceHref();
         confiGenerales.bodyPaint();
@@ -452,178 +453,6 @@ var confiGenerales = {
             $cartNumber.addClass("active");
             $cartFooter.removeClass("clearfix");
         }
-    },
-
-    quickViewAsyncBuy: function () {
-
-        var $iframeContentTop = $('#TB_iframeContent', top.document);
-
-        $iframeContentTop.on("load", function () {
-
-            var $iframeBuySuccess = $(".TB_compraExitosa"),
-                $thisBtn = $(".buy-button.buy-button-ref"),
-                $descripcion = $(".quickview-container__informacion--basica-content .descripcion-larga"),
-                $ean = $(".quickview-container__informacion--basica-content .ean"),
-                producto = {
-                    id: "",
-                    descripcion: "",
-                    ean: "",
-                    caracteristica: "",
-                    stock: "",
-                    marca: ""
-                },
-                $productoName = $(".notifyme-client-name"),
-                $productoEmail = $(".notifyme-client-email");
-
-            // $productoName.attr("placeholder", "NOMBRE");
-            // $productoEmail.attr("placeholder", "EMAIL");
-
-            // getCurrentProductWithVariations
-
-            vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
-
-                producto.stock = product.available;
-                producto.id = product.productId;
-                console.log(product);
-
-                $.ajax({
-                    url: "https://lojasamsonite.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + producto.id + "",
-                    dataType: 'json',
-                    type: 'GET',
-                    crossDomain: true,
-                    success: function success(data) {
-
-                        // producto.descripcion = data[0]['Descripción Larga'];
-                        // producto.caracteristica = data[0].Características[0];
-                        producto.descripcion = data[0].description;
-                        producto.ean = data[0].items[0].ean;
-                        producto.marca = data[0].brand;
-
-                        var $template = '<div class="basica-marca">' + producto.marca + '</div>';
-
-                        $($template).insertAfter(".basica-nombre");
-                        $descripcion.append(producto.descripcion);
-                        $ean.append(producto.ean);
-                        marcaProductoQuickview();
-                        seeMore();
-                        dotInfo();
-                        // $caracteristica.append(producto.caracteristica);
-
-                        console.log(data);
-                    }
-                });
-
-                $thisBtn.unbind('click');
-
-                $thisBtn.bind('click', function (e) {
-
-                    var url = $(this).attr('href').split("?")[1],
-                        param = url.split("&"),
-                        item = {
-                            id: param[0].split("=")[1],
-                            quantity: param[1].split("=")[1],
-                            seller: param[2].split("=")[1]
-                        };
-
-                    e.preventDefault();
-
-                    vtexjs.checkout.getOrderForm().done(function (e) {
-
-                        vtexjs.checkout.addToCart([item], null, 1).done(function (orderForm) {
-                            // window.parent.confiGenerales.refreshMiniCart();
-                            $iframeBuySuccess.show();
-                        });
-                    });
-                });
-
-                miniaturaSlickQuickview();
-
-                function marcaProductoQuickview() {
-
-                    var $location = $(".quickview-container__informacion--basica-content");
-
-                    if (producto.marca == 'American Tourister') {
-
-                        var $templateaT = '<div class="logo-marca"><img src=/arquivos/logo-AT.png></div>';
-
-                        $location.prepend($templateaT);
-                    } else if (producto.marca == 'Samsonite Black Label') {
-
-                        var $templatesmxBlack = '<div class="logo-marca"><img src=/arquivos/logo-smxNegro-3.png></div>';
-
-                        $location.prepend($templatesmxBlack);
-                    } else if (producto.marca == 'Samsonite') {
-
-                        var $templatesmx = '<div class="logo-marca"><img src=/arquivos/logo-smxAzul-3.png></div>';
-
-                        $location.prepend($templatesmx);
-                    }
-                }
-
-                function dotInfo() {
-
-                    var $texto = $(".quickview-container__informacion .descripcion-larga").text(),
-                        $container = $(".quickview-container__informacion .descripcion-larga"),
-                        $result = $texto.replace(/\*/g, '<p class="space"></p><span class="dot">• </span>');
-
-                    $container.html($result);
-                }
-
-                function miniaturaSlickQuickview() {
-
-                    var $el = $(".quickview-container__imagen--content .thumbs li"),
-                        $init = $(".quickview-container__imagen--content .thumbs");
-
-                    if ($el.length > 3) {
-
-                        $init.slick({
-
-                            arrows: true,
-                            prevArrow: "<i class='fa fa-angle-left' aria-hidden='true'></i>",
-                            nextArrow: "<i class='fa fa-angle-right' aria-hidden='true'></i>",
-                            autoplay: false,
-                            button: false,
-                            dots: false,
-                            fade: false,
-                            infinite: true,
-                            slidesToScroll: 1,
-                            slidesToShow: 3,
-                            speed: 800,
-                            useTransform: true
-
-                        });
-                    }
-                }
-
-                function seeMore() {
-
-                    var files = ["/arquivos/readmore.min.js"];
-
-                    $.when.apply($, $.map(files, function (file) {
-                        return $.getScript(files);
-                    })).then(function () {
-
-                        var $el = $(".quickview-container__informacion--basica-content .descripcion-larga");
-
-                        $($el).readmore({
-                            speed: 100,
-                            collapsedHeight: 50,
-                            moreLink: '<a class="seeMore" href="#">Ler mais</a>',
-                            lessLink: '<a class="seeLess" href="#">Leia menos</a>'
-                        });
-                    }, function err(jqxhr, textStatus, errorThrown) {
-                        console.log(textStatus);
-                    });
-                }
-            }); // /.fin getCurrentProductWithVariations.
-        });
-    },
-
-    refreshMiniCart: function () {
-
-        vtexjs.checkout.getOrderForm();
-        $("#TB_overlay", document.body).remove();
-        $("#TB_window", document.body).remove();
     },
 
     masterData: function () {
@@ -1109,7 +938,7 @@ var producto = {
                 param = url.split("&"),
                 $url = $(this).attr('href'),
                 $a = $('#offCanvasRight'),
-                qtyBox = parseInt($('.product__shop-content .box-qtd .qtd').val()),
+                qtyBox = parseInt($('.product__sku-container .box-qtd .qtd').val()),
                 item = {
                     id: param[0].split("=")[1],
                     quantity: qtyBox,
@@ -1123,17 +952,16 @@ var producto = {
 
                 $.when.apply($, $.map(files, function (file) {
                     return $.getScript(files);
-                }))
-                    .then(function () {
+                })).then(function () {
 
-                        $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
-                        setTimeout(function () {
-                            $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
-                        }, 2000);
+                    $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+                    setTimeout(function () {
+                        $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
+                    }, 2000);
 
-                    }, function err(jqxhr, textStatus, errorThrown) {
-                        console.log(textStatus);
-                    });
+                }, function err(jqxhr, textStatus, errorThrown) {
+                    console.log(textStatus);
+                });
 
                 console.log(orderForm);
 
@@ -1365,27 +1193,31 @@ var categDepto = {
                                         $slickThumb = _thisImg.find(".slide-thumb.hover");
 
                                     _thisImg.find("img:eq(0)").appendTo($slickThumb);
+                                    
+                                    if (_thisImg.length){
 
-                                    _thisImg.slick({
-                                        arrows: true,
-                                        autoplay: false,
-                                        autoplaySpeed: 2500,
-                                        button: false,
-                                        dots: false,
-                                        fade: true,
-                                        infinite: true,
-                                        slidesToScroll: 1,
-                                        slidesToShow: 1,
-                                        speed: 800,
-                                        useTransform: true
-                                    });
-                                    $img.on("click", function (e) {
-                                        e.preventDefault();
-                                    });
-                                    if($slickThumb.length){
-                                        // console.log("cantidad de slicks-thumbs!: " + $slickThumb.length);
-                                        $(z).appendTo($slickThumb);
-                                        // $slickThumb.css("border", "1px solid red");
+                                        _thisImg.slick({
+                                            arrows: true,
+                                            autoplay: false,
+                                            autoplaySpeed: 2500,
+                                            button: false,
+                                            dots: false,
+                                            fade: true,
+                                            infinite: true,
+                                            slidesToScroll: 1,
+                                            slidesToShow: 1,
+                                            speed: 800,
+                                            useTransform: true
+                                        });
+                                        $img.on("click", function (e) {
+                                            e.preventDefault();
+                                        });
+                                        if ($slickThumb.length) {
+                                            // console.log("cantidad de slicks-thumbs!: " + $slickThumb.length);
+                                            $(z).appendTo($slickThumb);
+                                            // $slickThumb.css("border", "1px solid red");
+                                        }
+
                                     }
                                 }
                             });
@@ -1581,6 +1413,7 @@ var categDepto = {
         $navigatorInput.on("click", function () { if ($(this).attr('checked')) { $(this).attr('checked', 'checked'); } else { $(this).removeAttr('checked'); } });
         $btnFilter.toggle(function () {
             $(this).text("Mostrar Filtros").addClass("active");
+            $(".slick-next.slick-arrow").click();
             $.when($effectOut($categElements)).done(function () {
                 $aside.addClass("hide");
                 $categProducts.addClass("active");
@@ -1588,6 +1421,7 @@ var categDepto = {
             });
         }, function () {
             $(this).text("Ocultar Filtros").removeClass("active");
+            $(".slick-next.slick-arrow").click();
             $.when($effectOut($categElements)).done(function () {
                 $aside.removeClass("hide");
                 $categProducts.removeClass("active");
@@ -1706,3 +1540,149 @@ var busca = {
 [b6.Account]
 
 ============================= */
+
+/* 
+
+[b7.Quickview]
+
+============================= */
+
+var quickviewControl = {
+
+    init:function(){
+        quickviewControl.quickViewAsyncBuy();
+    },
+    quickViewAsyncBuy: function () {
+
+        var $iframeContentTop = $('#TB_iframeContent', top.document);
+
+        $iframeContentTop.on("load", function () {
+
+            var $iframeBuySuccess = $(".TB_compraExitosa"),
+                $thisBtn = $(".buy-button.buy-button-ref"),
+                $ean = $("#quickview__style-number"),
+                producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", url:""},
+                $productoName = $(".notifyme-client-name"),
+                $productoEmail = $(".notifyme-client-email");
+
+            // $productoName.attr("placeholder", "NOMBRE");
+            // $productoEmail.attr("placeholder", "EMAIL");
+
+            quickviewControl.qtdControl();
+
+            vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
+
+                producto.stock = product.available;
+                producto.id = product.productId;
+                console.log(product);
+
+                $.ajax({
+                    url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + producto.id + "",
+                    dataType: 'json',
+                    type: 'GET',
+                    crossDomain: true,
+                    success: function (data) {
+                        
+                        var arr = data[0].items[0].images,
+                            apiUrl = data[0].linkText,
+                            thisUrl = '/' + apiUrl + '/p',
+                            details = $(".quickview__productDetail a"),
+                            $zoomPad = $(".quickview__img-content .zoomPad"),
+                            $elements = [];
+
+                        details.on("click", function(){
+                            window.top.location.href = thisUrl;
+                        });
+                        // console.log(data[0].items[0].images);
+                        // producto.descripcion = data[0]['Descripción Larga'];
+                        // producto.caracteristica = data[0].Características[0];
+                        producto.descripcion = data[0].description;
+                        producto.ean = data[0].items[0].ean;
+                        producto.marca = data[0].brand;
+
+                        console.log(data);
+
+                        $.each(arr, function (i, val) {
+                            var a = val.imageTag,
+                                b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-600-").replace(/-height\b/g, "-600").replace(/\s*(width)="[^"]+"\s*/g, " width='600'").replace(/\s*(height)="[^"]+"\s*/g, " height='600'"),
+                                $el = '<div class="slide-thumb">' + b + '</div>';
+                            $elements.push($el);
+                        });
+
+                        $zoomPad.html($elements);
+
+                        $zoomPad.slick({
+                            arrows: true,
+                            autoplay: false,
+                            autoplaySpeed: 2500,
+                            button: false,
+                            dots: true,
+                            fade: false,
+                            infinite: true,
+                            slidesToScroll: 1,
+                            slidesToShow: 1,
+                            speed: 800,
+                            useTransform: true
+                        });
+                    }
+                });
+
+                $thisBtn.unbind('click');
+
+                $thisBtn.bind('click', function (e) {
+
+                    var url = $(this).attr('href').split("?")[1],
+                        param = url.split("&"),
+                        qtyBox = parseInt($('.product__sku-container .box-qtd .qtd').val()),
+                        item = {
+                            id: param[0].split("=")[1],
+                            // quantity: param[1].split("=")[1],
+                            quantity: qtyBox,
+                            seller: param[2].split("=")[1]
+                        };
+
+                    e.preventDefault();
+
+                    vtexjs.checkout.getOrderForm().done(function (e) {
+
+                        vtexjs.checkout.addToCart([item], null, 3).done(function (orderForm) {
+                            window.parent.quickviewControl.refreshMiniCart();
+                        });
+                    });
+                });
+
+            }); // /.fin getCurrentProductWithVariations.
+        });
+    },
+    refreshMiniCart: function () {
+        var $a = $('#offCanvasRight');
+
+        vtexjs.checkout.getOrderForm();
+        $("#TB_overlay", document.body).remove();
+        $("#TB_window", document.body).remove();
+        $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+        setTimeout(function () {
+            $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
+        }, 2000);
+    },
+    qtdControl: function () {
+
+        var $btnComprarProduto = $('.buy-button.buy-button-ref'),
+            $notifyme = $(".notifyme.sku-notifyme:visible"),
+            $templateQty = '<div class="pull-left box-qtd"><input type="text" class="qtd pull-left" value="1" /><div class="bts pull-left"><button class="btn btn-mais">+</button><button class="btn btn-menos">-</button></div></div>',
+            qty = { cantidad: "" };
+
+        if ($btnComprarProduto.length) {
+
+            var $recebeQtyForm = $('.product__sku-container');
+
+            if ($recebeQtyForm.length) {
+
+                $recebeQtyForm.prepend($templateQty);
+
+            }
+
+        }
+
+    }
+};

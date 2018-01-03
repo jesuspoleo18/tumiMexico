@@ -7,8 +7,7 @@
 
 <head>
 
-    <title>
-        <vtex.cmc:searchTitle /> </title>
+    <title> <vtex.cmc:productPageTitle /> </title>
     <meta name="description" content="" />
     <vtex:template id="2-tmx-head" />
 
@@ -16,114 +15,115 @@
 <!-- /.end head -->
 
 <!-- body -->
+
 <body>
 
-    <body class="quickview-container">
-    
-        <!-- quickview-container__content -->
-        <div class="quickview-container__content">
-    
-            <!-- quickview compra exitosa -->
-            <div class="TB_compraExitosa">
-    
-                <div class="TB_compraExitosa__container">
-    
-                    <div class="TB_compraExitosa__mensaje">
-                        <i class="fa fa-check-circle" aria-hidden="true"></i>
-                        <h4 class="agregadoExitoTitle">producto añadido con éxito</h4>
-                    </div>
-    
-                    <div class="TB_compraExitosa__botones">
-                        <a href="/checkout" class="btn compra">Comprar</a>
-                        <a onClick="window.parent.confiGenerales.refreshMiniCart();" class="btn continua">Seguir comprando</a>
-                    </div>
-    
-                </div>
-    
-            </div>
-            <!-- /.fin quickview compra exitosa -->
-    
-            <!-- producto imagen -->
-            <div class="quickview-container__imagen">
-    
-                <div class="quickview-container__imagen--content">
+    <!-- quickview container -->
+    <main class="quickview__container">
+
+        <!-- quickview content -->
+        <div class="quickview__content">
+
+            <!-- quickview img container -->
+            <div class="quickview__img-container">
+
+                <div class="quickview__img-content">
                     <vtex.cmc:ProductImage zoom="off" />
                     <vtex.cmc:HightLight/>
                 </div>
-    
+
             </div>
-            <!-- /.fin producto imagen -->
-    
-            <!-- producto informacion -->
-            <div class="quickview-container__informacion">
-    
-                <div class="quickview-container__informacion--basica">
-    
-                    <!-- informacion basica content -->
-                    <div class="quickview-container__informacion--basica-content">
-    
-                        <!-- nombre -->
-                        <div class="basica-nombre">
+            <!-- /.end quickview img container -->
+
+            <!-- quickview product container -->
+            <div class="quickview__productInfo-container">
+
+                <!-- quickview product content -->
+                <div class="quickview__productInfo-content">
+
+                    <!-- quickview product info -->
+                    <div class="quickview__productInfo">
+
+                        <!-- quickview name -->
+                        <div class="quickview__name">
                             <vtex.cmc:productName />
                         </div>
-                        <!-- /.fin nombre -->
-    
-                        <!-- ean -->
-                        <div class="basica-ean">
-                            <h6>Cod:</h6>
-                            <div class="ean"></div>
+                        <!-- /.end quickview name -->
+
+                        <!-- quickview related -->
+                        <div class="quickview__related">
+                            <div class="quickview__collection">TEGRA-LITE®</div>
+                            <a href="#" class="quickview__toCollection">Ver toda la colección</a>
+                            <div class="quickview__style">style:
+                                <span id="quickview__style-number">28720DG</span>
+                            </div>
                         </div>
-                        <!-- /.fin ean -->
-    
-                        <!-- descripcion larga -->
-                        <div class="basica-descripcion">
-                            <div class="descripcion-larga"></div>
-                        </div>
-                        <!-- /.fin descripcion larga -->
-    
-                        <!-- precio -->
-                        <div class="basica-precio">
+                        <!-- /.end quickview related -->
+
+                        <!-- quickview price -->
+                        <div class="quickview__price">
                             <vtex.cmc:skuPrice/>
                         </div>
-                        <!-- /.fin precio -->
-    
-                    </div>
-                    <!-- /.fin informacion basica content -->
-    
-                </div>
-    
-                <!-- informacion compra -->
-                <div class="producto-container__informacion--compra">
-    
-                    <!-- informacion compra content -->
-                    <div class="producto-container__informacion--compra-content">
-    
-                        <div class="compra-qtd-btn">
+                        <!-- /.end quickview price -->
+
+                        <!-- quickview rate -->
+                        <div class="quickview__rate">
+                            <vtex.cmc:evaluationRate/>
+                        </div>
+                        <!-- /.end quickview rate -->
+
+                        <!-- quickview stock -->
+                        <div class="quickview__stock">
+                            <span>En stock</span>
+                        </div>
+                        <!-- /.end quickview stock -->
+
+                        <!-- quickview sku -->
+                        <div class="product__sku-container">
+                            <vtex.cmc:skuSelection mode="radio" />
+                        </div>
+                        <!-- /.end quickview sku -->
+
+                        <!-- quickview buy button -->
+                        <div class="quickview__buy-btn">
                             <vtex.cmc:BuyButton />
                         </div>
-    
+                        <!-- /.end quickview buy button -->
+
+                        <!-- quickview view detail -->
+                        <div class="quickview__productDetail">
+                            <a href="#">View Details</a>
+                        </div>
+                        <!-- /.end quickview view detail -->
+
                     </div>
-                    <!-- /.fin informacion compra content -->
-    
+                    <!-- /.fin quickview product info -->
+
                 </div>
-                <!-- /.fin informacion compra -->
-    
+                <!-- /.end quickview product content -->
+
             </div>
-            <!-- /.fin producto informacion -->
-    
+            <!-- /.fin quickview product container -->
+
         </div>
-        <!-- /.fin quickview-container__content -->
+        <!-- /.fin quickview content -->
+
+    </main>
+    <!-- /.end quickview container -->
+
+    <!-- foundation scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js" defer=""></script>
+    <!-- external plugins -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js" defer=""></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.0.1/what-input.min.js" defer=""></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js" defer=""></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.min.js" defer=""></script>
+    <!-- custom scripts -->
+    <script type="text/javascript" src="/files/tmx.js" defer=""></script>
+    <script type="text/javascript" src="/files/tmx-mantencion.js" defer=""></script>
     
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightcase/2.4.0/js/lightcase.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
-        <script type="text/javascript" src="/files/tmx.js" defer=""></script>
-        <script type="text/javascript" src="/files/tmx-mantencion.js" defer=""></script>
-    
-        <vtex.cmc:productQuickView/>
-    
-    </body>
-    
+    <vtex.cmc:productQuickView/>
+
 </body>
 <!-- /.end body -->
 

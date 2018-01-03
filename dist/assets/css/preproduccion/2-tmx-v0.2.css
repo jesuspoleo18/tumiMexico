@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  28/12/2017
+Ultimo cambio:  03/01/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -75,6 +75,8 @@ d12.Search result time.
 d13.Mediaquerie search result time.
 d14.Compare
 d15.Mediaquerie compare
+d16.Quickview
+d17.Mediaquerie quickview
 
 --------- Componentes -------------
 
@@ -95,7 +97,9 @@ e13.Mediaquerie producto sticky
 e14.Redes sociales
 e15.Mediaquerie redes sociales
 e16.Airline guides
-e17.Mediaquerie airline guides.
+e17.Mediaquerie airline guides
+e18.Productos relaciones recien vistos
+e19.Mediaquerie productos relaciones recien vistos
 
 --------- Estilos de pagina -------------
 
@@ -227,11 +231,15 @@ video {
 }
 
 body {
+    display:block;
+    height:100%;
     line-height: 1;
+    position:relative;
 }
 
 html {
     background-color: white !important;
+    height:100%;
 }
 
 article,
@@ -369,7 +377,34 @@ img {
 }
 
 #ajaxBusy {
-    display: none !important;
+    background-color: hsla(0, 0%, 4%, .2);
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+}
+
+#ajaxBusy p {
+    color: transparent;
+    width: 75px;
+    height: 75px;
+    padding: 1%;
+    border-radius: 50%;
+    margin: -50px 0 0 -50px;
+    top: 50%;
+    left: 50%;
+    z-index: 9999;
+    -moz-animation: three-quarters-loader 1250ms infinite linear;
+    -webkit-animation: three-quarters-loader 1250ms infinite linear;
+    animation: three-quarters-loader 1250ms infinite linear;
+    border: 16px solid rgba(0, 0, 0, .35);
+    border-right-color: transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    text-indent: -2;
 }
 
 ::-webkit-scrollbar-track {
@@ -824,7 +859,11 @@ footer {
     width: 100%;
     padding: 1.5rem 3rem;
     border-right: 2px solid white;
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+
+.footer__col-2{
+    padding:0 3rem;
 }
 
 .footer__title {
@@ -852,6 +891,7 @@ footer {
     height: 100%;
     flex-flow: wrap;
     justify-content: center;
+    display:none;
 }
 
 .footer__nearlocation .footer__title {
@@ -1070,6 +1110,7 @@ footer {
         padding-bottom: 4rem;
     }
     .footer__title{
+        color:;
         text-align: center;
     }
     .footer__socialmedia,
@@ -1809,8 +1850,12 @@ footer {
     position: relative;
     z-index: 1;
     display: block;
-    float: right;
     cursor: crosshair;
+    width:100%;
+}
+
+#image-main{
+    width:100%;
 }
 
 .zoomPreload {
@@ -1829,7 +1874,7 @@ footer {
     color: #333;
     border: 1px solid #ccc;
     background-color: #fff;
-    /*     background-image: url(/arquivos/sbr-syncBuy.gif); */
+    background-image: url(/arquivos/tmx-loader-black.gif);
     background-repeat: no-repeat;
     background-position: center center;
     -moz-opacity: .8;
@@ -1895,15 +1940,12 @@ footer {
     background: white;
 }
 
-
 /*
 [d3.Mediaquerie zoom]
 
 ============================= */
 
-
 /* small */
-
 @media only screen and (max-width:40em) {
     .zoomPad{
         float:none;
@@ -1914,11 +1956,14 @@ footer {
         width: 400px !important;
         height: 400px !important;
     }
+    .producto .zoomPad,
+    .quickview__container .zoomPad{
+        pointer-events: initial;
+    }
 }
 
 
 /* medium */
-
 @media only screen and (min-width:40.063em) and (max-width:64em) {
     .zoomPad {
         pointer-events: none;
@@ -1927,12 +1972,11 @@ footer {
 
 
 /* xlarge */
-
 @media only screen and (min-width:90.063em) {
-    .zoomWrapper {
+    /*     .zoomWrapper {
         width: 600px !important;
         height: 600px !important;
-    }
+    } */
     .zoomWrapperImage img {
         min-width: 1200px;
         min-height: 1200px;
@@ -2079,6 +2123,7 @@ footer {
 #spnRatingProdutoTop {
     font-size: 0;
     margin-bottom: 5px;
+    position:relative;
 }
 
 .ratingTop {
@@ -3185,19 +3230,262 @@ ul.pages li.page-number.pgCurrent:after {
 
 
 /* small */
-
 @media only screen and (max-width: 40em) {}
 
-
 /* medium */
-
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {}
 
-
 /* xlarge */
-
 @media only screen and (min-width: 90.063em) {}
 
+/*
+[d16.Quickview]
+
+============================= */
+
+#TB_ajaxWindowTitle,
+.quickview__content .thumbs,
+.quickview__rate strong{
+    display:none;
+}
+
+#TB_overlay{
+    background:url("/arquivos/tmx-loader-white.gif")center center no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#TB_window{
+    margin-left:-415px !important;
+    width:60% !important;
+}
+
+#TB_closeAjaxWindow {
+    margin: 0;
+    position: absolute;
+    right: -10px;
+    z-index: 1;
+}
+
+#TB_closeWindowButton {
+    color: transparent!important;
+}
+
+#TB_closeAjaxWindow:before {
+    content: "x";
+    color: white;
+    background-color: #2E2A25;
+    visibility: visible;
+    padding: .5rem .8rem;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    right: 10px;
+    z-index: 2;
+}
+
+#TB_iframeContent{
+    height:450px !important;
+    position:relative;
+    width:100% !important;
+}
+
+.quickview__container,
+.quickview__content{
+    width:100%;
+    display:flex;
+    flex-flow:wrap;
+    justify-content:center;
+}
+
+.quickview__container{
+    height:100%;
+    align-items:center;
+}
+
+.quickview__content{
+    padding:1rem 0 1rem 0;
+    width:95%;
+    display:flex;
+    justify-content:space-between;
+}
+
+.quickview__img-container{
+    /*     border:var(--borderNegro); */
+    width:48%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.quickview__img-content{
+    display:block;
+    position:relative;
+    width:100%;
+}
+
+.quickview__productInfo-container{
+    /*     border:var(--borderNegro); */
+    width:45%;
+    display:flex;
+    justify-content:center;
+}
+
+.quickview__productInfo-content{}
+
+.quickview__productInfo{
+    display:flex;
+    flex-flow:wrap;
+    align-items:center;
+}
+
+.quickview__name{
+    font-family: 'Proxima Nova';
+    font-size: 1.45rem;
+    line-height:28px;
+}
+
+.quickview__related{
+    margin-top:.5rem;
+    display:flex;
+}
+
+.quickview__collection,
+.quickview__style{
+    color:#777;
+    font-family: 'Proxima Nova Bold';
+    font-size:.8rem;
+    text-transform:uppercase;
+}
+
+.quickview__toCollection,
+.quickview__productDetail a{
+    color:#2E2A25;
+    font-size:.8rem;
+    font-family: 'Proxima Nova';
+    font-weight:bold;
+    text-decoration:underline;
+    padding:0 1rem 0 .5rem;
+}
+
+.quickview__productDetail a{
+    margin-top:1rem;
+    padding:0;
+}
+
+#quickview__style-number{}
+
+.quickview__price{
+    margin-top:1rem;
+    width:50%;
+}
+
+.quickview__rate{
+    margin-top:1rem;
+    position:relative;
+    width:50%;
+    display:flex;
+}
+
+.quickview__stock span{
+    color:#777;
+    display:block;
+    font-family: 'Proxima Nova Bold';
+    font-size:.8rem;
+    text-transform:uppercase;
+    margin-top:.5rem;
+}
+
+.product__sku-container{}
+
+.quickview__buy-btn{
+    height:45px;
+    display:flex;
+    width:100%;
+}
+
+.quickview__buy-btn .buy-button.buy-button-ref{
+    width:50%;
+}
+
+.quickview__productDetail{
+    width:100%;
+    display:flex;
+}
+
+.quickview__container .zoomPad{
+    float:none;
+    cursor:default;
+    margin:0;
+    pointer-events: initial;
+    width:100%;
+}
+
+.quickview__container .zoomWrapper {
+    width: 400px !important;
+    height: 400px !important;
+}
+
+.quickview__container .slick-dots{
+    background-color:transparent;
+    right:40%;
+}
+
+.quickview__container .slick-dots li button:before{
+    font-size: 8px;
+}
+
+.quickview__container .slick-dots li.slick-active button:before{
+    color:#2E2A25 !important;
+    font-size:1rem;
+}
+
+.quickview__container .slick-slide{
+    max-width:378px;
+}
+
+.quickview__productInfo-container .pull-left.box-qtd{
+    width:10%;
+}
+
+.quickview__productInfo-container .qtd.pull-left{
+    padding-left:.8rem;
+}
+
+/*
+[d17.Mediaquerie quickview]
+
+============================= */
+
+/* small */
+@media only screen and (max-width: 40em) {}
+
+/* medium */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
+
+/* xlarge */
+@media only screen and (min-width: 90.063em) {
+    
+    #TB_window{
+        margin-left:-415px !important;
+        width:44% !important;
+    }
+
+    #TB_closeAjaxWindow {
+        margin: 0;
+        position: absolute;
+        right: -10px;
+        z-index: 1;
+    }
+    #TB_iframeContent{
+        position:relative;
+        max-width:920px !important;
+        width:100% !important;
+    }
+    
+    .quickview__container .slick-slide{
+        max-width:383px;
+    }
+}
 
 /*
 [e0.Despacho y disponibilidad en tienda]
@@ -3312,6 +3600,8 @@ ul.pages li.page-number.pgCurrent:after {
     font-size: 8px;
 }
 
+.quickview__container .slick-next, 
+.quickview__container .slick-prev,
 .prateleira__container .slick-next, 
 .prateleira__container .slick-prev {
    opacity:0;
@@ -3321,6 +3611,13 @@ ul.pages li.page-number.pgCurrent:after {
     transition: opacity .2s ease;
 }
 
+.quickview__container .slick-next, 
+.quickview__container .slick-prev{
+    opacity:1;
+}
+
+.quickview__container:hover .slick-next, 
+.quickview__container:hover .slick-prev,
 .prateleira__container:hover .slick-next, 
 .prateleira__container:hover .slick-prev {
     opacity:1;
@@ -3331,8 +3628,17 @@ ul.pages li.page-number.pgCurrent:after {
     z-index:2;
 }
 
+.quickview__container .slick-prev{
+    left:1%;
+    z-index:2;
+}
+
 .prateleira__container .slick-next{
     right:-4%;
+}
+
+.quickview__container .slick-next{
+    right:1%;
 }
 
 .home .slick-next.slick-arrow{
@@ -3356,6 +3662,8 @@ ul.pages li.page-number.pgCurrent:after {
     color:#B92335;
 }
 
+.quickview__container .slick-prev:before,
+.quickview__container .slick-next:before,
 .prateleira__container .slick-next:before, 
 .prateleira__container .slick-prev:before{
     content:"";
@@ -3363,10 +3671,12 @@ ul.pages li.page-number.pgCurrent:after {
     font-family:'FontAwesome';
 }
 
+.quickview__container .slick-prev:before,
 .prateleira__container .slick-prev:before{
     content:"\f177";
 }
 
+.quickview__container .slick-next:before,
 .prateleira__container .slick-next:before{
     content:"\f178";
 }
@@ -4713,6 +5023,45 @@ table thead {
 @media only screen and (min-width: 90.063em) {}
 
 /*
+[e18.Productos relaciones recien vistos ]
+
+============================= */
+
+.relatedSeenProducts__container{
+    background-color:#ebebeb;
+    position:relative;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.relatedSeenProducts__content{
+    width:80%;
+}
+
+.relatedSeenProducts__title{
+    border-bottom:2px solid #777;
+    color:#777;
+    font-weight:bold;
+    margin:.8rem 0;
+    padding-bottom:.5rem;
+    width:80%;
+}
+
+.relatedSeenProducts__trigger{
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+/*
+[e19.Mediaquerie productos relaciones recien vistos ]
+
+============================= */
+
+/*
 [f0.Home]
 
 ============================= */
@@ -5046,18 +5395,17 @@ table thead {
 }
 
 .product__left-side {
-    width: 55%;
+    width: 59%;
 }
 
 .product__right-side {
-    width: 35%;
+    width: 33.5%;
 }
 
 .product__left-side-container,
 .product__img-container {
     position: relative;
     width: 100%;
-    height: 592px;
 }
 
 .thumbs {
@@ -5080,6 +5428,7 @@ table thead {
 .image-zoom {
     position: relative;
     display: block;
+    height:auto !important;
     min-height: 100%;
 }
 
@@ -5087,6 +5436,34 @@ table thead {
     font-family: 'Proxima Nova';
     font-size: 1.5rem;
     line-height:28px;
+}
+
+.product__related{
+    margin-top:.8rem;
+    display:flex;
+}
+
+.product__collection,
+.product__style{
+    color:#777;
+    font-family: 'Proxima Nova Bold';
+    font-size:.8rem;
+    text-transform:uppercase;
+}
+
+.product__toCollection,
+.product__productDetail a{
+    color:#2E2A25;
+    font-size:.8rem;
+    font-family: 'Proxima Nova';
+    font-weight:bold;
+    text-decoration:underline;
+    padding:0 1rem 0 .5rem;
+}
+
+.product__productDetail a{
+    margin-top:1rem;
+    padding:0;
 }
 
 .product__ean {
@@ -5140,12 +5517,12 @@ table thead {
 }
 
 .product__shop-container {
-    margin: 1rem 0;
+    margin:1rem 0;
 }
 
 .product__sku-container{
     /*     border:1px solid red; */
-    margin-top:3rem;
+    margin-top:2.7rem;
     margin-bottom:.7rem;
     width:100%;
     height:50px;
@@ -5210,7 +5587,7 @@ table thead {
 .pull-left.box-qtd {
     float:initial;
     position: relative;
-    width: 10%;
+    width: 9%;
     height: 100%;
 }
 
@@ -5218,7 +5595,7 @@ table thead {
     content:"cant.:";
     color:#2E2A25;
     font-family: 'Proxima Nova bold';
-    font-size:.8rem;
+    font-size:.75rem;
     text-transform:uppercase;
     top:-50%;
     position:absolute;
@@ -5229,8 +5606,9 @@ table thead {
     border:1px solid #ccc;
     color:#777;
     font-size:.8rem;
+    height:30px;
     margin: 0;
-    padding-left: .9rem;
+    padding-left: .8rem;
 }
 
 .bts.pull-left {
@@ -5483,6 +5861,16 @@ h4.group.Atributos-Tumi {
     margin:.5rem 0;
 }
 
+.apresentacao,
+#show,
+#include,
+#image,
+.image-zoom{
+    display:block;
+    height:auto !important;
+    position:relative;
+}
+
 /*
 [f7.Mediaquerie producto]
 
@@ -5532,15 +5920,6 @@ h4.group.Atributos-Tumi {
     .product__img--mobile {
         display:block;
         position: relative;
-    }
-    .apresentacao,
-    #show,
-    #include,
-    #image,
-    .image-zoom{
-        display:block;
-        height:100%;
-        position:relative;
     }
     .thumbs {
         display: none;
@@ -5663,11 +6042,14 @@ h4.group.Atributos-Tumi {
         height: 100%;
     }
     .qtd.pull-left {
-        height: 50px;
+        height: 35px;
     }
     .bts.pull-left .btn.btn-mais,
     .bts.pull-left .btn.btn-menos {
         padding: .72rem .3rem;
+    }
+    .product__shop-container {
+        margin: 2rem 0 1rem 0;
     }
 }
 
@@ -6354,6 +6736,8 @@ h4.group.Atributos-Tumi {
 [f18.Estatico]
 
 ============================= */
+
+.static.buscavazia{}
 
 .static__container,
 .static__content,
