@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce"
+    lang="es">
+
+<!-- head -->
+<head>
+
+    <title>Samsonite Argentina</title>
+
+    <meta name="description" content="" />
+
+    <vtex:template id="0-sar-head" />
+
+</head>
+<!-- /.fin head -->
+
+<!-- body -->
+<body>
+
+    <!-- off-canvas-wrap -->
+    <div class="off-canvas-wrap" data-offcanvas="">
+
+        <!-- inner-wrap -->
+        <div class="inner-wrap">
+
+            <vtex:template id="0-sar-header" />
+            <vtex:template id="0-sar-navigator" />
+
+            <!--overlay-->
+            <div class="main-overlay"></div>
+
+            <!-- container -->
+            <main>
+
+                <!-- main container -->
+                <section id="home" class="main-section container">
+
+                    <!-- carousel banners -->
+                    <div id="slideshow" class="row row-wide">
+
+                        <div class="small-12 medium-12 large-12 panel_disp columns">
+
+                            <div class="row">
+
+                                <!-- contenedor del carrusel -->
+                                <div class="home-slide">
+
+                                    <vtex:contentPlaceHolder id="carousel-slides" />
+
+                                </div>
+                                <!-- /.fin contenedor del carrusel -->
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- /.fin carousel banners -->
+
+                    <!-- promesas -->
+                    <div id="promesas" class="promesas-container">
+
+                        <vtex:contentPlaceHolder id="promesas" />
+
+                    </div>
+                    <!-- /.fin promesas -->
+
+                    <!-- mas populares -->
+                    <div class="row row-wide padd">
+
+                        <div class="section-title">
+
+                            <a href="#">
+                                <h2 class="line-title">
+                                    <span>BEST SELLERS</span>
+                                </h2>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div id="mas-populares" class="row row-wide">
+
+                        <div class="small-12 columns product-slides">
+
+                            <vtex:contentPlaceHolder id="carousel-mas-populares" />
+
+                        </div>
+
+                    </div>
+                    <!-- /.fin mas populares -->
+
+                    <!-- categoria title desktop -->
+                    <div class="row row-wide padd">
+
+                        <div class="section-title">
+
+                            <a href="#">
+                                <h2 class="line-title">
+                                    <span>CATEGORIAS</span>
+                                </h2>
+                            </a>
+
+                        </div>
+
+                    </div>
+                    <!-- /.fin categoria title desktop -->
+
+                    <!-- categoria banners desktop -->
+                    <div id="banners" class="row row-wide padd show-for-large-up">
+
+                        <div class="banners-parent">
+
+                            <div class="banners-container">
+
+                                <div class="bannerhijo2">
+
+                                    <vtex:contentPlaceHolder id="banner-categoria-vertical" />
+
+                                </div>
+
+                                <div class="bannerhijo1">
+
+                                    <div class="bannerhijo1top">
+
+                                        <vtex:contentPlaceHolder id="banner-categoria-superior" />
+
+                                    </div>
+
+                                    <div class="bannerhijo1bottom">
+
+                                        <div class="bannerhijo1bottom-1">
+
+                                            <vtex:contentPlaceHolder id="banner-categoria-inferior-izquierdo" />
+
+                                        </div>
+
+                                        <div class="bannerhijo1bottom-2">
+
+                                            <vtex:contentPlaceHolder id="banner-categoria-inferior-derecho" />
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- categoria banners desktop -->
+
+                    <!-- categoria banners mobile -->
+                    <div id="banners-mobile" class="row row-wide padd show-for-medium-down">
+
+                        <div class="banner-mobile__1">
+                            <vtex:contentPlaceHolder id="banner-categoria-mobile-1" />
+                        </div>
+
+                        <div class="banner-mobile__2">
+                            <vtex:contentPlaceHolder id="banner-categoria-mobile-2" />
+                        </div>
+
+                        <div class="banner-mobile__3">
+                            <vtex:contentPlaceHolder id="banner-categoria-mobile-3" />
+                        </div>
+
+                        <div class="banner-mobile__4">
+                            <vtex:contentPlaceHolder id="banner-categoria-mobile-4" />
+                        </div>
+
+                    </div>
+                    <!-- /.fin categoria banners mobile -->
+
+                    <!-- novedades -->
+                    <div class="row row-wide padd">
+
+                        <div class="section-title">
+
+                            <a href="#">
+                                <h2 class="line-title">
+                                    <span>NOVIDADES</span>
+                                </h2>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div id="novedades" class="row row-wide">
+
+                        <div class="small-12 columns product-slides">
+
+                            <vtex:contentPlaceHolder id="carousel-novedades" />
+
+                        </div>
+
+                    </div>
+                    <!-- /.fin novedades -->
+
+                </section>
+                <!-- /.fin main container -->
+
+            </main>
+            <!-- /.fin container -->
+
+            <!-- footer -->
+            <vtex:template id="0-sar-fbsdk" />
+
+            <footer>
+
+                <!-- modal agregado con exito -->
+                <div id="agregadoExito" class="reveal-modal medium" data-reveal="" aria-labelledby="agregadoExitoTitle" aria-hidden="true"
+                    role="dialog" data-reveal-ajax="true">
+
+                    <div class="agregadoExito-content">
+
+                        <div class="agregadoExito-mensaje">
+
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+
+                            <h2 id="agregadoExitoTitle">produto adicionado com sucesso</h2>
+
+                            <a href="/checkout" class="btn compra">Comprar</a>
+
+                            <a onClick="$('#agregadoExito').foundation('reveal', 'close');" class="btn continua">Continuar Comprando</a>
+
+                        </div>
+
+                        <hr />
+
+                        <div class="agregadoExito-productos">
+
+                            <h3>Itens da mesma linha</h3>
+
+                            <vtex:contentPlaceHolder id="coleccion-modal-agregado-exito" />
+
+                        </div>
+
+                    </div>
+
+                    <button class="close-reveal-modal" data-close="" aria-label="Close" type="button">
+
+                        <span aria-hidden="true">x</span>
+
+                    </button>
+
+                </div>
+                <!-- /.fin modal agregado con exito -->
+
+                <!-- internet explorer ie11 -->
+                <div id="explorerOnce" class="reveal-modal small" data-reveal="" aria-labelledby="explorerOnce" aria-hidden="true" role="dialog"
+                    data-reveal-ajax="true">
+
+                    <div class="explorerOnce-content">
+
+                        <div class="explorerOnce-mensaje">
+
+                            <h2 id="explorerOnce-title">www.samsonite.com.br</h2>
+
+                        </div>
+
+                        <hr />
+
+                        <div class="explorerOnce-texto">
+
+                            <p>Está otimizado para versões superiores ao IE11, talvez você não possa desfrutar de todos os recursos
+                                que oferecemos com esta versão do seu navegador</p>
+
+                        </div>
+
+                    </div>
+
+                    <button class="close-reveal-modal" data-close="" aria-label="Close" type="button">
+
+                        <span aria-hidden="true">x</span>
+
+                    </button>
+
+                </div>
+                <!-- /.fin internet explorer ie11-->
+
+                <!-- giftListModule -->
+                <div class="giftlistModule">
+                    <vtex.cmc:GiftListInsertSkuV2 />
+                </div>
+                <!-- /.fin giftListModule -->
+
+                <vtex:template id="0-sar-footer" />
+
+            </footer>
+            <!-- /.fin footer -->
+
+            <a class="exit-off-canvas"></a>
+
+        </div>
+        <!-- /.fin inner-wrap -->
+
+    </div>
+    <!-- /.fin off-canvas-wrap -->
+
+</body>
+<!-- /.fin body -->
+
+</html>

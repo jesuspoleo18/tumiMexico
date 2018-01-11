@@ -1,0 +1,1134 @@
+/*----------------------------inicio--------------------------------
+
+[Stylesheet - checkout ]
+
+Projecto:  Samsonite AR - 2017
+Version: 0.1
+Ultimo cambio: 11/01/17
+Asignado a:  implementacion.
+Primary use:  ecommerce. 
+
+----------------------
+
+[Colores ]
+
+#003a7c
+
+#4D87C9
+
+#E4002B
+
+#969696
+
+#f2f2f2
+
+#C92228
+
+#00aced
+
+----------------------
+
+[Tipografia ]
+
+font-family: 'Titillium Web', sans-serif;
+font-family: 'Just Another Hand', cursive;
+
+----------------------
+
+[Guia mediaqueries ]
+
+@media only screen and (max-width: 40em) { }
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { }
+@media only screen and (min-width: 90.063em) { }
+
+----------------------
+
+[Tabla de contenido ]
+
+--------- estilos generales -------------
+
+a0.Global.
+a1.Header.
+a2.Mediaquerie header.
+a3.Footer.
+a4.Mediaquerie footer.
+
+--------- estilos de controladores -------------
+
+b1.TRSFE.
+b2.Mediaquerie TRSFE.
+
+--------- estilos de componentes ---------------
+
+c1.Formulario sexo.
+c2.Mediaquerie formulario sexo.
+c3.Boton enviar a MD.
+c4.Mediaquerie boton enviar a MD.
+c5.Cupon.
+c6.Mediaquerie Cupon.
+c7.Formulario factura.
+c8.Mediaquerie formulario factura.
+
+--------- estilos de pagina --------------------
+
+d1.Webpay.
+d2.Mediaquerie webpay.
+d3.Profile.
+d4.Mediaquerie profile.
+
+-------------------------fin---------------------------------*/
+
+/* 
+
+    [a0.Global ]
+
+*/
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700');
+
+h1#cart-title {
+  display: none !important;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  background: transparent;
+  color: #2E2A25;
+  display: block;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-decoration: none;
+  vertical-align: baseline;
+  outline: 0;
+}
+
+a:hover {
+  color: #003a7c;
+  text-decoration: underline;
+}
+
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+strong,
+a,
+th,
+td,
+.busca [type=text] {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid #003a7c;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #003a7c;
+}
+
+button {
+  outline: none;
+}
+
+.btn-success{
+  color: #fff;
+  background-color: #003a7c;
+  background-image: none;
+  background-repeat: repeat-x;
+  border-color:transparent;
+  border:none;
+  border-radius:0;
+  filter: progid:none;
+  filter: progid:none;
+  text-shadow: transparent;
+}
+
+.btn-success:hover{
+  background-color: #003a7c !important;
+}
+
+/* 
+
+    [a1.Header ]
+
+*/
+.header-checkout__container {
+
+  /* border:1px solid red; */
+  border-bottom: 5px solid #003a7c;
+  margin-bottom: 3rem;
+  display: flex;
+  aling-items: center;
+  justify-content: center;
+}
+
+.header-checkout__content {
+
+  /*     border:1px solid blue; */
+  padding: .8rem 0;
+  width: 90%;
+  display: flex;
+  align-items:center;
+}
+
+.header-checkout__content h2 {
+  color: #003a7c;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin: 0;
+  display:flex;
+  align-items:center;
+}
+
+.header-checkout__content--compraSeguro h2{
+  margin-left:.5rem;
+}
+
+.header-checkout__content--logo,
+.header-checkout__content--mensaje,
+.header-checkout__content--compraSeguro {
+
+  /*     border:1px solid blue; */
+  flex: 1;
+}
+
+.header-checkout__content--logo {
+  flex: 0.4;
+}
+
+.header-checkout__content--mensaje {
+  text-align: left;
+  padding-left:2rem;
+}
+
+.header-checkout__content--mensaje h2{
+  font-size:1.5rem;
+}
+
+.header-checkout__content--mensaje h2:before {
+  content: "\f07a";
+  color: #003a7c;
+  font-size: 1.8rem;
+  font-family: 'FontAwesome';
+  margin-right: 1rem;
+}
+
+.header-checkout__content--compraSeguro {
+  text-align: right;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+
+
+th {
+  color: #003a7c;
+  text-transform: uppercase;
+}
+
+thead tr {
+  /*   border-bottom: 1px solid rgba(157, 97, 103, 0.5); */
+}
+
+.step,
+.cart {
+  /*   border: 2px solid rgba(157, 97, 103, 0.3); */
+}
+
+tfoot .monetary {
+  font-size: .9rem !important;
+}
+
+.more.link-choose-more-products {
+  color: #7F8C8D;
+  background: #ECF0F1;
+  font-size: .6rem;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding: .3rem 0;
+  width: 100%;
+}
+
+/* 
+
+[a2.Mediaquerie header. ]
+
+*/
+
+/*small*/
+@media only screen and (max-width:40em) {
+  .header-checkout__content--logo,
+  .header-checkout__content--mensaje,
+  .header-checkout__content--compraSeguro {
+
+    /*     border:1px solid blue; */
+    flex: initial;
+  }
+
+  .header-checkout__content--mensaje{
+    display:none;
+  }
+
+  .header-checkout__content {
+    flex-flow: wrap;
+  }
+
+  .header-checkout__content--logo {
+    /*     border:1px solid red; */
+    flex: initial;
+    order: -3;
+    width: 100%;
+    display:flex;
+    justify-content:center;
+  }
+
+  .header-checkout__content--logo img {
+    max-height: 40px;
+  }
+
+  .header-checkout__content--mensaje {
+    margin-top: 1rem;
+    text-align: center;
+    order: -1;
+    width: 100%;
+  }
+
+  .header-checkout__content--compraSeguro {
+  /*     border:1px solid red; */
+    order: -2;
+    padding-left:1rem;
+    width: 100%;
+    display:flex;
+    justify-content:center;
+  }
+
+  .header-checkout__content--compraSeguro img{
+    max-height:30px;
+  }
+
+}
+
+/*medium*/
+@media only screen and (min-width:40.063em) and (max-width:64em) {
+
+  .header-checkout__content--mensaje{
+    flex:.7;
+  }
+
+  .header-checkout__content--compraSeguro {
+    /*     border:1px solid red; */
+    flex:.5;
+  }
+
+}
+
+/*xlarge*/
+@media only screen and (min-width:90.063em) {
+
+  .header-checkout__content{
+    width:70%;
+  }
+}
+
+/* 
+
+    [a3.Footer ]
+
+*/
+#checkout-confirmation-footer{
+  display:block;
+  position:relative;
+  width:100%;
+}
+
+.footer-checkout-container {
+
+  /*     border:1px solid blue; */
+  background: #eee;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.footer-checkout-content {
+
+  /*     border:1px solid Red; */
+  width:90%;
+}
+
+.footer-checkout-content--derechos{
+  /*   border:1px solid red; */
+  display:flex;
+  align-items:center;
+}
+
+.footer-checkout-content--derechos img{
+  max-height:30px;
+  margin-right:1rem;
+  padding:.5rem 0;
+}
+
+.footer-checkout-content--derechos h4{
+  color:#003a7c;
+  margin:0;
+}
+
+.footer-checkout-realizado-container{
+  /*   border:1px solid red; */
+  background-color:#003a7c;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.footer-checkout-content--realizado{
+  /*     border:1px solid red; */
+  padding:.5rem 0;
+  width:90%;
+  display:flex;
+}
+
+.footer-checkout-content--realizado p{
+  color:white;
+  margin:0;
+}
+
+.footer-checkout-content--realizado a:nth-child(2){
+  margin:0 1rem;
+}
+
+/* 
+
+[a4.Mediaquerie footer ]
+
+*/
+
+/*small*/
+@media only screen and (max-width:40em) {
+
+   .footer-checkout-content--derechos{
+     padding:.5rem 0;
+     flex-flow:wrap;
+     justify-content:center;
+   }
+
+   .footer-checkout-content--derechos img{
+     padding:0;
+   }
+
+   .footer-checkout-content--realizado{
+     flex-flow:wrap;
+     justify-content:center;
+   }
+
+   .footer-checkout-content--realizado a:nth-child(2){
+     margin-left:0;
+   }
+
+   .footer-checkout-content--realizado p{
+     margin-bottom:.5rem;
+   }
+}
+
+/*medium*/
+@media only screen and (min-width:40.063em) and (max-width:64em) {
+}
+
+/*xlarge*/
+@media only screen and (min-width:90.063em) {
+  
+  .footer-checkout-content,
+  .footer-checkout-content--realizado{
+    width:70%;
+  }
+
+}
+
+/* 
+
+[b1.TRSFE ]
+
+*/
+a#payment-group-custom201PaymentGroupPaymentGroup {
+  display: none;
+}
+
+/* 
+
+[b2.Mediaquerie TRSFE ]
+
+*/
+
+/* 
+
+[c1.Formulario sexo ]
+
+*/
+
+.client-first-name,
+.client-last-name {
+  display: block !important;
+  margin-bottom: 1rem;
+  position: relative !important;
+}
+
+.sexForm__container {
+
+  /* border:1px solid red; */
+  display: block;    /*     margin-bottom:1rem; */
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;    /* display:none; */
+}
+
+.sexForm__container .newsletter__femenino,
+.sexForm__container .newsletter__masculino {
+
+  /*  border:1px solid blue; */
+}
+
+.sexForm__container .newsletter__masculino {
+  margin-left: 1rem;
+}
+
+.sexForm__container [type="checkbox"] {
+
+  /*   border: 1px solid #dfdfdf;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    height: 20px;
+    -webkit-appearance: none;
+    appearance:none;
+    max-width:30px;
+    position:relative; */
+}
+
+.sexForm__container [type="checkbox"]:checked.visto-femenino:before {
+  background-color: #003a7c;
+  border-radius: 50%;
+  color: white;
+  content: "";
+  font-family: 'FontAwesome';
+  font-size: .5rem;
+  text-align: center;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sexForm__container [type="checkbox"]:checked.visto-masculino:before {
+  background-color: #003a7c;
+  border-radius: 50%;
+  color: white;
+  content: "";
+  font-family: 'FontAwesome';
+  font-size: .5rem;
+  text-align: center;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sexForm__container .newsletter__femenino,
+.sexForm__container .newsletter__masculino {
+
+  /* padding:0 .8rem; */
+  display: flex;    /* justify-content:center; */
+  flex-flow: wrap;
+  align-items: center;
+}
+
+.sexForm__container .newsletter__femenino label,
+.sexForm__container .newsletter__masculino label {
+  color: #7F8C8D;
+  font-size: .6rem;
+  display: block;
+  margin-top: .3rem;
+  margin-left: .3rem;
+  position: relative;
+  text-transform: uppercase;    /*     width:100%; */
+}
+
+.sexForm__container .newsletter__femenino {
+}
+
+.sexForm__container .newsletter__masculino {
+}
+
+#errorGender {
+  color: red;
+  margin: 0;
+  margin: .5rem 0;
+}
+
+/* 
+
+[c2.Mediaquerie formulario sexo ]
+
+*/
+
+/* 
+
+[c3.Boton enviar a MD ]
+
+*/
+
+.submit.btn-submit-wrapper {
+
+  /*   border:1px solid red; */
+  display: block;
+  min-height: 50px;
+  position: relative;
+}
+
+#go-to-payment,
+#go-to-shipping {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.sp_checkout {
+  background-color: transparent;
+  border-radius: 0;
+  border: 0;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute !important;
+  top: 0;
+  width: 100%;
+  z-index: 9999 !important;
+}
+
+#is-corporate-client {
+  display: none;
+}
+
+/* 
+
+[c4.Mediaquerie boton enviar a MD ]
+
+*/
+
+/* 
+
+[c5.Cupon ]
+
+*/
+
+.coupon.summary-coupon {
+  border: 1px solid #003a7c;
+  padding: 1rem;
+}
+
+#cart-coupon-add {
+  color: white;
+  background-color: #003a7c;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  font-family: 'Titillium Web', sans-serif;
+  text-transform: uppercase;
+  text-shadow: none;
+}
+
+/* 
+
+[c6.Mediaquerie Cupon ]
+
+*/
+
+
+/* 
+
+[c7.Formulario factura ]
+
+*/
+
+.wrapFormFactura{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+#formCompraFactura{
+  /*   border:1px solid red; */
+  height:100%;
+  padding: 0 .5rem;
+  position:relative;
+  width:70%;
+  display:flex;
+  flex-flow:wrap;
+  justify-content:space-between;
+}
+
+.factura-title {
+    border-bottom: 1px solid #eee;
+    color:#003a7c;
+    font-size: 1.5rem;
+    font-weight:bold;
+    padding-bottom: 9px;
+    margin: 50px -9px 40px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+#formCompraFactura span {
+  color: #999999;
+  display: block;
+  font-size: 13px;
+}
+
+#formCompraFactura input {
+    background-color: #eee;
+    box-shadow: none;
+    border: none;
+    border-radius:0;
+    font-size: .8rem;
+    line-height: 25px;
+    padding: 0 0 0 .5rem;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+#formCompraFactura #txtRegion{
+  width:20%;
+}
+
+#formCompraFactura #txtRazonSocial{
+  width:100%;
+}
+
+#formCompraFactura #spnErrorRut {
+  color: #d20606;
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+
+#formCompraFactura .rut span {
+  text-transform: uppercase;
+}
+
+#btnFacturaOrden {
+  color: #fff;
+  font-size: 0.8rem;
+  text-shadow: none;
+  background-color: #003a7c;
+  background-image: none;
+  border-radius:  0;
+  border: 2px #003a7c solid;
+  float: right;
+}
+
+#btnLimpiar {
+  color: #fff;
+  font-size: 0.8rem;
+  text-shadow: none;
+  background-color: #8b8b8b;
+  background-image: none;
+  border-radius: 0;
+  border: 2px #8b8b8b solid;
+}
+
+#divFormCompraFactura span.successFactura{
+  color: #63a90a;
+  font-weight: bold;
+  margin-left: .7rem;
+}
+
+.factura-data .button.golden input {
+  margin: 0;
+}
+
+fieldset.box-client-info-pj {
+  display: none;
+}
+
+
+/** Ocultar transferencia electrÃƒÂ³nica **/
+a#payment-group-custom201PaymentGroupPaymentGroup {
+  display: none;
+}
+
+
+
+/**-----------factura----------------**/
+.factura-column-one {
+    width: 30%;
+    float: left;
+}
+
+.factura-column-two {
+    width: 30%;
+    float: left;
+    padding-left: 25px;
+}
+
+.factura-column-three {
+    width: 30%;
+    float: left;
+    padding-left: 25px;
+}
+
+.giro {
+    width: 45%;
+    float: left;
+    padding-left: 25px;
+}
+
+.razonSocial {
+    width: 100%;
+    float: left;
+}
+
+.numero {
+    width: 39%;
+    float: left;
+    padding-right: 1rem;
+}
+
+input#txtNumero {
+/*     width: 100%; */
+}
+
+input#txtNumeroDepto {
+/*     width: 118%; */
+}
+
+select#cmbRegion {
+    width: 100%;
+}
+
+select#cmbComuna {
+    width: 100%;
+}
+
+#btnFacturaOrden {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#btnLimpiar {
+  width: 100%;
+  padding: 10px;
+}
+
+#formCompraFactura #spnErrorRazonSocial {
+  color: #d20606;
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+#formCompraFactura #spnErrorGiro {
+  color: #d20606;
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+#formCompraFactura #spnErrorNombreFantasia {
+  color: #d20606;
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+#formCompraFactura #spnErrorDireccion {
+  color: #d20606;
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+#formCompraFactura #spnErrorNumero {
+  color: #d20606;
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+#formCompraFactura #spnErrorRegion {
+  color: #d20606;
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+#formCompraFactura #spnErrorComuna {
+  color: #d20606;
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+
+#formCompraFactura #spnErrorNombreContacto {
+  color: #d20606;
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+#formCompraFactura #spnErrorTelefono {
+  color: #d20606;
+  font-size: .7rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+}
+a#order-continue-shopping {
+    color: #fff;
+    font-size: 0.8rem;
+    text-shadow: none;
+    background-color: #63a90a;
+    background-image: none;
+    border-radius: 0;
+    border: 2px #63a90a solid;
+    float: right;
+    width: 20%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.divFormCompraFactura-success span.success {
+    font-size: .8rem;
+    font-weight: bold;
+    color: #489ad4;
+    text-transform: uppercase;
+}
+
+.Factura {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #4798cf;
+    text-align: center;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+@media screen and (max-width: 39.9375em) {
+
+.factura-title {
+    font-size: 1rem;
+    padding-bottom: 9px;
+    margin: 50px -9px 40px;
+    border-bottom: 1px solid #eee;
+    color: #999;
+}
+.factura-column-one {
+    width: 100%;
+}
+
+.factura-column-two {
+    width: 100%;
+    padding-left: 0;
+}
+
+.factura-column-three {
+    width: 100%;
+    padding-left: 0;
+}
+
+a#order-continue-shopping {
+  margin-top:20px;
+  width: 140px;
+  padding: 5px;
+}
+#formCompraFactura #spnErrorRazonSocial{
+    font-size: .6rem;
+}
+#formCompraFactura #spnErrorGiro {
+    font-size: .6rem;
+}
+#formCompraFactura #spnErrorNombreFantasia {
+    font-size: .6rem;
+}
+#formCompraFactura #spnErrorDireccion {
+    font-size: .6rem;
+}
+#formCompraFactura #spnErrorNumero {
+    font-size: .6rem;
+}
+#formCompraFactura #spnErrorRegion {
+    font-size: .6rem;
+}
+#formCompraFactura #spnErrorComuna {
+    font-size: .6rem;
+}
+#formCompraFactura #spnErrorNombreContacto {
+    font-size: .6rem;
+}
+#formCompraFactura #spnErrorTelefono {
+    font-size: .6rem;
+}
+  
+  #divFormCompraFactura{
+  padding-top:60px;
+  padding-left:10px;
+}
+  .divFormCompraFactura-success span.success {
+    font-size: .6rem;
+    font-weight: bold;
+    color: #489ad4;
+    text-transform: uppercase;
+    position: absolute;
+}
+}
+
+/* 
+
+[c8.Mediaquerie formulario factura ]
+
+*/
+
+
+/* 
+
+[d1.Webpay ]
+
+*/
+
+.payment-group-list-btn #payment-group-webpayPaymentGroup {
+  background-image: url('/arquivos/tarjetas_webpay.png');
+    background-repeat: no-repeat;
+    background-position: 0 6px;
+    color: transparent;
+}
+
+.orderform-template-holder .webpayPaymentGroup {
+    background-image: url('/arquivos/logo_webpay_cyd.png');
+    background-repeat: no-repeat;
+    color: transparent;
+    height: 280px;
+}
+
+
+
+/* 
+
+    [d2.Mediaquerie webpay ]
+
+*/
+
+/* 
+
+    [d3.Profile ]
+
+*/
+
+#orderform-title{
+  
+  color:#003a7c;
+  font-weight:bold;
+  font-size:1.4rem;
+  text-transform:uppercase;
+
+}
+
+.container-order-form,
+.container-cart{
+  width:90%;
+}
+
+#orderform-minicart-to-cart{
+  background-color: #003a7c;
+  color:white;
+  text-shadow:none;
+  padding:0 .5rem;
+}
+
+#orderform-minicart-to-cart:before{
+  content:"\f177";
+  font-family:'FontAwesome';
+  margin-right:.3rem;
+}
+
+/* 
+
+    [d4.Mediaquerie profile ]
+
+*/
+
+/* small */
+
+@media only screen and (max-width: 40em) { }
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { }
+
+/* xlarge */
+@media only screen and (min-width: 90.063em) {
+  
+  .container-order-form{
+    width:70%;
+  }
+
+}
+
+/* 
+
+    [d5.Profile, shipping y payment ]
+
+*/
+
+.accordion-toggle.collapsed.accordion-toggle-active .icon-user,
+.accordion-toggle.collapsed.accordion-toggle-active .icon-home,
+.accordion-toggle.collapsed.accordion-toggle-active .icon-credit-card,
+.accordion-toggle.collapsed.accordion-toggle-active span{
+  color:#003a7c;
+  font-size:1rem;
+  text-transform:uppercase;
+}
+
+.step.active, .cart.active, .totalizers.active{
+ border-color:#003a7c;
+}
+
+/* 
+
+    [d6.Mediaquerie profile, shipping y payment ]
+
+*/
+
+/* small */
+
+@media only screen and (max-width: 40em) { }
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { }
+
+/* xlarge */
+@media only screen and (min-width: 90.063em) {}

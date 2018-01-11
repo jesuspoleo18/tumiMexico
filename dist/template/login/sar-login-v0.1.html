@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="es">
+
+    <!-- head -->
+
+    <head>
+        
+        <!-- title -->
+
+        <title>Login</title>
+
+        <!-- vtex meta tags -->
+
+        <vtex:metaTags/>
+
+        <!-- sub template head -->
+
+        <vtex:template id="0-sbr-head" />
+
+    </head> <!-- /.fin head -->
+    
+    <!-- body -->
+
+    <body>
+        
+        <!-- off-canvas-wrap -->
+
+        <div class="off-canvas-wrap" data-offcanvas="">
+
+            <!-- inner-wrap -->
+
+            <div class="inner-wrap">
+
+                <vtex:template id="0-sbr-header" />
+
+                <vtex:template id="0-sbr-navigator" />
+
+                <!-- container -->
+
+                <main>
+
+                    <!-- login container -->
+
+                    <section class="login-container">
+                        
+                        <!-- login content -->
+
+                        <div class="login-content">
+                            
+                            <!-- contenido login -->
+
+                            <section class="login-content__contenido">
+                                
+                                <vtex.cmc:userLogin/>
+
+                            </section> <!-- /.fin contenido login -->
+                            
+                        </div> <!-- /.fin login content -->
+
+                    </section> <!-- /.fin login container -->
+
+                </main> <!-- /.fin container -->
+
+                <!-- footer -->
+
+                <footer>
+                
+                    <vtex:template id="0-sbr-footer" />
+
+                </footer> <!-- /.fin footer -->
+
+                <a class="exit-off-canvas"></a>
+
+            </div> <!-- /.fin inner-wrap -->
+
+        </div> <!-- /.fin off-canvas-wrap -->
+
+    </body> <!-- /.fin body -->
+
+</html>
