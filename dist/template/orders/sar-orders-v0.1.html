@@ -4,9 +4,12 @@
     lang="es">
 
 <!-- head -->
+
 <head>
 
-    <title>Samsonite Argentina | Login</title>
+    <title>Samsonite Argentina</title>
+
+    <meta name="description" content="" />
 
     <vtex:template id="0-sar-head" />
 
@@ -32,28 +35,32 @@
             <!-- container -->
             <main>
 
-                <!-- login container -->
+                <!-- orders container -->
                 
-                <section class="login-container">
+                <section class="orders-container">
                 
-                    <!-- login content -->
+                    <!-- orders content -->
                 
-                    <div class="login-content">
+                    <div class="orders-content">
                 
-                        <!-- contenido login -->
+                        <!-- contenido orders -->
                 
-                        <section class="login-content__contenido">
+                        <section class="orders-content__contenido">
                 
-                            <vtex.cmc:userLogin/>
+                            <div class="orders__data">
+                
+                                <vtex.cmc:orderList/>
+                
+                            </div>
                 
                         </section>
-                        <!-- /.fin contenido login -->
+                        <!-- /.fin contenido orders -->
                 
                     </div>
-                    <!-- /.fin login content -->
+                    <!-- /.fin orders content -->
                 
                 </section>
-                <!-- /.fin login container -->
+                <!-- /.fin orders container -->
                 
             </main>
             <!-- /.fin container -->

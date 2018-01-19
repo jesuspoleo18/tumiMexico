@@ -665,7 +665,7 @@ var confiGenerales = {
             $NoEmptyBag = $(".middle-container__content-popCart .emptyBag.active"),
             $cartNumber = $(".middle-container__content-cart"),
             $cartFooter = $(".middle-container__content-popCart .cartFooter"),
-            $monto = $(".middle-container__content-popCart .vtexsc-text").text().replace('R$', ''),
+            $monto = $(".middle-container__content-popCart .vtexsc-text").text().replace('$', ''),
             $montoValor = parseFloat($monto);
 
         // console.log($montoValor);
