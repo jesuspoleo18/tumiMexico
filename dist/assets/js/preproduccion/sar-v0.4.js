@@ -668,7 +668,7 @@ var confiGenerales = {
             $monto = $(".middle-container__content-popCart .vtexsc-text").text().replace('$', ''),
             $montoValor = parseFloat($monto);
 
-        console.log($montoValor);
+        // console.log($montoValor);
 
         if ($montoValor == 0) {
 
