@@ -20,7 +20,7 @@ var carrito = {
 		carrito.cupon();
 	},
 
-	FormatoDecimales: function(seletor){
+	formatoDecimales: function(seletor){
                 
         $(seletor).each(function() {
 
@@ -44,11 +44,11 @@ var carrito = {
 
         var $ajaxStopElems = '.total-selling-price, .monetary, .new-product-price, .sla-value, .sight, .description .price.pull-right, .shipping-option-item-value, .delivery-windows .radio span, .old-product-price.muted';
 
-        carrito.FormatoDecimales($ajaxStopElems);
+        carrito.formatoDecimales($ajaxStopElems);
         porcentaje();
 
         $(document).ajaxStop(function(){
-            carrito.FormatoDecimales($ajaxStopElems);
+            carrito.formatoDecimales($ajaxStopElems);
         });
 
     },
@@ -120,7 +120,7 @@ var carrito = {
 		        crossDomain: true,
 		        data: JSON.stringify(datos),
 		        type: 'POST',
-		        url: '//api.vtexcrm.com.br/lojasamsonite/dataentities/SP/documents',
+		        url: '//api.vtexcrm.com.br/samsonitear/dataentities/SP/documents',
 		        
 		        success: function(data){
 		            

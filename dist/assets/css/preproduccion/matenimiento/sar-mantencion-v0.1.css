@@ -2,9 +2,9 @@
 
 [Stylesheet - mantenimiento ]
 
-Projecto:  Samsonite AR - 2017
+Projecto:  SamsoniteBR - 2017
 Version: 0.1
-Ultimo cambio:  11/01/17 19:44 pm | J
+Ultimo cambio: 19/01/17 17:12pm | J
 Asignado a:  mantenimiento.
 Primary use:  ecommerce. 
 
@@ -111,6 +111,8 @@ c20.Mediaquerie flags.
 c21.Infinity scroll.
 c22.Mediaquerie infinity scroll.
 c23.Neo assist
+c24.SweetAlert
+c25.Mediaquerie sweetAlert
 
 --------- estilos de pagina -------------
 
@@ -171,6 +173,7 @@ header .middle-container__content-popCart .cartSkuActions .cartSkuRemove a:after
 header .middle-container__content-popCart .cartSkuActions .cartSkuRemove a:before {
     right: -20%;
 }
+
 
 /*
 
@@ -233,28 +236,32 @@ header .middle-container__content-popCart .cartSkuActions .cartSkuRemove a:befor
         position: relative;
     }
     .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
-		top: 117px!important;
-		width: 90% !important;
-	}
+        top: 117px!important;
+        width: 90% !important;
+    }
 }
+
 
 /* medium */
+
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
-	.ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
-		top: 98px!important;
-		width: 80% !important;
-	}
+    .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
+        top: 98px!important;
+        width: 80% !important;
+    }
 }
 
+
 /* xlarge */
+
 @media only screen and (min-width: 90.063em) {
-	.navigation-content__menu {
+    .navigation-content__menu {
         width: 100%;
     }
-	.ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
-		top: 71px!important;
-		width: 49% !important;
-	}
+    .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
+        top: 71px!important;
+        width: 49% !important;
+    }
 }
 
 
@@ -285,6 +292,7 @@ header .middle-container__content-popCart .cartSkuActions .cartSkuRemove a:befor
 .producto-prateleira__info .producto-prateleira__info--nombre .info-nombre {
     text-transform: uppercase;
 }
+
 
 /*
 
@@ -498,6 +506,31 @@ ul.pages li {
 
 */
 
+#megamenu-equipaje,
+#megamenu-mochilas,
+#megamenu-maletines,
+#megamenu-accesorios,
+#megamenu-mujer,
+#megamenu-ofertas {
+    display: none
+}
+
+#megamenu-equipaje.display,
+#megamenu-mochilas.display,
+#megamenu-maletines.display,
+#megamenu-accesorios.display,
+#megamenu-mujer.display,
+#megamenu-ofertas.display {
+    border-top: 3px solid #003a7c;
+    padding-top: .8rem;
+    -webkit-box-shadow: 0px 5px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 2px 0px rgba(0, 0, 0, 0.2);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
 
 /*
 
@@ -708,21 +741,60 @@ img,
 
 @media only screen and (min-width: 90.063em) {}
 
+
 /*
 
 	[c23.Neo assist]
 
 */
 
-.home #neoassist{
+.home #neoassist {
     display: none;
 }
- 
+
+
+/*
+
+	[c24.SweetAlert]
+
+*/
+
+.swal2-popup .swal2-title {
+    font-size: 1.5rem !important;
+}
+
+
+/*
+
+	[c25.Mediaquerie sweetAlert]
+
+*/
+
+
+/* small */
+
+@media only screen and (max-width: 40em) {}
+
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
+
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {}
+
+
 /*
 
 	[d1.Home]
 
 */
+
+.home {
+    /* display: none; */
+}
 
 #banners-mobile a img {
     width: 100%;
@@ -743,11 +815,11 @@ img,
 */
 
 .basica-tallasColores--colores:before {
-    content: "Cores dispon\00EDveis";
+    content: "Colores disponibles";
 }
 
 .basica-tallasColores--tallas:before {
-    content: "Tamanhos dispon\00EDveis";
+    content: "Tama\00F1os disponibles";
 }
 
 

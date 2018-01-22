@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce">
+
+<head>
+
+    <!-- title -->
+
+    <title> <vtex.cmc:productPageTitle /> </title>
+
+    <!-- vtex meta tags -->
+
+    <vtex:metaTags/>
+
+    <!-- sub template head -->
+
+    <vtex:template id="0-sar-head" />
+
+</head>
+
+<body class="quickview-container">
+    <!--<vtex:template id="3-secret-fbsdk" />-->
+
+    <!-- quickview-container__content -->
+    <div class="quickview-container__content">
+
+        <!-- producto imagen -->
+        <div class="quickview-container__imagen">
+
+            <div class="quickview-container__imagen--content">
+
+                <vtex.cmc:ProductImage zoom="off" />
+
+                <vtex.cmc:HightLight/>
+
+            </div>
+
+        </div>
+        <!-- /.fin producto imagen -->
+
+        <!-- producto informacion -->
+        <div class="quickview-container__informacion">
+
+            <div class="quickview-container__informacion--basica">
+
+                <!-- informacion basica content -->
+                <div class="quickview-container__informacion--basica-content">
+
+                    <!-- nombre -->
+                    <div class="basica-nombre">
+
+                        <vtex.cmc:productName />
+
+                    </div>
+                    <!-- /.fin nombre -->
+
+                    <!-- ean -->
+                    <div class="basica-ean">
+
+                        <h6>Cod:</h6>
+                        <div class="ean"></div>
+
+                    </div>
+                    <!-- /.fin ean -->
+
+                    <!-- descripcion larga -->
+
+                    <div class="basica-descripcion">
+
+                        <div class="descripcion-larga"></div>
+
+                    </div>
+                    <!-- /.fin descripcion larga -->
+
+                    <!-- precio -->
+
+                    <div class="basica-precio">
+
+                        <vtex.cmc:skuPrice/>
+
+                    </div>
+                    <!-- /.fin precio -->
+
+                </div>
+                <!-- /.fin informacion basica content -->
+
+            </div>
+
+            <!-- informacion compra -->
+
+            <div class="producto-container__informacion--compra">
+
+                <!-- informacion compra content -->
+
+                <div class="producto-container__informacion--compra-content">
+
+                    <div class="compra-qtd-btn">
+
+                        <vtex.cmc:BuyButton />
+
+                        <div class="despacho">
+
+                            <a class="despacho-trigger" href="#">
+
+                                <h6>Simula tu
+                                    <br/>despacho:</h6>
+
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="compra-wishlist">
+
+                        <div class="compra-wishlist-content">
+
+                            <vtex.cmc:GiftListInsertSkuV2 />
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.fin informacion compra content -->
+
+            </div>
+            <!-- /.fin informacion compra -->
+
+        </div>
+        <!-- /.fin producto informacion -->
+
+    </div>
+    <!-- /.fin quickview-container__content -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightcase/2.4.0/js/lightcase.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+    <script src="/files/sar.js" type="text/javascript"></script>
+
+    <vtex.cmc:productQuickView/>
+
+</body>
+
+</html>

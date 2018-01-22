@@ -4,7 +4,7 @@
 
 Projecto:  SamsoniteBR  - 2018
 Version:  0.1
-Ultimo cambio: 11/01/18.
+Ultimo cambio: 22/01/18.
 Asignado a:  jesus poleo.
 Primary use:  Ecommerce. 
 
@@ -335,7 +335,7 @@ var confiGenerales = {
                 console.log(product);
 
                 $.ajax({
-                    url: "https://lojasamsonite.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + producto.id + "",
+                    url: "https://samsonitear.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + producto.id + "",
                     dataType: 'json',
                     type: 'GET',
                     crossDomain: true,
@@ -378,8 +378,8 @@ var confiGenerales = {
                     vtexjs.checkout.getOrderForm().done(function (e) {
 
                         vtexjs.checkout.addToCart([item], null, 1).done(function (orderForm) {
-                            // window.parent.confiGenerales.refreshMiniCart();
-                            $iframeBuySuccess.show();
+                            window.parent.confiGenerales.refreshMiniCart();
+                            // $iframeBuySuccess.show();
                         });
 
                     });
@@ -486,6 +486,27 @@ var confiGenerales = {
         vtexjs.checkout.getOrderForm();
         $("#TB_overlay", document.body).remove();
         $("#TB_window", document.body).remove();
+
+        var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+        $.when.apply($, $.map(files, function (file) {
+            return $.getScript(files);
+        }))
+            .then(function () {
+                swal({
+                    title: 'Producto Agregado',
+                    type: 'success',
+                    showCancelButton: true,
+                    confirmButtonColor: '#003a7c',
+                    cancelButtonColor: '#bbb',
+                    cancelButtonText: 'Seguir Comprando',
+                    confirmButtonText: 'Ir a Comprar'
+                }).then(function () {
+                    window.location.href = '/checkout/';
+                });
+            }, function err(jqxhr, textStatus, errorThrown) {
+                console.log(textStatus);
+            });
 
     },
 
@@ -722,27 +743,44 @@ var confiGenerales = {
 
     },
 
+    // stickyNav: function (el) {
+
+    //     $("#mobile-nav").removeClass('sticky');
+
+    //     $(window).scroll(function () {
+
+    //         if ($(this).scrollTop() > 1) {
+
+    //             $(el).addClass('sticky');
+    //             $(el).removeClass('fixed');
+    //             $("#mobile-nav").addClass('sticky');
+
+    //         } else {
+
+    //             $(el).removeClass("sticky");
+    //             $("#mobile-nav").removeClass('fixed sticky');
+
+    //         }
+
+    //     });
+
+    // },
+
     stickyNav: function (el) {
 
-        $("#mobile-nav").removeClass('sticky');
+        var files = ["https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.js"];
 
-        $(window).scroll(function () {
+        $.when.apply($, $.map(files, function (file) {
+            return $.getScript(files);
+        })).then(function () {
 
-            if ($(this).scrollTop() > 1) {
+            var myElement = document.getElementById('headRoomAllNav'),
+                headroom = new Headroom(myElement);
+            headroom.init(); 
 
-                $(el).addClass('sticky');
-                $(el).removeClass('fixed');
-                $("#mobile-nav").addClass('sticky');
-
-            } else {
-
-                $(el).removeClass("sticky");
-                $("#mobile-nav").removeClass('fixed sticky');
-
-            }
-
+        }, function err(jqxhr, textStatus, errorThrown) {
+            console.log(textStatus);
         });
-
     },
 
     megaMenu: function (exit) {
@@ -906,17 +944,53 @@ var confiGenerales = {
                 crossDomain: true,
                 data: JSON.stringify(datos),
                 type: 'POST',
-                url: '//api.vtexcrm.com.br/lojasamsonite/dataentities/SN/documents',
+                url: '//api.vtexcrm.com.br/samsonitear/dataentities/SN/documents',
 
                 success: function (data) {
 
-                    $('#NewsAprob').foundation('reveal', 'open');
+                    // $('#NewsAprob').foundation('reveal', 'open');
+                    var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                    $.when.apply($, $.map(files, function (file) {
+                        return $.getScript(files);
+                    }))
+                    .then(function () {
+                        swal({
+                            title: 'Su información ha sido envíada con éxito.',
+                            type: 'success',
+                            // showCancelButton: true,
+                            confirmButtonColor: '#003a7c',
+                            // cancelButtonColor: '#bbb',
+                            // cancelButtonText: 'OK',
+                            confirmButtonText: 'OK'
+                        });
+                    }, function err(jqxhr, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    });
                     clearData();
 
                 },
                 error: function (data) {
 
-                    $('#NewsError').foundation('reveal', 'open');
+                    // $('#NewsError').foundation('reveal', 'open');
+                    var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                    $.when.apply($, $.map(files, function (file) {
+                        return $.getScript(files);
+                    }))
+                        .then(function () {
+                            swal({
+                                title: 'Verifique que la información ingresada es la correcta.',
+                                type: 'error',
+                                // showCancelButton: true,
+                                confirmButtonColor: '#E4002B',
+                                // cancelButtonColor: '#bbb',
+                                // cancelButtonText: 'OK',
+                                confirmButtonText: 'OK'
+                            });
+                        }, function err(jqxhr, textStatus, errorThrown) {
+                            console.log(textStatus);
+                        });
                 }
             });
 
@@ -959,7 +1033,7 @@ var confiGenerales = {
                 crossDomain: true,
                 data: JSON.stringify(datos),
                 type: 'POST',
-                url: '//api.vtexcrm.com.br/lojasamsonite/dataentities/SC/documents',
+                url: '//api.vtexcrm.com.br/samsonitear/dataentities/SC/documents',
 
                 success: function (data) {
 
@@ -1112,7 +1186,7 @@ var confiGenerales = {
             // $("#explorerOnce .close-reveal-modal").on("click", function(){
             //     $("#explorerOnce").foundation("reveal", "close");
             // });
-            alert("www.lojasamsonite, está optimizado para versiones superiores a IE11, es posible que no pueda disfrutar de todas las funcionalidades que ofrecemos con esta versión de su navegador.")
+            alert("www.samsonitear, está optimizado para versiones superiores a IE11, es posible que no pueda disfrutar de todas las funcionalidades que ofrecemos con esta versión de su navegador.")
         }
 
     }
@@ -1341,7 +1415,7 @@ var producto = {
 
     init: function () {
 
-        var $producto = $("body.producto");
+        var $producto = $("body.produto");
 
         if ($producto.length) {
 
@@ -1356,6 +1430,7 @@ var producto = {
             producto.anchorDescripcion();
             producto.tallasColores();
             producto.formatoPrecioFichaProductoReplace(".skuBestPrice");
+            confiGenerales.mainLazyLoad();
             // setInterval(producto.traducciones, 500);
             console.log("controles de producto");
         }
@@ -1612,7 +1687,7 @@ var producto = {
         });
 
         $.ajax({
-            url: "https://lojasamsonite.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + producto.id + "",
+            url: "https://samsonitear.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + producto.id + "",
             dataType: 'json',
             type: 'GET',
             crossDomain: true,
@@ -1677,7 +1752,7 @@ var producto = {
 
             } else if (producto.marca == 'Xtrem') {
 
-                var $templatesmx = '<div class="logo-marca"><img src=/arquivos/xtrem-logo.png></div>';
+                var $templatesmx = '<div class="logo-marca"><img src=/arquivos/logo-xtrem.png></div>';
 
                 $location.prepend($templatesmx);
                 $locationMobile.html($templatesmx);
