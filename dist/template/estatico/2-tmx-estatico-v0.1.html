@@ -7,7 +7,6 @@
 <head>
 
     <title> <vtex.cmc:searchTitle /> </title>
-    <meta name="description" content="" />
     <vtex:template id="2-tmx-head" />
 
 </head>
@@ -65,13 +64,57 @@
                         </div>
                         <!-- /.end error text content -->
 
-                    </div> <!-- /.end static options -->
+                        <!-- static options content -->
+                        <div class="static__options-textContent">
+                            <!-- breadCrumb -->
+                            <div class="static__options-breadcrumb">
+                                <vtex:contentPlaceHolder id="breadcrumb" />
+                            </div>
+                            <!-- /.fin breadCrumb -->
 
+                            <!-- static title -->
+                            <h1 class="static__options-textTitle">
+                                <vtex:contentPlaceHolder id="title" />
+                            </h1>
+                            <!-- /.fin static title -->
+
+                            <!-- anchor links -->
+                            <div class="static__options-anchorLinks">
+                                <vtex:contentPlaceHolder id="anchor-links" />
+                            </div>
+                        </div>
+                        <!-- /.fin static options content -->
+
+                    </div> 
+                    <!-- /.end static options -->
+
+                    <!-- static info content container -->
+                    <div class="static__infoContent-container">
+
+                        <!-- sidebar content navigation container -->
+                        <div class="static__sideBarNavigation-container">
+                            <!-- sidebar content navigation content -->
+                            <div class="static__sideBarNavigation-content"></div>
+                            <!-- /.fin sidebar content navigation content -->
+                        </div>
+                        <!-- /.fin sidebar content navigation container -->
+                        
+                        <!-- static info content content -->
+                        <div class="static__infoContent-content">
+                            <vtex:contentPlaceHolder id="static-info-content" />
+                        </div>
+                        <!-- /.fin static info content content -->
+                    </div>
+                    <!-- /.fin static info content container -->
+
+                    <!-- products recomendations -->
                     <div class="static__recomendations">
                         <h1 class="static__collection-title">Tal vez te interese</h1>
                         <vtex:contentPlaceHolder id="static-product-recomendation" />
                     </div>
-                </div> <!-- /.end static content -->
+                    <!-- /.fin products recomendations -->
+                </div> 
+                <!-- /.end static content -->
             </main>
             <!-- /.end static container -->
 

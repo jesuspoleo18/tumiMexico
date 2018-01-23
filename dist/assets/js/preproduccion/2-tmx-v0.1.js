@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio: 03/1/2018
+Ultimo cambio: 23/1/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -22,6 +22,7 @@ b4.Categ/depto
 b5.Busca, resultado de busca, 404 y error 500
 b6.Account
 b7.Quickview
+b8.Static
 
 -------------------------fin---------------------------------*/
 /* 
@@ -32,9 +33,11 @@ b7.Quickview
 
 var $body = $("body"),
     $home = $(".home"),
+    $static = $(".static.help"),
     $categDeptoBuscaResultadoBusca = $(".categoria, .depto, .busca, .resultado-busca"),
     $producto = $(".producto"),
-    $responsive = $(window).width();
+    $responsive = $(window).width(),
+    clog = console.log;
 
 /* 
 
@@ -42,7 +45,7 @@ var $body = $("body"),
 
 ============================= */
 
-$(function () {
+$(function(){
     $(document).foundation();
     confiGenerales.init();
     home.init();
@@ -50,6 +53,7 @@ $(function () {
     categDepto.init();
     busca.init();
     quickviewControl.init();
+    static.init();
 });
 
 /* 
@@ -75,6 +79,8 @@ var confiGenerales = {
         confiGenerales.compraAsyncVitrina();
         confiGenerales.checkEmptyCart();
         confiGenerales.masterData();
+        confiGenerales.sliderStatic();
+        //confiGenerales.modalStatic();
         confiGenerales.replaceHref();
         confiGenerales.bodyPaint();
         $(window).on('orderFormUpdated.vtex', function (evt, orderForm) {
@@ -97,7 +103,58 @@ var confiGenerales = {
             }
         });
     },
+    sliderStatic: function () {
+        $(".corpGiving .tab").click(function () {
+            $(".corpGiving").removeClass("slide1 slide2");
+            $(".corpGiving").addClass("slide" + ($(this).index() + 1));
+        });
+    },
+    /*modalStatic: function () {
+        $(".environment .readMore").click(function(e){
+            e.preventDefault();
+            var parent = $(this).parents('table'),
+                info = $(this).parents('.bottomRow').find('.moreInfoBlock .' + $(this).attr('id'));
+            
+            if(!parent.hasClass('dimmed')) {
+                parent.addClass('dimmed');
+                info.removeClass('hidden');
+                info.css('marginTop', (parent.height() - info.height())/2);
+            }
+        });
 
+        $(".environment .moreInfoLayer .closeBtn span").click(function(e){
+            e.preventDefault();
+            $(".environment table").removeClass('dimmed');
+            $(this).parents('.moreInfoLayer').addClass('hidden');
+            $('.overlayforpopup').addClass('hidden');
+        });
+        
+        $(".cntr-environment-blocks .readMore").click(function(e){
+            e.preventDefault();
+            var parent = $(this).parents('ul'),
+                info = $(this).parents('.bottomRow').find('.moreInfoBlock .' + $(this).attr('id'));
+            
+        
+            if($('.overlayforpopup').hasClass('hidden')) {
+                $('.overlayforpopup').removeClass('hidden');
+                info.removeClass('hidden');
+                info.css('marginTop', (parent.height() - info.height())/2);
+            }
+        });
+        $('.cntr-environment-blocks').carousel({
+            itemsPerTransition: '1',
+            nextPrevActions: true,
+            pagination: false,
+            continuous: false,
+            insertPrevAction: function () {
+                return $('<a href="#" class="rs-carousel-action rs-carousel-action-prev"><span class="icon icon-prev"></span></a>').appendTo('#prev-env');
+            },
+            insertNextAction: function (){
+                return $('<a href="#" class="rs-carousel-action rs-carousel-action-next"><span class="icon icon-next"></span></a>').appendTo('#next-env');
+            }
+        });
+        
+    }, */
     infoTab: function () {
         var $news = $("[data-click='news']"),
             $sellers = $("[data-click='sellers']"),
@@ -329,22 +386,41 @@ var confiGenerales = {
         });
     },
 
-    stickyNav: function (el) {
+    // stickyNav: function (el) {
 
-        $("#mobile-nav").removeClass('sticky');
+    //     $("#mobile-nav").removeClass('sticky');
 
-        $(window).scroll(function () {
+    //     $(window).scroll(function () {
 
-            if ($(this).scrollTop() > 1) {
+    //         if ($(this).scrollTop() > 1) {
 
-                $(el).addClass('sticky');
-                $(el).removeClass('fixed');
-                $("#mobile-nav").addClass('sticky');
-            } else {
+    //             $(el).addClass('sticky');
+    //             $(el).removeClass('fixed');
+    //             $("#mobile-nav").addClass('sticky');
+    //         } else {
 
-                $(el).removeClass("sticky");
-                $("#mobile-nav").removeClass('fixed sticky');
-            }
+    //             $(el).removeClass("sticky");
+    //             $("#mobile-nav").removeClass('fixed sticky');
+    //         }
+    //     });
+    // },
+
+    stickyNav: function () {
+
+        var files = ["https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.js"];
+
+        $.when.apply($, $.map(files, function (file) {
+            return $.getScript(files);
+        })).then(function () {
+
+            $("#mobile-nav").removeClass('sticky');
+
+            var myElement = document.getElementById('main-nav'),
+                headroom = new Headroom(myElement);
+            headroom.init();
+
+        }, function err(jqxhr, textStatus, errorThrown) {
+            console.log(textStatus);
         });
     },
 
@@ -592,6 +668,7 @@ var home = {
 
         if ($home.length) {
             home.carousel('.home-slide', '.carousel-news');
+            console.log("home.init()  ˙ω˙");
         }
     },
     carousel: function carousel(main, producto) {
@@ -658,7 +735,7 @@ var producto = {
             // producto.productoSticky();
             producto.miniatura();
             setTimeout(producto.userReview, 3000);
-            console.log("controles de producto (●´ω｀●)");
+            console.log("producto.init()  ˙ω˙");
         }
 
         // producto.elementosFormato();
@@ -1135,7 +1212,7 @@ var categDepto = {
             categDepto.categOptions();
             //setInterval(categDepto.traducciones,800);
             setInterval(confiGenerales.mainLazyLoad, 800);
-            console.log("controles de categDepto !-_-");
+            console.log("categDepto.init()  ˙ω˙");
 
         }
 
@@ -1193,8 +1270,8 @@ var categDepto = {
                                         $slickThumb = _thisImg.find(".slide-thumb.hover");
 
                                     _thisImg.find("img:eq(0)").appendTo($slickThumb);
-                                    
-                                    if (_thisImg.length){
+
+                                    if (_thisImg.length) {
 
                                         _thisImg.slick({
                                             arrows: true,
@@ -1461,12 +1538,11 @@ var categDepto = {
 
 var busca = {
     init: function init() {
-
         busca.fraseBusqueda();
         busca.resultadoBusqueda();
     },
 
-    fraseBusqueda: function() {
+    fraseBusqueda: function () {
 
         var $buscavazia = $(".static.buscavazia, .static.cuatro"),
             $resultadoBusca = $(".resultado-busca");
@@ -1480,7 +1556,7 @@ var busca = {
                 $linkToTrigger = $(".buscavazia__searchTrigger,.errorCuatro__searchTrigger");
 
             $el.append(url);
-            $linkToTrigger.on("click", function(){
+            $linkToTrigger.on("click", function () {
                 $searchTrigger.click();
             });
         } else if ($resultadoBusca.length) {
@@ -1503,7 +1579,7 @@ var busca = {
         }
     },
 
-    resultadoBusqueda: function() {
+    resultadoBusqueda: function () {
 
         var $accept = $("body.resultado-busca, body.brand");
 
@@ -1549,7 +1625,7 @@ var busca = {
 
 var quickviewControl = {
 
-    init:function(){
+    init: function () {
         quickviewControl.quickViewAsyncBuy();
     },
     quickViewAsyncBuy: function () {
@@ -1561,7 +1637,7 @@ var quickviewControl = {
             var $iframeBuySuccess = $(".TB_compraExitosa"),
                 $thisBtn = $(".buy-button.buy-button-ref"),
                 $ean = $("#quickview__style-number"),
-                producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", url:""},
+                producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", url: "" },
                 $productoName = $(".notifyme-client-name"),
                 $productoEmail = $(".notifyme-client-email");
 
@@ -1582,7 +1658,7 @@ var quickviewControl = {
                     type: 'GET',
                     crossDomain: true,
                     success: function (data) {
-                        
+
                         var arr = data[0].items[0].images,
                             apiUrl = data[0].linkText,
                             thisUrl = '/' + apiUrl + '/p',
@@ -1590,7 +1666,7 @@ var quickviewControl = {
                             $zoomPad = $(".quickview__img-content .zoomPad"),
                             $elements = [];
 
-                        details.on("click", function(){
+                        details.on("click", function () {
                             window.top.location.href = thisUrl;
                         });
                         // console.log(data[0].items[0].images);
@@ -1683,6 +1759,60 @@ var quickviewControl = {
             }
 
         }
+
+    }
+};
+
+/* 
+
+[b8.Static]
+
+============================= */
+
+var static = {
+    init: function(){
+        if($static.length){
+            static.sideBarUpdate();
+            static.anchoring();
+            static.asideSticky('.static__sideBarNavigation-container');
+            console.log("static.init()  ˙ω˙");
+        }
+    },
+    sideBarUpdate: function(){
+        var $content = $(".footer__col-1").find('a'),
+            $container = $(".static__sideBarNavigation-content");
+
+        $content.clone().appendTo($container);
+    },
+    anchoring: function(){
+        var $root = $('html, body'),
+            $trigger = $('.static__options-anchorLinks-content a');
+
+            $($trigger).on("click", function () {
+                $root.animate({
+                    scrollTop: (500)
+                }, 500);
+                return false;
+            });
+    },
+    asideSticky: function (trigger) {
+
+        var files = ["/arquivos/hc-sticky.min.js"];
+
+        $.when.apply($, $.map(files, function (file) {
+            return $.getScript(files);
+        }))
+            .then(function () {
+
+                $(trigger).hcSticky({
+                    top: 80,
+                    bottomEnd: 0,
+                    responsive: true
+                });
+
+            }, function err(jqxhr, textStatus, errorThrown) {
+                // handle error
+            });
 
     }
 };
