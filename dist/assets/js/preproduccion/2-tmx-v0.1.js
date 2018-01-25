@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio: 23/1/2018
+Ultimo cambio: 24/1/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -45,15 +45,18 @@ var $body = $("body"),
 
 ============================= */
 
-$(function(){
+$(function () {
     $(document).foundation();
-    confiGenerales.init();
+    if ($static.length == 0) {
+        confiGenerales.init();
+        static.init();
+    }
     home.init();
     producto.init();
     categDepto.init();
     busca.init();
     quickviewControl.init();
-    static.init();
+    BarbaWidget.init();
 });
 
 /* 
@@ -1770,30 +1773,32 @@ var quickviewControl = {
 ============================= */
 
 var static = {
-    init: function(){
-        if($static.length){
+    init: function () {
+        if ($static.length) {
             static.sideBarUpdate();
             static.anchoring();
             static.asideSticky('.static__sideBarNavigation-container');
             console.log("static.init()  ˙ω˙");
         }
     },
-    sideBarUpdate: function(){
+    sideBarUpdate: function () {
         var $content = $(".footer__col-1").find('a'),
             $container = $(".static__sideBarNavigation-content");
 
         $content.clone().appendTo($container);
+        BarbaWidget.addClassNoBarba();
     },
-    anchoring: function(){
+    anchoring: function () {
         var $root = $('html, body'),
             $trigger = $('.static__options-anchorLinks-content a');
 
-            $($trigger).on("click", function () {
-                $root.animate({
-                    scrollTop: (500)
-                }, 500);
-                return false;
-            });
+        $($trigger).on("click", function (e) {
+            e.preventDefault();
+            $root.animate({
+                scrollTop: ($($.attr(this, 'href')).offset(100).top +100)
+            }, 500);
+            return false;
+        });
     },
     asideSticky: function (trigger) {
 
@@ -1815,4 +1820,86 @@ var static = {
             });
 
     }
+};
+
+/* 
+
+[b9.Barba]
+
+============================= */
+
+var BarbaWidget = {
+    init: function () {
+        var scope = this;
+
+        if ($static.length) {
+            BarbaWidget.Static.init();
+            Barba.Pjax.start();
+            Barba.Prefetch.init();
+            Barba.Pjax.getTransition = function () {
+                return scope.fadeTransition;
+            };
+            console.log("BarbaWidget.init()  ˙ω˙");
+        }
+    },
+    addClassNoBarba: function () {
+        var $allHref = $('a'),
+            $targetBarba = $(".static__sideBarNavigation-content").find('a');
+
+        $allHref.addClass('no-barba');
+        setTimeout(function () {
+            $targetBarba.removeClass('no-barba');
+        }, 300);
+
+    },
+    Static: Barba.BaseView.extend({
+        namespace: 'static',
+        onEnter: function () {
+            console.log("barba view init");
+            setTimeout(function () {
+                confiGenerales.init();
+                static.init();
+            }, 800);
+            //confiGenerales.init();
+            //static.init();
+        },
+        onEnterCompleted: function () {
+            // The Transition has just finished.
+            var $root = $('html, body');
+            $root.animate({
+                scrollTop: (0)
+            }, 500);
+        },
+        onLeave: function () {
+            // A new Transition toward a new page has just started.
+        },
+        onLeaveCompleted: function () {
+            // The Container has just been removed from the DOM.
+        }
+    }),
+    fadeTransition: Barba.BaseTransition.extend({
+        start: function () {
+            Promise
+                .all([this.newContainerLoading, this.fadeOut()])
+                .then(this.fadeIn.bind(this));
+        },
+        fadeOut: function () {
+            return $(this.oldContainer).animate({ opacity: 0 }).promise();
+        },
+        fadeIn: function () {
+            var _this = this,
+                $el = $(this.newContainer);
+
+            $(this.oldContainer).hide();
+
+            $el.css({
+                visibility: 'visible',
+                opacity: 0
+            });
+
+            $el.animate({ opacity: 1 }, 400, function () {
+                _this.done();
+            });
+        }
+    })
 };

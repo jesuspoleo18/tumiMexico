@@ -34,9 +34,9 @@
             <!-- /.end navigation -->
 
             <!-- static container -->
-            <main class="static__container">
+            <main class="static__container" id="barba-wrapper">
                 <!-- static content -->
-                <div class="static__content">
+                <div class="static__content barba-container" data-namespace="static">
                     <!-- static options -->
                     <div class="static__options-container">
 
@@ -82,8 +82,31 @@
                             <div class="static__options-anchorLinks">
                                 <vtex:contentPlaceHolder id="anchor-links" />
                             </div>
+                            <!-- /.fin anchor links -->
                         </div>
                         <!-- /.fin static options content -->
+
+                        <!-- static banner brand -->
+                        <div class="static__options-bannerBrand">
+                            <!-- breadCrumb -->
+                            <div class="static__options-breadcrumb">
+                                <vtex:contentPlaceHolder id="breadcrumb-brand" />
+                            </div>
+                            <!-- /.fin breadCrumb -->
+
+                            <!-- brand message -->
+                            <div class="static__options-brandMessage">
+                                <div class="brandMessage-content">
+                                    <vtex:contentPlaceHolder id="banner-brand-message" />
+                                </div>
+                            </div>
+                            <!-- /.fin brand message -->
+
+                            <!-- img -->
+                            <vtex:contentPlaceHolder id="banner-brand" />
+                            <!-- /.end img -->
+                        </div>
+                        <!-- /.fin static banner brand -->
 
                     </div> 
                     <!-- /.end static options -->

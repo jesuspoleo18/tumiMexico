@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  23/01/2017
+Ultimo cambio:  24/01/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -1114,7 +1114,6 @@ footer {
         padding-bottom: 4rem;
     }
     .footer__title {
-        color: ;
         text-align: center;
     }
     .footer__socialmedia,
@@ -3361,8 +3360,6 @@ ul.pages li.page-number.pgCurrent:after {
     justify-content: center;
 }
 
-.quickview__productInfo-content {}
-
 .quickview__productInfo {
     display: flex;
     flex-flow: wrap;
@@ -3403,8 +3400,6 @@ ul.pages li.page-number.pgCurrent:after {
     padding: 0;
 }
 
-#quickview__style-number {}
-
 .quickview__price {
     margin-top: 1rem;
     width: 50%;
@@ -3425,8 +3420,6 @@ ul.pages li.page-number.pgCurrent:after {
     text-transform: uppercase;
     margin-top: .5rem;
 }
-
-.product__sku-container {}
 
 .quickview__buy-btn {
     height: 45px;
@@ -6693,6 +6686,7 @@ h4.group.Atributos-Tumi {
 }
 
 .depto__collection-texto a {
+    color: white;
     font-size: 2rem;
     font-weight: bold;
     font-family: 'Proxima Nova Bold';
@@ -6703,6 +6697,7 @@ h4.group.Atributos-Tumi {
 }
 
 .depto__collection-texto a span {
+    color: white;
     display: block;
     font-size: 1.4rem;
     font-weight: initial;
@@ -6884,8 +6879,11 @@ h4.group.Atributos-Tumi {
 ============================= */
 
 .static.help .static__recomendations,
+.static.help .static__options-brandMessage,
 .static.cuatro .static__infoContent-container,
-.static.buscavazia .static__infoContent-container {
+.static.buscavazia .static__infoContent-container,
+.static.brand .static__sideBarNavigation-container,
+.static.brand .static__options-textContent {
     display: none;
 }
 
@@ -6904,6 +6902,10 @@ h4.group.Atributos-Tumi {
     background-color: #2E2A25;
     padding: 2rem 0;
     width: 100%;
+}
+
+.static.brand .static__options-container {
+    padding: 0;
 }
 
 .buscavacia__text-content,
@@ -7021,6 +7023,12 @@ h4.group.Atributos-Tumi {
     z-index: 1;
 }
 
+.static.brand .static__options-breadcrumb {
+    position: absolute;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
 .static__options-breadcrumb .breadcrumb {
     display: flex;
 }
@@ -7079,6 +7087,10 @@ h4.group.Atributos-Tumi {
     justify-content: space-between;
 }
 
+.static.brand .static__infoContent-container {
+    width: 95%;
+}
+
 .static__sideBarNavigation-container {
     background-color: #eee;
     padding: .7rem;
@@ -7107,6 +7119,11 @@ h4.group.Atributos-Tumi {
     width: 70%;
 }
 
+.static.brand .static__infoContent-content {
+    border: 1px solid red;
+    width: 100%;
+}
+
 .static__infoContent-content p:first-child {
     margin-top: 0;
 }
@@ -7119,6 +7136,10 @@ h4.group.Atributos-Tumi {
     font-size: .9rem;
     color: #555555;
     margin-bottom: 1.5rem;
+}
+
+.infoContent__subtitle::first-letter {
+    text-transform: uppercase;
 }
 
 .infoContent__subtitle {
@@ -7191,6 +7212,37 @@ h4.group.Atributos-Tumi {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.static__options-bannerBrand {
+    position: relative;
+}
+
+.bulletLineImage {
+    display: block;
+    width: 100%;
+    height: 5570px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    background-image: url(/arquivos/Timeline_JustDots.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.static__options-brandMessage {
+    border: 3px solid white;
+    padding: 1.5rem 6rem;
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    z-index: 1;
+}
+
+.brandMessage-title {
+    color: white;
+    font-weight: bold;
+    font-size: 2.5rem;
 }
 
 
