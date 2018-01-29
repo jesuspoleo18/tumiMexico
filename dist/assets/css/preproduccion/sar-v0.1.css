@@ -829,13 +829,13 @@ a:hover {
 }
 
 input:focus:invalid {
-    background-image: url(/arquivos/sbr-alert.png);
+    /*     background-image: url(/arquivos/sbr-alert.png); */
     background-position: right center;
     background-repeat: no-repeat;
 }
 
 input:required:valid {
-    background-image: url(/arquivos/sbr-check.png);
+    /*     background-image: url(/arquivos/sbr-check.png); */
     background-position: right center;
     background-repeat: no-repeat;
 }
@@ -3344,6 +3344,10 @@ footer hr {
     align-items:center;
 }
 
+.afip__logo{
+    margin-bottom:1rem;
+}
+
 .content-derecho-footer .derechos-footer {
     font-size: .8rem;
     text-align: center;
@@ -5109,7 +5113,7 @@ div#newsletter input {
 }
 
 .glis-title:after {
-    content: "Lista de Desejos";
+    content: "Lista de Favoritos";
     margin-right: .8rem;
     font-size: 1.5rem;
 }
@@ -5502,7 +5506,7 @@ content:'Selecciona una lista';
     background-color: #fff;
     padding: 0;
     text-align: center;
-    background-image: url(/arquivos/sbr-syncBuy.gif);
+    /*     background-image: url(/arquivos/sbr-syncBuy.gif); */
     background-repeat: no-repeat;
     background-position: center center;
     z-index: 10;
@@ -6364,7 +6368,7 @@ ul.even {
 }
 
 #TB_overlay {
-    background: url("/arquivos/sbr-syncBuy-5.gif") center no-repeat #fff;
+    /*     background: url("/arquivos/sbr-syncBuy-5.gif") center no-repeat #fff; */
     background-color: rgba(0, 0, 0, 0.5);
 }
 
