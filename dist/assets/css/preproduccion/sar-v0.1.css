@@ -4,7 +4,7 @@
 
 Projecto:  SamsoniteAR - 2017
 Version: 0.1
-Ultimo cambio:  26/01/17
+Ultimo cambio:  29/01/17
 Asignado a:  jesus poleo.
 Primary use:  ecommerce. 
 
@@ -3339,6 +3339,9 @@ footer hr {
     border-top: 1px solid #969696;
     margin-top: 1.5rem;
     padding-top: 1rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 .content-derecho-footer .derechos-footer {
@@ -5718,12 +5721,11 @@ content:'Selecciona una lista';
     display: -webkit-flex;
     display: -ms-flexbox;
     display: -webkit-box;
-    display: flex;
+    display: flex !important;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     -webkit-box-pack: center;
     justify-content: center;
-    display: none;
 }
 
 ul.pages {

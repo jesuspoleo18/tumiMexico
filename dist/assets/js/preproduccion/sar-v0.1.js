@@ -2,9 +2,9 @@
 
 [Script - principal ]
 
-Projecto:  SamsoniteBR  - 2018
+Projecto:  SamsoniteAR  - 2018
 Version:  0.1
-Ultimo cambio: 26/01/18.
+Ultimo cambio: 29/01/18.
 Asignado a:  jesus poleo.
 Primary use:  Ecommerce. 
 
@@ -71,9 +71,9 @@ var confiGenerales = {
         confiGenerales.checkEmptyCart();
         confiGenerales.quickViewAsyncBuy();
         confiGenerales.wishlistOnclick();
-        confiGenerales.getSAC('.sac-container', 400);
+        // confiGenerales.getSAC('.sac-container', 400);
         confiGenerales.wishlistCheckOptions();
-        confiGenerales.masterData();
+        // confiGenerales.masterData();
         confiGenerales.fraseBusqueda();
         confiGenerales.cuotas();
         confiGenerales.newsletterCheckbox();
@@ -2494,9 +2494,9 @@ var categDepto = {
         if ($categDepto.length) {
 
             categDepto.categDeptoAccordion('.search-single-navigator h4,.search-single-navigator h5', '.search-single-navigator h3');
-            categDepto.asideSticky('.content__aside .navigation-tabs, .content__aside .navigation');
+            // categDepto.asideSticky('.content__aside .navigation-tabs, .content__aside .navigation');
             categDepto.breadCrumbFilter();
-            categDepto.infinityScroll();
+            // categDepto.infinityScroll();
             categDepto.toggleClassMochila();
             //setInterval(categDepto.traducciones,800);
             setInterval(confiGenerales.mainLazyLoad, 800);
