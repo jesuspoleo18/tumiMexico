@@ -4,7 +4,7 @@
 
 Projecto:  SamsoniteBR  - 2018
 Version:  0.1
-Ultimo cambio: 22/01/18.
+Ultimo cambio: 26/01/18.
 Asignado a:  jesus poleo.
 Primary use:  Ecommerce. 
 
@@ -30,7 +30,9 @@ Primary use:  Ecommerce.
 -------------------------fin---------------------------------*/
 
 
-$(function () { init(); });
+$(function () {
+    init();
+});
 
 
 // 1.Inicializacion de controles.
@@ -59,7 +61,8 @@ var confiGenerales = {
             confiGenerales.accordion('.toggle-trigger', '.toggle-container');
         });
         confiGenerales.backTop();
-        confiGenerales.stickyNav('header, .navigation-container');
+        // confiGenerales.stickyNav('header, .navigation-container');
+        confiGenerales.stickyNav();
         confiGenerales.dropCarrito('.middle-container__content-cart', '.main-overlay', '.usuario');
         confiGenerales.megaMenu('.main-overlay, header,.no-megamenu');
         confiGenerales.loader(1500);
@@ -80,6 +83,7 @@ var confiGenerales = {
         confiGenerales.replaceHref();
         setInterval(confiGenerales.traducciones, 800);
         confiGenerales.mainLazyLoad();
+        confiGenerales.promoPopUp();
 
         $(window).on('orderFormUpdated.vtex', function (evt, orderForm) {
             // console.log("actualizó");
@@ -89,13 +93,424 @@ var confiGenerales = {
 
     },
 
+    getFromMasterData: function (name, where, fields) {
+
+        var store = 'samsonitear',
+            urlProtocol = window.location.protocol,
+            apiUrl = urlProtocol + '//api.vtex.com/' + store + '/dataentities/' + name + '/search?_where=' + where + '&_fields=' + fields,
+            response;
+
+        $.ajax({
+            "headers": {
+                "Accept": "application/vnd.vtex.masterdata.v10.profileSchema+json"
+            },
+            "url": apiUrl,
+            "async": false,
+            "crossDomain": true,
+            "type": "GET",
+
+            success: function (data) {
+                response = data[0];
+                // console.log("");
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                response = data;
+                console.log("textStatus: " + textStatus + " errorThrown: " + errorThrown);
+            }
+
+        });
+
+        return response;
+
+    },
+
+    postOrPatchInMasterData: function (name, email, fields, type) {
+
+        // var urlProtocol = window.location.protocol;
+        var store = 'samsonitear',
+            apiUrl = '//api.vtexcrm.com.br/' + store + '/dataentities/' + name + '/documents',
+            who = {
+                "email": email
+            },
+            data = $.extend(who, fields),
+            response;
+
+        $.ajax({
+
+            "headers": {
+                "Accept": "application/vnd.vtex.ds.v10+json",
+                "Content-Type": "application/json"
+            },
+            "url": apiUrl,
+            "async": false,
+            "crossDomain": true,
+            "type": type,
+            "data": JSON.stringify(data),
+
+            success: function (data) {
+                console.log("el post se envío");
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log("textStatus: " + textStatus + " errorThrown: " + errorThrown);
+            }
+
+        });
+
+    },
+
+    masterData: function () {
+
+        var $btnContacto = $('#contacto-submit'),
+            $btnPrimerCompra = $("#primeraCompra_submit"),
+            $btnNewsletter = $('#newsletter_submit');
+
+        $btnPrimerCompra.on("click", function (e) {
+            e.preventDefault();
+            confiGenerales.newsletterPopUp();
+        });
+
+        $btnContacto.on("click", function (e) {
+            e.preventDefault();
+            confiGenerales.contacto();
+        });
+
+        $btnNewsletter.on("click", function (e) {
+            var $femenino = $('#sn_femenino:checked'),
+                $masculino = $('#sn_masculino:checked'),
+                $errorGenderMessage = '<span>Por favor, complete todos los campos</span>';
+
+            if ($femenino.length || $masculino.length) {
+                confiGenerales.newsletter();
+            }
+            e.preventDefault();
+        });
+
+    },
+
+    contacto: function () {
+
+        var datos = {};
+
+        datos.sc_nombre = $('#sc_nombre').val();
+        datos.sc_apellido = $('#sc_apellido').val();
+        datos.sc_email = $("#sc_email").val();
+        datos.sc_telefono = $("#sc_telefono").val();
+        datos.sc_ciudad = $("#sc_ciudad").val();
+        datos.sc_asunto = $("#sc_asunto").val();
+        datos.sc_mensaje = $("#sc_mensaje").val();
+
+        $.ajax({
+
+            accept: 'application/vnd.vtex.ds.v10+json',
+            contentType: 'application/json; charset=utf-8',
+            crossDomain: true,
+            data: JSON.stringify(datos),
+            type: 'POST',
+            url: '//api.vtexcrm.com.br/samsonitear/dataentities/SC/documents',
+
+            success: function (data) {
+
+                $('#NewsAprob').foundation('reveal', 'open');
+                confiGenerales.clearData();
+
+            },
+            error: function (data) {
+
+                $('#NewsError').foundation('reveal', 'open');
+            }
+        });
+
+    },
+
+    newsletter: function () {
+
+        var newsletter = { mail: "", nombre: "" },
+            datos = {};
+
+        datos.sn_name = $('#sn_name').val();
+        datos.sn_email = $('#sn_email').val();
+        datos.sn_femenino = $('#sn_femenino:checked').val();
+        datos.sn_masculino = $('#sn_masculino:checked').val();
+
+        newsletter.mail = $('#sn_email').val();
+        newsletter.nombre = $('#sn_name').val();
+
+        // GET
+        var Attr = {
+            firstName: newsletter.nombre,
+            isNewsletterOptIn: true
+        };
+        /* 
+            getFromMasterData() busca en MD si el correo ya fue registrado antes desde vtex
+            como por ejemplo: 'desde el checkout', si es así, busca en esa entidad de datos y
+            el correo tiene o no el isNewsletterOptIn marcado false o vacío y lo sobreescribe
+            por true.
+        */
+        if (confiGenerales.getFromMasterData('CL', 'email=' + newsletter.mail, 'email') != undefined) {
+            var validateNews = confiGenerales.getFromMasterData('CL', 'email=' + newsletter.mail, 'isNewsletterOptIn'),
+                responseNews = validateNews.isNewsletterOptIn;
+            console.log(responseNews);
+
+            if (responseNews == false || responseNews == null) {
+                confiGenerales.postOrPatchInMasterData('CL', newsletter.mail, Attr, 'PATCH');
+                $.ajax({
+                    accept: 'application/vnd.vtex.ds.v10+json',
+                    contentType: 'application/json; charset=utf-8',
+                    crossDomain: true,
+                    data: JSON.stringify(datos),
+                    type: 'POST',
+                    url: '//api.vtexcrm.com.br/samsonitear/dataentities/SN/documents',
+
+                    success: function (data) {
+                        var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                        $.when.apply($, $.map(files, function (file) {
+                            return $.getScript(files);
+                        })).then(function () {
+                            swal({
+                                title: 'Felicitaciones, ahora empezará a recibir actualizaciones y ofertas especiales por correo electrónico.',
+                                type: 'success',
+                                // showCancelButton: true,
+                                confirmButtonColor: '#003a7c',
+                                // cancelButtonColor: '#bbb',
+                                // cancelButtonText: 'OK',
+                                confirmButtonText: 'OK'
+                            });
+                        }, function err(jqxhr, textStatus, errorThrown) {
+                            console.log(textStatus);
+                        });
+                        confiGenerales.clearData();
+                    },
+                    error: function (data) {
+                        // $('#NewsError').foundation('reveal', 'open');
+                        var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                        $.when.apply($, $.map(files, function (file) {
+                            return $.getScript(files);
+                        })).then(function () {
+                            swal({
+                                title: 'Verifique que su correo esté bien escrito y que los campos Femenino o Másculino estén marcados.',
+                                type: 'error',
+                                // showCancelButton: true,
+                                confirmButtonColor: '#E4002B',
+                                // cancelButtonColor: '#bbb',
+                                // cancelButtonText: 'OK',
+                                confirmButtonText: 'OK'
+                            });
+                        }, function err(jqxhr, textStatus, errorThrown) {
+                            console.log(textStatus);
+                        });
+                    }
+                });
+            } else {
+                var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                $.when.apply($, $.map(files, function (file) {
+                    return $.getScript(files);
+                })).then(function () {
+                    swal({
+                        title: 'Usted ya está subscrito a nuestro newsletter.',
+                        type: 'info',
+                        // showCancelButton: true,
+                        // confirmButtonColor: '#E4002B',
+                        // cancelButtonColor: '#bbb',
+                        // cancelButtonText: 'OK',
+                        confirmButtonText: 'OK'
+                    });
+                    confiGenerales.clearData();
+                }, function err(jqxhr, textStatus, errorThrown) {
+                    console.log(textStatus);
+                });
+            }
+            // postOrPatchInMasterData('CL', newsletter.mail, Attr, 'PATCH');
+        } else {
+            /* 
+                Si el cliente no existe en la entidad de datos de CL postOrPatchInMasterData() 
+                inyecta los datos de nombre y email a la entidad de datos CL y le activa automaticamente
+                el cluster isNewsletterOptIn
+            */
+            console.log("no existe");
+            confiGenerales.postOrPatchInMasterData('CL', newsletter.mail, Attr, 'POST');
+            $.ajax({
+                accept: 'application/vnd.vtex.ds.v10+json',
+                contentType: 'application/json; charset=utf-8',
+                crossDomain: true,
+                data: JSON.stringify(datos),
+                type: 'POST',
+                url: '//api.vtexcrm.com.br/samsonitear/dataentities/SN/documents',
+                success: function (data) {
+                    var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                    $.when.apply($, $.map(files, function (file) {
+                        return $.getScript(files);
+                    })).then(function () {
+                        swal({
+                            title: 'Sus datos han sido registrados con éxito.',
+                            type: 'success',
+                            // showCancelButton: true,
+                            confirmButtonColor: '#003a7c',
+                            // cancelButtonColor: '#bbb',
+                            // cancelButtonText: 'OK',
+                            confirmButtonText: 'OK'
+                        });
+                    }, function err(jqxhr, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    });
+                    confiGenerales.clearData();
+                },
+                error: function (data) {
+                    var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                    $.when.apply($, $.map(files, function (file) {
+                        return $.getScript(files);
+                    })).then(function () {
+                        swal({
+                            title: 'Verifique que su correo esté bien escrito y que los campos Femenino o Másculino estén marcados.',
+                            type: 'error',
+                            // showCancelButton: true,
+                            confirmButtonColor: '#E4002B',
+                            // cancelButtonColor: '#bbb',
+                            // cancelButtonText: 'OK',
+                            confirmButtonText: 'OK'
+                        });
+                    }, function err(jqxhr, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    });
+                }
+            });
+        }
+
+    },
+
+    newsletterPopUp: function () {
+
+        var newsletter = {
+                mail: ""
+            },
+            $emailExistMessage = $(".coverPop__emailExiste"),
+            datos = {};
+
+        datos.pc_email = $('#pc_email').val();
+        newsletter.mail = $('#pc_email').val();
+
+        // GET
+        var Attr = {
+            primeraCompra: true
+        };
+
+        if (confiGenerales.getFromMasterData('CL', 'email=' + newsletter.mail, 'email') != undefined) {
+            var validateNews = confiGenerales.getFromMasterData('CL', 'email=' + newsletter.mail, 'primeraCompra'),
+                responseNews = validateNews.primeraCompra;
+
+            console.log('respuesta de primera compra: ' + responseNews);
+            $emailExistMessage.fadeIn('slow');
+
+        } else {
+            console.log("no existe");
+            $emailExistMessage.fadeOut('slow');
+            confiGenerales.postOrPatchInMasterData('CL', newsletter.mail, Attr, 'POST');
+            $.ajax({
+                accept: 'application/vnd.vtex.ds.v10+json',
+                contentType: 'application/json; charset=utf-8',
+                crossDomain: true,
+                data: JSON.stringify(datos),
+                type: 'POST',
+                url: '//api.vtexcrm.com.br/samsonitear/dataentities/PC/documents',
+                success: function (data) {
+                    var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                    $.when.apply($, $.map(files, function (file) {
+                        return $.getScript(files);
+                    })).then(function () {
+                        swal({
+                            title: 'Felicitaciones, su código de promoción ha sido enviado',
+                            type: 'success',
+                            // showCancelButton: true,
+                            confirmButtonColor: '#003a7c',
+                            // cancelButtonColor: '#bbb',
+                            // cancelButtonText: 'OK',
+                            confirmButtonText: 'OK'
+                        });
+                    }, function err(jqxhr, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    });
+                    CoverPop.close();
+                },
+                error: function (data) {
+                    var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                    $.when.apply($, $.map(files, function (file) {
+                        return $.getScript(files);
+                    })).then(function () {
+                        swal({
+                            title: 'Verifique que su correo esté bien escrito.',
+                            type: 'error',
+                            // showCancelButton: true,
+                            confirmButtonColor: '#E4002B',
+                            // cancelButtonColor: '#bbb',
+                            // cancelButtonText: 'OK',
+                            confirmButtonText: 'OK'
+                        });
+                    }, function err(jqxhr, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    });
+                }
+            });
+        }
+
+    },
+
+    clearData: function () {
+
+        var $accepted = $(".estatico"),
+            $content = $(".footer-newsletter__content"),
+            $input = $("input:checkbox"),
+            $nombre = $("#sn_name"),
+            $email = $("#sn_email");
+
+        $content.find($input).removeAttr('checked');
+        $nombre.val("");
+        $email.val("");
+
+        if ($accepted.length) {
+            $(".estatico-content__contenido input[type='text'],.estatico-content__contenido input[type='email']").val('');
+        }
+
+    },
+
+    promoPopUp: function () {
+        var $a = $(".main-overlay"),
+            $home = $(".home");
+
+        CoverPop.start({
+            coverId: 'CoverPop-cover',
+            cookieName: '_CoverPop',
+            closeOnEscape: true,
+            delay: 1000,
+            expires: 1,
+            onPopUpOpen: function () {
+                $a.addClass("display");
+                $home.addClass("coverPopDisplay");
+                $a.on("click", function () {
+                    CoverPop.close();
+                });
+            },
+            onPopUpClose: function () {
+                $a.removeClass("display");
+                $home.removeClass("coverPopDisplay");
+            }
+
+        });
+        CoverPop.start();
+    },
+
     mainLazyLoad: function () {
 
         var files = ["https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.2.0/lazyload.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        }))
+                return $.getScript(files);
+            }))
             .then(function () {
 
                 var $home = (".home"),
@@ -111,11 +526,15 @@ var confiGenerales = {
 
                     if ($thisImg.length) {
 
-                        if ($thisParent.length) { $thisParent.parent().addClass("load"); }
+                        if ($thisParent.length) {
+                            $thisParent.parent().addClass("load");
+                        }
                         // console.log("Texting");
                     } else {
                         $thisDiv.append("<div></div>");
-                        if ($thisParent.length) { $thisParent.parent().addClass("load"); }
+                        if ($thisParent.length) {
+                            $thisParent.parent().addClass("load");
+                        }
                     }
 
                 });
@@ -202,7 +621,8 @@ var confiGenerales = {
                 $hideSideBar.remove();
                 $body.addClass("no-encontro-filtros");
 
-            } if (coleccion.includes('busca?fq')) {
+            }
+            if (coleccion.includes('busca?fq')) {
                 $coleccionParent.html("Os resultados da <strong>coleção</strong> são:");
             }
 
@@ -262,8 +682,7 @@ var confiGenerales = {
 
                 if (valor == 0) {
                     $(this).remove();
-                }
-                else {
+                } else {
                     $(this).text(valor.toFixed() + '%');
 
                 }
@@ -319,7 +738,14 @@ var confiGenerales = {
                 $thisBtn = $(".buy-button.buy-button-ref"),
                 $descripcion = $(".quickview-container__informacion--basica-content .descripcion-larga"),
                 $ean = $(".quickview-container__informacion--basica-content .ean"),
-                producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "" },
+                producto = {
+                    id: "",
+                    descripcion: "",
+                    ean: "",
+                    caracteristica: "",
+                    stock: "",
+                    marca: ""
+                },
                 $productoName = $(".notifyme-client-name"),
                 $productoEmail = $(".notifyme-client-email");
 
@@ -456,8 +882,8 @@ var confiGenerales = {
                     var files = ["/arquivos/readmore.min.js"];
 
                     $.when.apply($, $.map(files, function (file) {
-                        return $.getScript(files);
-                    }))
+                            return $.getScript(files);
+                        }))
                         .then(function () {
 
                             var $el = $(".quickview-container__informacion--basica-content .descripcion-larga");
@@ -465,8 +891,8 @@ var confiGenerales = {
                             $($el).readmore({
                                 speed: 100,
                                 collapsedHeight: 50,
-                                moreLink: '<a class="seeMore" href="#">Ler mais</a>',
-                                lessLink: '<a class="seeLess" href="#">Leia menos</a>'
+                                moreLink: '<a class="seeMore" href="#">Leer más</a>',
+                                lessLink: '<a class="seeLess" href="#">Leer menos</a>'
                             });
 
                         }, function err(jqxhr, textStatus, errorThrown) {
@@ -490,19 +916,40 @@ var confiGenerales = {
         var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        }))
+                return $.getScript(files);
+            }))
             .then(function () {
+                // swal({
+                //     title: 'Producto Agregado',
+                //     type: 'success',
+                //     showCancelButton: true,
+                //     confirmButtonColor: '#003a7c',
+                //     cancelButtonColor: '#bbb',
+                //     cancelButtonText: 'Seguir Comprando',
+                //     confirmButtonText: 'Ir a Comprar'
+                // }).then(function () {
+                //     $(".swal2-confirm").on("click", function(){
+                //         window.location.href = '/checkout/';
+                //         return false;
+                //     });
+                //     $(".swal2-cancel").on("click", function () {
+                //         window.location.href = '/checkout/';
+                //     });
+                // });
                 swal({
                     title: 'Producto Agregado',
                     type: 'success',
-                    showCancelButton: true,
                     confirmButtonColor: '#003a7c',
                     cancelButtonColor: '#bbb',
                     cancelButtonText: 'Seguir Comprando',
-                    confirmButtonText: 'Ir a Comprar'
-                }).then(function () {
-                    window.location.href = '/checkout/';
+                    confirmButtonText: 'Ir a Comprar',
+                    showCancelButton: true,
+                    onOpen: function (swal) {
+                        $(swal).find('.swal2-confirm').off().click(function (e) {
+                            // window.open('/checkout/');
+                            window.location.href = '/checkout/';
+                        });
+                    }
                 });
             }, function err(jqxhr, textStatus, errorThrown) {
                 console.log(textStatus);
@@ -512,7 +959,9 @@ var confiGenerales = {
 
     wishlistOnclick: function () {
 
-        var loginCheck = { login: "" },
+        var loginCheck = {
+                login: ""
+            },
             // $img = $(".producto-prateleira__info--wishlist img"),
             $mainContent = $(".producto-prateleira__imagen");
 
@@ -700,7 +1149,8 @@ var confiGenerales = {
             $cartNumber.removeClass("active");
             $cartFooter.removeClass("clearfix");
 
-        } if ($montoValor > 0) {
+        }
+        if ($montoValor > 0) {
 
             confiGenerales.mainLazyLoad();
 
@@ -723,7 +1173,7 @@ var confiGenerales = {
         //hide or show the "back to top" link
         $(window).scroll(function () {
 
-            ($(this).scrollTop() > offset) ? $back_to_top.addClass('back-to-top-is-visible') : $back_to_top.removeClass('back-to-top-is-visible back-to-top-fade-out');
+            ($(this).scrollTop() > offset) ? $back_to_top.addClass('back-to-top-is-visible'): $back_to_top.removeClass('back-to-top-is-visible back-to-top-fade-out');
 
             if ($(this).scrollTop() > offset_opacity) {
                 $back_to_top.addClass('back-to-top-fade-out');
@@ -737,8 +1187,7 @@ var confiGenerales = {
 
             $('body,html').animate({
                 scrollTop: 0,
-            }, scroll_top_duration
-            );
+            }, scroll_top_duration);
         });
 
     },
@@ -766,21 +1215,23 @@ var confiGenerales = {
 
     // },
 
-    stickyNav: function (el) {
+    stickyNav: function () {
 
-        var files = ["https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.js"];
+        if ($("body.quickview").length == 0) {
+            var files = ["https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.js"];
 
-        $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        })).then(function () {
+            $.when.apply($, $.map(files, function (file) {
+                return $.getScript(files);
+            })).then(function () {
 
-            var myElement = document.getElementById('headRoomAllNav'),
-                headroom = new Headroom(myElement);
-            headroom.init(); 
+                var myElement = document.getElementById('headRoomAllNav'),
+                    headroom = new Headroom(myElement);
+                headroom.init();
 
-        }, function err(jqxhr, textStatus, errorThrown) {
-            console.log(textStatus);
-        });
+            }, function err(jqxhr, textStatus, errorThrown) {
+                console.log(textStatus);
+            });
+        }
     },
 
     megaMenu: function (exit) {
@@ -843,7 +1294,9 @@ var confiGenerales = {
                 $(this).toggleClass("active").nextAll().slideToggle("slow");
                 return false;
             });
-        } else { $(content).show(); }
+        } else {
+            $(content).show();
+        }
 
     },
 
@@ -887,8 +1340,8 @@ var confiGenerales = {
             var files = ["/files/smx-zendesk.js"];
 
             $.when.apply($, $.map(files, function (file) {
-                return $.getScript(files);
-            }))
+                    return $.getScript(files);
+                }))
                 .then(function () {
 
                     setTimeout(function () {
@@ -899,155 +1352,6 @@ var confiGenerales = {
                     // handle error
                 });
         });
-
-    },
-
-    masterData: function () {
-
-        $('#contacto-submit').on("click", function (e) {
-
-            e.preventDefault();
-            contacto();
-
-        });
-
-        $('#newsletter_submit').on("click", function (e) {
-
-            var $femenino = $('#sn_femenino:checked'),
-                $masculino = $('#sn_masculino:checked'),
-                $errorGenderMessage = '<span>Por favor, complete todos los campos</span>';
-
-            if ($femenino.length || $masculino.length) {
-                newsletter();
-                $("#errorGender").hide();
-            } else {
-                $("#errorGender").html($errorGenderMessage).show();
-            }
-
-            e.preventDefault();
-
-        });
-
-        function newsletter() {
-
-            var datos = {};
-
-            datos.sn_name = $('#sn_name').val();
-            datos.sn_email = $('#sn_email').val();
-            datos.sn_femenino = $('#sn_femenino:checked').val();
-            datos.sn_masculino = $('#sn_masculino:checked').val();
-
-            $.ajax({
-
-                accept: 'application/vnd.vtex.ds.v10+json',
-                contentType: 'application/json; charset=utf-8',
-                crossDomain: true,
-                data: JSON.stringify(datos),
-                type: 'POST',
-                url: '//api.vtexcrm.com.br/samsonitear/dataentities/SN/documents',
-
-                success: function (data) {
-
-                    // $('#NewsAprob').foundation('reveal', 'open');
-                    var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
-
-                    $.when.apply($, $.map(files, function (file) {
-                        return $.getScript(files);
-                    }))
-                    .then(function () {
-                        swal({
-                            title: 'Su información ha sido envíada con éxito.',
-                            type: 'success',
-                            // showCancelButton: true,
-                            confirmButtonColor: '#003a7c',
-                            // cancelButtonColor: '#bbb',
-                            // cancelButtonText: 'OK',
-                            confirmButtonText: 'OK'
-                        });
-                    }, function err(jqxhr, textStatus, errorThrown) {
-                        console.log(textStatus);
-                    });
-                    clearData();
-
-                },
-                error: function (data) {
-
-                    // $('#NewsError').foundation('reveal', 'open');
-                    var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
-
-                    $.when.apply($, $.map(files, function (file) {
-                        return $.getScript(files);
-                    }))
-                        .then(function () {
-                            swal({
-                                title: 'Verifique que la información ingresada es la correcta.',
-                                type: 'error',
-                                // showCancelButton: true,
-                                confirmButtonColor: '#E4002B',
-                                // cancelButtonColor: '#bbb',
-                                // cancelButtonText: 'OK',
-                                confirmButtonText: 'OK'
-                            });
-                        }, function err(jqxhr, textStatus, errorThrown) {
-                            console.log(textStatus);
-                        });
-                }
-            });
-
-        }
-
-        function clearData() {
-
-            var $accepted = $(".estatico"),
-                $content = $(".footer-newsletter__content"),
-                $input = $("input:checkbox"),
-                $nombre = $("#sn_name"),
-                $email = $("#sn_email");
-
-            $content.find($input).removeAttr('checked');
-            $nombre.val("");
-            $email.val("");
-
-            if ($accepted.length) {
-                $(".estatico-content__contenido input[type='text'],.estatico-content__contenido input[type='email']").val('');
-            }
-
-        }
-
-        function contacto() {
-
-            var datos = {};
-
-            datos.sc_nombre = $('#sc_nombre').val();
-            datos.sc_apellido = $('#sc_apellido').val();
-            datos.sc_email = $("#sc_email").val();
-            datos.sc_telefono = $("#sc_telefono").val();
-            datos.sc_ciudad = $("#sc_ciudad").val();
-            datos.sc_asunto = $("#sc_asunto").val();
-            datos.sc_mensaje = $("#sc_mensaje").val();
-
-            $.ajax({
-
-                accept: 'application/vnd.vtex.ds.v10+json',
-                contentType: 'application/json; charset=utf-8',
-                crossDomain: true,
-                data: JSON.stringify(datos),
-                type: 'POST',
-                url: '//api.vtexcrm.com.br/samsonitear/dataentities/SC/documents',
-
-                success: function (data) {
-
-                    $('#NewsAprob').foundation('reveal', 'open');
-                    clearData();
-
-                },
-                error: function (data) {
-
-                    $('#NewsError').foundation('reveal', 'open');
-                }
-            });
-
-        }
 
     },
 
@@ -1186,7 +1490,7 @@ var confiGenerales = {
             // $("#explorerOnce .close-reveal-modal").on("click", function(){
             //     $("#explorerOnce").foundation("reveal", "close");
             // });
-            alert("www.samsonitear, está optimizado para versiones superiores a IE11, es posible que no pueda disfrutar de todas las funcionalidades que ofrecemos con esta versión de su navegador.")
+            // alert("www.samsonitear, está optimizado para versiones superiores a IE11, es posible que no pueda disfrutar de todas las funcionalidades que ofrecemos con esta versión de su navegador.")
         }
 
     }
@@ -1232,18 +1536,16 @@ var home = {
                 speed: 800,
                 useTransform: true,
                 lazyLoad: 'ondemand',
-                responsive: [
-                    {
-                        breakpoint: 650,
-                        settings: {
-                            autoplay: true,
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                            infinite: false,
-                            arrows: true
-                        }
+                responsive: [{
+                    breakpoint: 650,
+                    settings: {
+                        autoplay: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: false,
+                        arrows: true
                     }
-                ]
+                }]
 
             });
 
@@ -1264,8 +1566,7 @@ var home = {
                     slidesToShow: 4,
                     speed: 1000,
                     lazyLoad: 'ondemand',
-                    responsive: [
-                        {
+                    responsive: [{
                             breakpoint: 980,
                             settings: {
                                 slidesToShow: 2,
@@ -1304,8 +1605,7 @@ var home = {
                         slidesToShow: 3,
                         speed: 500,
                         lazyLoad: 'ondemand',
-                        responsive: [
-                            {
+                        responsive: [{
                                 breakpoint: 980,
                                 settings: {
                                     slidesToShow: 2,
@@ -1369,8 +1669,7 @@ var home = {
                         slidesToShow: 3,
                         speed: 500,
                         lazyLoad: 'ondemand',
-                        responsive: [
-                            {
+                        responsive: [{
                                 breakpoint: 980,
                                 settings: {
                                     slidesToShow: 2,
@@ -1531,7 +1830,9 @@ var producto = {
 
         var $btnComprarProduto = $('.buy-button.buy-button-ref'),
             $notifyme = $(this).find(".notifyme.sku-notifyme:visible"),
-            qty = { cantidad: "" };
+            qty = {
+                cantidad: ""
+            };
 
         if ($btnComprarProduto.length) {
 
@@ -1633,7 +1934,15 @@ var producto = {
 
     textoProducto: function () {
 
-        var producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", cantidad: "" },
+        var producto = {
+                id: "",
+                descripcion: "",
+                ean: "",
+                caracteristica: "",
+                stock: "",
+                marca: "",
+                cantidad: ""
+            },
             $ean = $(".ean"),
             $descripcion = $(".descripcion-content .productDescription"),
             $caracteristica = $(".descripcion-content .caracteristicas"),
@@ -1660,7 +1969,9 @@ var producto = {
                 $erase.remove();
                 $toAppend.append($noDisponible);
 
-            } else { console.log("available"); }
+            } else {
+                console.log("available");
+            }
 
             if (producto.cantidad > 0) {
 
@@ -1707,7 +2018,9 @@ var producto = {
 
                     $($template).insertBefore(".basica-nombre");
 
-                } else { $($template).insertAfter(".basica-nombre"); }
+                } else {
+                    $($template).insertAfter(".basica-nombre");
+                }
 
                 // $caracteristica.append(producto.caracteristica);
                 dotInfo();
@@ -1782,8 +2095,7 @@ var producto = {
             slidesToScroll: 1,
             slidesToShow: 4,
             speed: 500,
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 980,
                     settings: {
                         slidesToShow: 2,
@@ -2075,19 +2387,40 @@ var producto = {
                         // {"talla": "l", "valores": ['-28-','-29-','-76-','-79-','-82-','-72-26-','-75-28-','-77-28-','-78-28-','-78-29-','-79-29-','-80-30-','-86-33-','-81-30-',
                         // '-81-32-','-82-31-']}
 
-                        { "talla": "xs", "valores": ['xs'] },
+                        {
+                            "talla": "xs",
+                            "valores": ['xs']
+                        },
 
-                        { "talla": "p", "valores": ['p'] },
+                        {
+                            "talla": "p",
+                            "valores": ['p']
+                        },
 
-                        { "talla": "s", "valores": ['s'] },
+                        {
+                            "talla": "s",
+                            "valores": ['s']
+                        },
 
-                        { "talla": "m", "valores": ['m'] },
+                        {
+                            "talla": "m",
+                            "valores": ['m']
+                        },
 
-                        { "talla": "l", "valores": ['l'] },
+                        {
+                            "talla": "l",
+                            "valores": ['l']
+                        },
 
-                        { "talla": "g", "valores": ['g'] },
+                        {
+                            "talla": "g",
+                            "valores": ['g']
+                        },
 
-                        { "talla": "xl", "valores": ['xl'] }
+                        {
+                            "talla": "xl",
+                            "valores": ['xl']
+                        }
                     ];
 
                 console.log(str);
@@ -2179,7 +2512,9 @@ var categDepto = {
         }
         if ($mix.length) {
             categDepto.errorUndefined();
-        } else { console.log("not mix"); }
+        } else {
+            console.log("not mix");
+        }
 
     },
 
@@ -2305,7 +2640,9 @@ var categDepto = {
                         "justify-content": "flex-start"
                     });
 
-                } else { console.log("false"); }
+                } else {
+                    console.log("false");
+                }
                 return false;
             });
 
@@ -2347,19 +2684,18 @@ var categDepto = {
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files)
-        }))
-            .then(function () {
+            return $.getScript(files);
+        })).then(function () {
 
-                $(trigger).hcSticky({
-                    top: 140,
-                    bottomEnd: 100,
-                    responsive: true
-                });
-
-            }, function err(jqxhr, textStatus, errorThrown) {
-                // handle error
+            $(trigger).hcSticky({
+                top: 110,
+                bottomEnd: 100,
+                responsive: true
             });
+
+        }, function err(jqxhr, textStatus, errorThrown) {
+            // handle error
+        });
 
     },
 
@@ -2377,60 +2713,59 @@ var categDepto = {
         var files = ["/arquivos/QD_infinityScroll.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files)
-        }))
-            .then(function () {
+            return $.getScript(files);
+        })).then(function () {
 
-                console.log("cargo el infinity");
+            console.log("cargo el infinity");
 
-                var $responsive = $(window).width(),
-                    $desktop = $(".prateleira[id*=ResultItems]:first");
+            var $responsive = $(window).width(),
+                $desktop = $(".prateleira[id*=ResultItems]:first");
 
-                if ($responsive > 650) {
+            // if ($responsive > 650) {
 
-                    // console.log("tablet pa arriba");
+            // console.log("tablet pa arriba");
 
-                    $desktop.QD_infinityScroll({
-                        // Última prateleira/vitrine na página
-                        lastShelf: ">div:last",
-                        // Elemento com mensagem de carregando ao iniciar a requisição da página seguinte
-                        elemLoading: '<!-- Infinity Scroll - Loading message --><div id="scrollLoading" class="qd-is-loading">Cargando...</div>',
-                        // Opção p/ definir a URL manualmente, ficando automático apenas a paginação. A url deve terminar com "...&PageNumber="
-                        searchUrl: null,
-                        // Define em qual seletor a ação de observar a rolagem será aplicado (ex.: $(window).scroll(...))
-                        scrollBy: document,
-                        // Callback quando uma requisição ajax da prateleira é completada
-                        callback: function () {
-                            console.log("se cargaron más productos desktop");
-                            confiGenerales.replaceHref();
-                            confiGenerales.wishlistOnclick();
-                            confiGenerales.compraAsyncVitrina();
-                            confiGenerales.mainLazyLoad();
-                        },
-                        // Cálculo do tamanho do footer para que uma nova página seja chamada antes do usuário chegar ao "final" do site
-                        getShelfHeight: function ($this) {
-                            return ($this.scrollTop() + $this.height());
-                        },
-                        // Opção para fazer a paginação manualmente, uma nova página só é chamada quando executado o comando dentro desta função. Útil para ter um botão "Mostrar mais produtos"
-                        // Ela recebe como parâmetro: 1 função que chama a próxima página (caso ela exista)
-                        paginate: null,
-                        // Esta função é quem controla onde o conteúdo será inserido. Ela recebe como parâmetro: O ùltimo bloco inserido e os dados da nova requisição AJAX
-                        insertContent: function (currentItems, ajaxData) {
-                            currentItems.after(ajaxData);
-                        },
-                        // Função para permitir ou não que a rolagem infinita execute na página esta deve retornar "true" ou "false"
-                        authorizeScroll: function () {
-                            return true;
-                        }
-                    });
-
+            $desktop.QD_infinityScroll({
+                // Última prateleira/vitrine na página
+                lastShelf: ">div:last",
+                // Elemento com mensagem de carregando ao iniciar a requisição da página seguinte
+                elemLoading: '<!-- Infinity Scroll - Loading message --><div id="scrollLoading" class="qd-is-loading">Cargando...</div>',
+                // Opção p/ definir a URL manualmente, ficando automático apenas a paginação. A url deve terminar com "...&PageNumber="
+                searchUrl: null,
+                // Define em qual seletor a ação de observar a rolagem será aplicado (ex.: $(window).scroll(...))
+                scrollBy: document,
+                // Callback quando uma requisição ajax da prateleira é completada
+                callback: function () {
+                    console.log("se cargaron más productos desktop");
+                    confiGenerales.replaceHref();
+                    confiGenerales.wishlistOnclick();
+                    confiGenerales.compraAsyncVitrina();
+                    confiGenerales.mainLazyLoad();
+                },
+                // Cálculo do tamanho do footer para que uma nova página seja chamada antes do usuário chegar ao "final" do site
+                getShelfHeight: function ($this) {
+                    return ($this.scrollTop() + $this.height());
+                },
+                // Opção para fazer a paginação manualmente, uma nova página só é chamada quando executado o comando dentro desta função. Útil para ter um botão "Mostrar mais produtos"
+                // Ela recebe como parâmetro: 1 função que chama a próxima página (caso ela exista)
+                paginate: null,
+                // Esta função é quem controla onde o conteúdo será inserido. Ela recebe como parâmetro: O ùltimo bloco inserido e os dados da nova requisição AJAX
+                insertContent: function (currentItems, ajaxData) {
+                    currentItems.after(ajaxData);
+                },
+                // Função para permitir ou não que a rolagem infinita execute na página esta deve retornar "true" ou "false"
+                authorizeScroll: function () {
+                    return true;
                 }
-
-            }, function err(jqxhr, textStatus, errorThrown) {
-                // handle error
             });
 
-    },
+            // }
+
+        }, function err(jqxhr, textStatus, errorThrown) {
+            // handle error
+        });
+
+    }
 
 };
 
@@ -2543,7 +2878,9 @@ var account = {
                         $("#cmbComuna").change(function () {
                             if ($(this).val() != "") {
                                 // var comuna = comunas.find(c => c.codigo == $(this).val());
-                                var comuna = comunas.filter(function (element) { return element.codigo === $(this).val() });
+                                var comuna = comunas.filter(function (element) {
+                                    return element.codigo === $(this).val();
+                                });
                                 $("#spnNombreComuna").text(comuna.nombre);
 
                             } else {
@@ -2577,20 +2914,20 @@ var account = {
             userId = $('#userId').val(),
             addressId = $('#addressId').val(),
             dataString =
-                'addressName=' + addressName
-                + '&receiverName=' + receiverName
-                + '&addressType=' + addressType
-                + '&postalCode=' + postalCode
-                + '&street=' + street
-                + '&number=' + number
-                + '&complement=' + complement
-                + '&reference=' + reference
-                + '&neighborhood=' + neighborhood
-                + '&city=' + city
-                + '&state=' + state
-                + '&country=' + country
-                + '&userId=' + userId
-                + '&addressId=' + addressId;
+            'addressName=' + addressName +
+            '&receiverName=' + receiverName +
+            '&addressType=' + addressType +
+            '&postalCode=' + postalCode +
+            '&street=' + street +
+            '&number=' + number +
+            '&complement=' + complement +
+            '&reference=' + reference +
+            '&neighborhood=' + neighborhood +
+            '&city=' + city +
+            '&state=' + state +
+            '&country=' + country +
+            '&userId=' + userId +
+            '&addressId=' + addressId;
         //alert (dataString); return false;
 
         $.ajax({
@@ -2643,9 +2980,7 @@ var account = {
                 $('span#spnNombreComuna').text();
                 $('#cmbRegion').val("");
                 $('#addressId').val("");
-            }
-
-            else {
+            } else {
 
                 $.ajax({
 

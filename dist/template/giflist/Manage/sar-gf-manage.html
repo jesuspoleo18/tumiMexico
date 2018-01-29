@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce"
+    lang="es">
+
+<!-- head -->
+
+<head>
+
+    <title>Samsonite Argentina</title>
+
+    <vtex:template id="0-sar-head" />
+
+</head>
+<!-- /.fin head -->
+
+<!-- body -->
+
+<body>
+
+    <!-- off-canvas-wrap -->
+    <div class="off-canvas-wrap" data-offcanvas="">
+
+        <!-- inner-wrap -->
+        <div class="inner-wrap">
+
+            <div id="headRoomAllNav">
+                <vtex:template id="0-sar-header" />
+                <vtex:template id="0-sar-navigator" />
+            </div>
+
+            <!--overlay-->
+            <div class="main-overlay"></div>
+
+            <!-- main -->
+            <main>
+
+                <!-- wishlist container -->
+                <section class="wishlist__container">
+                
+                    <!-- wishlist content -->
+                
+                    <div class="wishlist__content">
+                
+                        <!-- titulo container -->
+                
+                        <div class="wishlist__titulo-container">
+                
+                            <div class="wishlist__titulo">
+                
+                                <vtex:contentPlaceHolder id="Titulo Seccion" />
+                
+                            </div>
+                
+                        </div>
+                        <!-- /.fin titulo container -->
+                
+                        <!-- controles container -->
+                
+                        <div class="wishlist__controles-container">
+                
+                            <div class="wishlist__controles">
+                
+                                <a href="/giftlist/create/" class="btn wishlist"> Crear una nueva Lista</a>
+                
+                                <a href="/giftlist/manage/" class="btn wishlist"> Administrar Listas</a>
+                
+                                <a href="javascript:history.back()" class="btn wishlist"> Volver atrás</a>
+                
+                            </div>
+                
+                        </div>
+                        <!-- /.fin controles container -->
+                
+                        <!-- elementos container -->
+                
+                        <div class="wishlist__elementos-container">
+                
+                            <div class="wishlist__elementos">
+                
+                                <vtex.cmc:GiftListManagerV2 />
+                
+                            </div>
+                
+                        </div>
+                        <!-- /.fin elementos container -->
+                
+                    </div>
+                    <!-- /.fin wishlist content -->
+                
+                </section>
+                <!-- /.fin wishlist container -->
+            </main>
+            <!-- /.fin main -->
+
+            <!-- footer -->
+            <vtex:template id="0-sar-fbsdk" />
+
+            <footer>
+
+                <!-- modal agregado con exito -->
+                <div id="agregadoExito" class="reveal-modal medium" data-reveal="" aria-labelledby="agregadoExitoTitle" aria-hidden="true"
+                    role="dialog" data-reveal-ajax="true">
+
+                    <div class="agregadoExito-content">
+
+                        <div class="agregadoExito-mensaje">
+
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+
+                            <h2 id="agregadoExitoTitle">Producto agregado con éxito</h2>
+
+                            <a href="/checkout" class="btn compra">Comprar</a>
+
+                            <a onClick="$('#agregadoExito').foundation('reveal', 'close');" class="btn continua">Continuar Comprando</a>
+
+                        </div>
+
+                        <hr />
+
+                        <div class="agregadoExito-productos">
+
+                            <h3>Te puede interesar</h3>
+
+                            <vtex:contentPlaceHolder id="coleccion-modal-agregado-exito" />
+
+                        </div>
+
+                    </div>
+
+                    <button class="close-reveal-modal" data-close="" aria-label="Close" type="button">
+
+                        <span aria-hidden="true">x</span>
+
+                    </button>
+
+                </div>
+                <!-- /.fin modal agregado con exito -->
+
+                <!-- giftListModule -->
+                <div class="giftlistModule">
+                    <vtex.cmc:GiftListInsertSkuV2 />
+                </div>
+                <!-- /.fin giftListModule -->
+
+                <vtex:template id="0-sar-footer" />
+
+            </footer>
+            <!-- /.fin footer -->
+
+            <a class="exit-off-canvas"></a>
+
+        </div>
+        <!-- /.fin inner-wrap -->
+
+    </div>
+    <!-- /.fin off-canvas-wrap -->
+
+</body>
+<!-- /.fin body -->
+
+</html>

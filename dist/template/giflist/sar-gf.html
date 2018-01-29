@@ -4,6 +4,7 @@
     lang="es">
 
 <!-- head -->
+
 <head>
 
     <title>Samsonite Argentina</title>
@@ -16,7 +17,6 @@
 <!-- /.fin head -->
 
 <!-- body -->
-
 <body>
 
     <!-- off-canvas-wrap -->
@@ -35,112 +35,86 @@
 
             <!-- main -->
             <main>
-
-                <!-- categoria container -->
-                <section class="categoria-container">
+                <!-- wishlist container -->
+                <section class="wishlist__container">
                 
-                    <!-- categoria container content -->
+                    <!-- wishlist content -->
                 
-                    <div class="categoria-container__content">
+                    <div class="wishlist__content">
                 
-                        <!-- search navigator -->
+                        <!-- titulo container -->
                 
-                        <aside class="content__aside">
+                        <div class="wishlist__titulo-container">
                 
-                            <h6>filtros</h6>
+                            <div class="wishlist__titulo">
                 
-                            <vtex.cmc:searchNavigator />
-                
-                        </aside>
-                        <!-- /.fin search navigator -->
-                
-                        <!-- content main -->
-                
-                        <div class="content__main">
-                
-                            <!-- titulo de depto/categ -->
-                
-                            <h1 class="content__main--title">
-                
-                            </h1>
-                            <!-- /.fin titulo de depto/categ -->
-                
-                            <!-- search navigator mobile -->
-                
-                            <div class="content__main--filtroBtnMobile">
-                
-                                <a class="btn filtro left-off-canvas-toggle">FILTROS</a>
+                                <vtex:contentPlaceHolder id="Titulo Seccion" />
                 
                             </div>
-                
-                            <div class="left-off-canvas-menu">
-                
-                                <div class="off-canvas-content content__main--offCanvasMobile" data-off-canvas-content="">
-                
-                                    <vtex.cmc:searchNavigator />
-                
-                                </div>
-                
-                            </div>
-                            <!-- /.fin search navigator mobile -->
-                
-                            <!-- banner depto/categ -->
-                
-                            <div class="content__main--banner">
-                
-                                <div class="content__main--banner-texto">
-                
-                                    <vtex:contentPlaceHolder id="texto" />
-                
-                                </div>
-                
-                                <div class="content__main--banner-imagen">
-                
-                                    <vtex:contentPlaceHolder id="banner" />
-                
-                                </div>
-                
-                            </div>
-                            <!-- /.fin banner depto/categ -->
-                
-                            <!-- breadcrumb -->
-                
-                            <div class="content__main--breadcrumb">
-                
-                                <vtex.cmc:breadCrumb />
-                
-                            </div>
-                            <!-- /.fin breadcrumb -->
-                
-                            <!-- resultado de la busqueda -->
-                
-                            <div class="resultado-busca-result">
-                
-                                <h5 class="resultado-busca-result__content">
-                                    Los resultados de tú busqueda para
-                                    <span class="result"></span> son:
-                                </h5>
-                
-                            </div>
-                            <!-- /.fin resultado de la busqueda -->
-                
-                            <!-- resultado de busqueda -->
-                            <vtex.cmc:searchResult layout="7bfc1762-c728-4591-905d-ae0f0bf372b3" itemCount="12" columnCount="12" />
-                            <!--/.fin resultado de busqueda -->
-                
-                            <!-- resultado-content -->
-                            <div class="resultado-content"></div>
-                            <!-- /.fin resultado-content -->
                 
                         </div>
-                        <!-- /.fin content main -->
+                        <!-- /.fin titulo container -->
+                
+                        <!-- controles container -->
+                
+                        <div class="wishlist__controles-container">
+                
+                            <div class="wishlist__controles">
+                
+                                <a href="/giftlist/create/" class="btn wishlist"> Crear una nueva Lista</a>
+                
+                                <a href="/giftlist/manage/" class="btn wishlist"> Administrar Listas</a>
+                
+                                <a href="javascript:history.back()" class="btn wishlist"> Volver atrás</a>
+                
+                            </div>
+                
+                        </div>
+                        <!-- /.fin controles container -->
+                
+                        <!-- navegacion wishlist -->
+                
+                        <div class="wishlist__navegacion">
+                
+                            <vtex.cmc:giftListNavigation />
+                
+                        </div>
+                        <!-- /.fin navegacion wishlist -->
+                
+                        <!-- elementos container -->
+                
+                        <div class="wishlist__coleccion-container">
+                
+                            <div class="wishlist__coleccion">
+                
+                                <div class="wishlist__coleccion-mobile">
+                
+                                    <vtex.cmc:giftListShelfPaged layout="0db0bb5e-3ae7-431d-88e8-6fe33f3b1ae5" itemCount="12" columnCount="1" />
+                
+                                </div>
+                
+                                <div class="wishlist__coleccion-tablet">
+                
+                                    <vtex.cmc:giftListShelfPaged layout="0db0bb5e-3ae7-431d-88e8-6fe33f3b1ae5" itemCount="12" columnCount="2" />
+                
+                                </div>
+                
+                                <div class="wishlist__coleccion-desktop">
+                
+                                    <vtex.cmc:giftListShelfPaged layout="0db0bb5e-3ae7-431d-88e8-6fe33f3b1ae5" itemCount="12" columnCount="3" />
+                
+                                </div>
+                
+                            </div>
+                
+                        </div>
+                        <!-- /.fin elementos container -->
                 
                     </div>
-                    <!-- /.fin categoria container content -->
+                    <!-- /.fin wishlist content -->
                 
                 </section>
-                <!-- /.fin categoria container -->
-
+                <!-- /.fin wishlist container -->
             </main>
             <!-- /.fin main -->
 

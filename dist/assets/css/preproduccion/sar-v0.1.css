@@ -4,7 +4,7 @@
 
 Projecto:  SamsoniteAR - 2017
 Version: 0.1
-Ultimo cambio:  22/01/17
+Ultimo cambio:  26/01/17
 Asignado a:  jesus poleo.
 Primary use:  ecommerce. 
 
@@ -39,6 +39,7 @@ font-family: 'Just Another Hand', cursive;
 
 @media only screen and (max-width: 40em) { }
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { }
+@media screen and (min-width: 64em) {}
 @media only screen and (min-width: 90.063em) { }
 
 ----------------------
@@ -46,7 +47,6 @@ font-family: 'Just Another Hand', cursive;
 [Tabla de contenido ]
 
 --------- estilos generales -------------
-
 
 a0.Global.
 a1.topbar.
@@ -729,452 +729,8 @@ img.samsonite-logo-mobile {
 }
 
 
-/* colores por revisar */
-
-.tallas label {
-    display: none !important;
-}
-
-.tallas input[type="Radio"] {
-    visibility: hidden;
-    margin: 0 .5rem;
-}
-
-.tallas input[type="Radio"]:nth-of-type(1) {
-    visibility: hidden;
-    margin: 0;
-}
-
-.tallas input[data-value="Agua"]:before,
-.tallas input[data-value="Amarillo"]:before,
-.tallas input[data-value="Antracita"]:before,
-.tallas input[data-value="Azul"]:before,
-.tallas input[data-value="Azulino"]:before,
-.tallas input[data-value="Beige"]:before,
-.tallas input[data-value="Cafe"]:before,
-.tallas input[data-value="Camel"]:before,
-.tallas input[data-value="Caramelo"]:before,
-.tallas input[data-value="Cobalto"]:before,
-.tallas input[data-value="Cobre"]:before,
-.tallas input[data-value="Corazones"]:before,
-.tallas input[data-value="Cuadrilove"]:before,
-.tallas input[data-value="Eight Gris"]:before,
-.tallas input[data-value="Etno Gris"]:before,
-.tallas input[data-value="Five Negro"]:before,
-.tallas input[data-value="Flor"]:before,
-.tallas input[data-value="Four Negro"]:before,
-.tallas input[data-value="Fucsia"]:before,
-.tallas input[data-value="Graffiti"]:before,
-.tallas input[data-value="Grafito Uva"]:before,
-.tallas input[data-value="Gris"]:before,
-.tallas input[data-value="Guinda"]:before,
-.tallas input[data-value="Hueso"]:before,
-.tallas input[data-value="Jam "]:before,
-.tallas input[data-value="Jam Ciruela"]:before,
-.tallas input[data-value="Jazmin"]:before,
-.tallas input[data-value="Ladrillo"]:before,
-.tallas input[data-value="Latte"]:before,
-.tallas input[data-value="Lemon"]:before,
-.tallas input[data-value="Liber "]:before,
-.tallas input[data-value="Light Gold"]:before,
-.tallas input[data-value="Lima"]:before,
-.tallas input[data-value="Limon"]:before,
-.tallas input[data-value="Lineas Coral"]:before,
-.tallas input[data-value="Lineas Pink"]:before,
-.tallas input[data-value="Lineas Verdes"]:before,
-.tallas input[data-value="Mar"]:before,
-.tallas input[data-value="Mariposas "]:before,
-.tallas input[data-value="Marron"]:before,
-.tallas input[data-value="Mex Negro"]:before,
-.tallas input[data-value="Mex Negro Verde"]:before,
-.tallas input[data-value="Militar"]:before,
-.tallas input[data-value="Mix"]:before,
-.tallas input[data-value="Naranja"]:before,
-.tallas input[data-value="Naranjo"]:before,
-.tallas input[data-value="Natural"]:before,
-.tallas input[data-value="Negro"]:before,
-.tallas input[data-value="Nude"]:before,
-.tallas input[data-value="Petroleo"]:before,
-.tallas input[data-value="Petunia"]:before,
-.tallas input[data-value="Piel"]:before,
-.tallas input[data-value="Pink"]:before,
-.tallas input[data-value="Plata"]:before,
-.tallas input[data-value="Purple"]:before,
-.tallas input[data-value="Purpura"]:before,
-.tallas input[data-value="Quebec Petro"]:before,
-.tallas input[data-value="Rojo"]:before,
-.tallas input[data-value="Rosa"]:before,
-.tallas input[data-value="Silver"]:before,
-.tallas input[data-value="Tabaco"]:before,
-.tallas input[data-value="Teal"]:before,
-.tallas input[data-value="Three Tierra"]:before,
-.tallas input[data-value="Tostado"]:before,
-.tallas input[data-value="Turquesa"]:before,
-.tallas input[data-value="Two azulino"]:before,
-.tallas input[data-value="Ultra"]:before,
-.tallas input[data-value="Verde"]:before {
-    border-radius: 10px;
-    content: "";
-    height: 15px;
-    margin-right: 10px !important;
-    position: absolute;
-    visibility: visible;
-    width: 15px;
-}
-
-.tallas input[data-value="Agua"]:before {
-    background: url('http://placehold.it/10x10/7CD3C6?text=.');
-}
-
-.tallas input[data-value="Amarillo"]:before {
-    background: url('http://placehold.it/10x10/FEE101?text=.');
-}
-
-.tallas input[data-value="Antracita"]:before {
-    background: url('http://placehold.it/10x10/393939?text=.');
-}
-
-.tallas input[data-value="Azul"]:before {
-    background: url('http://placehold.it/10x10/5474AD?text=.');
-}
-
-.tallas input[data-value="Azulino"]:before {
-    background: url('http://placehold.it/10x10/5474AD?text=.');
-}
-
-.tallas input[data-value="Beige"]:before {
-    background: url('http://placehold.it/10x10/E3D8B8?text=.');
-}
-
-.tallas input[data-value="Cafe"]:before,
-.tallas input[data-value="Cafe"]:before {
-    background: url('http://placehold.it/10x10/E3D8B8?text=.');
-}
-
-.tallas input[data-value="Camel"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Caramelo"]:before {
-    background: url('http://placehold.it/10x10/C18D5E?text=.');
-}
-
-.tallas input[data-value="Cobalto"]:before {
-    background: url('http://placehold.it/10x10/004EBD?text=.');
-}
-
-.tallas input[data-value="Cobre"]:before {
-    background: url('http://placehold.it/10x10/8D634B?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Corazones"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Cuadrilove"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Eight Gris"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Etno Gris"]:before {
-    background: url('http://placehold.it/10x10/A9A9A9?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Five Negro"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Flor"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Four Negro"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Fucsia"]:before {
-    background: url('http://placehold.it/10x10/F402A4?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Graffiti"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Grafito Uva"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Gris"]:before {
-    background: url('http://placehold.it/10x10/565658?text=.');
-}
-
-.tallas input[data-value="Guinda"]:before {
-    background: url('http://placehold.it/10x10/820000?text=.');
-}
-
-.tallas input[data-value="Hueso"]:before {
-    background: url('http://placehold.it/10x10/E3DAC9?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Jam"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Jam Ciruela"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Jazmin"]:before {
-    background: url('http://placehold.it/10x10/968EC1?text=.');
-}
-
-.tallas input[data-value="Ladrillo"]:before {
-    background: url('http://placehold.it/10x10/E3492F?text=.');
-}
-
-.tallas input[data-value="Latte"]:before {
-    background: url('http://placehold.it/10x10/D6C7B4?text=.');
-}
-
-.tallas input[data-value="Lemon"]:before {
-    background: url('http://placehold.it/10x10/FFFF66?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Liber"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Light Gold"]:before {
-    background: url('http://placehold.it/10x10/E0D490?text=.');
-}
-
-.tallas input[data-value="Lima"]:before {
-    background: url('http://placehold.it/10x10/E4FF00?text=.');
-}
-
-.tallas input[data-value="Limon"]:before {
-    background: url('http://placehold.it/10x10/9CD517?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Lineas Coral"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Lineas Pink"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Lineas Verdes"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Mar"]:before {
-    background: url('http://placehold.it/10x10/006A94?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Mariposas"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Marron"]:before {
-    background: url('http://placehold.it/10x10/855235?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Mex Negro"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Mex Negro Verde"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Militar"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Mix"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Naranja"]:before {
-    background: url('http://placehold.it/10x10/FF3B00?text=.');
-}
-
-.tallas input[data-value="Naranjo"]:before {
-    background: url('http://placehold.it/10x10/FF6600?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Natural"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Negro"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Nude"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Petroeo"]:before {
-    background: url('http://placehold.it/10x10/023850?text=.');
-}
-
-.tallas input[data-value="Petunia"]:before {
-    background: url('http://placehold.it/10x10/D34B90?text=.');
-}
-
-.tallas input[data-value="Piel"]:before {
-    background: url('http://placehold.it/10x10/FCD0B5?text=.');
-}
-
-.tallas input[data-value="Pink"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Plata"]:before {
-    background: url('http://placehold.it/10x10/FF76FF?text=.');
-}
-
-.tallas input[data-value="Purple"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Purpura"]:before {
-    background: url('http://placehold.it/10x10/7E0B80?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Quebec Petro"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Rojo"]:before {
-    background: url('http://placehold.it/10x10/CC0000?text=.');
-}
-
-.tallas input[data-value="Rosa"]:before {
-    background: url('http://placehold.it/10x10/FF7E94?text=.');
-}
-
-.tallas input[data-value="Silver"]:before {
-    background: url('http://placehold.it/10x10/C0C0C0?text=.');
-}
-
-.tallas input[data-value="Tabaco"]:before {
-    background: url('http://placehold.it/10x10/6C2D0C?text=.');
-}
-
-.tallas input[data-value="Teal"]:before {
-    background: url('http://placehold.it/10x10/00827F?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Three Tierra"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Tostado"]:before {
-    background: url('http://placehold.it/10x10/501F00?text=.');
-}
-
-.tallas input[data-value="Turquesa"]:before {
-    background: url('http://placehold.it/10x10/83EDFB?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Two azulino"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-
-/* Solicitar */
-
-.tallas input[data-value="Ultra"]:before {
-    background: url('http://placehold.it/10x10/000000?text=.');
-}
-
-.tallas input[data-value="Verde"]:before {
-    background: url('http://placehold.it/10x10/009900?text=.');
-}
-
-
 /* 
-
 [a0.Global ]
-
 */
 
 html,
@@ -1232,7 +788,6 @@ a {
     padding: 0;
     position: relative;
     text-decoration: none;
-    vertical-align: baseline;
 }
 
 a:hover {
@@ -1304,9 +859,7 @@ main {
 
 
 /* 
-
 [a1.topbar ]
-
 */
 
 .top-bar {
@@ -1728,9 +1281,7 @@ flex: auto;
 
 
 /* 
-
 [a2.Mediaquerie topbar ]
-
 */
 
 
@@ -1843,54 +1394,13 @@ flex: auto;
 
 
 /* 
-
 [a3.Header ]
-
 */
 
 header {
     display: block;
     position: relative;
     z-index: 4;
-}
-
-#headRoomAllNav {
-    position: fixed;
-    z-index: 10;
-    right: 0;
-    left: 0;
-    top: 0
-}
-
-.headroom {
-    will-change: transform;
-    transition: transform 200ms linear;
-}
-
-.headroom--pinned {
-    transform: translateY(0%);
-}
-
-.headroom--unpinned {
-    transform: translateY(-100%);
-}
-
-
-/* header.sticky,
-.headroom--pinned {
-    display: block;
-    background-color: white;
-    height: auto;
-    left: 0;
-    position: fixed;
-    right: 0;
-    transform: translateY(0%);
-    top: 0;
-    z-index: 5;
-} */
-
-.headroom--top {
-    position: relative;
 }
 
 header .middle-container {
@@ -2386,9 +1896,7 @@ header .middle-container__content-popCart .cartCheckout:after {
 
 
 /* 
-
 [a4.Mediaquerie header ]
-
 */
 
 
@@ -2409,6 +1917,51 @@ header .middle-container__content-popCart .cartCheckout:after {
     }
 }
 
+/* large up */
+@media screen and (min-width: 64em) {
+
+    #headRoomAllNav {
+        position: fixed;
+        z-index: 10;
+        right: 0;
+        left: 0;
+        top: 0
+    }
+
+    .home.coverPopDisplay #headRoomAllNav{
+        z-index:1;
+    }
+
+    .headroom {
+        will-change: transform;
+        transition: transform 200ms linear;
+    }
+
+    .headroom--pinned {
+        transform: translateY(0%);
+    }
+
+    .headroom--unpinned {
+        transform: translateY(-100%);
+    }
+
+    header.sticky,
+    .headroom--pinned {
+        display: block;
+        background-color: white;
+        height: auto;
+        left: 0;
+        position: fixed;
+        right: 0;
+        transform: translateY(0%);
+        top: 0;
+        z-index: 5;
+    }
+
+    .headroom--top {
+        position: relative;
+    }
+}
 
 /* xlarge */
 
@@ -2420,9 +1973,7 @@ header .middle-container__content-popCart .cartCheckout:after {
 
 
 /* 
-
   [a5.Navegacion ]
-
 */
 
 #mobile-nav {
@@ -2702,41 +2253,18 @@ header .middle-container__content-popCart .cartCheckout:after {
     width: 33%;
 }
 
-
+/* .megamenu-bolsos, */
+.megamenu-maletines,
+.megamenu-equipaje,
+.megamenu-ofertas,
+.megamenu-mujer,
 /* .megamenu-accesorios, */
-
-
-/* .megamenu-business, */
-
-.megamenu-bolsos,
-
 /* .megamenu-loncheras, */
-
-.megamenu-bolsasCarteiras,
-
-/* .megamenu-marcas, */
-
-.megamenu-ocasion,
-
-/* .megamenu-sale, */
-
 .orders .megamenu-bolsos,
 .orders .megamenu-loncheras,
-.orders .megamenu-bolsasCarteiras,
-
-/* .orders .megamenu-marcas, */
-
-.orders .megamenu-ocasion,
-
+.orders .megamenu-ocasion
 /* .orders .megamenu-accesorios, */
-
-
-/* .orders .megamenu-business, */
-
-
-/* .orders .megamenu-sale, */
-
-.orders .megamenu-bolsos {
+{
     display: none;
 }
 
@@ -3096,9 +2624,7 @@ header .middle-container__content-popCart .cartCheckout:after {
 
 
 /* 
-
   [a6.Mediaquerie navegacion ]
-
 */
 
 
@@ -3309,9 +2835,7 @@ header .middle-container__content-popCart .cartCheckout:after {
 
 
 /* 
-
 [a7.Footer ]
-
 */
 
 footer,
@@ -3830,9 +3354,7 @@ footer hr {
 
 
 /* 
-
 [a8.Mediaquerie footer ]
-
 */
 
 
@@ -4034,9 +3556,7 @@ footer hr {
 
 
 /* 
-
 [b1.Prateleira ]
-
 */
 
 .prateleira h2,
@@ -4064,39 +3584,22 @@ footer hr {
     display: flex;
 }
 
-.prateleira.n1colunas ul li,
-.prateleira.n2colunas ul li,
-.prateleira.n3colunas ul li {
-    max-width: 33%;
-}
-
-.prateleira.n1colunas ul li {
-    min-width: 33%;
-}
-
 .btn-giftlist {
     display: none;
 }
 
 .prateleira ul {
-    /*     border:1px solid blue; */
     list-style-type: none;
     margin: 1rem 0;
     position: relative;
     width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
     justify-content: space-between;
 }
 
-.prateleira ul:last-child {
+/* .prateleira ul:last-child {
     justify-content: flex-start;
-}
+} */
 
 .prateleira.n2colunas ul {
     -webkit-box-pack: start;
@@ -4105,17 +3608,35 @@ footer hr {
     justify-content: flex-start;
 }
 
+.prateleira ul{
+    display:flex;
+    flex-flow:wrap;
+    justify-content:space-between;
+}
+
+.prateleira.n1colunas ul li {
+    max-width: 33%;
+}
+
+.prateleira ul li {
+    max-width: 32%;
+}
+
+.prateleira.n1colunas ul li {
+    min-width: 33%;
+}
+
 .categoria .prateleira li {
     margin: initial;
 }
-
+/* 
 .categoria .prateleira ul:last-child,
 .resultado-busca .prateleira ul:last-child {
     -webkit-box-pack: initial;
     -webkit-justify-content: initial;
     -ms-flex-pack: initial;
     justify-content: initial;
-}
+} */
 
 .categoria .prateleira ul:last-child li,
 .departamento .prateleira ul:last-child li,
@@ -4871,15 +4392,14 @@ footer hr {
 
 
 /* 
-
 [b2.Mediaquerie prateleira ]
-
 */
 
 
 /* small */
 
 @media only screen and (max-width:40em) {
+
     .prateleira.n1colunas ul li,
     .product-slides {
         padding: 0;
@@ -5077,6 +4597,15 @@ footer hr {
     .texto.brand.samsonite-black-label:before {
         width: 70px;
     }
+    .prateleira ul{
+        display:flex;
+        justify-content:space-between !important;
+    }
+    .prateleira ul li{
+        margin-bottom:2rem !important;
+        min-width:48.5%;
+        width:48.5%;
+    }
 }
 
 
@@ -5145,9 +4674,7 @@ footer hr {
 
 
 /* 
-
 [b3.Mini carrito ]
-
 */
 
 .portal-totalizers-ref {
@@ -5214,9 +4741,7 @@ footer hr {
 
 
 /* 
-
 [b4.Mediaquerie mini carrito ]
-
 */
 
 
@@ -5261,9 +4786,7 @@ footer hr {
 
 
 /* 
-
 [b5.Buscador ]
-
 */
 
 .busca {
@@ -5336,9 +4859,7 @@ footer hr {
 
 
 /* 
-
 [b6.Mediaquerie buscador ]
-
 */
 
 
@@ -5367,9 +4888,7 @@ footer hr {
 
 
 /* 
-
 [b7.Newsletter ]
-
 */
 
 #newsletter {
@@ -5495,9 +5014,7 @@ div#newsletter input {
 
 
 /* 
-
 [b8.Mediaquerie newsletter ]
-
 */
 
 
@@ -5559,9 +5076,7 @@ div#newsletter input {
 
 
 /* 
-
 [b9.Whislist ]
-
 */
 
 .giftlistModule,
@@ -5730,8 +5245,6 @@ content:"Crear nueva lista";
     text-transform: uppercase;
     display: block;
 }
-
-.
 /*glis-existing-title:after{
 font-size: 0.7rem;
 content:'Selecciona una lista';
@@ -5774,9 +5287,7 @@ content:'Selecciona una lista';
 
 
 /*
-
 [b10.Mediaquerie wishlist]
-
 */
 
 
@@ -5828,9 +5339,7 @@ content:'Selecciona una lista';
 
 
 /* 
-
 [b11.Breacrumb ]
-
 */
 
 .bread-crumb {
@@ -5944,9 +5453,7 @@ content:'Selecciona una lista';
 
 
 /* 
-
 [b12.Mediaquerie breadcrumb ]
-
 */
 
 
@@ -5970,9 +5477,7 @@ content:'Selecciona una lista';
 
 
 /* 
-
 [b13.Zoom producto ]
-
 */
 
 .producto-container__imagen--content .zoomPad {
@@ -6066,9 +5571,7 @@ content:'Selecciona una lista';
 
 
 /* 
-
 [b14.Mediaquerie zoom producto ]
-
 */
 
 
@@ -6102,9 +5605,7 @@ content:'Selecciona una lista';
 
 
 /* 
-
 [b15.Search result time ]
-
 */
 
 .searchResultsTime {
@@ -6375,9 +5876,7 @@ ul.pages li.page-number.pgCurrent {
 
 
 /* 
-
 [b16.Mediaquerie search result time ]
-
 */
 
 
@@ -6389,7 +5888,7 @@ ul.pages li.page-number.pgCurrent {
     .sub .resultado-busca-filtro {
         margin-bottom: 1rem;
         padding-bottom: 0;
-        width: 100%;
+        width: 95%;
         -webkit-box-pack: end;
         -webkit-justify-content: flex-end;
         -ms-flex-pack: end;
@@ -6430,9 +5929,7 @@ ul.pages li.page-number.pgCurrent {
 
 
 /* 
-
 [b17.Search navigator ]
-
 */
 
 .content__aside h6 {
@@ -6515,13 +6012,23 @@ body.mochila .Hide.Atributos.HideEstilo.active {
     font-weight: bold;
     margin-bottom: .5rem !important;
     padding: .4rem !important;
+    position:relative;
+    visibility:hidden;
     width: 100% !important;
+}
+
+.ver-filtros:after{
+    content:"Vea todas las opciones";
+    position:absolute;
+    visibility:visible;
+    left:13%;
 }
 
 .ver-filtros:before {
     content: "\f177";
     font-family: 'FontAwesome';
     margin-right: .4rem;
+    visibility:visible;
 }
 
 .navigation-tabs h3.selected,
@@ -6621,13 +6128,18 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
 }
 
 .Grupo.color li a[title="LARANJA"]:before,
+.Grupo.color li a[title="Blanco"]:before,
 .Grupo.color li a[title="Naranjo"]:before,
-.Grupo.color li a[title="PRETO"]:before,
+.Grupo.color li a[title="Naranja"]:before,
+.Grupo.color li a[title="Negro"]:before,
 .Grupo.color li a[title="Turquesa"]:before,
 .Grupo.color li a[title="AZUL"]:before,
+.Grupo.color li a[title="Azul"]:before,
 .Grupo.color li a[title="AMARELO"]:before,
 .Grupo.color li a[title="Morado"]:before,
+.Grupo.color li a[title="Violeta"]:before,
 .Grupo.color li a[title="Caf\E9"]:before,
+.Grupo.color li a[title="Marron"]:before,
 .Grupo.color li a[title="Rosado"]:before,
 .Grupo.color li a[title="Gris"]:before,
 .Grupo.color li a[title="CINZA"]:before,
@@ -6664,7 +6176,8 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
 ) repeat;
 }
 
-.Grupo.color li a[title="Anaranjado"]:before {
+.Grupo.color li a[title="Anaranjado"]:before,
+.Grupo.color li a[title="Naranja"]:before {
     background-color: #FFA500;
 }
 
@@ -6681,7 +6194,8 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
     background-color: #c0392b;
 }
 
-.Grupo.color li a[title="BRANCO"]:before {
+.Grupo.color li a[title="BRANCO"]:before,
+.Grupo.color li a[title="Blanco"]:before {
     border: 1px solid black;
 }
 
@@ -6694,7 +6208,8 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
     background-color: pink;
 }
 
-.Grupo.color li a[title="Caf\E9"]:before {
+.Grupo.color li a[title="Caf\E9"]:before,
+.Grupo.color li a[title="Marron"]:before {
     background-color: #755638;
 }
 
@@ -6707,16 +6222,18 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
     background-color: #036780;
 }
 
-.Grupo.color li a[title="PRETO"]:before {
+.Grupo.color li a[title="Negro"]:before {
     background-color: black;
 }
 
-.Grupo.color li a[title="Morado"]:before {
+.Grupo.color li a[title="Morado"]:before,
+.Grupo.color li a[title="Violeta"]:before {
     background-color: purple;
     top: 0;
 }
 
-.Grupo.color li a[title="AZUL"]:before {
+.Grupo.color li a[title="AZUL"]:before,
+.Grupo.color li a[title="Azul"]:before {
     background-color: #2980b9;
 }
 
@@ -6801,9 +6318,7 @@ ul.even {
 
 
 /* 
-
 [b18.Mediaquerie search navigator ]
-
 */
 
 
@@ -6833,9 +6348,7 @@ ul.even {
 
 
 /* 
-
 [b19.Quickview ]
-
 */
 
 #TB_window {
@@ -7194,9 +6707,7 @@ ul.even {
 
 
 /* 
-
 [b20.Mediaquerie quickview ]
-
 */
 
 
@@ -7236,9 +6747,7 @@ ul.even {
 
 
 /* 
-
 [b21.Modulo login ]
-
 */
 
 #vtexIdContainer {
@@ -7619,9 +7128,7 @@ ul.even {
 
 
 /* 
-
 [b22.Mediaquerie modulo login ]
-
 */
 
 
@@ -7648,9 +7155,7 @@ ul.even {
 
 
 /* 
-
 [b23.Prateleira tallas colores ]
-
 */
 
 .prateleira-tallasColores {
@@ -7810,9 +7315,7 @@ ul.even {
 
 
 /* 
-
 [b24.Mediaquerie prateleira tallas colores ]
-
 */
 
 
@@ -7832,9 +7335,7 @@ ul.even {
 
 
 /* 
-
 [b25.Notify me ]
-
 */
 
 .portal-notify-me-ref .notifyme.sku-notifyme {
@@ -7925,16 +7426,12 @@ ul.even {
 
 
 /* 
-
 [b26.Mediaquerie notify me ]
-
 */
 
 
 /* 
-
 [c1.Carrusel ]
-
 */
 
 .slide-2,
@@ -8170,9 +7667,7 @@ ul.even {
 
 
 /* 
-
 [c2.Mediaquerie carrusel ]
-
 */
 
 
@@ -8206,9 +7701,7 @@ ul.even {
 
 
 /* 
-
   [c3.Megamenu ]
-
 */
 
 .navigation-content__megamenu {
@@ -8222,6 +7715,7 @@ ul.even {
 }
 
 .navigation-content__megamenu a {
+    font-size:.85rem;
     text-transform: lowercase;
 }
 
@@ -8264,24 +7758,21 @@ ul.even {
 
 .megamenu-navegacion {
     padding: 0 .8rem .8rem 1.5rem;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .megamenu-navegacion .megamenu-block-1,
 .megamenu-navegacion .megamenu-block-2,
 .megamenu-navegacion .megamenu-block-3,
 .megamenu-navegacion .megamenu-block-4 {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
+    padding:0 .8rem;
+    width:30%;
+}
+
+.megamenu-navegacion .megamenu-block-1,
+.megamenu-navegacion .megamenu-block-4{
+    padding-left:0;
 }
 
 .megamenu-navegacion .megamenu-block-1 .megamenu-block-2__navegacion a {
@@ -8294,14 +7785,10 @@ ul.even {
 }
 
 .megamenu-navegacion .megamenu-block-1 h3:nth-child(3),
-.megamenu-navegacion .megamenu-block-2 h3:nth-child(3) {
+.megamenu-navegacion .megamenu-block-2 h3:nth-child(3),
+.megamenu-navegacion .megamenu-block-3 h3:nth-child(3) {
     margin-top: 1rem;
 }
-
-.megamenu-navegacion .megamenu-block-2 {
-    margin: 0 1.8rem;
-}
-
 .orders .megamenu-navegacion .megamenu-block-1 h3,
 .orders .megamenu-navegacion .megamenu-block-2 h3,
 .orders .megamenu-navegacion .megamenu-block-3 h3,
@@ -8313,8 +7800,8 @@ ul.even {
     color: #003a7c;
     border-bottom: 1px solid #BDC3C7;
     line-height: 16px;
-    font-size: initial;
-    font-weight: initial;
+    font-size: .8rem;
+    font-weight: bold;
     -webkit-box-flex: 1;
     -webkit-flex: auto;
     -ms-flex: auto;
@@ -8326,11 +7813,8 @@ ul.even {
 
 
 /* .megamenu-block-1 .megamenu-block-1__navegacion, */
-
-
 /* .megamenu-block-3 .megamenu-block-4__navegacion,
 .megamenu-block-3 .megamenu-block-3__navegacion, */
-
 .megamenu-block-2 .megamenu-block-2__navegacion {
     /*     border:1px solid red; */
     overflow-y: auto;
@@ -8346,7 +7830,7 @@ ul.even {
 .megamenu-block-3 .megamenu-block-3__navegacion a,
 .megamenu-block-3 .megamenu-block-4__navegacion a,
 .megamenu-block-2 .megamenu-block-4__navegacion a {
-    font-size: initial;
+    font-size:.85rem;
     margin-bottom: .8rem;
 }
 
@@ -8358,11 +7842,10 @@ ul.even {
 }
 
 
-/* .megamenu-block-1 .megamenu-block-1__navegacion a:first-child, */
-
+.megamenu-block-1 .megamenu-block-1__navegacion a:first-child,
 .megamenu-block-2 .megamenu-block-2__navegacion a:first-child,
 .megamenu-block-3 .megamenu-block-3__navegacion a:first-child,
-.megamenu-block-3 .megamenu-block-4__navegacion a:first-child {
+.megamenu-block-4 .megamenu-block-4__navegacion a:first-child {
     margin-top: .8rem;
 }
 
@@ -8377,9 +7860,7 @@ ul.even {
 
 
 /* 
-
   [c4.Mediaquerie megamenu ]
-
 */
 
 
@@ -8407,9 +7888,7 @@ ul.even {
 
 
 /* 
-
   [c5.Boton SAC ]
-
 */
 
 @-webkit-keyframes shadow {
@@ -8522,16 +8001,12 @@ ul.even {
 
 
 /* 
-
   [c6.Mediaquerie boton SAC ]
-
 */
 
 
 /* 
-
   [c7.Back to top ]
-
 */
 
 .back-to-top,
@@ -8589,9 +8064,7 @@ ul.even {
 
 
 /* 
-
   [c8.Mediaquerie back to top ]
-
 */
 
 
@@ -8635,9 +8108,7 @@ ul.even {
 
 
 /* 
-
   [c9.Modal, reveal, etc ]
-
 */
 
 .reveal-overlay {
@@ -8994,9 +8465,7 @@ ul.even {
 
 
 /* 
-
   [c10.Mediaquerie modal, reveal, etc. ]
-
 */
 
 
@@ -9042,9 +8511,7 @@ ul.even {
 
 
 /* 
-
   [c11.Redes sociales ]
-
 */
 
 .facebook-container,
@@ -9171,9 +8638,7 @@ ul.even {
 
 
 /* 
-
   [c12.Mediaquerie redes sociales ]
-
 */
 
 
@@ -9303,9 +8768,7 @@ ul.even {
 
 
 /* 
-
   [c13.Overlay ]
-
 */
 
 .main-overlay {}
@@ -9338,9 +8801,7 @@ ul.even {
 
 
 /* 
-
   [c14.Mediaquerie overlay ]
-
 */
 
 
@@ -9365,9 +8826,7 @@ ul.even {
 
 
 /* 
-
   [c15.Loader ]
-
 */
 
 .home .main-loader__container {
@@ -9389,16 +8848,12 @@ ul.even {
 
 
 /* 
-
   [c16.Mediaquerie loader ]
-
 */
 
 
 /* 
-
   [d1.Home ]
-
 */
 
 .main-section {
@@ -9764,9 +9219,7 @@ ul.even {
 
 
 /* 
-
   [d2.Mediaquerie home ]
-
 */
 
 
@@ -9899,9 +9352,7 @@ ul.even {
 
 
 /* 
-
 [d3.Produto ]
-
 */
 
 .producto-container-mobile {
@@ -11167,9 +10618,7 @@ text-transform:lowercase;
 
 
 /* 
-
 [d4.Mediaquerie produto ]
-
 */
 
 
@@ -11699,9 +11148,7 @@ text-transform:lowercase;
 
 
 /* 
-
 [d5.Categoria ]
-
 */
 
 .vitrine {
@@ -11853,9 +11300,7 @@ text-transform:lowercase;
 
 
 /* 
-
 [d6.Mediaquerie categoria ]
-
 */
 
 
@@ -11870,7 +11315,7 @@ text-transform:lowercase;
     }
     .categoria-container__content {
         /*         border:1px solid red; */
-        width: 90%;
+        width: 100%;
     }
     .categoria-container__content .content__aside {
         display: none;
@@ -11878,6 +11323,10 @@ text-transform:lowercase;
     .categoria-container__content .content__main {
         /*         border:1px solid red; */
         width: 100%;
+        display:flex;
+        flex-flow:wrap;
+        justify-content:center;
+        align-items:center;
     }
     .categoria-container__content .bread-crumb {
         border-bottom: 1px solid #ECF0F1;
@@ -11919,6 +11368,7 @@ text-transform:lowercase;
     }
     .categoria-container__content .content__main--filtroBtnMobile {
         display: block;
+        width:90%;
     }
     .categoria-container__content .content__main--filtroBtnMobile .btn {
         background-color: #003a7c;
@@ -11945,6 +11395,9 @@ text-transform:lowercase;
         padding: 0 1.5rem;
         position: absolute;
         left: 0;
+    }
+    .departamento main{
+        padding:0;
     }
 }
 
@@ -12009,23 +11462,17 @@ text-transform:lowercase;
 
 
 /* 
-
 [d7.Departamento ]
-
 */
 
 
 /* 
-
 [d8.Mediaquerie departamento ]
-
 */
 
 
 /* 
-
 [d9.Resultado Busca ]
-
 */
 
 .resultado-busca {}
@@ -12109,9 +11556,7 @@ text-transform:lowercase;
 
 
 /* 
-
 [d10.Mediaquerie resultado busca ]
-
 */
 
 
@@ -12158,23 +11603,17 @@ text-transform:lowercase;
 
 
 /* 
-
 [d11.Busca, 404, 500 buscavacia ]
-
 */
 
 
 /* 
-
 [d12.Mediaquerie busca, 404, 500 buscavacia ]
-
 */
 
 
 /* 
-
 [d13.Account ]
-
 */
 
 .account-container {
@@ -12834,9 +12273,7 @@ h5.span5:before {
 
 
 /* 
-
 [d14.Mediaquerie account ]
-
 */
 
 
@@ -12910,9 +12347,7 @@ h5.span5:before {
 
 
 /* 
-
 [d15.Orders ]
-
 */
 
 .orders {}
@@ -12985,7 +12420,7 @@ h5.span5:before {
 
 .orders .vtex-bootstrap h1 span:before {
     /*     border:1px solid red; */
-    content: "Ã‚Â¡Usted todavia no tiene pedidos!";
+    content: "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡Usted todavia no tiene pedidos!";
     visibility: visible;
     text-align: center;
     position: absolute;
@@ -13025,16 +12460,12 @@ h5.span5:before {
 
 
 /* 
-
 [d16.Mediaquerie orders ]
-
 */
 
 
 /* 
-
 [d17.Estaticos ]
-
 */
 
 .estatico.buscavazia {}
@@ -13565,9 +12996,7 @@ h5.span5:before {
 
 
 /* 
-
 [d18.Mediaquerie estaticos ]
-
 */
 
 @media only screen and (max-width:40em) {
@@ -13651,9 +13080,7 @@ h5.span5:before {
 
 
 /* 
-
 [d19.Wishlist ]
-
 */
 
 .wishlist__container {
@@ -14139,9 +13566,7 @@ h5.span5:before {
 
 
 /* 
-
 [d20.Mediaquerie wishlist ]
-
 */
 
 
@@ -14245,19 +13670,11 @@ h5.span5:before {
 
 
 /* 
-
 [d21.Brand ]
-
 */
 
-.brand.no-encontro-filtros {}
-
-
 /* .brand.no-encontro-filtros .content__main--banner, */
-
-
 /* .content__main--banner, */
-
 .brand.no-encontro-filtros .content__main--filtroBtnMobile {
     display: none !important;
 }
@@ -14281,9 +13698,7 @@ h5.span5:before {
 
 
 /* 
-
 [d22.Mediaquerie brand ]
-
 */
 
 
