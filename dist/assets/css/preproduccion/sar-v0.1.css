@@ -5083,6 +5083,9 @@ div#newsletter input {
     color: #A8103D;
     font-size: 0.8rem;
     margin: 1rem 0;
+    position:relative;
+    visibility:hidden;
+    width:100%;
 }
 
 .glis-selected-amount {
@@ -5090,22 +5093,34 @@ div#newsletter input {
 }
 
 
-/*.glis-selected:after {
-font-size: .8rem;
-content:'Productos seleccionados';
-}*/
+.glis-selected:after {
+    font-size: .8rem;
+    content:'Productos seleccionados';
+    visibility:visible;
+    position:absolute;
+    left:0;
+    width:100%;
+}
 
 .glis-new-title {
     color: #7F8C8D;
     font-size: .8rem;
     text-transform: uppercase;
+    position:relative;
+    visibility:hidden;
+    width:100%;
 }
 
 
-/* .glis-new-title:after {
-font-size: .7rem;
-content:"Crear nueva lista";
-} */
+.glis-new-title:after {
+    font-size: .7rem;
+    content:"Crear nueva lista";
+    bottom:0;
+    visibility:visible;
+    position:absolute;
+    left:0;
+    width:100%;
+}
 
 .glis-newlisttype {
     background-color: #ECF0F1;
@@ -5187,20 +5202,23 @@ content:"Crear nueva lista";
 }
 
 .glis-submit.glis-submit-new {
-    /*     visibility: hidden; */
+    visibility: hidden;
     background-color: #003a7c;
     color: white;
     font-size: .8rem;
     text-transform: uppercase;
     padding: .8rem;
+    position:relative;
 }
 
 .glis-submit.glis-submit-new:before {
-    /*     content: "Crear y agregar"; */
+        content: "Crear y agregar";
     background-color: #003a7c;
     color: white;
     font-size: .8rem;
     text-transform: uppercase;
+    text-align:center;
+    left:0;
     visibility: visible;
     padding: .8rem;
     position: absolute;
@@ -5213,6 +5231,7 @@ content:"Crear nueva lista";
     text-transform: uppercase;
     display: block;
 }
+
 /*glis-existing-title:after{
 font-size: 0.7rem;
 content:'Selecciona una lista';
@@ -5241,8 +5260,20 @@ content:'Selecciona una lista';
     font-size: .8rem;
     margin: .8rem 0;
     padding: .8rem 0;
+    position:relative;
     text-align: center;
+    visibility:hidden;
     width: 45%;
+}
+
+.glis-edit-link:after{
+    content:"Haz click acá para administrar tu lista";
+    background-color: #003a7c;
+    left:0;
+    padding:1rem;
+    position:absolute;
+    visibility:visible;
+    width:100%;
 }
 
 .glis-edit-link:hover {
@@ -5262,11 +5293,14 @@ content:'Selecciona una lista';
 /* small */
 
 @media only screen and (max-width:40em) {
+    .wishlist main{
+        padding-top:0;
+    }
     .glis-title {
         font-size: 0rem;
     }
     .glis-title:after {
-        content: "Lista de desejos";
+/*         content: "Lista de desejos"; */
         margin-right: .8rem;
         font-size: 1rem;
     }
@@ -5286,13 +5320,28 @@ content:'Selecciona una lista';
     }
     .glis-submit.glis-submit-new {
         display: block;
+        max-height:30px;
+        padding:0;
         width: 100%;
+        display:flex;
+        align-items:center;
     }
     .glis-submit.glis-submit-new:before {
         visibility: visible;
         padding: initial;
         position: initial;
     }
+    .giftlist-insertsku {
+        /*     border:1px solid black; */
+        max-height:300px;
+    }
+    .glis-ul{
+        padding-bottom:1rem;
+    }
+    .glis-edit-link{
+        width:100%;
+    }
+
 }
 
 
@@ -7592,6 +7641,10 @@ ul.even {
     -webkit-transition: all .4s ease;
     -o-transition: all .4s ease;
     transition: all .4s ease;
+}
+
+.carousel-agregadoExito:nth-child(2) {
+    display: none;
 }
 
 .carousel-populares,
@@ -13527,7 +13580,10 @@ h5.span5:before {
 @media only screen and (max-width:40em) {
     .wishlist__content {
         /*         border:1px solid red; */
-        width: 90%;
+        width: 100%;
+    }
+    .wishlist .prateleira li{
+        padding:0;
     }
     .wishlist__product tbody .name .urlproduct {
         width: 150px;
@@ -13544,6 +13600,9 @@ h5.span5:before {
         overflow: hidden;
         -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
+    }
+    .wishlist__controles-container{
+        width:90%;
     }
     .wishlist__controles {
         width: 100%;

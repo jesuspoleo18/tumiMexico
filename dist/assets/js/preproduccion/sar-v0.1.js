@@ -18,6 +18,7 @@ Primary use:  Ecommerce.
 4.Controles de producto.
 5.Controles de depto y categ.
 7.Controles de cuenta.
+7.Controles de wishlist.
 
 
 ** Recomendaciones para navegacion de tabla de contenido **
@@ -45,6 +46,7 @@ function init() {
     categDepto.init();
     account.init();
     estatico.init();
+    wishlist.init();
     console.log("se han iniciado los controles.");
 
 }
@@ -56,9 +58,6 @@ var confiGenerales = {
 
         confiGenerales.cuenta('.usuario', '.main-overlay', '.navigation-container__cart');
         confiGenerales.accordion('.toggle-trigger', '.toggle-container');
-        $(window).on("resize", function () {
-            confiGenerales.accordion('.toggle-trigger', '.toggle-container');
-        });
         confiGenerales.backTop();
         // confiGenerales.stickyNav('header, .navigation-container');
         confiGenerales.stickyNav();
@@ -72,7 +71,7 @@ var confiGenerales = {
         confiGenerales.wishlistOnclick();
         // confiGenerales.getSAC('.sac-container', 400);
         confiGenerales.wishlistCheckOptions();
-        // confiGenerales.masterData();
+        confiGenerales.masterData();
         confiGenerales.fraseBusqueda();
         confiGenerales.cuotas();
         confiGenerales.newsletterCheckbox();
@@ -80,7 +79,7 @@ var confiGenerales = {
         confiGenerales.internetExplorer();
         confiGenerales.resultadoBusqueda();
         confiGenerales.replaceHref();
-        setInterval(confiGenerales.traducciones, 800);
+        // setInterval(confiGenerales.traducciones, 800);
         confiGenerales.mainLazyLoad();
         confiGenerales.promoPopUp();
 
@@ -562,23 +561,6 @@ var confiGenerales = {
             }, function err(jqxhr, textStatus, errorThrown) {
                 console.log(textStatus);
             });
-
-    },
-
-    traducciones: function () {
-
-        var $wishlist = $(".wishlist");
-
-        if ($wishlist.length) {
-
-            var $crearLista = $("[href='/giftlist/create/']:contains('Crear una nueva Lista')"),
-                $administrarListas = $("[href='/giftlist/manage/']:contains('Administrar Listas')"),
-                $volverAtras = $("[href='javascript:history.back()']:contains('Volver atrás')");
-
-            $crearLista.text('Criar uma lista');
-            $volverAtras.text('Voltar');
-            $administrarListas.text('gerenciar listas');
-        }
 
     },
 
@@ -1618,8 +1600,8 @@ var home = {
                             {
                                 breakpoint: 650,
                                 settings: {
-                                    slidesToShow: 1,
-                                    slidesToScroll: 1
+                                    slidesToShow: 2,
+                                    slidesToScroll: 2
                                 }
                             }
                         ]
@@ -2837,7 +2819,6 @@ var categDepto = {
 };
 
 // 6.Estaticos
-
 var estatico = {
     init:function(){
         var $estatico = $(".estatico");
@@ -2870,7 +2851,6 @@ var estatico = {
 };
 
 // 7.Controles de cuenta
-
 var regiones = [],
     comunas = [],
     country = 'CHL';
@@ -3295,4 +3275,34 @@ var account = {
 
     }
 
+};
+
+// 8.Wishlist
+var wishlist = {
+    init: function(){
+        var $wishlist = $(".wishlist");
+
+        if ($wishlist.length) {
+            wishlist.traducciones();
+            console.log("controles de wishlist =)");
+        }
+    },
+    traducciones: function () {
+
+        var $crearLista = $("[href='/giftlist/create/']:contains('Crear una nueva Lista')"),
+            $administrarListas = $("[href='/giftlist/manage/']:contains('gerenciar listas')"),
+            $desired = $(".giftlist-header-desired:contains('Produtos Desejados')"),
+            $precio = $(".giftlistproductsv2 thead tr th:contains('Preço')"),
+            $deseados = $(".giftlistproductsv2 thead tr th:contains('Desejados')"),
+            $acciones = $(".giftlistproductsv2 thead tr th:contains('Ações')"),
+            $volverAtras = $("[href='javascript:history.back()']:contains('Voltar')");
+
+        $crearLista.text('Crear una nueva Lista');
+        $administrarListas.text('Administrar Listas');
+        $volverAtras.text('Volver atrás');
+        $desired.text('Productos deseados');
+        $precio.text('Precio');
+        $deseados.text('Deseados');
+        $acciones.text('Acciones');
+    }
 };
