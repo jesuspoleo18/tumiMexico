@@ -3165,7 +3165,7 @@ footer hr {
     -moz-appearance: none;
     appearance: none;
     width: 20px;
-    position: relative
+    position: relative;
 }
 
 .footer-newsletter__content--formulario [type=checkbox]:checked.visto-femenino:before {
