@@ -4,7 +4,7 @@
 
 Projecto:  SamsoniteAR - 2017
 Version: 0.1
-Ultimo cambio: 26/01/18 17:14pm | J
+Ultimo cambio: 31/01/18 16:37pm | J
 Asignado a:  mantenimiento.
 Primary use:  ecommerce. 
 
@@ -232,7 +232,9 @@ header .middle-container__content-popCart .cartSkuActions .cartSkuRemove a:befor
     }
     .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
         top: 117px !important;
+        height: 300px;
         width: 90% !important;
+        overflow-y: scroll;
     }
 }
 
@@ -655,7 +657,7 @@ img,
 }
 
 #scrollLoading:before {
-    content: "Carregando..";
+    content: "Cargando..";
     background: #003a7c;
     color: white;
     padding: .5rem;
@@ -711,6 +713,43 @@ img,
 	[c26.CoverPop]
 
 */
+
+.CoverPop-open,
+.CoverPop-open body {
+    overflow: hidden;
+}
+
+#CoverPop-cover {
+    display: none;
+    position: fixed;
+    overflow-y: scroll;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    -webkit-animation: fade-in .25s ease-in;
+    -moz-animation-name: fade-in .25s ease-in;
+    -ms-animation-name: fade-in .25s ease-in;
+    -o-animation-name: fade-in .25s ease-in;
+    animation-name: fade-in .25s ease-in;
+}
+
+.CoverPop-open #CoverPop-cover {
+    display: block;
+}
+
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 #CoverPop-cover {
     display: none;
@@ -768,20 +807,20 @@ img,
 }
 
 .coverPop__emailPromo [type="submit"] {
-	margin-top:1rem;
+    margin-top: 1rem;
     width: 100%;
 }
 
-.coverPop__emailPromo [type="email"]{
-	margin-bottom:.2rem;
+.coverPop__emailPromo [type="email"] {
+    margin-bottom: .2rem;
 }
 
-.coverPop__emailExiste{
-	display:none;
+.coverPop__emailExiste {
+    display: none;
 }
 
-.coverPop__emailExiste h1{
-	color:red;
+.coverPop__emailExiste h1 {
+    color: red;
 }
 
 /*

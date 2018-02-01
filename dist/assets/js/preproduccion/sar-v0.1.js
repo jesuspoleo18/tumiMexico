@@ -4,7 +4,7 @@
 
 Projecto:  SamsoniteAR  - 2018
 Version:  0.1
-Ultimo cambio: 29/01/18.
+Ultimo cambio: 01/02/18.
 Asignado a:  jesus poleo.
 Primary use:  Ecommerce. 
 
@@ -17,7 +17,7 @@ Primary use:  Ecommerce.
 3.Controles de home.
 4.Controles de producto.
 5.Controles de depto y categ.
-6.Controles de cuenta.
+7.Controles de cuenta.
 
 
 ** Recomendaciones para navegacion de tabla de contenido **
@@ -36,7 +36,6 @@ $(function () {
 
 
 // 1.Inicializacion de controles.
-
 function init() {
 
     $(document).foundation();
@@ -45,12 +44,12 @@ function init() {
     producto.init();
     categDepto.init();
     account.init();
+    estatico.init();
     console.log("se han iniciado los controles.");
 
 }
 
 // 2.Configuraciones generales
-
 var confiGenerales = {
 
     init: function () {
@@ -826,13 +825,13 @@ var confiGenerales = {
 
                     } else if (producto.marca == 'Samsonite Black Label') {
 
-                        var $templatesmxBlack = '<div class="logo-marca"><img src=/arquivos/logo-smxNegro-3.png></div>';
+                        var $templatesmxBlack = '<div class="logo-marca"><img src=/arquivos/logo-sbrNegro-3.png></div>';
 
                         $location.prepend($templatesmxBlack);
 
                     } else if (producto.marca == 'Samsonite') {
 
-                        var $templatesmx = '<div class="logo-marca"><img src=/arquivos/logo-smxAzul-3.png></div>';
+                        var $templatesmx = '<div class="logo-marca"><img src=/arquivos/logo-sbrAzul-3.png></div>';
 
                         $location.prepend($templatesmx);
 
@@ -1192,41 +1191,45 @@ var confiGenerales = {
 
     },
 
-    // stickyNav: function (el) {
-
-    //     $("#mobile-nav").removeClass('sticky');
-
-    //     $(window).scroll(function () {
-
-    //         if ($(this).scrollTop() > 1) {
-
-    //             $(el).addClass('sticky');
-    //             $(el).removeClass('fixed');
-    //             $("#mobile-nav").addClass('sticky');
-
-    //         } else {
-
-    //             $(el).removeClass("sticky");
-    //             $("#mobile-nav").removeClass('fixed sticky');
-
-    //         }
-
-    //     });
-
-    // },
-
     stickyNav: function () {
 
-        if ($("body.quickview").length == 0) {
+        var $responsive = $(window).width(),
+            $quickview = $("body.quickview"),
+            $mobileNav = $("#mobile-nav");
+
+        if ($quickview.length == 0) {
+
             var files = ["https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.js"];
 
             $.when.apply($, $.map(files, function (file) {
                 return $.getScript(files);
             })).then(function () {
 
-                var myElement = document.getElementById('headRoomAllNav'),
-                    headroom = new Headroom(myElement);
-                headroom.init();
+                if ($responsive > 650) {
+                    $mobileNav.removeClass('sticky');
+
+                    var myElement = document.getElementById('headRoomAllNav'),
+                        headroom = new Headroom(myElement);
+                    headroom.init();
+                } else if ($responsive < 650) {
+
+                    $mobileNav.removeClass('sticky');
+
+                    $(window).scroll(function() {
+
+                        if ($(this).scrollTop() > 1) {
+
+                            $mobileNav.addClass('sticky');
+                            $mobileNav.removeClass('fixed');
+
+                        } else {
+
+                            $mobileNav.removeClass('fixed sticky');
+
+                        }
+
+                    });
+                }
 
             }, function err(jqxhr, textStatus, errorThrown) {
                 console.log(textStatus);
@@ -1648,7 +1651,7 @@ var home = {
 
             $(".helperComplement").remove();
 
-            $(".agregadoExito-productos .prateleira").children().addClass("carousel-agregadoExito");
+            $(".agregadoExito-productos .prateleira").children().next().addClass("carousel-agregadoExito");
 
             $(tres).on("init", function () {
 
@@ -1679,8 +1682,8 @@ var home = {
                             {
                                 breakpoint: 650,
                                 settings: {
-                                    slidesToShow: 1,
-                                    slidesToScroll: 1
+                                    slidesToShow: 2,
+                                    slidesToScroll: 2
                                 }
                             }
                         ]
@@ -1730,7 +1733,7 @@ var producto = {
             producto.tallasColores();
             producto.formatoPrecioFichaProductoReplace(".skuBestPrice");
             confiGenerales.mainLazyLoad();
-            // setInterval(producto.traducciones, 500);
+            setInterval(producto.traducciones, 500);
             console.log("controles de producto");
         }
 
@@ -1742,7 +1745,9 @@ var producto = {
 
         var $wishlistBtn = $(".glis-link.must-login:contains('Faça login pra adicionar produtos à lista')");
 
-        $wishlistBtn.text('Ingrese para agregar a sus favoritos');
+        if ($wishlistBtn.length){
+            $wishlistBtn.text('Ingrese para agregar a sus favoritos');
+        }
 
     },
 
@@ -2051,14 +2056,14 @@ var producto = {
 
             } else if (producto.marca == 'Samsonite Black Label') {
 
-                var $templatesmxBlack = '<div class="logo-marca"><img src=/arquivos/logo-smxNegro-3.png></div>';
+                var $templatesmxBlack = '<div class="logo-marca"><img src=/arquivos/logo-sbrNegro-3.png></div>';
 
                 $location.prepend($templatesmxBlack);
                 $locationMobile.html($templatesmxBlack);
 
             } else if (producto.marca == 'Samsonite') {
 
-                var $templatesmx = '<div class="logo-marca"><img src=/arquivos/logo-smxAzul-3.png></div>';
+                var $templatesmx = '<div class="logo-marca"><img src=/arquivos/logo-sbrAzul-3.png></div>';
 
                 $location.prepend($templatesmx);
                 $locationMobile.html($templatesmx);
@@ -2376,7 +2381,7 @@ var producto = {
                     decode = decodeURIComponent(hrefProducto),
                     $a = $(this).find(".tallasColores-uri"),
                     b = $a.text(),
-                    x = $(this).find(".producto-prateleira__imagen--url"),
+                    x = $(this).find(".productImage"),
                     str = x.attr("title").toLowerCase().replace(/\s+/g, '-').split("-").pop(),
                     tallas = [
 
@@ -2386,6 +2391,11 @@ var producto = {
 
                         // {"talla": "l", "valores": ['-28-','-29-','-76-','-79-','-82-','-72-26-','-75-28-','-77-28-','-78-28-','-78-29-','-79-29-','-80-30-','-86-33-','-81-30-',
                         // '-81-32-','-82-31-']}
+
+                        {
+                            "talla": "cabina",
+                            "valores": ['cabina']
+                        },
 
                         {
                             "talla": "xs",
@@ -2423,7 +2433,7 @@ var producto = {
                         }
                     ];
 
-                console.log(str);
+                // console.log(str);
 
                 if (decode == b) {
                     // console.log("los nombres hacen match");
@@ -2434,10 +2444,14 @@ var producto = {
 
                 $.each(tallas, function (i, talla) {
 
-                    console.log(talla);
+                    // console.log(talla);
                     $.each(talla.valores, function (v, valor) {
                         if (str == valor) {
 
+                            if (talla.talla == 'cabina') {
+                                x.addClass('talla-cabina');
+                                $(".producto-prateleira__imagen--url.talla-cabina").parent(".producto-prateleira__imagen").parent('.producto-prateleira').parent().addClass("talla-cabina-order");
+                            }
                             if (talla.talla == 'xs') {
                                 x.addClass('talla-xs');
                                 $(".producto-prateleira__imagen--url.talla-xs").parent(".producto-prateleira__imagen").parent('.producto-prateleira').parent().addClass("talla-xs-order");
@@ -2494,15 +2508,17 @@ var categDepto = {
         if ($categDepto.length) {
 
             categDepto.categDeptoAccordion('.search-single-navigator h4,.search-single-navigator h5', '.search-single-navigator h3');
-            // categDepto.asideSticky('.content__aside .navigation-tabs, .content__aside .navigation');
+            categDepto.asideSticky('.content__aside .navigation-tabs, .content__aside .navigation');
             categDepto.breadCrumbFilter();
-            // categDepto.infinityScroll();
+            categDepto.infinityScroll();
             categDepto.toggleClassMochila();
             //setInterval(categDepto.traducciones,800);
             setInterval(confiGenerales.mainLazyLoad, 800);
             categDepto.traducciones();
             categDepto.filtroSticky();
             categDepto.mobilePageChange();
+            // categDepto.fullWidthCateg();
+
             $('.carousel-interesar, .carousel-agregadoExito').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
                 confiGenerales.mainLazyLoad();
                 // console.log(nextSlide);
@@ -2516,6 +2532,55 @@ var categDepto = {
             console.log("not mix");
         }
 
+    },
+
+    fullWidthCateg: function(){
+
+        var $responsive = $(window).width(),
+            $categProductsContainer = $(".content__main"),
+            $aside = $(".content__aside"),
+            $categElements = $(".searchResultContainer"),
+            position = $(window).scrollTop(),
+            $effectOut = function (el) {
+                return el.fadeOut(500);
+            },
+            $effectIn = function (el) {
+                return el.fadeIn(500);
+            };
+
+        if ($responsive > 650) {
+
+            $(window).scroll(function () {
+
+                var scroll = $(window).scrollTop();
+
+                if (scroll > position) {
+                    // scrolling downwards, only here for dev purposes
+                    // console.log('moving DOWN the page');
+                    if($aside.hasClass("hide") == true){
+                        console.log("not class hide");
+                    }else{
+                        $.when($effectOut($categElements)).done(function () {
+                            $aside.addClass("hide");
+                            $categProductsContainer.addClass("active");
+                            $effectIn($categElements);
+                        });
+                    }
+                } else {
+                    // scrolling upwards 
+                    // console.log('moving UP the page');
+                    if ($aside.hasClass("hide") == true) {
+                        $.when($effectOut($categElements)).done(function () {
+                            $aside.removeClass("hide");
+                            $categProductsContainer.removeClass("active");
+                            $effectIn($categElements);
+                        });
+                    }
+                }
+                position = scroll;
+            });
+
+        }
     },
 
     errorUndefined: function () {
@@ -2614,7 +2679,8 @@ var categDepto = {
 
             var $open = $(".HideGRUPO-DE-COR"),
                 $marca = $(".navigation-tabs .Marca, .navigation-tabs h5.Hide.HideMarca"),
-                $activeColor = $(".GRUPO.DE.COR.even, .GRUPO.DE.COR.Atributos, .GRUPO.DE.COR,.GRUPO.DE.COR.even.Características"),
+                $activeColor = $(".HideGrupo-color ,.Grupo-color.even, .Grupo-color.Atributos, .Grupo-color,.Grupo-color.even.Características"),
+                $activeColorUl = $(".HideGrupo-color ,.Grupo-color.even, .Grupo-color.Atributos, .Grupo-color,.Grupo-color.even.Características").next(),
                 $otherMenuOpen = $(".Hide.even.Atributos.HideGRUPO-DE-COR, .Hide.even.Características.HideESTRUTURA,.ESTRUTURA, .Hide.even.Características.HideGRUPO-DE-COR, .Hide.Atributos.HideTalla,.Hide.Atributos.HideColeccion"),
                 $content = $('.navigation-tabs .search-single-navigator ul'),
                 $verFiltros = $content.find('.ver-filtros');
@@ -2631,10 +2697,10 @@ var categDepto = {
 
                 $(this).toggleClass("active").next().slideToggle("slow");
 
-                if ($(".content__aside .HideGRUPO-DE-COR.active").length) {
+                if ($(".content__aside .HideGrupo-color.active").length || $(".content__main .HideGrupo-color.active").length) {
 
                     console.log("true");
-                    $activeColor.css({
+                    $activeColorUl.css({
                         "display": "flex",
                         "flex-flow": "row wrap",
                         "justify-content": "flex-start"
@@ -2708,18 +2774,19 @@ var categDepto = {
 
     },
 
-    infinityScroll: function () {
+    infinityScroll: function() {
 
         var files = ["/arquivos/QD_infinityScroll.min.js"];
 
-        $.when.apply($, $.map(files, function (file) {
+        $.when.apply($, $.map(files, function(file) {
             return $.getScript(files);
-        })).then(function () {
+        }))
+        .then(function() {
 
             console.log("cargo el infinity");
 
             var $responsive = $(window).width(),
-                $desktop = $(".prateleira[id*=ResultItems]:first");
+                $desktop = $(".prateleira[id*=ResultItems]");
 
             // if ($responsive > 650) {
 
@@ -2769,7 +2836,40 @@ var categDepto = {
 
 };
 
-// 6.Controles de cuenta
+// 6.Estaticos
+
+var estatico = {
+    init:function(){
+        var $estatico = $(".estatico");
+        if($estatico.length){
+            estatico.asideEstaticoSticky(".estatico-content__menu-lateral nav");
+            console.log("controles de las páginas estaticas cargados =P ");
+        }
+    },
+    asideEstaticoSticky: function (trigger){
+
+
+        var files = ["/arquivos/hc-sticky.min.js"];
+
+        $.when.apply($, $.map(files, function (file) {
+            return $.getScript(files);
+        })).then(function () {
+
+            $(trigger).hcSticky({
+                top: 110,
+                bottomEnd: 100,
+                responsive: true
+            });
+
+        }, function err(jqxhr, textStatus, errorThrown) {
+            // handle error
+        });
+
+
+    }
+};
+
+// 7.Controles de cuenta
 
 var regiones = [],
     comunas = [],
@@ -3073,9 +3173,9 @@ var account = {
 
     showContentAccount: function () {
 
-        init();
+        ContentInit();
 
-        function init() {
+        function ContentInit() {
 
             profileUser();
             openClose();
