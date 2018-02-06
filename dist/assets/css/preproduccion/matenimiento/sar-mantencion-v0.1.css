@@ -4,7 +4,7 @@
 
 Projecto:  SamsoniteAR - 2017
 Version: 0.1
-Ultimo cambio: 31/01/18 16:37pm | J
+Ultimo cambio: 06/01/18 11:38pm | J
 Asignado a:  mantenimiento.
 Primary use:  ecommerce. 
 
@@ -110,12 +110,11 @@ c19.Flags.
 c20.Mediaquerie flags.
 c21.Infinity scroll.
 c22.Mediaquerie infinity scroll.
-c23.Neo assist
-c24.SweetAlert
-c25.Mediaquerie sweetAlert
-c26.CoverPop
-c27.Mediaquerie coverPop
-
+c23.Neo assist.
+c24.SweetAlert.
+c25.Mediaquerie sweetAlert.
+c26.CoverPop.
+c27.Mediaquerie coverPop.
 --------- estilos de pagina -------------
 
 d1.Home.
@@ -232,9 +231,9 @@ header .middle-container__content-popCart .cartSkuActions .cartSkuRemove a:befor
     }
     .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
         top: 117px !important;
-        height: 300px;
+        height:300px;
         width: 90% !important;
-        overflow-y: scroll;
+        overflow-y:scroll;
     }
 }
 
@@ -430,9 +429,9 @@ ul.pages li {
 
 */
 
-/* .basica-tallasColores--tallas {
-   display: none;
-} */
+.basica-tallasColores--tallas {
+    /* 	display: none; */
+}
 
 /*
 
@@ -573,9 +572,9 @@ ul.pages li {
 
 */
 
-/* .home .main-loader__container {
-    display: none;
-} */
+.home .main-loader__container {
+    /*display: none;*/
+}
 
 /*
 
@@ -598,10 +597,10 @@ img,
     visibility: visible;
 }
 
-/* .loaded,
+.loaded,
 .loading,
 .initial.loading,
-.initial.loaded {} */
+.initial.loaded {}
 
 .reveal-modal.open img,
 #image-main,
@@ -702,6 +701,32 @@ img,
     font-size: 1.5rem !important;
 }
 
+.promoCode__container{
+	position:relative;
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+
+.promoCode__text{
+	/* 	border:1px solid blue; */
+	border-radius:3px;
+	background:#eee;
+	color:#003a7c;
+	font-size:2rem;
+	font-weight:bold;
+	padding:.5rem;
+	width:50%;
+}
+
+.promoCode__notify{
+	color:#777;
+	font-size:.8rem;
+	padding-top:.4rem;
+}
+
 /*
 
 	[c25.Mediaquerie sweetAlert]
@@ -714,10 +739,10 @@ img,
 
 */
 
-.CoverPop-open,
+/* .CoverPop-open,
 .CoverPop-open body {
     overflow: hidden;
-}
+} */
 
 #CoverPop-cover {
     display: none;
@@ -799,28 +824,42 @@ img,
 
 .coverPop__tempContent {
     background: white;
-    padding: 3rem;
+    padding: 1rem 1rem;
 }
 
 .coverPop__emailPromo {
-    margin-top: 2rem;
+    margin-top: 1rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
 
 .coverPop__emailPromo [type="submit"] {
-    margin-top: 1rem;
+	margin-top:1rem;
     width: 100%;
 }
 
-.coverPop__emailPromo [type="email"] {
-    margin-bottom: .2rem;
+.coverPop__emailPromo [type="email"]{
+	margin-bottom:.2rem;
 }
 
-.coverPop__emailExiste {
-    display: none;
+.coverPop__emailExiste{
+	display:none;
 }
 
-.coverPop__emailExiste h1 {
-    color: red;
+.coverPop__emailExiste h1{
+	color:red;
+}
+
+.coverPop__emailPromo .btn.submit{
+    border-radius:3px;
+    border:1px solid white;
+    font-weight:bold;
+    margin-top:.5rem;
+    padding:.3rem;
+    text-transform:uppercase;
+    width:30%;
 }
 
 /*
@@ -832,12 +871,15 @@ img,
 /* small */
 
 @media only screen and (max-width: 40em) {
-    .coverPop__tempContent {
-        padding: 1rem;
-    }
-    .coverPop__emailPromo {
-        margin-top: .5rem;
-    }
+	.coverPop__tempContent {
+		padding: 1rem;
+	}
+  	.coverPop__emailPromo {
+		margin-top: .5rem;
+	}
+	.coverPop__emailPromo .btn.submit{
+		width:100%;
+	}
 }
 
 /* medium */
@@ -854,9 +896,9 @@ img,
 
 */
 
-/* .home {
-    display: none;
-} */
+.home {
+    /* display: none; */
+}
 
 #banners-mobile a img {
     width: 100%;
@@ -1135,3 +1177,8 @@ img,
 	[d22.Mediaquerie brand]
 
 */
+
+
+#loadMore__btn{
+	display:none;
+}

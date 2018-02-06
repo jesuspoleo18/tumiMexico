@@ -4,7 +4,7 @@
 
 Projecto:  SamsoniteAR  - 2018
 Version:  0.1
-Ultimo cambio: 01/02/18.
+Ultimo cambio: 05/02/18.
 Asignado a:  jesus poleo.
 Primary use:  Ecommerce. 
 
@@ -421,7 +421,9 @@ var confiGenerales = {
                         return $.getScript(files);
                     })).then(function () {
                         swal({
-                            title: 'Felicitaciones, su código de promoción ha sido enviado',
+                            // title: 'Felicitaciones, su código de promoción ha sido enviado',
+                            title: 'Felicitaciones, su código es:',
+                            html:'<div class="promoCode__container"><h1 class="promoCode__text">10%OFFSAM</h1><p class="promoCode__notify">Lo hemos enviado a su correo eléctronico.</p></div>',
                             type: 'success',
                             // showCancelButton: true,
                             confirmButtonColor: '#003a7c',
@@ -907,7 +909,7 @@ var confiGenerales = {
                 //     confirmButtonColor: '#003a7c',
                 //     cancelButtonColor: '#bbb',
                 //     cancelButtonText: 'Seguir Comprando',
-                //     confirmButtonText: 'Ir a Comprar'
+                //     confirmButtonText: 'Pagar'
                 // }).then(function () {
                 //     $(".swal2-confirm").on("click", function(){
                 //         window.location.href = '/checkout/';
@@ -923,7 +925,7 @@ var confiGenerales = {
                     confirmButtonColor: '#003a7c',
                     cancelButtonColor: '#bbb',
                     cancelButtonText: 'Seguir Comprando',
-                    confirmButtonText: 'Ir a Comprar',
+                    confirmButtonText: 'Pagar',
                     showCancelButton: true,
                     onOpen: function (swal) {
                         $(swal).find('.swal2-confirm').off().click(function (e) {
@@ -940,9 +942,7 @@ var confiGenerales = {
 
     wishlistOnclick: function () {
 
-        var loginCheck = {
-                login: ""
-            },
+        var loginCheck = { login: "" },
             // $img = $(".producto-prateleira__info--wishlist img"),
             $mainContent = $(".producto-prateleira__imagen");
 
@@ -989,17 +989,42 @@ var confiGenerales = {
                     var $el = $(".producto-prateleira__info--wishlist"),
                         $noLoginTemplate = '<div class="login-wishlist"> <a class="login-wishlist__trigger"></a> </div>',
                         $loginBtn = $(".ajax-content-loader").find(".glis-link.must-login").attr('href'),
-                        $btn = $(".login-wishlist__trigger"),
                         $find = $(this).find($el);
 
                     // console.log($wishBtn);
 
                     $find.html($noLoginTemplate);
 
+                    var $btn = $(this).find(".login-wishlist__trigger");
+
                     $btn.on("click", function () {
 
                         console.log($loginBtn);
-                        window.location.href = "/login?ReturnUrl=%2f";
+                        // window.location.href = "/login?ReturnUrl=%2f";
+
+                        var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                        $.when.apply($, $.map(files, function (file) {
+                            return $.getScript(files);
+                        })).then(function () {
+                            swal({
+                                title: 'Debes estar registrado para añadir a tus favoritos.',
+                                type: 'info',
+                                confirmButtonColor: '#003a7c',
+                                cancelButtonColor: '#bbb',
+                                cancelButtonText: 'cancelar',
+                                confirmButtonText: 'login',
+                                showCancelButton: true,
+                                onOpen: function (swal) {
+                                    $(swal).find('.swal2-confirm').off().click(function (e) {
+                                        // window.open('/checkout/');
+                                        window.location.href = "/login?ReturnUrl=%2f";
+                                    });
+                                }
+                            });
+                        }, function err(jqxhr, textStatus, errorThrown) {
+                            console.log(textStatus);
+                        });
 
                     });
 
@@ -1269,7 +1294,7 @@ var confiGenerales = {
 
         var $responsive = $(window).width();
 
-        if ($responsive < 768) {
+        if ($responsive < 767) {
 
             console.log("accordion");
 

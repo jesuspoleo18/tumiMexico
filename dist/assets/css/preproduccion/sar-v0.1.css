@@ -4,7 +4,7 @@
 
 Projecto:  SamsoniteAR - 2017
 Version: 0.1
-Ultimo cambio:  01/02/18
+Ultimo cambio:  06/02/18
 Asignado a:  jesus poleo.
 Primary use:  ecommerce. 
 
@@ -542,7 +542,7 @@ img.samsonite-logo-mobile {
 }
 
 .right-off-canvas-menu #MostraTextoXml1 {
-    visibility: hidden
+    visibility: hidden;
 }
 
 .right-off-canvas-menu #MostraTextoXml1:before {
@@ -644,7 +644,7 @@ img.samsonite-logo-mobile {
 
 .right-off-canvas-menu .vtexsc-productList .cartSkuQuantity:before {
     color: #7F8C8D;
-    content: "Quantidade:";
+    content: "Cantidad:";
     margin-right: .2rem;
 }
 
@@ -720,7 +720,7 @@ img.samsonite-logo-mobile {
 }
 
 .right-off-canvas-menu .cartCheckout:before {
-    content: "COMPRAR";
+    content: "PAGAR";
 }
 
 .v2-vtexsc-cart.vtexsc-cart.mouseActivated.preLoaded {
@@ -915,6 +915,18 @@ main {
     display: flex;
 }
 
+.top-bar__center{
+    /*     border:1px solid white; */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.top-bar__text{
+    color:white;
+    font-size:.8rem;
+}
+
 .top-bar__content .top-bar__left a {
     margin: 0 .5rem;
 }
@@ -985,12 +997,8 @@ flex: auto;
 }
 
 .top-bar__content .top-bar__left {
-    /* border:1px solid blue; */
-    -webkit-box-flex: 5;
-    -webkit-flex: 5;
-    -ms-flex: 5;
-    flex: 5;
-    margin-right: 3rem;
+    /*     border:1px solid blue; */
+    width:33%;
 }
 
 .top-bar__content .top-bar__left p {
@@ -1013,10 +1021,7 @@ flex: auto;
 
 .top-bar__content .top-bar__right {
     /*     border:1px solid blue; */
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
+    width:33%;
     -webkit-box-pack: end;
     -webkit-justify-content: flex-end;
     -ms-flex-pack: end;
@@ -1285,6 +1290,9 @@ flex: auto;
 /* small */
 
 @media only screen and (max-width:40em) {
+    main{
+        padding:0;
+    }
     .top-bar__content .top-bar__right .usuario,
     .promociones-trigger {
         display: none !important;
@@ -1310,11 +1318,23 @@ flex: auto;
         width: auto !important;
     }
     .promociones-container .nuestras-tiendas a {
-        -webkit-box-flex: initial;
-        -webkit-flex: initial;
-        -ms-flex: initial;
-        flex: initial;
-        width: auto;
+         background-color:white;
+         height:30px;
+         position:relative;
+         width: 50px;
+    }
+    .promociones-container .nuestras-tiendas a:before{
+        /*         border:1px solid red; */
+        color:#003a7c;
+        content: "\f041";
+        font-size: 1.5rem;
+        font-family: "FontAwesome";
+        height:100%;
+        line-height:28px;
+        position:absolute;
+        top:0;
+        left:36%;
+        width:10px;
     }
     .top-bar__content .top-bar__left,
     .top-bar__content .top-bar__right {
@@ -1335,6 +1355,7 @@ flex: auto;
          display:none;
     } */
     .top-bar__content .top-bar__left p {
+        padding-left:.5rem;
         width: 100%;
     }
     .navigation-container .top-bar {
@@ -1343,6 +1364,21 @@ flex: auto;
     .top-bar {
         padding: .2rem 0;
     }
+    .top-bar__content{
+        flex-flow:wrap;
+        width:100%;
+    }
+    .top-bar__center{
+        display:none;
+    }
+    .top-bar__right{}
+    .top-bar__text{
+        font-size:.6rem;
+        text-align:center;
+    }
+    .top-bar__right p{
+        display:none;
+    }
 }
 
 
@@ -1350,24 +1386,25 @@ flex: auto;
 
 @media only screen and (min-width:40.063em) and (max-width:64em) {
     .top-bar__content {
-        width: 95%;
+        padding:.5rem 0;
+        width: 100%;
     }
     .top-bar__content .top-bar__left,
-    .top-bar__content .top-bar__right {
-        -webkit-box-flex: 1;
-        -webkit-flex: auto;
-        -ms-flex: auto;
-        flex: auto;
+    .top-bar__content .top-bar__right,
+    .top-bar__center {
+        width:33%;
+    }
+    .top-bar__content .top-bar__left{
+        padding-left:.3rem;
+    }
+    .top-bar__center{
+        width:45%;
+    }
+    .top-bar__text{
+        font-size:.65rem;
     }
     .top-bar__content .top-bar__right .promociones-trigger {
         display: none;
-    }
-    .top-bar__content .top-bar__right {
-        /*         border:1px solid red; */
-        -webkit-box-flex: .6;
-        -webkit-flex: .6;
-        -ms-flex: .6;
-        flex: .6;
     }
     .top-bar__content .top-bar__left p {
         width: 100%;
@@ -1869,7 +1906,7 @@ header .middle-container__content-popCart .cartCheckout {
 }
 
 header .middle-container__content-popCart .cartCheckout:before {
-    content: "COMPRAR";
+    content: "PAGAR";
 }
 
 header .middle-container__content-popCart .cartCheckout:after {
@@ -2150,8 +2187,8 @@ header .middle-container__content-popCart .cartCheckout:after {
     color: red;
 }
 
-.navigation__menu-content a:hover,
-.orders .navigation__menu-content a:hover {
+.navigation__menu-content a.active,
+.orders .navigation__menu-content a.active {
     background-color: #003a7c;
     color: white;
 }
@@ -2620,8 +2657,7 @@ header .middle-container__content-popCart .cartCheckout:after {
     min-width: 20px;
 }
 
-.middle-container__content-cart .portal-totalizers-ref,
-#mobile-nav .portal-totalizers-ref {
+.middle-container__content-cart .portal-totalizers-ref {
     display: none;
 }
 
@@ -2649,7 +2685,6 @@ header .middle-container__content-popCart .cartCheckout:after {
     #mobile-nav .portal-totalizers-ref {
         /*display:block;*/
         left: initial;
-        right: 20%;
         top: -5px;
         width: auto;
     }
@@ -3165,7 +3200,7 @@ footer hr {
     -moz-appearance: none;
     appearance: none;
     width: 20px;
-    position: relative;
+    position: relative
 }
 
 .footer-newsletter__content--formulario [type=checkbox]:checked.visto-femenino:before {
@@ -4161,7 +4196,7 @@ footer hr {
 
 .producto-prateleira__info--wishlist {
     /*         border: 1px solid red; */
-    background-color: white;
+    /*     background-color: white; */
     right: 0;
     position: absolute;
     height: 50px;
@@ -4450,7 +4485,7 @@ footer hr {
         display:none;
     } */
     .categoria-container__content .producto-prateleira__info--wishlist {
-        background-color: white;
+        /*         background-color: white; */
         opacity: 1;
         top: 0;
         right: 10px;
@@ -4532,9 +4567,6 @@ footer hr {
     .producto-prateleira__info--outStock p {
         color: #7F8C8D;
     }
-    .prateleira.n1colunas ul li {
-        max-width: 100%;
-    }
     .porcentaje-container {
         position: absolute;
         top: 0;
@@ -4564,7 +4596,8 @@ footer hr {
         display:flex;
         justify-content:space-between !important;
     }
-    .prateleira ul li{
+    .prateleira ul li,
+    .prateleira.n1colunas ul li{
         margin-bottom:2rem !important;
         min-width:48.5%;
         width:48.5%;
@@ -7643,8 +7676,8 @@ ul.even {
     transition: all .4s ease;
 }
 
-.carousel-agregadoExito:nth-child(2) {
-    display: none;
+.home .carousel-agregadoExito:nth-child(2){
+    display:none;
 }
 
 .carousel-populares,
@@ -8294,6 +8327,17 @@ ul.even {
     background-color: #003a7c;
     color: white;
     margin-right: .8rem;
+    position:relative;
+    visibility:hidden;
+}
+
+#agregadoExito .agregadoExito-mensaje .btn.compra:before{
+    background-color: #003a7c;
+    content:"Pagar";
+    visibility:visible;
+    left:0;
+    position:absolute;
+    width:100%;
 }
 
 #agregadoExito .agregadoExito-mensaje .btn.continua {
@@ -8901,6 +8945,22 @@ ul.even {
     width: 90%;
 }
 
+.promobar__container{
+    background-color:#eee;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    display:none;
+}
+
+.promobar__text{
+    color:#003a7c;
+    font-size:.8rem;
+    font-weight:bold;
+    text-align:center;
+    padding:.8rem;
+}
+
 
 /* promesas */
 
@@ -9259,6 +9319,9 @@ ul.even {
         display: block !important;
         max-width: 90%;
     }*/
+    .promobar__container{
+        display:block;
+    }
     .home .main-section{
         padding:0;
     }
@@ -9304,7 +9367,7 @@ ul.even {
 
 @media only screen and (min-width:40.063em) and (max-width:64em) {
     main {
-        padding-top: 14%;
+        padding-top: 0;
     }
     #banners {
         display: block !important;
@@ -12647,10 +12710,7 @@ h5.span5:before {
 .estatico-content .estatico-content__contenido,
 .estatico-content .estatico-content__menu-lateral {
     /*     border:1px solid red; */
-    -webkit-box-flex: 1.5;
-    -webkit-flex: 1.5;
-    -ms-flex: 1.5;
-    flex: 1.5;
+    width:26.5%;
 }
 
 .estatico-content .estatico-content__menu-lateral {
@@ -12659,10 +12719,7 @@ h5.span5:before {
 }
 
 .estatico-content .estatico-content__contenido {
-    -webkit-box-flex: 4;
-    -webkit-flex: 4;
-    -ms-flex: 4;
-    flex: 4;
+    width:70%;
     margin-left: 2rem;
 }
 
@@ -12845,7 +12902,6 @@ h5.span5:before {
     background-color: #003a7c;
     margin: 0;
     padding: .5rem 0;
-    width: 20%;
 }
 
 .contacto__correo-container textarea {
@@ -13015,6 +13071,9 @@ h5.span5:before {
 */
 
 @media only screen and (max-width:40em) {
+    .estatico-container{
+        margin-top:0;
+    }
     .estatico-content {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -13043,6 +13102,9 @@ h5.span5:before {
         font-size: .8rem;
         text-align: center;
         text-transform: uppercase;
+    }
+    .estatico-content .estatico-content__contenido{
+        width:100%;
     }
     .estatico-content__contenido {
         margin: 0 !Important;
