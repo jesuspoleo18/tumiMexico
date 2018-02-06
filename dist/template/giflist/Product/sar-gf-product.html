@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce"
+    lang="es">
+
+<!-- head -->
+
+<head>
+
+    <title>Samsonite Argentina</title>
+
+    <meta name="description" content="" />
+
+    <vtex:template id="0-sar-head" />
+
+</head>
+<!-- /.fin head -->
+
+<!-- body -->
+
+<body>
+
+    <!-- off-canvas-wrap -->
+    <div class="off-canvas-wrap" data-offcanvas="">
+
+        <!-- inner-wrap -->
+        <div class="inner-wrap">
+
+            <div id="headRoomAllNav">
+                <vtex:template id="0-sar-header" />
+                <vtex:template id="0-sar-navigator" />
+            </div>
+
+            <!--overlay-->
+            <div class="main-overlay"></div>
+
+            <!-- main -->
+            <main>
+
+                <!-- wishlist container -->
+                <section class="wishlist__container">
+                
+                    <!-- wishlist content -->
+                    <div class="wishlist__content">
+                
+                        <!-- titulo container -->
+                        <div class="wishlist__titulo-container">
+                
+                            <div class="wishlist__titulo">
+                
+                                <vtex:contentPlaceHolder id="Titulo Seccion" />
+                
+                            </div>
+                
+                        </div>
+                        <!-- /.fin titulo container -->
+                
+                        <!-- controles container -->
+                
+                        <div class="wishlist__controles-container">
+                
+                            <div class="wishlist__controles">
+                
+                                <a href="/giftlist/create/" class="btn wishlist"> Crear una nueva Lista</a>
+                
+                                <a href="/giftlist/manage/" class="btn wishlist"> Administrar Listas</a>
+                
+                                <a href="javascript:history.back()" class="btn wishlist"> Volver atrás</a>
+                
+                            </div>
+                
+                        </div>
+                        <!-- /.fin controles container -->
+                
+                        <!-- product container -->
+                
+                        <div class="wishlist__product-container">
+                
+                            <div class="wishlist__product">
+                
+                                <div class="wishlist__list">
+                
+                                    <vtex.cmc:GiftListInfoV2 />
+                
+                                </div>
+                
+                                <div class="wishlist__statics">
+                
+                                    <vtex.cmc:GiftListStatisticsV2 />
+                
+                                </div>
+                
+                                <div class="wishlist__productos">
+                
+                                    <vtex.cmc:GiftListProductsV2 />
+                
+                                </div>
+                
+                                <div class="wishlist__imprimir">
+                
+                                    <a class="btn wishlist" onclick="confiGenerales.imprimirLista();">Imprimir lista</a>
+                
+                                </div>
+                
+                            </div>
+                
+                        </div>
+                        <!-- /.fin product container -->
+                
+                    </div>
+                    <!-- /.fin wishlist content -->
+                
+                </section>
+                <!-- /.fin wishlist container -->
+            </main>
+            <!-- /.fin main -->
+
+            <!-- footer -->
+            <vtex:template id="0-sar-fbsdk" />
+
+            <footer>
+
+                <vtex:template id="0-sar-footer" />
+
+            </footer>
+            <!-- /.fin footer -->
+
+            <a class="exit-off-canvas"></a>
+
+        </div>
+        <!-- /.fin inner-wrap -->
+
+    </div>
+    <!-- /.fin off-canvas-wrap -->
+
+</body>
+<!-- /.fin body -->
+
+</html>

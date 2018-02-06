@@ -1,0 +1,163 @@
+#set($id = $product.Id)
+#set($idSku = $product.productVariantId)
+#set($uri = $product.Uri)
+#set($escapedName = $product.HtmlEscapedName)
+
+<div class="producto-prateleira">
+    
+    <!-- imagen de prateleira -->
+
+    <div class="producto-prateleira__imagen">
+        
+        <!-- quickview -->
+
+        <div class="producto-prateleira__imagen--quickView">
+
+            <div class="quickView-btn">$product.QuickView</div>
+
+        </div>
+
+        <!-- wishlist -->
+
+        <div class="producto-prateleira__info--wishlist">
+
+            $product.InsertSku
+            <div class="btn-giftlist">$product.ButtonBuyGiftList</div>
+            
+        </div>
+
+        <!-- imagen -->
+
+        <a class="producto-prateleira__imagen--url" title="$escapedName" href="$uri">
+            
+            <div class="imagen">$product.GetImageTag(30)</div>
+        
+        </a>
+
+
+    </div> <!-- /.fin imagen de prateleira -->
+    
+    #if($product.HightLight)
+    
+        <h3>$product.HightLight</h3>
+        
+    #end
+
+    <!-- Porcentaje -->
+
+    <div id="porcentaje" class="porcentaje-container">
+
+        <div class="porcentaje-content">
+            $product.ListPriceMinusBestPriceInPercent
+        </div>
+        
+    </div>
+    
+    <div class="producto-prateleira__info">
+
+         <!-- marca -->
+
+        <div class="producto-prateleira__info--marca">
+            
+            <div class="marca-content">
+                $product.Brand
+            </div>
+
+        </div>
+        
+        <!-- nombre producto -->
+        
+        <a class="producto-prateleira__info--nombre" title="$escapedName" href="$uri"> 
+
+            <div class="info-nombre">
+
+                $product.Name 
+
+            </div>
+
+        </a> <!-- /.fin nombre producto -->
+
+        <!-- valor grilla -->
+        
+        <a class="producto-prateleira__info--grilla">
+        
+            <div class="info-grilla">
+        
+                $product.ProductField(230)
+        
+            </div>
+        
+            <div class="colores-grilla">
+        
+            </div>
+        
+        </a>
+        <!-- /.fin valor grilla -->
+        
+        <!-- si, hay stock... -->
+       
+        #if ($product.IsInStock)
+        
+            <div class="producto-prateleira__info--precio-container">
+            
+                <a class="producto-prateleira__info--precio" title="$escapedName" href="$uri">
+                    
+                    <!-- si, tiene mejor precio... -->
+
+                    #if ($product.HasBestPrice)
+                    
+                        <div class="producto-prateleira__info--oldPrice">
+                        
+                            <div>$product.ListPrice</div>
+                            
+                        </div>
+                                            
+                        <div class="producto-prateleira__info--bestPrice promo-price">
+                        
+                            <div>$product.BestPrice</div>
+                            
+                        </div>
+
+                        <!--<p class="cuotas-container"> 6 cuotas de <span class="cuotas"></span> sin interés.</p>-->
+                        
+                        <div class="producto-prateleira__info--buy-btn">
+                        
+                            $product.BottomBuyAsynchronous
+                            
+                        </div>
+                    
+                    <!-- si no, entonces... -->
+
+                    #else
+                    
+                        <div class="producto-prateleira__info--bestPrice">
+                        
+                            <div>$product.BestPrice</div>
+                        
+                        </div> 
+                        
+                        <div class="producto-prateleira__info--buy-btn">
+                        
+                            $product.BottomBuyAsynchronous
+                            
+                        </div>
+                        
+                    #end
+                    
+                </a>
+                
+            </div>
+        
+        #else
+
+            <div class="producto-prateleira__info--outStock">
+
+                <p>Próximamente</p>
+
+            </div>
+
+        #end
+      
+    </div>
+        
+</div>

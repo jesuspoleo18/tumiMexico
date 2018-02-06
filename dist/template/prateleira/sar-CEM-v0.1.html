@@ -1,0 +1,20 @@
+#set($id = $product.Id)
+#set($uri = $product.Uri)
+#set($escapedName = $product.HtmlEscapedName)
+<br />
+<table border="0" height="90" cellpadding="0" cellspacing="0" width="550">
+<tr>
+    <td width="125" align="left">
+        <a title="$escapedName" href="$uri?utm_source=VTEXCEM&utm_medium=Abandono_carrinho&utm_campaign=Abandono" border="0">$product.GetImageTag(29)</a>
+    </td>
+    <td width="270">
+        <font face="Arial" size="2" color="#631b03" style="font-family: 'Architects Daughter', cursive;" >$product.Name</font>
+    </td>
+    <td width="130" align="center">       
+        #if($product.HasBestPrice)
+           <font face="Arial" size="2" color="#666666" style="text-decoration: line-through;"> $product.ListPrice</font><br />           
+        #end
+          <font face="Arial" size="3" color="#631b03" style="font-weight:600"> $product.BestPrice</font>                            
+    </td>    
+</tr>
+</table>

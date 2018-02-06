@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce"
+    lang="es">
+
+<!-- head -->
+<head>
+
+    <title>Samsonite Argentina</title>
+
+    <meta name="description" content="" />
+
+    <vtex:template id="0-sar-head" />
+
+</head>
+<!-- /.fin head -->
+
+<!-- body -->
+<body>
+
+    <!-- off-canvas-wrap -->
+    <div class="off-canvas-wrap" data-offcanvas="">
+
+        <!-- inner-wrap -->
+        <div class="inner-wrap">
+
+            <vtex:template id="0-sar-header" />
+            <vtex:template id="0-sar-navigator" />
+
+            <!--overlay-->
+            <div class="main-overlay"></div>
+
+            <!-- container -->
+            <main>
+                
+                <!--texto promocional-->
+                <div class="promobar__container"><h6 class="promobar__text"><vtex.cmc:txtPromo /></h6></div>
+                <!--/.end texto promocional-->
+
+                <!-- account container -->
+                <section class="account-container">
+                
+                    <!-- account content -->
+                
+                    <div class="account-content">
+                
+                        <!-- contenido account -->
+                
+                        <section class="account-content__contenido">
+                
+                            <div class="account__login">
+                
+                                <vtex.cmc:welcomeMessage />
+                
+                            </div>
+                
+                            <div class="account__profile-data">
+                
+                                <vtex.cmc:accountUserProfile />
+                
+                            </div>
+                
+                            <div class="account__addres-data">
+                
+                                <vtex.cmc:accountAddress/>
+                
+                            </div>
+                
+                            <div class="account__orders">
+                
+                                <h1 class="account__title">Mis pedidos</h1>
+                
+                                <a href="/account/orders" class="btn account">Revisar mis pedidos</a>
+                            </div>
+                
+                        </section>
+                        <!-- /.fin contenido account -->
+                
+                    </div>
+                    <!-- /.fin account content -->
+                
+                </section>
+                <!-- /.fin account container -->
+
+            </main>
+            <!-- /.fin container -->
+
+            <!-- footer -->
+            <footer>
+
+                <!-- modal agregado con exito -->
+                <div id="agregadoExito" class="reveal-modal medium" data-reveal="" aria-labelledby="agregadoExitoTitle" aria-hidden="true"
+                    role="dialog" data-reveal-ajax="true">
+                
+                    <div class="agregadoExito-content">
+                
+                        <div class="agregadoExito-mensaje">
+                
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                
+                            <h2 id="agregadoExitoTitle">Producto agregado con éxito</h2>
+                
+                            <a href="/checkout" class="btn compra">Comprar</a>
+                
+                            <a onClick="$('#agregadoExito').foundation('reveal', 'close');" class="btn continua">Continuar Comprando</a>
+                
+                        </div>
+                
+                        <hr />
+                
+                        <div class="agregadoExito-productos">
+                
+                            <h3>Te puede interesar</h3>
+                
+                            <vtex:contentPlaceHolder id="coleccion-modal-agregado-exito" />
+                
+                        </div>
+                
+                    </div>
+                
+                    <button class="close-reveal-modal" data-close="" aria-label="Close" type="button">
+                
+                        <span aria-hidden="true">x</span>
+                
+                    </button>
+                
+                </div>
+                <!-- /.fin modal agregado con exito -->
+
+                <!-- giftListModule -->
+                <div class="giftlistModule">
+                    <vtex.cmc:GiftListInsertSkuV2 />
+                </div>
+                <!-- /.fin giftListModule -->
+
+                <vtex:template id="0-sar-footer" />
+
+            </footer>
+            <!-- /.fin footer -->
+
+            <a class="exit-off-canvas"></a>
+
+        </div>
+        <!-- /.fin inner-wrap -->
+
+    </div>
+    <!-- /.fin off-canvas-wrap -->
+
+</body>
+<!-- /.fin body -->
+
+</html>
