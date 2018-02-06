@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.2
-Ultimo cambio:  24/01/2017
+Ultimo cambio:  30/01/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -6686,7 +6686,7 @@ h4.group.Atributos-Tumi {
 }
 
 .depto__collection-texto a {
-    color: white;
+    color:white;
     font-size: 2rem;
     font-weight: bold;
     font-family: 'Proxima Nova Bold';
@@ -6697,7 +6697,7 @@ h4.group.Atributos-Tumi {
 }
 
 .depto__collection-texto a span {
-    color: white;
+    color:white;
     display: block;
     font-size: 1.4rem;
     font-weight: initial;
@@ -6904,8 +6904,8 @@ h4.group.Atributos-Tumi {
     width: 100%;
 }
 
-.static.brand .static__options-container {
-    padding: 0;
+.static.brand .static__options-container{
+    padding:0;
 }
 
 .buscavacia__text-content,
@@ -7023,10 +7023,10 @@ h4.group.Atributos-Tumi {
     z-index: 1;
 }
 
-.static.brand .static__options-breadcrumb {
-    position: absolute;
-    margin-top: 2rem;
-    margin-left: 2rem;
+.static.brand .static__options-breadcrumb{
+    position:absolute;
+    margin-top:2rem;
+    margin-left:2rem;
 }
 
 .static__options-breadcrumb .breadcrumb {
@@ -7081,14 +7081,15 @@ h4.group.Atributos-Tumi {
 
 .static__infoContent-container {
     padding: 2rem 0;
+    padding-top:2rem;
     width: 80%;
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
 }
 
-.static.brand .static__infoContent-container {
-    width: 95%;
+.static.brand .static__infoContent-container{
+    width:100%;
 }
 
 .static__sideBarNavigation-container {
@@ -7115,13 +7116,9 @@ h4.group.Atributos-Tumi {
     content: "- "
 }
 
-.static__infoContent-content {
-    width: 70%;
-}
-
-.static.brand .static__infoContent-content {
-    border: 1px solid red;
-    width: 100%;
+.static.brand .static__infoContent-content{
+    /*     border:1px solid red; */
+    width:100%;
 }
 
 .static__infoContent-content p:first-child {
@@ -7155,6 +7152,10 @@ h4.group.Atributos-Tumi {
 
 .static__infoContent-container .wrapper-sticky {
     margin-left: 0 !important;
+}
+
+.static__infoContent-content{
+    width:70%;
 }
 
 .static__infoContent-content table {
@@ -7214,37 +7215,210 @@ h4.group.Atributos-Tumi {
     justify-content: center;
 }
 
-.static__options-bannerBrand {
-    position: relative;
+.static__options-bannerBrand{
+    position:relative;
+}
+
+.static__options-brandMessage{
+    border:3px solid white;
+    padding:1.5rem 6rem;
+    position:absolute;
+    top:30%;
+    right:10%;
+    z-index:1;
+}
+
+.brandMessage-title{
+    color:white;
+    font-weight:bold;
+    font-size:2.5rem;
+}
+
+.story__container{
+    width:100%;
+}
+
+.story__content{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.story__related{
+    border:3px solid #777;
+    margin-left:2rem;
+    padding:4rem 2rem;
+    max-height:450px;
+    width:60%;
+}
+
+.story__related h1{
+    color:#777;
+    font-family: 'Proxima Nova bold';
+    font-size:1.3rem;
+    text-transform:uppercase;
+    text-align:center;
+    margin-bottom:1.8rem;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.story__related h1:after{
+    content:"";
+    border-top: 2px solid #eee;
+    margin-top:1.5rem;
+    width:10%;
+}
+
+.story__related p{
+    font-size:.9rem;
+    text-align:center;
+    line-height:24px;
+}
+
+.story__about{
+    background-color:#eee;
+    padding:5rem;
+    width:35%;  
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center; 
+}
+
+.story__about h2{
+    font-size:1.2rem;
+    font-weight:bold;
+    text-transform:uppercase;
+    margin-bottom:1rem;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.story__about h2:after{
+    content:"";
+    border-top: 2px solid #777;
+    margin-top:1.5rem;
+    width:30%;
+}
+
+.story__about-links{
+    font-size:.85rem;
+    text-align:center;
+    line-height:30px;
+}
+
+.story__about-links a{
+    display:block;
+    font-family: 'Proxima Nova bold';
+    padding-bottom:.2rem;
+    position:relative;
+}
+
+.story__about-links .active:after{
+    content:"";
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    height: 5px;
+    border-top: 2px solid black;
+}
+.story__related h1{
+    color:#777;
+    font-size:1.3rem;
+    font-weight:bold;
+    text-transform:uppercase;
+    text-align:center;
+    margin-bottom:1rem;
+}
+
+.story__related p{
+    font-size:.9rem;
+    text-align:center;
+    line-height:28px;
+}
+
+.storyYears__container{
+    border:1px solid red;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.storyYears__content{
+    position:relative;
+    width:80%;
+    display:flex;
+    flex-flow:nowrap;
+    justify-content:space-between;
+}
+
+.storyYearsLeft__container,
+.storyYearsRight__container{
+    border:1px solid orange;
+    width:45%;
+}
+
+.storyYearsLeft__container,
+.storyYearsRight__container{
+    z-index:3;
+}
+
+.storyYearsLeft__container{
+    padding-top:2rem;
 }
 
 .bulletLineImage {
     display: block;
-    width: 100%;
-    height: 5570px;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    background-image: url(/arquivos/Timeline_JustDots.png);
+    border:1px solid blue;
+    background-image: url(http://i1.adis.ws/i/tumi/Timeline_JustDots);
     background-repeat: no-repeat;
     background-position: center;
+        height: 6450px;
+    margin:0;
+    padding:0;
+    position: relative;
+    width:10%;
+    z-index:1;
 }
 
-.static__options-brandMessage {
-    border: 3px solid white;
-    padding: 1.5rem 6rem;
-    position: absolute;
-    top: 30%;
-    right: 10%;
-    z-index: 1;
-}
-
-.brandMessage-title {
-    color: white;
-    font-weight: bold;
+.storyYears__numb{
+    font-family: 'Proxima Nova';
     font-size: 2.5rem;
+    text-align:right;
 }
 
+.storyYearsRight__container .storyYears__numb{
+    text-align:left;
+}
+
+.storyYearsRight__container{
+    padding-top:20%;
+}
+
+.storyYears__text-container{
+    margin-bottom:1.5rem;
+}
+
+.storyYearsLeft__container .storyYears__text-container{
+    text-align:right;
+}
+
+.storyYears__text-container p{
+    margin-bottom:.25rem;
+}
+
+.storyYears__img{
+    max-height:300px;
+}
 
 /*
 [f19.Mediaquerie estatico]
@@ -7551,7 +7725,7 @@ h4.group.Atributos-Tumi {
     float: left;
     margin-top: 75px;
     text-align: right;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     display: block;
     width: 45%;
 }
@@ -7566,7 +7740,7 @@ h4.group.Atributos-Tumi {
     float: right;
     margin-top: 254px;
     text-align: left;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     display: block;
     width: 45%;
 }
@@ -7575,7 +7749,7 @@ h4.group.Atributos-Tumi {
     font-size: 40px;
     font-family: 'proxima-nova', sans-serif;
     font-weight: 200;
-    font-color: #222222;
+    color: #222222;
 }
 
 .miTumi #wordwrap {
@@ -7724,21 +7898,21 @@ h4.group.Atributos-Tumi {
 #trialBlockOne {
     width: 33%;
     display: inline-block;
-    float: center;
+    /* float: center; */
     padding-left: 40px;
 }
 
 #trialBlockTwo {
     width: 33%;
     display: inline-block;
-    float: center;
+    /* float: center; */
     padding-left: 100px;
 }
 
 #trialBlockThree {
     width: 33%;
     display: inline-block;
-    float: center;
+    /* float: center; */
     padding-left: 60px;
 }
 
@@ -7997,9 +8171,6 @@ h4.group.Atributos-Tumi {
     font-size: 16px;
 }
 
-.functionalBoxBlock .spacing,
-.functionalBoxBlock .ctnr-tabs .arrowIcon {}
-
 #tabsLeftBox {
     width: 50%;
     float: left;
@@ -8059,7 +8230,7 @@ h4.group.Atributos-Tumi {
     float: right;
     display: block;
     position: relative;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     text-align: center;
     padding-top: 20px;
 }
@@ -8216,7 +8387,7 @@ h4.group.Atributos-Tumi {
     height: 107px;
     position: relative;
     display: inline-block;
-    float: left;
+    /* float: left; */
 }
 
 .innoBlockIcon img {
@@ -8240,7 +8411,7 @@ h4.group.Atributos-Tumi {
     height: 107px;
     position: relative;
     display: inline-block;
-    float: left;
+    /* float: left; */
 }
 
 #imageXbrace {
@@ -8262,7 +8433,7 @@ h4.group.Atributos-Tumi {
     width: 100%;
     height: 143px;
     position: relative;
-    float: left;
+    /* float: left; */
     word-wrap: break-word;
     display: inline-block;
     margin: 0px;
@@ -8480,7 +8651,7 @@ h4.group.Atributos-Tumi {
 
 .VideoBorder {
     width: 80%;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     display: block;
     position: relative;
     margin: 30px auto;
