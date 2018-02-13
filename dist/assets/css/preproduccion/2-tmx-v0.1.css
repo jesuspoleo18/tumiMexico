@@ -126,12 +126,13 @@ f18.Estatico
     f18_b.La diferencia tumi
     f18_c.Responsabilidad empresarial Tumi
 f19.Mediaquerie estatico
-    f19_a.La historia tumi
-    f19_b.La diferencia tumi
-    f19_c.Responsabilidad empresarial Tumi
+    f19_a.Mediaquerie la historia tumi
+    f19_b.Mediaquerie la diferencia tumi
+    f19_c.Mediaquerie responsabilidad empresarial Tumi
 f20.Sistema
 f21.Mediaquerie sistema
-f22.Stactic Content
+f22.Nuestras tiendas
+f23.Mediaquerie nuestras tiendas
 
 -------------------------fin---------------------------------*/
 
@@ -1006,6 +1007,10 @@ footer {
     display: flex;
     width: 50%;
     align-items: center;
+}
+
+.footer__logo img{
+    max-width:80px;
 }
 
 .footer__copyrights {
@@ -6890,7 +6895,8 @@ h4.group.Atributos-Tumi {
 .static.buscavazia .static__infoContent-container,
 .static.brand .static__sideBarNavigation-container,
 .static.brand .static__options-textContent,
-.static.brand .static__recomendations {
+.static.brand .static__recomendations,
+.static.buscavazia .static__options-brandMessage {
     display: none;
 }
 
@@ -7224,6 +7230,11 @@ h4.group.Atributos-Tumi {
 
 .static__options-bannerBrand{
     position:relative;
+    width:100%;
+}
+
+.static__options-bannerBrand img{
+    width:100%;
 }
 
 .static__options-brandMessage{
@@ -7253,7 +7264,7 @@ h4.group.Atributos-Tumi {
 }
 
 .story__related{
-    border:3px solid #777;
+    border:3px solid black;
     margin-left:2rem;
     padding:2rem 2rem;
     max-height:300px;
@@ -7339,7 +7350,7 @@ h4.group.Atributos-Tumi {
 }
 
 .story__related h1{
-    color:#777;
+    color:black;
     font-size:1.3rem;
     font-weight:bold;
     text-transform:uppercase;
@@ -7351,6 +7362,27 @@ h4.group.Atributos-Tumi {
     font-size:.9rem;
     text-align:center;
     line-height:28px;
+}
+
+.static-brand__title{
+    color:black;
+    font-weight:bold;
+    text-transform:uppercase;
+    text-align:center;
+    margin-bottom:1rem;
+    padding:1rem 0;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.static-brand__title:after{
+    content:"";
+    border-top: 2px solid #777;
+    margin-top:1.5rem;
+    width:8%;
 }
 
 /*
@@ -7445,9 +7477,197 @@ h4.group.Atributos-Tumi {
 ============================= */
 
 /*
-[f18_b.f18_c.Responsabilidad empresarial Tumi]
+[f18_c.Responsabilidad empresarial Tumi]
 ============================= */
 
+.static-brand__container,
+.static-brand__content{
+    width:100%;
+    display:flex;
+    flex-flow:wrap;
+    justify-content:center;
+    align-items:center;
+}
+
+.static-brand__container{
+    margin-top:2rem;
+}
+
+.static-brand__tabs{
+    border:3px solid black;
+    border-bottom:none;
+    width:95%;
+    display:flex;
+    flex-flow:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.static-brand__button-container{
+    /*     border:1px solid red; */
+    padding-bottom:1.5rem;
+    width:80%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.static-brand__button{
+    background-color:#eee;
+    color:black;
+    font-size:.8rem;
+    font-weight:bold;
+    text-align:center;
+    padding:.8rem;
+    width:48%;
+}
+
+.static-brand__button.active{
+    background-color:black;
+    color:white;
+}
+
+.static-brand__button.active:before {
+    color: black;
+    content: "\f0d7";
+    bottom: -50%;
+    font-size: 2rem;
+    font-family: 'FontAwesome';
+    right: 50%;
+    position: absolute;
+}
+
+.static-brand__tabsInfo-hospital,
+.static-brand__tabsInfo-donacion{
+    width:100%;
+    display:flex;
+    flex-flow:wrap;
+    justify-content:center;
+    align-items:center;
+}
+
+.static-brand__tabsInfo-donacion{
+    display:none;
+}
+
+.static-brand__tabsInfo-text{
+    border:3px solid black;
+    border-top:0;
+    padding:.8rem 1.5rem;
+    width:95%;
+    display:flex;
+    flex-flow:wrap;
+    justify-content:space-between;
+}
+
+.static-brand__title.hospital{
+    align-items:flex-start;
+    width:100%;
+}
+
+.static-brand__title.hospital:after{
+    content:"";
+    border:none;
+    margin:0;
+}
+
+.static-brand__text.hospital,
+.static-brand__text.donacion{
+    width:49%;
+}
+
+.static-brand__text.hospital a{
+    display:inline-block;
+    font-weight:bold;
+}
+
+.static-brand__infoBorder{
+    border:3px solid black;
+    margin-top:2rem;
+    width:95%;
+}
+
+.static-brand__text{
+    font-family: 'Proxima Nova';
+    font-size:.9rem;
+    line-height:24px;    
+}
+
+.static-brand__text.infoBorder{
+    text-align:center;
+    padding:1rem 2rem;
+}
+
+.static-brand__title.takeYouHome{
+    margin:0;
+}
+
+.static-brand__title.takeYouHome:after{
+    width:4%;
+}
+
+.static-brand__environment{
+    background-color:#eee;
+    margin-top:3rem;
+    position:relative;
+    width:95%;
+    display:flex;
+    flex-flow:wrap;
+    justify-content:flex-end;
+    
+}
+
+.static-brand__environment-img{
+    max-width:600px;
+    position:absolute;
+    top:0;
+    left:-3%;
+}
+
+.static-brand__environment-img img{
+    max-height:350px;
+}
+
+.static-brand__environment-text{
+    border:3px solid #eee;
+    text-align:center;
+    padding:1rem;
+    padding-bottom:4rem;
+    width:50%;
+}
+
+.static-brand__environment .static-brand__title{
+    font-size:1.2rem;
+    margin:0;
+    padding:1rem 0;
+    padding-top:1.5rem;
+    width:100%;
+    /*         display:none; */
+}
+
+.static-brand__title:last-child{
+    display:none;
+}
+
+.static-brand__environment-text .static-brand__title{
+    font-size:initial;
+    padding-bottom:.8rem;
+    padding-top:1rem;
+}
+
+.static-brand__environment .static-brand__title:after,
+.static-brand__environment-text .static-brand__title.sub:after{
+    content:"";
+    border:none;
+    margin:0
+}
+
+.static-brand__environment-text .static-brand__title:after{
+    content: "";
+    border-top: 2px solid #777;
+    margin-top: 1.5rem;
+    width: 8%;
+}
 
 /*
 [f19.Mediaquerie estatico]
@@ -7504,7 +7724,13 @@ h4.group.Atributos-Tumi {
     }
     .story__related{
         margin:0;
+        margin-top:1rem;
+        max-height:100%;
+        padding:1rem;
         width:90%;
+    }
+    .story__related h1{
+        font-size:.9rem;    
     }
     .story__about{
         margin-top:1rem;
@@ -7561,13 +7787,104 @@ h4.group.Atributos-Tumi {
     .storyYears__content{
         width:90%;
     }
+    .static-brand__button-container{
+        width:100%;
+    }
+    .static-brand__button{
+        font-size:.7rem;
+    }
+    .static-brand__environment-img{
+        max-width:100%;
+        position:relative;
+        left:initial;
+        width:100%;
+    }
+    .static-brand__environment-text{
+        width:100%;
+    }
 }
 
 
 /* xlarge */
 
-@media only screen and (min-width: 90.063em) {}
+@media only screen and (min-width: 90.063em) {
+    .static-brand__tabsInfo-hospital img,
+    .static-brand__tabsInfo-donacion img{
+        width:100%;
+    }
+    .static-brand__environment-img{
+        max-width:50%;
+    }
+    .static-brand__environment-img img{
+        max-height:300px;
+    }
+}
 
+/*
+[f19_a.Mediaquerie la historia tumi]
+
+============================= */
+
+/* small */
+@media only screen and (max-width: 40em) {}
+
+/* medium */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { }
+
+/* large */
+@media only screen and (min-width: 90.063em) { }
+
+/*
+[f19_b.Mediaquerie la diferencia tumi]
+
+============================= */
+
+/* small */
+@media only screen and (max-width: 40em) { }
+
+/* medium */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { }
+
+/* large */
+@media only screen and (min-width: 90.063em) { }
+
+/*
+[f19_c.Mediaquerie responsabilidad empresarial Tumi]
+
+============================= */
+
+/* small */
+@media only screen and (max-width: 40em) {
+    .static-brand__button-container{
+        width:100%;
+        flex-flow:wrap;
+    }
+    .static-brand__button{
+        line-height:22px;
+        width:100%;
+    }
+    .static-brand__title{
+        font-size:.9rem;
+    }
+    .static-brand__text.hospital, .static-brand__text.donacion{
+        width:100%;
+    }
+    .static-brand__environment-img{
+        max-width:100%;
+        position:relative;
+        top:initial;
+        left:initial;
+    }
+    .static-brand__environment-text{
+        width:100%;
+    }
+}
+
+/* medium */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { }
+
+/* large */
+@media only screen and (min-width: 90.063em) { }
 
 /*
 [f20.Sistema]
@@ -7577,5 +7894,174 @@ h4.group.Atributos-Tumi {
 
 /*
 [f21.Mediaquerie sistema]
+
+============================= */
+
+/*
+[f22.Nuestras tiendas]
+
+============================= */
+
+#pais,.store__results{
+    display:none;
+}
+
+#ciudad{
+    margin:0;
+}
+
+.store__container,
+.store__content{
+    height:100%;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+}
+
+.store__container{
+    margin-bottom:2rem;
+}
+
+.store__map-container,
+.store__map-content{
+    width:100%;
+}
+
+.store__map-container{
+    width:80%;
+}
+
+#map-canvas {
+    display: block;
+    /*     float: left; */
+    height:100%;
+    min-height: 600px;
+    max-width: 100%;
+    width: 100%
+}
+
+.store__aside-container{
+    background-color:#eee;
+    width:20%;
+}
+
+.store__controls{
+    background-color:white;
+    padding:1.2rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.store__warning{
+    background-color:black;
+    padding:1rem 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.store__warning h1{
+    color:white;
+    font-weight:bold;
+}
+
+.store__warning h1:before{
+    content:"\f12a";
+    font-family:'FontAwesome';
+    padding-right:.5rem;
+}
+
+.store__results{
+    flex-direction:column;
+}
+
+.store__results h2{
+    background-color:black;
+    color:white;
+    font-weight:bold;
+    text-transform:uppercase;
+    margin-bottom:1rem;
+    padding:1rem;
+}
+
+.stores_ul{
+    max-height:200px;
+    overflow-y:auto;
+}
+
+
+.stores_ul::-webkit-scrollbar {
+    width:4px;
+    background-color: #f5f5f5;
+}
+
+.stores_ul::-webkit-scrollbar-thumb {
+    background-color: #B92335;
+}
+
+.stores_ul ul{
+    padding:1rem;
+}
+
+.stores_ul ul li{
+    border-radius:3px;
+    color:black;
+    cursor:pointer;
+    font-family: 'Proxima Nova';
+    font-size:.8rem;
+    font-weight:bold;
+    background-color:#ccc;
+    margin-bottom:1rem;
+    padding:.5rem .5rem;
+}
+
+.stores_ul ul li.selected{
+    background-color:#777;
+    color:white;
+}
+
+.store__info{
+    /*     border:1px solid red; */
+    margin-top:1rem;
+    padding:0 .5rem;
+}
+
+.firstHeading{
+    font-size:.8rem;
+    font-family: 'Proxima Nova Bold';
+    margin-bottom:1rem;
+}
+
+.firstHeading:before{
+    content:"\f041";
+    color:#2E2A25;
+    font-family:'FontAwesome';
+    font-size:2rem;
+    margin-right:.5rem;
+}
+
+#bodyContent{
+    display:block;
+    border-bottom:1px solid #777;
+    padding-left:1.5rem;
+    padding-bottom:1rem;
+
+}
+
+.bodyContent__text p{
+    display:inline-block;
+    text-transform:lowercase;
+}
+
+.bodyContent__text p:first-letter{
+    font-size:.8rem;
+    text-transform:uppercase;
+}
+
+
+/*
+[f23.Mediaquerie nuestras tiendas]
 
 ============================= */
