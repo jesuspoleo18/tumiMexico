@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio: 13/02/2018
+Ultimo cambio: 14/02/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -69,7 +69,7 @@ var confiGenerales = {
 
     init: function () {
 
-        confiGenerales.mainLazyLoad();
+        // confiGenerales.mainLazyLoad();
         // confiGenerales.FormatoDecimales();
         confiGenerales.stickySearch();
         confiGenerales.infoTab();
@@ -445,7 +445,7 @@ var confiGenerales = {
 
                     $megamenu.each(function () {
                         var $megamenuAttr = $(this).attr("id");
-                        if ($menuItemAttr == $megamenuAttr) {
+                        if ($menuItemAttr.indexOf($megamenuAttr) > -1) {
                             $(this).addClass('display');
                             $(this).siblings().removeClass('display');
                         }
@@ -519,7 +519,7 @@ var confiGenerales = {
         if ($montoValor == 0) {
 
             // console.log("miniCart vacío");
-            confiGenerales.mainLazyLoad();
+            // confiGenerales.mainLazyLoad();
 
             $emptyBag.addClass("active");
             $cartNumber.removeClass("active");
@@ -527,7 +527,7 @@ var confiGenerales = {
         }
         if ($montoValor > 0) {
 
-            confiGenerales.mainLazyLoad();
+            // confiGenerales.mainLazyLoad();
 
             // console.log("miniCart tiene productos");
 
@@ -1039,7 +1039,7 @@ var producto = {
         }
 
         $('.carousel-recomendados,.carousel-vistosReciente').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-            confiGenerales.mainLazyLoad();
+            // confiGenerales.mainLazyLoad();
             // console.log(nextSlide);
         });
 
@@ -1139,7 +1139,7 @@ var producto = {
     miniatura: function () {
 
         miniaturaActiva();
-        miniaturaCarrusel();
+        // miniaturaCarrusel();
 
         function miniaturaActiva() {
 
@@ -1470,7 +1470,7 @@ var categDepto = {
                             confiGenerales.replaceHref();
                             confiGenerales.wishlistOnclick();
                             confiGenerales.compraAsyncVitrina();
-                            confiGenerales.mainLazyLoad();
+                            // confiGenerales.mainLazyLoad();
                         },
                         // Cálculo do tamanho do footer para que uma nova página seja chamada antes do usuário chegar ao "final" do site
                         getShelfHeight: function ($this) {
@@ -1846,16 +1846,54 @@ var static = {
         $content.clone().appendTo($container);
         BarbaWidget.addClassNoBarba();
     },
-    anchoring: function () {
-        var $root = $('html, body'),
-            $trigger = $('.static__options-anchorLinks-content a');
+    // anchoring: function () {
+    //     var $root = $('html, body'),
+    //         $trigger = $('.static__options-anchorLinks-content a');
 
-        $($trigger).on("click", function (e) {
-            e.preventDefault();
-            $root.animate({
-                scrollTop: ($($.attr(this, 'href')).offset(100).top + 100)
-            }, 500);
-            return false;
+    //     $($trigger).on("click", function (e) {
+    //         e.preventDefault();
+    //         $root.animate({
+    //             scrollTop: ($($.attr(this, 'href')).offset(100).top + 100)
+    //         }, 500);
+    //         return false;
+    //     });
+    // },
+    anchoring: function(){
+        // Select all links with hashes
+        $('.static__options-anchorLinks-content a[href*="#"]')
+        // Remove links that don't actually link to anything
+        .not('.static__options-anchorLinks-content [href="#"]')
+        .not('.static__options-anchorLinks-content [href="#0"]')
+        .click(function (event) {
+            // On-page links
+            if (
+                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+                &&
+                location.hostname == this.hostname
+            ) {
+                // Figure out element to scroll to
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                // Does a scroll target exist?
+                if (target.length) {
+                    // Only prevent default if animation is actually gonna happen
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: (target.offset().top + 100)
+                    }, 1000, function () {
+                        // Callback after animation
+                        // Must change focus!
+                        var $target = $(target);
+                        $target.focus();
+                        if ($target.is(":focus")) { // Checking if the target was focused
+                            return false;
+                        } else {
+                            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                            $target.focus(); // Set focus again
+                        };
+                    });
+                }
+            }
         });
     },
     asideSticky: function (trigger) {

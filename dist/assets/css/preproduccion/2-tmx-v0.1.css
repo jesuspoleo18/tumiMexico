@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.1
-Ultimo cambio:  13/02/2017
+Ultimo cambio:  14/02/2017
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -390,6 +390,7 @@ img {
     position: fixed;
     width: 100%;
     z-index: 99;
+    display:none !important;
 }
 
 #ajaxBusy p {
@@ -1417,15 +1418,17 @@ footer {
     padding: 0 1rem;
     padding-top: 0;
     /*     border:1px solid black; */
-    /*     background-color:#F8F8F8; */
-    background-color: #eee;
+    /*         background-color:#F8F8F8; */
+    /*     background-color: #eee; */
 }
 
-.home .prateleira.n6colunas ul{
+.home .prateleira.n6colunas ul,
+.static .prateleira.n6colunas ul{
     flex-flow:nowrap;
 }
 
-.home .prateleira.n6colunas ul li{
+.home .prateleira.n6colunas ul li,
+.static .prateleira.n6colunas ul li{
     width:16%;
 }
 
@@ -3783,6 +3786,10 @@ ul.pages li.page-number.pgCurrent:after {
     content: "\f178";
 }
 
+.slide__img img{
+    width:100%;
+}
+
 
 /*
 [e3.Mediaquerie carruseles]
@@ -5575,7 +5582,7 @@ table thead {
     position: absolute;
     z-index: 2;
     /*     border:var(--borderNegro); */
-    top: 38%;
+    top: 25%;
     left: 2%;
     max-width: 7%;
 }
@@ -7108,7 +7115,7 @@ h4.group.Atributos-Tumi {
 
 .static__infoContent-container {
     padding: 2rem 0;
-    padding-top:0;
+    padding-top:2rem;
     width: 80%;
     display: flex;
     flex-flow: wrap;
@@ -7921,6 +7928,7 @@ h4.group.Atributos-Tumi {
 }
 
 #ciudad{
+    color:#777;
     margin:0;
 }
 
@@ -7966,6 +7974,30 @@ h4.group.Atributos-Tumi {
     flex-direction:column;
     justify-content:center;
     align-items:center;
+}
+
+.store__title-selectLocation{
+    color:#777;
+    font-family: 'Proxima Nova bold';
+    font-size:.8rem;
+    text-transform:uppercase;    
+    padding-bottom:.3rem;
+}
+
+.store__typeView{
+    background-color:#eee;
+    color:#777;
+    font-size:.8rem;
+    margin-top:1rem;
+    padding:1rem 2rem;
+    text-transform:uppercase;
+}
+
+.store__typeView:before{
+    content:"\f041";
+    color:#777;
+    font-family:'FontAwesome';
+    padding-right:.5rem;
 }
 
 .store__warning{
@@ -8079,3 +8111,53 @@ h4.group.Atributos-Tumi {
 [f23.Mediaquerie nuestras tiendas]
 
 ============================= */
+
+/* small */
+@media only screen and (max-width: 40em) {
+    #map-canvas{
+        min-height:200px;
+    }
+    .store__aside-container{
+        width:100%;
+    }
+    .store__content{
+        flex-direction:column;
+    }
+    .store__map-container{
+        display:none;
+        order:1;
+        width:100%;
+    }
+}
+
+/* medium */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+    .store__map-container{
+        width:70%;
+    }
+    .store__aside-container{
+        width:30%;
+    }
+    .store__warning{
+        font-size:.8rem;
+    }
+    #ciudad{
+        font-size:.8rem;
+    }
+    .stores_ul ul{
+        padding:0 1rem;
+    }
+    .bodyContent__text p{
+        font-size:.8rem;
+    }
+    .bodyContent__text strong{
+        font-size:.8rem;
+        line-height:24px;
+    }
+    .store__info{
+        margin-top:.5rem;
+    }
+}
+
+/* xlarge */
+@media only screen and (min-width: 90.063em) {}

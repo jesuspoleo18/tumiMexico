@@ -13,7 +13,7 @@ if ($el.length) {
 
         // $('#pais').change();
 
-        $('#bodyContent p, #ciudad').each(function () {
+        $('#bodyContent p, #ciudad option').each(function () {
 
             var $this = $(this);
 
@@ -69,13 +69,47 @@ function loadScript() {
         $storeWarning.fadeOut();
 
         // Se muestran los options de las tiendas a partir de la ciudad actual se utiliza la clase
-        if (ciud.indexOf(' ') >= 0) { } else { }
+        if (ciud.indexOf('Escoja una ciudad') > -1) {
+            $storeWarning.fadeIn();
+            $results.fadeOut();
+        } else { $results.fadeIn().css("display", "flex");}
         $('.' + ciud.replace(" ", "")).show();
-        $results.fadeIn().css("display","flex");
 
     });
 
     $('#pais').change();
+    mapMobile();
+}
+
+function mapMobile(){
+    var $responsive = $(window).width(),
+    textTemplate,
+    $target = $("#ciudad"),
+    $listView = $(".store__warning"),
+    $mapView = $(".store__map-container"),
+    $template = '<a href="#" class="store__typeView">Ver Mapa</div>';
+    
+    if($responsive <= 425){
+        $target.after($template);
+        var $btnView = $(".store__typeView");
+        $btnView.on("click", function(e){
+            var $this = $(this);
+            e.preventDefault();
+            if($this.text() == 'Ver Mapa'){
+                textTemplate = 'Ocultar Mapa';
+                $btnView.text(textTemplate);
+                $listView.fadeOut();
+                $mapView.fadeIn();
+            }else if ($this.text() == 'Ocultar Mapa') {
+                textTemplate = 'Ver Mapa';
+                $btnView.text(textTemplate);
+                $mapView.fadeOut();
+                if ($(".store__results:visible").length == 0){
+                    $listView.fadeIn();
+                }
+            }
+        });
+    }
 }
 
 function initialize() {
@@ -279,7 +313,7 @@ function getCities(pais) {
 
     $('#ciudad').html('');
 
-    var opt = $('<option>').val('Seleccione Cuidad').text('Seleccione Cuidad');
+    var opt = $('<option>').val('Escoja una ciudad').text('Escoja una ciudad');
 
     $('#ciudad').append(opt);
 
@@ -526,7 +560,7 @@ function getAllData() {
             // ciudades
             cities: {
 
-                CIUDAD_DE_MÉXICO: {
+                Ciudad_de_méxico: {
 
                     lat: "-34.6158037",
                     lng: "-58.5033388",
@@ -550,7 +584,7 @@ function getAllData() {
 
                 },
 
-                DISTRITO_FEDERAL: {
+                Distrito_federal: {
 
                     lat: "-34.6158037",
                     lng: "-58.5033388",
@@ -579,7 +613,7 @@ function getAllData() {
                     }
                 },
 
-                ESTADO_DE_MEXICO: {
+                Estado_de_mexico: {
 
                     lat: "19.3255707",
                     lng: "-100.7264629",
@@ -593,7 +627,7 @@ function getAllData() {
                     }
                 },
 
-                MONTERREY: {
+                Monterrey: {
                     lat: "25.6490376",
                     lng: "-100.4431844",
 
@@ -607,7 +641,7 @@ function getAllData() {
                     
                 },
 
-                PLAYA_DEL_CARMEN: {
+                Playa_del_carmen: {
 
                     lat: "20.6540983",
                     lng: "-87.1417375",
