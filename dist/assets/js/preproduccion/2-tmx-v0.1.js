@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio: 24/1/2018
+Ultimo cambio: 13/02/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -186,7 +186,10 @@ var confiGenerales = {
         var $a = $(".btn-buscar"),
             $b = $("<div class='search__icon'></div>"),
             $c = $(".search__icon");
-        $a.attr({ placeholder: " ", value: " " });
+        $a.attr({
+            placeholder: " ",
+            value: " "
+        });
         $c.length ? console.log("˙ω˙ icono agregado") : $a.before($b);
     },
 
@@ -681,8 +684,31 @@ var home = {
         $(".helperComplement").remove();
         $(".home__tabs-content.news .prateleira").children().addClass("carousel-news");
 
-        if ($responsive < 758) {
-            if ($count.length > 2) { $(producto).slick({ autoplay: true, autoplaySpeed: 2500, slide: 'li', slidesToScroll: 1, slidesToShow: 2, speed: 500, dots: true, responsive: [{ breakpoint: 980, settings: { slidesToShow: 2, slidesToScroll: 1 } }, { breakpoint: 650, settings: { slidesToShow: 2, slidesToScroll: 1 } }] }); }
+        if ($responsive > 758) {
+            if ($count.length > 6) {
+                $(producto).slick({
+                    autoplay: true,
+                    autoplaySpeed: 2500,
+                    slide: 'li',
+                    slidesToScroll: 2,
+                    slidesToShow: 6,
+                    speed: 500,
+                    dots: true,
+                    responsive: [{
+                        breakpoint: 980,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    }, {
+                        breakpoint: 650,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    }]
+                });
+            }
         }
 
         $(main).slick({
@@ -818,7 +844,9 @@ var producto = {
         var $btnComprarProduto = $('.buy-button.buy-button-ref'),
             $notifyme = $(this).find(".notifyme.sku-notifyme:visible"),
             $templateQty = '<div class="pull-left box-qtd"><input type="text" class="qtd pull-left" value="1" /><div class="bts pull-left"><button class="btn btn-mais">+</button><button class="btn btn-menos">-</button></div></div>',
-            qty = { cantidad: "" };
+            qty = {
+                cantidad: ""
+            };
 
         if ($btnComprarProduto.length) {
 
@@ -879,7 +907,15 @@ var producto = {
     },
     textoProducto: function () {
 
-        var producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", cantidad: "" },
+        var producto = {
+                id: "",
+                descripcion: "",
+                ean: "",
+                caracteristica: "",
+                stock: "",
+                marca: "",
+                cantidad: ""
+            },
             $ean = $(".ean");
 
         vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
@@ -896,7 +932,9 @@ var producto = {
                 $erase.remove();
                 $toAppend.append($noDisponible);
 
-            } else { console.log("available"); }
+            } else {
+                console.log("available");
+            }
 
             producto.id = product.productId;
             console.log(product);
@@ -954,19 +992,19 @@ var producto = {
                     speed: 500,
                     dots: true,
                     responsive: [{
-                        breakpoint: 980,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
+                            breakpoint: 980,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 650,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
                         }
-                    },
-                    {
-                        breakpoint: 650,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2
-                        }
-                    }
                     ]
 
                 });
@@ -982,19 +1020,19 @@ var producto = {
                 speed: 500,
                 dots: true,
                 responsive: [{
-                    breakpoint: 980,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
+                        breakpoint: 980,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 650,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
                     }
-                },
-                {
-                    breakpoint: 650,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                }
                 ]
 
             });
@@ -1342,7 +1380,9 @@ var categDepto = {
                         "justify-content": "flex-start"
                     });
 
-                } else { console.log("false"); }
+                } else {
+                    console.log("false");
+                }
                 return false;
             });
 
@@ -1383,8 +1423,8 @@ var categDepto = {
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        }))
+                return $.getScript(files);
+            }))
             .then(function () {
 
                 $(trigger).hcSticky({
@@ -1403,8 +1443,8 @@ var categDepto = {
         var files = ["/arquivos/QD_infinityScroll.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        }))
+                return $.getScript(files);
+            }))
             .then(function () {
 
                 console.log("cargo el infinity");
@@ -1483,14 +1523,22 @@ var categDepto = {
             },
             $searchResultsTime = $(".searchResultsTime:eq(0), .sub:eq(0)");
 
-        if ($compare.length) { $compare.appendTo($containerCompare); }
+        if ($compare.length) {
+            $compare.appendTo($containerCompare);
+        }
         $categTitle.html("Mochilas y Macutos");
         $categDescripcion.html("Modernas, duraderas, cómodas y elegantes. Nuestras mochilas y bandoleras son perfectas para profesionales y estudiantes. Encontrará desde mochilas para portátiles, bolsos para fin de semana y mucho más.");
         $searchResultsTime.appendTo($containerFilter);
         $filterBy.html($filterBy.children().eq("0").remove());
         $containerFilter.append($pager);
         $categOptionsBottom.clone().appendTo(".categ__products").addClass("bottom");
-        $navigatorInput.on("click", function () { if ($(this).attr('checked')) { $(this).attr('checked', 'checked'); } else { $(this).removeAttr('checked'); } });
+        $navigatorInput.on("click", function () {
+            if ($(this).attr('checked')) {
+                $(this).attr('checked', 'checked');
+            } else {
+                $(this).removeAttr('checked');
+            }
+        });
         $btnFilter.toggle(function () {
             $(this).text("Mostrar Filtros").addClass("active");
             $(".slick-next.slick-arrow").click();
@@ -1640,7 +1688,15 @@ var quickviewControl = {
             var $iframeBuySuccess = $(".TB_compraExitosa"),
                 $thisBtn = $(".buy-button.buy-button-ref"),
                 $ean = $("#quickview__style-number"),
-                producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", url: "" },
+                producto = {
+                    id: "",
+                    descripcion: "",
+                    ean: "",
+                    caracteristica: "",
+                    stock: "",
+                    marca: "",
+                    url: ""
+                },
                 $productoName = $(".notifyme-client-name"),
                 $productoEmail = $(".notifyme-client-email");
 
@@ -1749,7 +1805,9 @@ var quickviewControl = {
         var $btnComprarProduto = $('.buy-button.buy-button-ref'),
             $notifyme = $(".notifyme.sku-notifyme:visible"),
             $templateQty = '<div class="pull-left box-qtd"><input type="text" class="qtd pull-left" value="1" /><div class="bts pull-left"><button class="btn btn-mais">+</button><button class="btn btn-menos">-</button></div></div>',
-            qty = { cantidad: "" };
+            qty = {
+                cantidad: ""
+            };
 
         if ($btnComprarProduto.length) {
 
@@ -1795,7 +1853,7 @@ var static = {
         $($trigger).on("click", function (e) {
             e.preventDefault();
             $root.animate({
-                scrollTop: ($($.attr(this, 'href')).offset(100).top +100)
+                scrollTop: ($($.attr(this, 'href')).offset(100).top + 100)
             }, 500);
             return false;
         });
@@ -1805,8 +1863,8 @@ var static = {
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        }))
+                return $.getScript(files);
+            }))
             .then(function () {
 
                 $(trigger).hcSticky({
@@ -1884,7 +1942,9 @@ var BarbaWidget = {
                 .then(this.fadeIn.bind(this));
         },
         fadeOut: function () {
-            return $(this.oldContainer).animate({ opacity: 0 }).promise();
+            return $(this.oldContainer).animate({
+                opacity: 0
+            }).promise();
         },
         fadeIn: function () {
             var _this = this,
@@ -1897,7 +1957,9 @@ var BarbaWidget = {
                 opacity: 0
             });
 
-            $el.animate({ opacity: 1 }, 400, function () {
+            $el.animate({
+                opacity: 1
+            }, 400, function () {
                 _this.done();
             });
         }
