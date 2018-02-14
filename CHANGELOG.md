@@ -11,6 +11,8 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 * Se añadio el .js para nuestras tiendas así como también se creó el template y el placeholders. **18:38pm | 2018-02-13**
 * Estilado de "nuestras tiendas" versión desktop. **18:38pm | 2018-02-13**
 * Se añadió una función en el .js de "nuestras tiendas" para ocultar y mostrar el mapa en versiones mobiles así como también se añadío el css para versión mobiles **12:37pm | 2018-02-14**
+* Desarrollo de función que permite consultar los sku de cada variante por producto en hover para la vista de catagoria/depto **18:54pm | 2018-02-14**
+* Añadido script que consulta los eventos hash on change **18:54pm | 2018-02-14**
 
 ### Changed
 * Mejoras en los estilos de las páginas estáticas **10:14am | 2018-02-13**

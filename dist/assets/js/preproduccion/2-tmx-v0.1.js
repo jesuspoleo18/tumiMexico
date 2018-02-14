@@ -25,6 +25,8 @@ b7.Quickview
 b8.Static
 
 -------------------------fin---------------------------------*/
+
+
 /* 
 
 [a0.Globales]
@@ -822,7 +824,7 @@ var producto = {
     },
     traducciones: function () {
         var $breadCrumb = $(".bread-crumb ul li:eq(0)");
-        $breadCrumb.html("Página de inicio");
+        $breadCrumb.html("<a href='/'>Home</a>");
     },
     userReview: function () {
         var $buttonReview = $("#lnkPubliqueResenha"),
@@ -1249,14 +1251,21 @@ var categDepto = {
             categDepto.carouselPrateleira();
             categDepto.categDeptoAccordion('.search-multiple-navigator h4,.search-multiple-navigator h5', '.search-multiple-navigator h3');
             categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
-            // categDepto.infinityScroll();
             categDepto.categOptions();
+            categDepto.traducciones();
+            // categDepto.infinityScroll();
+            categDepto.skuImgPrateleira();
+            categDepto.eventHasChange();
             //setInterval(categDepto.traducciones,800);
             setInterval(confiGenerales.mainLazyLoad, 800);
             console.log("categDepto.init()  ˙ω˙");
 
         }
 
+    },
+    traducciones: function () {
+        var $breadCrumb = $(".bread-crumb ul li:eq(0)");
+        $breadCrumb.html("<a href='/'>Home</a>");
     },
     carouselPrateleira: function () {
 
@@ -1308,8 +1317,10 @@ var categDepto = {
                                     });
 
                                     var z = '' + $elements[0] + '',
-                                        $slickThumb = _thisImg.find(".slide-thumb.hover");
+                                        $slickThumb = _thisImg.find(".slide-thumb.hover"),
+                                        $slickThumbLast = _thisImg.find(".slide-thumb:last-child");
 
+                                    $slickThumbLast.remove();
                                     _thisImg.find("img:eq(0)").appendTo($slickThumb);
 
                                     if (_thisImg.length) {
@@ -1578,6 +1589,50 @@ var categDepto = {
             }
         });
 
+    },
+    skuImgPrateleira: function(){
+
+        var $prateleiraInfo = $(".prateleira__info");
+
+        $prateleiraInfo.each(function(){
+            var $this = $(this),
+                $skuInput = $this.find(".insert-sku-checkbox"),
+                skuInputAttr = $skuInput.attr("rel");
+            $this.on("hover",function(){
+                $.ajax({
+                    url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=skuId:" + skuInputAttr + "",
+                    dataType: 'json',
+                    type: 'GET',
+                    crossDomain: true,
+                    success: function success(data) {
+                        console.log(data);
+                    }
+                });
+            });
+        });
+    },
+    eventHasChange: function(){
+
+        // var files = ["/arquivos/jquery-hasChange.min.js"];
+
+        // $.when.apply($, $.map(files, function (file) {
+        //     return $.getScript(files);
+        // })).then(function () {
+
+        //     // Bind the event.
+        //     $(window).hashchange();
+        //     $(window).hashchange(function () {
+        //         console.log("test hasChange");
+        //         categDepto.carouselPrateleira();
+        //     });
+
+        // }, function err(jqxhr, textStatus, errorThrown) {
+        //     console.log(textStatus);
+        // });
+        $(window).bind('hashchange', function () {
+            // console.log("cambio");
+            setTimeout(categDepto.carouselPrateleira, 1200);
+        });
     }
 };
 

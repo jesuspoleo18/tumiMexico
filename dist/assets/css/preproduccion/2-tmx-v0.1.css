@@ -1432,6 +1432,12 @@ footer {
     width:16%;
 }
 
+.depto .prateleira.n6colunas,
+.categoria .prateleira.n6colunas{
+    flex-flow:wrap;
+}
+
+
 .prateleira__container,
 .prateleira__content,
 .prateleira__img-container,
@@ -1624,6 +1630,40 @@ footer {
 
 .prateleira__container:hover .prateleira__quickview {
     opacity: 1;
+}
+
+.prateleira__skuVariant-container .insert-sku-quantity,
+.prateleira__skuVariant-container label{
+    display:none;
+}
+
+.prateleira__skuVariant-container,
+.prateleira__skuVariant-content,
+.prateleira__skuVariant-content .product-insertsku,
+.prateleira__skuVariant-container fieldset,
+.insert-sku-checklist{
+    position:relative;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.prateleira__skuVariant-content .product-insertsku{
+    /*     border:1px solid red; */
+    width:auto;
+}
+
+.prateleira__skuVariant-content .insert-sku-checklist,
+.prateleira__skuVariant-content .insert-sku-checkbox{
+    margin:0;
+}
+
+.prateleira__skuVariant-container .is-checklist-item{
+    /*     border:1px solid blue; */
+    margin:0;
+    padding:0;
+    width:auto;
 }
 
 
@@ -2032,7 +2072,7 @@ footer {
     /*     border:var(--borderNegro); */
     font-size: .8rem;
     width: 100%;
-    margin-top: 2rem;
+    margin-top: .5rem;
     margin-bottom: .5rem;
 }
 
@@ -5695,7 +5735,10 @@ table thead {
     margin-top: 2.7rem;
     margin-bottom: .7rem;
     width: 100%;
-    height: 50px;
+    /*     height: 50px; */
+    display:flex;
+    flex-flow:nowrap;
+    justify-content:space-between;
 }
 
 .product__airlineGuide {
@@ -5759,6 +5802,46 @@ table thead {
     position: relative;
     width: 9%;
     height: 100%;
+}
+
+.sku-selector-container{
+    /*     border:1px solid blue; */
+    position:relative;
+    width:80%;
+    display:flex;
+    align-items:center;
+}
+
+.Colorsku{
+    /*     border:1px solid blue; */
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    width:30%;
+}
+
+.specification{
+    color: #2E2A25;
+    font-family: 'Proxima Nova bold';
+    font-size: .75rem;
+    text-transform: uppercase;
+    position:absolute;
+    top:-25px;
+    left:0;
+}
+
+.select.skuList.item-dimension-Colorsku span{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.select.skuList.item-dimension-Colorsku span input{
+    margin:0 !important;
+}
+
+.select.skuList.item-dimension-Colorsku label{
+    display:none;
 }
 
 .pull-left.box-qtd:before {
