@@ -4,15 +4,13 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio: 14/02/2018
+Ultimo cambio: 15/02/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
 ----------------------
 
 [Tabla de contenido ]
-
---------- controles -------------
 
 b0.Init
 b1.Configuraciones generales
@@ -1248,12 +1246,12 @@ var categDepto = {
 
         if ($categDepto.length) {
 
+            categDepto.traducciones();
             categDepto.carouselPrateleira();
             categDepto.categDeptoAccordion('.search-multiple-navigator h4,.search-multiple-navigator h5', '.search-multiple-navigator h3');
             categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
-            categDepto.categOptions();
-            categDepto.traducciones();
             // categDepto.infinityScroll();
+            categDepto.categOptions();
             categDepto.skuImgPrateleira();
             categDepto.eventHasChange();
             //setInterval(categDepto.traducciones,800);
@@ -1286,7 +1284,7 @@ var categDepto = {
                         $pratContent = $(this).find(".prateleira__content");
 
                     if ($validate.length > 0) {
-                        console.log("vitrina ejecutada");
+                        // console.log("vitrina ejecutada");
                     } else if ($validate.length == 0) {
 
                         $($template).prependTo(_thisImg);
@@ -1301,7 +1299,7 @@ var categDepto = {
                                 dataType: 'json',
                                 type: 'GET',
                                 crossDomain: true,
-                                success: function success(data) {
+                                success: function(data) {
                                     // console.log(data[0].items[0].images);
 
                                     var arr = data[0].items[0].images,
@@ -1592,23 +1590,50 @@ var categDepto = {
     },
     skuImgPrateleira: function(){
 
-        var $prateleiraInfo = $(".prateleira__info");
-
+        var $prateleiraInfo = $(".prateleira__container");
+        // var $prateleiraInfo = $(".prateleira__info");
         $prateleiraInfo.each(function(){
-            var $this = $(this),
-                $skuInput = $this.find(".insert-sku-checkbox"),
-                skuInputAttr = $skuInput.attr("rel");
-            $this.on("hover",function(){
-                $.ajax({
-                    url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=skuId:" + skuInputAttr + "",
-                    dataType: 'json',
-                    type: 'GET',
-                    crossDomain: true,
-                    success: function success(data) {
-                        console.log(data);
-                    }
-                });
-            });
+
+            // $(this).one("mouseenter", function () {
+                var $this = $(this),
+                    $skuInput = $this.find(".prateleira__info .insert-sku-checkbox"),
+                    $inputParent = $this.find(".prateleira__info .is-checklist-item"),
+                    $templateImg = '<div class="prateleira__skuVariant-img"></div>',
+                    $validate = $this.find(".prateleira__info .prateleira__skuVariant-img");
+
+                if ($validate.length == 0) {
+
+                    $($templateImg).appendTo($inputParent);
+
+                    var skuInputAttr = $skuInput.attr("rel");
+                    // $inputParent.append($templateImg);
+                    $.ajax({
+                        url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=skuId:" + skuInputAttr + "",
+                        dataType: 'json',
+                        type: 'GET',
+                        crossDomain: true,
+                        success: function(data) {
+                            // console.log(data[0].items[0].images);
+                            // console.log(data);
+                            var arr = data[0].items,
+                                $skuVariantImg = $this.find(".prateleira__info .prateleira__skuVariant-img"),
+                                $fadeEl = $this.find(".prateleira__skuVariant-container"),
+                                $lastImg = [];
+
+                            $.each(arr, function (i, val) {
+                                console.log(val);
+                                var arrImg = val.images,
+                                    a = arrImg.slice(-1)[0].imageTag,
+                                    b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
+                                    c = '<a href="">'+b+'</a>';
+                                
+                                $(c).appendTo($skuVariantImg);
+                                $fadeEl.fadeIn();
+                            });
+                        }
+                    });
+                }
+            // });
         });
     },
     eventHasChange: function(){
