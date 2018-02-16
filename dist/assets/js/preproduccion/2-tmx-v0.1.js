@@ -907,15 +907,7 @@ var producto = {
     },
     textoProducto: function () {
 
-        var producto = {
-                id: "",
-                descripcion: "",
-                ean: "",
-                caracteristica: "",
-                stock: "",
-                marca: "",
-                cantidad: ""
-            },
+        var producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", cantidad: "" },
             $ean = $(".ean");
 
         vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
@@ -946,11 +938,27 @@ var producto = {
             type: 'GET',
             crossDomain: true,
             success: function (data) {
-                console.log(data);
+                // console.log(data);
+                // console.log(data[0].items[0].images);
+                var arr = data[0].items,
+                    $label = $(".dimension-Colorsku"),
+                    $skuSelector = $(".skuselector-specification-label");
+
                 producto.descripcion = data[0]['Descripción Larga'];
                 producto.ean = data[0].items[0].ean;
                 producto.marca = data[0].brand;
 
+                $label.remove();
+
+                $.each(arr, function (i, val) {
+                    // console.log(val);
+                    var arrImg = val.images,
+                        a = arrImg.slice(-1)[0].imageTag,
+                        b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
+                        c = '<div class="producto__skuVariant-img">' + b + '</div>';
+
+                    $(c).appendTo($skuSelector);
+                });
                 $ean.append(producto.ean);
                 // dotInfo();
             }
@@ -987,8 +995,8 @@ var producto = {
                     autoplay: true,
                     autoplaySpeed: 2500,
                     slide: 'li',
-                    slidesToScroll: 1,
-                    slidesToShow: 4,
+                    slidesToScroll: 2,
+                    slidesToShow: 6,
                     speed: 500,
                     dots: true,
                     responsive: [{
@@ -1227,6 +1235,15 @@ var producto = {
         $(trigger).on("click", function () {
             $(this).toggleClass("active").next().slideToggle("slow");
             return false;
+        });
+    },
+    skuImgProducto: function () {
+        var $skuSelector = $(".skuselector-specification-label");
+
+        $skuSelector.each(function (i, val) {
+            var $outer = val.outerHTML,
+                b = '<div class="producto__skuVariant-img">' + $outer + '</div>';
+            $(b).appendTo($(this).parent());
         });
     }
 };
@@ -1616,16 +1633,17 @@ var categDepto = {
                             // console.log(data[0].items[0].images);
                             // console.log(data);
                             var arr = data[0].items,
+                                dataLink = data[0].link,
                                 $skuVariantImg = $this.find(".prateleira__info .prateleira__skuVariant-img"),
                                 $fadeEl = $this.find(".prateleira__skuVariant-container"),
                                 $lastImg = [];
 
                             $.each(arr, function (i, val) {
-                                console.log(val);
+                                // console.log(val);
                                 var arrImg = val.images,
                                     a = arrImg.slice(-1)[0].imageTag,
                                     b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
-                                    c = '<a href="">'+b+'</a>';
+                                    c = '<a href= "' + dataLink + '?idsku=' + skuInputAttr + '">' + b + '</a>';
                                 
                                 $(c).appendTo($skuVariantImg);
                                 $fadeEl.fadeIn();

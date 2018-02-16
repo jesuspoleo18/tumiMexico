@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.1
-Ultimo cambio:  15/02/2017
+Ultimo cambio:  16/02/2017 | 17:09pm
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -641,7 +641,7 @@ nav {
 
 .navigation__menu {
     display: flex;
-    width: 100%;
+    width: 90%;
     align-items: flex-end;
 }
 
@@ -1453,6 +1453,11 @@ footer {
     padding-bottom: 3rem;
 }
 
+.product__recomended-container .prateleira__container,
+.product__recently-container .prateleira__container{
+    padding:0;
+}
+
 .prateleira__content {
     opacity: 1;
     -webkit-transition: opacity .3s 0s;
@@ -1686,15 +1691,7 @@ footer {
     width:100%;
 }
 
-.prateleira__skuVariant-container .is-checklist-item:nth-child(1) .prateleira__skuVariant-img a,
-.prateleira__skuVariant-container .is-checklist-item:nth-child(2) .prateleira__skuVariant-img a,
-.prateleira__skuVariant-container .is-checklist-item:nth-child(3) .prateleira__skuVariant-img a,
-.prateleira__skuVariant-container .is-checklist-item:nth-child(4) .prateleira__skuVariant-img a,
-.prateleira__skuVariant-container .is-checklist-item:nth-child(5) .prateleira__skuVariant-img a,
-.prateleira__skuVariant-container .is-checklist-item:nth-child(6) .prateleira__skuVariant-img a,
-.prateleira__skuVariant-container .is-checklist-item:nth-child(7) .prateleira__skuVariant-img a,
-.prateleira__skuVariant-container .is-checklist-item:nth-child(8) .prateleira__skuVariant-img a,
-.prateleira__skuVariant-container .is-checklist-item:nth-child(9) .prateleira__skuVariant-img a{
+.prateleira__skuVariant-container .is-checklist-item .prateleira__skuVariant-img a{
     display:none;
 }
 
@@ -2141,14 +2138,15 @@ footer {
 .bread-crumb ul li a {
     color: #777;
     display: block;
-    font-size: .8rem;
+    font-size: .75rem;
     font-weight: bold;
     position: relative;
-    padding: 0 .5rem;
+    padding: 0 .3rem;
 }
 
 .bread-crumb ul li {
-    min-width: 54px;
+    /*     border:1px solid red; */
+    min-width: 45px;
 }
 
 .bread-crumb ul li:first-child a {
@@ -3227,7 +3225,7 @@ ul.pages li.page-number.pgCurrent:after {
     content: "\f100";
 }
 
-.pages li.previous.pgEmpty {
+.pages li.previous {
     visibility: hidden;
     padding: 0;
     margin: 0;
@@ -3235,9 +3233,14 @@ ul.pages li.page-number.pgCurrent:after {
     width: 20px;
 }
 
+.pages li.previous.pgEmpty{
+    display:none;
+}
+
 .pages li.previous {
     visibility: hidden;
     padding: 0;
+    position:relative;
     margin: 0;
     width: 20px;
 }
@@ -3261,7 +3264,9 @@ ul.pages li.page-number.pgCurrent:after {
     color: black;
     visibility: visible;
     padding: 0;
+    position:absolute;
     margin: 0;
+    left:0;
 }
 
 .pages li.next {
@@ -5294,6 +5299,7 @@ table thead {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    display:none;
 }
 
 .relatedSeenProducts__content {
@@ -6026,7 +6032,7 @@ span.profile-detail-display-gender>span.title:before {
 .modal-body {
 
     /*     border:1px solid red; */
-    width: 80%;
+    width: 100%;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -6202,8 +6208,37 @@ h5.span5 {
 .control-group {
     margin: .8rem 0;
 }
-
-
+[class*="span"] {
+    float: inherit !important;
+    min-height: inherit !important;
+    margin-left: inherit !important;
+}
+.orders{
+    font-family: 'Proxima Nova';
+}
+.w-70.center.ba.b--black-20.bg-near-white.pa3.tc.br3.mv4{
+    border: 3px solid #0a0a0a;
+    border-radius: 0;
+}
+.nav-pills>.active>a, .nav-pills>.active>a:hover, .nav-pills>.active>a:focus {
+    color: #222222 !important;
+    background-color: #fff !important;
+    border: 2px solid #0a0a0a;
+    border-radius: 0 !important;
+    margin-right:1rem;
+}
+.nav-pills>li>a{
+    color: #222222 !important;
+    background-color: #fff !important;
+    border: 2px solid #0a0a0a;
+    border-radius: 0 !important;
+}
+.orders h1.title {
+    color: #222222;
+}
+.orders a{
+    color:#2e2a25;
+}
 /*
 [f3.Mediaquerie account]
 
@@ -6219,7 +6254,7 @@ h5.span5 {
     border: 0;
 }
 div#vtexIdUI-global-loader{
-    background: url(data:image/gif;base64,R0lGODlhMAAwAPYAAP///2ZmZvX19e3t7eDg4M7OzuPj4/v7+/Pz8â€¦4TZK8CPlQYt79qK8iU0o1KDzDcRruqdIrAuu2inHAI718DkHjvvvz220ggADsAAAAAAAAAAAA=) center 35% no-repeat rgb(00, 00, 00)!important;
+    background: url(data:image/gif;base64,R0lGODlhMAAwAPYAAP///2ZmZvX19e3t7eDg4M7OzuPj4/v7+/Pz8Ã¢â‚¬Â¦4TZK8CPlQYt79qK8iU0o1KDzDcRruqdIrAuu2inHAI718DkHjvvvz220ggADsAAAAAAAAAAAA=) center 35% no-repeat rgb(00, 00, 00)!important;
 	font-family: 'Proxima Nova';
 }
 div#vtexIdUI-auth-selector {
@@ -6274,6 +6309,63 @@ h4.vtexIdUI-heading span{
     padding-bottom: 0rem!important;
     margin-bottom: 0.5rem;
 }
+.vtexIdUI h4{
+    font-size: 1.2rem!important;
+    color: #0a0a0a;
+    text-align: center;
+}
+span.vtexIdUI-heading{
+    font-family: 'Proxima Nova bold';
+}
+button#sendAccessKeyBtn, button#confirmLoginAccessKeyBtn, button#classicLoginBtn {
+    border: 2px solid #0a0a0a;
+    border-radius: 0;
+    background: #ffffff;
+    color: #222222;
+    box-shadow: none;
+}
+input#appendedInputButton, input#access-code, input#inputEmail, input#inputPassword {
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 2.4375rem;
+    margin: 0 0 1rem;
+    padding: .5rem;
+    border: 1px solid #cacaca;
+    border-radius: 0;
+    background-color: #fefefe;
+    -webkit-box-shadow: inset 0 1px 2px rgba(10,10,10,.1);
+    box-shadow: inset 0 1px 2px rgba(10,10,10,.1);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #0a0a0a;
+    -webkit-transition: border-color .25s ease-in-out,-webkit-box-shadow .5s;
+    transition: border-color .25s ease-in-out,-webkit-box-shadow .5s;
+    transition: box-shadow .5s,border-color .25s ease-in-out;
+    transition: box-shadow .5s,border-color .25s ease-in-out,-webkit-box-shadow .5s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.vtexIdUI .modal-footer {
+    clear: both !important;
+    overflow: hidden !important;
+    padding: 14px 15px 20px !important;
+    margin-bottom: 0 !important;
+    background-color: #ffffff !important;
+    border-top: 3px solid #ddd !important;
+    border-radius: 0 0 6px 6px !important;
+    box-shadow: inset 0 1px 0 #ffffff !important;
+}
+a.vtexIdUI-back-link.pull-left.dead-link, a.dead-link.pull-right {
+    color: #222222;
+}
+label.control-label{
+    width:100%;
+}
 /*
 [f5.Mediaquerie login]
 
@@ -6298,9 +6390,10 @@ h4.vtexIdUI-heading span{
 }
 
 .product__container {
-    display: flex;
+    margin-top:1rem;
     /*     border: var(--borderRojo); */
     width: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -6323,6 +6416,7 @@ h4.vtexIdUI-heading span{
 
 .product__left-side-container,
 .product__img-container {
+    outline: 1px solid #ebebeb;
     position: relative;
     width: 100%;
 }
@@ -6342,6 +6436,10 @@ h4.vtexIdUI-heading span{
 
 .thumbs li img {
     border: 1px solid #ccc;
+}
+
+.thumbs li:last-child{
+    display:none;
 }
 
 .image-zoom {
@@ -6364,7 +6462,7 @@ h4.vtexIdUI-heading span{
 
 .product__collection,
 .product__style {
-    color: #777;
+    color: #2E2A25;
     font-family: 'Proxima Nova Bold';
     font-size: .8rem;
     text-transform: uppercase;
@@ -6385,6 +6483,10 @@ h4.vtexIdUI-heading span{
     padding: 0;
 }
 
+.product__toCollection{
+    font-size: .75rem;
+}
+
 .product__ean {
     font-size: .8rem;
     display: flex;
@@ -6401,7 +6503,7 @@ h4.vtexIdUI-heading span{
 }
 
 .product__price {
-    margin: .8rem 0;
+    margin: 1.2rem 0 .8rem 0;
 }
 
 .skuBestPrice {
@@ -6412,10 +6514,10 @@ h4.vtexIdUI-heading span{
 
 .product__available-text {
     font-family: 'Proxima Nova bold';
-    font-size: .8rem;
+    font-size: .75rem;
     font-weight: bold;
     text-transform: uppercase;
-    color: #777;
+    color: #555;
 }
 
 .product__available-text:before {
@@ -6441,8 +6543,8 @@ h4.vtexIdUI-heading span{
 
 .product__sku-container {
     /*     border:1px solid red; */
-    margin-top: 2.7rem;
-    margin-bottom: .7rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
     width: 100%;
     /*     height: 50px; */
     display:flex;
@@ -6468,7 +6570,7 @@ h4.vtexIdUI-heading span{
 }
 
 .airlineGuide__content .fa {
-    color: #2E2A25;
+    color: #555;
     font-size: 1.8rem;
     position: relative;
     width: 100%;
@@ -6484,6 +6586,7 @@ h4.vtexIdUI-heading span{
 }
 
 .airlineGuide__content .main {
+    color:#555;
     font-family: 'Proxima Nova';
     font-weight: bold;
     font-size: .9rem;
@@ -6530,23 +6633,76 @@ h4.vtexIdUI-heading span{
 }
 
 .specification{
-    color: #2E2A25;
+    color: #555;
     font-family: 'Proxima Nova bold';
     font-size: .75rem;
     text-transform: uppercase;
     position:absolute;
-    top:-25px;
+    top:-32px;
     left:0;
+    visibility:hidden;
+}
+
+.specification:before{
+    content:"Color:";
+    visibility:visible;
 }
 
 .select.skuList.item-dimension-Colorsku span{
+    position:relative;
     display:flex;
-    justify-content:space-between;
+    justify-content:space-around;
     align-items:center;
 }
 
+.numopt-1 span{
+    justify-content:flex-start !important;
+}
+
 .select.skuList.item-dimension-Colorsku span input{
+    display:block;
+    height:32px;
+    width:32px;
     margin:0 !important;
+    position:relative;
+    visibility:hidden;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+
+.producto__skuVariant-img,
+.producto__skuVariant-img img{
+    visibility:visible;
+    width:100%;
+}
+
+.select.skuList.item-dimension-Colorsku [type=radio] .producto__skuVariant-img{
+    display:none;
+}
+
+.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(1) .producto__skuVariant-img:nth-child(1),
+.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(2) .producto__skuVariant-img:nth-child(2),
+.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(3) .producto__skuVariant-img:nth-child(3),
+.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(4) .producto__skuVariant-img:nth-child(4),
+.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(5) .producto__skuVariant-img:nth-child(5),
+.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(6) .producto__skuVariant-img:nth-child(6),
+.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(7) .producto__skuVariant-img:nth-child(7),
+.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(8) .producto__skuVariant-img:nth-child(8),
+.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(9) .producto__skuVariant-img:nth-child(9){
+    display:block;
+}
+
+.producto__skuVariant-img{
+    height:32px;
+    outline:1px solid #eee;
+    padding:.1rem .13rem .1rem .1rem;
+}
+
+.select.skuList.item-dimension-Colorsku [type=radio]:checked .producto__skuVariant-img{
+    outline:2px solid black;
 }
 
 .select.skuList.item-dimension-Colorsku label{
@@ -6555,11 +6711,11 @@ h4.vtexIdUI-heading span{
 
 .pull-left.box-qtd:before {
     content: "cant.:";
-    color: #2E2A25;
+    color: #555;
     font-family: 'Proxima Nova bold';
     font-size: .75rem;
     text-transform: uppercase;
-    top: -50%;
+    top: -70%;
     position: absolute;
 }
 
@@ -6607,15 +6763,15 @@ h4.vtexIdUI-heading span{
 
 .buy-button.buy-button-ref:before {
     font-family: 'Proxima Nova bold';
-    font-size: .8rem;
+    font-size: .9rem;
     position: absolute;
     display: flex;
     visibility: visible;
     width: 100%;
     height: 100%;
-    content: 'A\00F1 adir al carrito';
+    content: 'A\00F1 adir al Carrito';
     letter-spacing: 1px;
-    text-transform: uppercase;
+    /*     text-transform: uppercase; */
     background-color: #b92335;
     align-items: center;
     justify-content: center;
@@ -6657,7 +6813,7 @@ h4.vtexIdUI-heading span{
     font-family: 'FontAwesome';
     padding-right: .5rem;
     content: '\f067';
-    color: #2E2A25;
+    color: black;
 }
 
 .product__accordion-trigger.active:before {
@@ -6669,6 +6825,14 @@ h4.vtexIdUI-heading span{
 .product__accordion-content {
     width: 100%;
     padding: 1rem 0;
+}
+
+.productDescription{
+    color:#777;
+    font-family: 'Proxima Nova';
+    font-size:.9rem;
+    line-height:22px;
+    padding-left:1.5rem;
 }
 
 .product__recomended-container,
@@ -6830,6 +6994,10 @@ h4.group.Atributos-Tumi {
     display: block;
     height: auto !important;
     position: relative;
+}
+
+.select.skuList.item-dimension-Colorsku{
+    width:auto;
 }
 
 
