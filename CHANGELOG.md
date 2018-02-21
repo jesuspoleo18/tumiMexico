@@ -16,6 +16,9 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 * Desarrollo del script que consulta las apis de vtex para traerse los datos de los SKUS en pintarlos en la vitrina con las urls de los skus **17:56pm | 2018-02-16**
 * Desarrollo de script para modelado de imagenes en los botones checkbox de la vista de producto y ajuste de css **17:56pm | 2018-02-16**
 * Estilado de accout, orders y checkout (andres guzman) **17:56pm | 2018-02-16**
+* Se aplicó un truco aportado por los desarrolladores de tumiMX para cambiar el color del fondo de las imágenes **6:22pm | 2018-02-20**
+* Traducciones para account **8:11pm | 2018-02-20**
+* Se añadió las carpetas de Concatenar js y css para cuando el proyecto pase a producción y se use gulp para minificar y concatenar todas las dependencias del proyecto **8:11pm | 2018-02-20**
 
 ### Changed
 * Mejoras en los estilos de las páginas estáticas **10:14am | 2018-02-13**
@@ -27,3 +30,4 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 * La función de megamenú se ajustó para que el valor encontrado no compare exactamente el valor del menu, sino más bien éste coincida **11:08am | 2018-02-14**
 * Se desactivó la función que convertía en un pasador de imagenes las miniaturas del producto en la ficha de producto **12:38pm | 2018-02-14**
 * Ajustes de css para la ficha de producto según el diseño de tumi.com **17:57pm | 2018-02-16**
+* Ajuste de css para el login **7:04pm | 2018-02-20**

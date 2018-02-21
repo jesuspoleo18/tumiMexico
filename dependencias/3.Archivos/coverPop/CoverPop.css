@@ -1,0 +1,43 @@
+/* Styles for the CoverPop.js plugin */
+
+
+html,
+body {
+    overflow: auto;
+}
+
+body {
+    position: relative;
+}
+
+.CoverPop-open,
+.CoverPop-open body {
+    overflow: hidden;
+}
+
+#CoverPop-cover {
+    display: none;
+    position: fixed;
+    overflow-y: scroll;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    -webkit-animation: fade-in .25s ease-in;
+    -moz-animation-name: fade-in .25s ease-in;
+    -ms-animation-name: fade-in .25s ease-in;
+    -o-animation-name: fade-in .25s ease-in;
+    animation-name: fade-in .25s ease-in;
+}
+
+    .CoverPop-open #CoverPop-cover {
+        display: block;
+    }
+
+
+@-webkit-keyframes fade-in {
+    0% { opacity: 0; }
+    25% { opacity: 0; }
+    100% { opacity: 1; }
+}

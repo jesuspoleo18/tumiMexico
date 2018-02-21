@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.1
-Ultimo cambio:  16/02/2017 | 17:09pm
+Ultimo cambio:  20/02/2017 | 12:59m
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -77,6 +77,8 @@ d14.Compare
 d15.Mediaquerie compare
 d16.Quickview
 d17.Mediaquerie quickview
+d18.Flag
+d19.Mediaquerie flag
 
 --------- Componentes -------------
 
@@ -1241,6 +1243,9 @@ footer {
         line-height: 23px;
         width: 80% !important;
     }
+    .footer__col.idioma{
+        display:none;
+    }
 }
 
 
@@ -1417,6 +1422,7 @@ footer {
     margin-bottom:1rem;
     padding: 0 1rem;
     padding-top: 0;
+    position:relative;
     /*     border:1px solid black; */
     /*         background-color:#F8F8F8; */
     /*     background-color: #eee; */
@@ -1453,9 +1459,45 @@ footer {
     padding-bottom: 3rem;
 }
 
+.home__productos-content .prateleira__container{
+    padding-bottom:0;
+}
+
+.dark-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .03;
+    position: absolute;
+    pointer-events:none;
+    top: 0;
+    left: 0;
+    z-index:5;
+    display:none;
+}
+
+.home .prateleira__img-container .dark-overlay,
+.product__recomended-container .prateleira__img-container .dark-overlay,
+.product__recently-container .prateleira__img-container .dark-overlay,
+.dark-overlay.producto{
+    display:block;
+}
+
+.categoria .dark-overlay.categDepto,
+.depto .dark-overlay.categDepto,
+.static .dark-overlay.categDepto,
+.resultado-busca .dark-overlay.categDepto{
+    display:block;
+    opacity:.03;
+}
+
 .product__recomended-container .prateleira__container,
 .product__recently-container .prateleira__container{
     padding:0;
+}
+
+.dark-overlay.producto {
+    opacity: .02;
 }
 
 .prateleira__content {
@@ -1752,6 +1794,24 @@ footer {
     .categoria .prateleira.n3colunas ul li.last {
         margin-top: .8rem;
     }
+    .home .prateleira.n6colunas ul{
+        flex-flow:wrap;
+    }
+    .home .prateleira.n6colunas .carousel-news .slick-dots{
+        flex-flow:nowrap;
+    }
+    .prateleira .carousel-news {
+        margin-bottom:0;
+        justify-content:center;
+        align-items:center;
+    }
+    .carousel-news .prateleira__container{
+        padding-bottom:.2rem;
+    }
+    .carousel-news .slick-dots li button:before {
+        font-size: 9px;
+    }
+
 }
 
 
@@ -2684,6 +2744,7 @@ ul.rating li span {
 
 .prateleira__quickview {
     position: relative;
+    z-index:6;
     width: 100%;
     display: -webkit-box;
     display: -webkit-flex;
@@ -2700,6 +2761,7 @@ ul.rating li span {
 }
 
 .quickview__btn {
+    background-color:white;
     font-size: .7rem;
     margin: 0;
     text-transform: uppercase;
@@ -3639,6 +3701,20 @@ ul.pages li.page-number.pgCurrent:after {
     }
 }
 
+/*
+[d18.Flag]
+
+============================= */
+
+.flag{
+    display:none;
+}
+
+/*
+[d18.Mediaquerie flag]
+
+============================= */
+
 
 /*
 [e0.Despacho y disponibilidad en tienda]
@@ -3940,6 +4016,9 @@ ul.pages li.page-number.pgCurrent:after {
     }
     .slide__img {
         order: 1;
+    }
+    .carousel-news .slick-dots {
+        position:relative;
     }
 }
 
@@ -5476,6 +5555,11 @@ table thead {
     border-bottom: 2px solid #b92335;
 }
 
+.home__tabs-buttons.transparent.active:visited,
+.home__tabs-buttons.transparent.active:focus{
+    color:black;
+}
+
 .home__tabs-content {
     width: 100%;
     /*     border:1px solid red; */
@@ -5524,9 +5608,11 @@ table thead {
 
 .home__categorias-banner--mobile .left,
 .home__categorias-banner--mobile .right {
-    background-color: rgba(185, 35, 53, 0.8);
+    background-color: rgba(185, 35, 53, 0.4);
     color: white;
     font-size: .8rem;
+    /*     font-weight:bold; */
+    letter-spacing:1px;
     padding: .5rem;
     position: absolute;
     bottom: 1.5%;
@@ -5582,6 +5668,12 @@ table thead {
     }
     .home__categorias-container {
         margin: 0;
+    }
+    .home__title{
+        border-bottom:2px solid #ccc;
+        padding-bottom:.5rem;
+        text-align:center;
+        width:100%;
     }
 }
 
@@ -5964,7 +6056,7 @@ span.profile-detail-display-gender>span.title:before {
 #editar-perfil,
 #AddressNew {
     border-radius: 0;
-    max-height: 500px;
+    max-height: auto;
     top: 100px !important;
     overflow: auto !important;
 }
@@ -6059,16 +6151,18 @@ span.profile-detail-display-gender>span.title:before {
 
 .formAddressNew__titulo,
 #myModalLabel {
-    color: #9D6167;
+    color: #222222;
     border-bottom: 1px solid #ECF0F1;
     font-size: 1.6rem;
     text-align: center;
     text-transform: uppercase;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
     padding-bottom: 1rem;
     width: 100%;
 }
-
+.formAddressNew__direccion{
+    margin-top: 1rem;
+}
 .formAddressNew__direccion,
 .formAddressNew__destinatario,
 .formAddressNew__calle,
@@ -6093,7 +6187,7 @@ span.profile-detail-display-gender>span.title:before {
 
 .formAddressNew__label,
 .control-label {
-    color: #9D6167;
+    color: #222222;
     font-size: .7rem;
     text-transform: uppercase;
     width: 30%;
@@ -6107,14 +6201,16 @@ span.profile-detail-display-gender>span.title:before {
 .formAddressNew__input,
 .formAddressNew select,
 .controls input {
-    background-color: #ECF0F1;
-    border: none;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
     border-radius: 0;
     font-size: 1rem;
     text-transform: uppercase;
     text-align: center;
     line-height: 35px;
+    box-shadow: none;
     width: 70%;
+    color: #222222 !important;
 }
 
 .controls input {
@@ -6124,7 +6220,7 @@ span.profile-detail-display-gender>span.title:before {
 }
 
 .formAddressNew select {
-    color: #7F8C8D;
+    color: #222222;
     font-size: .8rem;
     text-transform: lowercase;
     padding: .5rem 0;
@@ -6140,7 +6236,7 @@ span.profile-detail-display-gender>span.title:before {
 }
 
 .formAddressNew__input[type="text"]:focus {
-    color: #7F8C8D;
+    color: #222222;
     font-size: .8rem;
     text-align: left;
     padding-left: .5rem;
@@ -6169,27 +6265,47 @@ span.profile-detail-display-gender>span.title:before {
     justify-content: flex-start;
     width: 80%;
 }
-
+form#profile {
+    border: 0;
+    background: #ffffff !important;
+}
+::-webkit-scrollbar-track {
+    border: 0;
+    background-color: #fff;
+}
 .formAddressNew__controles button,
 .save-cancel-buttons input,
 .save-cancel-buttons button {
-    background-color: #9D6167;
+    background-color: #fff;
     border-radius: 0;
     cursor: pointer;
-    font-family: 'Futura';
+    font-family: 'Proxima Nova';
     font-size: .7rem;
-    color: white;
+    color: #222222;
     text-transform: uppercase;
-    padding: 1rem;
+    border: 2px solid #222222;
 }
-
+label.radio {
+    display: inline-flex;
+    width: 35%;
+    margin: 0;
+    align-items: center;
+    padding: 0;
+    vertical-align: middle;
+}
+.formAddressNew__controles button:hover,
+.save-cancel-buttons input:hover,
+.save-cancel-buttons button:hover {
+    background-color: #fff;
+}
 .save-cancel-buttons input {
-    padding: 0 1rem;
+    padding: 0.75rem 1.4rem;
     margin-right: .5rem;
 }
-
+::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+}
 .save-cancel-buttons button {
-    background-color: #BDC3C7;
     padding: .78rem;
 }
 
@@ -6211,7 +6327,7 @@ h5.span5 {
 [class*="span"] {
     float: inherit !important;
     min-height: inherit !important;
-    margin-left: inherit !important;
+    margin-left: 0 !important;
 }
 .orders{
     font-family: 'Proxima Nova';
@@ -6254,7 +6370,7 @@ h5.span5 {
     border: 0;
 }
 div#vtexIdUI-global-loader{
-    background: url(data:image/gif;base64,R0lGODlhMAAwAPYAAP///2ZmZvX19e3t7eDg4M7OzuPj4/v7+/Pz8Ã¢â‚¬Â¦4TZK8CPlQYt79qK8iU0o1KDzDcRruqdIrAuu2inHAI718DkHjvvvz220ggADsAAAAAAAAAAAA=) center 35% no-repeat rgb(00, 00, 00)!important;
+    background: url(data:image/gif;base64,R0lGODlhMAAwAPYAAP///2ZmZvX19e3t7eDg4M7OzuPj4/v7+/Pz8ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦4TZK8CPlQYt79qK8iU0o1KDzDcRruqdIrAuu2inHAI718DkHjvvvz220ggADsAAAAAAAAAAAA=) center 35% no-repeat rgb(00, 00, 00)!important;
 	font-family: 'Proxima Nova';
 }
 div#vtexIdUI-auth-selector {
@@ -6273,27 +6389,41 @@ div#vtexIdUI-auth-selector {
     padding: 4px 6px 2px;
     border-radius: 0 !important;
 }
-button#loginWithAccessKeyBtn{
+button#loginWithAccessKeyBtn,
+button#loginWithUserAndPasswordBtn{
+    background: black;
     border-radius: 0;
+    border: none;
+    color: white;
     font-family: 'Proxima Nova';
-    background: #fff;
-    border: 2px solid #0a0a0a;
     text-shadow: inherit;
-    color: #0a0a0a;
     box-shadow: inherit;
+    width:100%;
 }
-button#loginWithUserAndPasswordBtn {
-    border-radius: 0;
-    font-family: 'Proxima Nova';
-    background: #fff;
-    border: 2px solid #0a0a0a;
-    text-shadow: inherit;
-    color: #0a0a0a;
-    box-shadow: inherit;
+button#loginWithUserAndPasswordBtn{
+    background-color:#777;
+}
+button#loginWithAccessKeyBtn span,
+button#loginWithUserAndPasswordBtn span{
+    font-size:.8rem;
+}
+.vtexIdUI-providers-list{
+/*     border:1px solid red; */
+    width:100%;
 }
 .vtexIdUI.ng-scope.vtexIdUI-show-app {
     border-radius: 0;
    	font-family: 'Proxima Nova';
+   	height:100% !important;
+   	margin-left:0;
+   	left:initial;
+   	right:0;
+   	top:0;
+   	width:350px;
+}
+.vtexIdUI-main-content{
+    /*     border:1px solid red; */
+    height:100%;
 }
 h4.vtexIdUI-heading {
     font-size: 1.2rem!important;
@@ -6301,27 +6431,57 @@ h4.vtexIdUI-heading {
     text-align: center;
 }
 h4.vtexIdUI-heading span{
-    font-family: 'Proxima Nova bold';
+    display:none;
+    
 }
 .vtexIdUI .modal-header {
     background: #fff !important;
-    border-bottom: 3px solid #ddd !important;
-    padding-bottom: 0rem!important;
+    /*     border-bottom: 3px solid #ddd !important; */
+    border:none !important;
+    padding-bottom: 0rem !important;
     margin-bottom: 0.5rem;
 }
 .vtexIdUI h4{
-    font-size: 1.2rem!important;
-    color: #0a0a0a;
-    text-align: center;
+    margin: initial;
+    font-family: inherit;
+    font-weight: 200;
+    line-height: 20px;
+    font-size: 16px;
+    clear: both;
+    text-align:center;
+}
+.vtexIdUI .vtexIdUI-heading{
+    clear:initial !important;
+    display:block;
+}
+
+.vtexIdUI .vtexIdUI-heading:before{
+    content:"Mi cuenta";
+    border-bottom: 2px solid #ddd !important;
+    font-size:1rem;
+    font-weight:bold;
+    display:block;
+    margin-bottom:.8rem;
+    padding-bottom:.8rem;
+    position:relative;
+}
+.vtexIdUI .vtexIdUI-heading:after{
+    content:"Inicie sesi\00F3 n en su cuenta de TUMI";
+    font-size:.9rem;
+    display:block;
+    position:relative;
+}
+.vtexIdUI-page-active .vtexIdUI-heading:after{
+    content:"";
 }
 span.vtexIdUI-heading{
     font-family: 'Proxima Nova bold';
 }
 button#sendAccessKeyBtn, button#confirmLoginAccessKeyBtn, button#classicLoginBtn {
-    border: 2px solid #0a0a0a;
+    border: none;
     border-radius: 0;
-    background: #ffffff;
-    color: #222222;
+    background: black;
+    color: white;
     box-shadow: none;
 }
 input#appendedInputButton, input#access-code, input#inputEmail, input#inputPassword {
@@ -6351,26 +6511,91 @@ input#appendedInputButton, input#access-code, input#inputEmail, input#inputPassw
     appearance: none;
 }
 .vtexIdUI .modal-footer {
-    clear: both !important;
+    clear: none !important;
     overflow: hidden !important;
-    padding: 14px 15px 20px !important;
+    padding: 1rem !important;
     margin-bottom: 0 !important;
-    background-color: #ffffff !important;
-    border-top: 3px solid #ddd !important;
-    border-radius: 0 0 6px 6px !important;
-    box-shadow: inset 0 1px 0 #ffffff !important;
+    background-color: transparent !important;
+    /*     border-top: 3px solid #ddd !important; */
+    border-radius: none !important;
+    box-shadow: none !important;
+    width:100%;
+    display:flex;
+    flex-direction:column;
 }
 a.vtexIdUI-back-link.pull-left.dead-link, a.dead-link.pull-right {
     color: #222222;
+    text-align:right;
 }
 label.control-label{
     width:100%;
+}
+button#sendAccessKeyBtn{
+    order:-1;
 }
 /*
 [f5.Mediaquerie login]
 
 ============================= */
 
+/* small */
+@media only screen and (max-width: 40em) {
+
+    #vtexIdContainer{
+        position:fixed !important;
+    }
+    .vtexIdUI-main-content{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .vtexIdUI-main-content div:nth-child(2){
+        width:90%;
+    }
+    .vtexIdUI.ng-scope.vtexIdUI-show-app{
+        /*         border:1px solid red; */
+        width:100%;
+    }
+    .vtexIdUI .vtexIdUI-page {
+        position: relative !important;
+        clear:  none !important;
+        min-height: 282px;
+        top:0;
+        left:0;
+        width: 100%;
+    }
+    .vtexIdUI .vtexIdUI-heading:before{
+        content:"Mi cuenta";
+        border-bottom: 2px solid #ddd !important;
+        font-size:1.3rem;
+        font-weight:bold;
+        display:block;
+        margin-bottom:.8rem;
+        padding-bottom:.8rem;
+        position:relative;
+    }
+    .vtexIdUI .modal-header{
+        margin-bottom:2rem;
+        padding:0 !important;
+    }
+    .vtexIdUI .modal-body{
+        padding:0 !important;
+    }
+    button#loginWithAccessKeyBtn,
+    button#loginWithUserAndPasswordBtn{
+        padding:1rem 0;
+    }
+    button#loginWithAccessKeyBtn span,
+    button#loginWithUserAndPasswordBtn span{
+        font-size:.85rem;
+    }
+}
+
+/* medium */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { }
+
+/* xlarge */
+@media only screen and (min-width: 90.063em) { }
 
 /*
 [f6.Producto]
@@ -6416,7 +6641,7 @@ label.control-label{
 
 .product__left-side-container,
 .product__img-container {
-    outline: 1px solid #ebebeb;
+    /*     outline: 1px solid #ebebeb; */
     position: relative;
     width: 100%;
 }
@@ -6716,6 +6941,7 @@ label.control-label{
     font-size: .75rem;
     text-transform: uppercase;
     top: -70%;
+    left:0;
     position: absolute;
 }
 
@@ -7877,7 +8103,8 @@ h4.group.Atributos-Tumi {
 .static.brand .static__sideBarNavigation-container,
 .static.brand .static__options-textContent,
 .static.brand .static__recomendations,
-.static.buscavazia .static__options-brandMessage {
+.static.buscavazia .static__options-brandMessage,
+.static.cuatro .static__options-brandMessage{
     display: none;
 }
 

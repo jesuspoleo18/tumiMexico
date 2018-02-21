@@ -49,3 +49,9 @@ Thumbs.db
 *.psd
 *.ai
 *.id
+
+# Node modules #
+###################
+node_modules/
+/node_modules/
+/node_modules

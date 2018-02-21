@@ -693,20 +693,20 @@ var home = {
                     slidesToScroll: 2,
                     slidesToShow: 6,
                     speed: 500,
-                    dots: true,
-                    responsive: [{
-                        breakpoint: 980,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    }, {
-                        breakpoint: 650,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    }]
+                    dots: true
+                });
+            }
+        }else if($responsive < 758){
+            if ($count.length > 2) {
+                $(producto).slick({
+                    arrows: false,
+                    autoplay: true,
+                    autoplaySpeed: 2500,
+                    slide: 'li',
+                    slidesToScroll: 1,
+                    slidesToShow: 2,
+                    speed: 500,
+                    dots: true
                 });
             }
         }
@@ -944,12 +944,9 @@ var producto = {
                     $label = $(".dimension-Colorsku"),
                     $skuSelector = $(".skuselector-specification-label");
 
-                producto.descripcion = data[0]['Descripción Larga'];
-                producto.ean = data[0].items[0].ean;
-                producto.marca = data[0].brand;
-
                 $label.remove();
-
+                
+                // add images to sku selections product
                 $.each(arr, function (i, val) {
                     // console.log(val);
                     var arrImg = val.images,
@@ -1064,7 +1061,8 @@ var producto = {
                 param = url.split("&"),
                 $url = $(this).attr('href'),
                 $a = $('#offCanvasRight'),
-                qtyBox = parseInt($('.product__sku-container .box-qtd .qtd').val()),
+                qtyBox = parseInt($('.product__sku-container .qtd.pull-left').val()),
+                // qtyBox = parseInt($('.product__sku-container .box-qtd .qtd').val()),
                 item = {
                     id: param[0].split("=")[1],
                     quantity: qtyBox,
@@ -1074,22 +1072,11 @@ var producto = {
 
             vtexjs.checkout.addToCart([item], null, 3).done(function (orderForm) {
 
-                var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.5/sweetalert2.all.min.js"];
-
-                $.when.apply($, $.map(files, function (file) {
-                    return $.getScript(files);
-                })).then(function () {
-
-                    $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
-                    setTimeout(function () {
-                        $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
-                    }, 2000);
-
-                }, function err(jqxhr, textStatus, errorThrown) {
-                    console.log(textStatus);
-                });
-
-                console.log(orderForm);
+                $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+                setTimeout(function () {
+                    $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
+                }, 2000);
+                // console.log(orderForm);
 
             });
 
@@ -1235,15 +1222,6 @@ var producto = {
         $(trigger).on("click", function () {
             $(this).toggleClass("active").next().slideToggle("slow");
             return false;
-        });
-    },
-    skuImgProducto: function () {
-        var $skuSelector = $(".skuselector-specification-label");
-
-        $skuSelector.each(function (i, val) {
-            var $outer = val.outerHTML,
-                b = '<div class="producto__skuVariant-img">' + $outer + '</div>';
-            $(b).appendTo($(this).parent());
         });
     }
 };
@@ -1817,11 +1795,31 @@ var quickviewControl = {
                     success: function (data) {
 
                         var arr = data[0].items[0].images,
+                            arrItems = data[0].items,
                             apiUrl = data[0].linkText,
                             thisUrl = '/' + apiUrl + '/p',
                             details = $(".quickview__productDetail a"),
                             $zoomPad = $(".quickview__img-content .zoomPad"),
+                            $label = $(".dimension-Colorsku"),
+                            $skuSelector = $(".skuselector-specification-label"),
                             $elements = [];
+
+                        producto.descripcion = data[0]['Descripción Larga'];
+                        producto.ean = data[0].items[0].ean;
+                        producto.marca = data[0].brand;
+
+                        $label.remove();
+
+                        // add images to sku selections product
+                        $.each(arrItems, function (i, val) {
+                            // console.log(val);
+                            var arrImg = val.images,
+                                a = arrImg.slice(-1)[0].imageTag,
+                                b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
+                                c = '<div class="producto__skuVariant-img">' + b + '</div>';
+
+                            $(c).appendTo($skuSelector);
+                        });
 
                         details.on("click", function () {
                             window.top.location.href = thisUrl;
