@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio: 15/02/2018
+Ultimo cambio: 23/02/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -685,7 +685,7 @@ var home = {
         $(".home__tabs-content.news .prateleira").children().addClass("carousel-news");
 
         if ($responsive > 758) {
-            if ($count.length > 6) {
+            if ($count.length >= 6) {
                 $(producto).slick({
                     autoplay: true,
                     autoplaySpeed: 2500,
@@ -696,8 +696,8 @@ var home = {
                     dots: true
                 });
             }
-        }else if($responsive < 758){
-            if ($count.length > 2) {
+        } else if ($responsive < 758) {
+            if ($count.length >= 2) {
                 $(producto).slick({
                     arrows: false,
                     autoplay: true,
@@ -945,17 +945,22 @@ var producto = {
                     $skuSelector = $(".skuselector-specification-label");
 
                 $label.remove();
-                
-                // add images to sku selections product
+                // $skuSelector.eq(0).click().attr("checked", "checked");
+                // producto.selectCurrentSku();
+
+                $skuSelector.wrap('<div class="dynamic"></div>');
+
                 $.each(arr, function (i, val) {
                     // console.log(val);
                     var arrImg = val.images,
+                        $skuDinamic = $(".dynamic"),
                         a = arrImg.slice(-1)[0].imageTag,
                         b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
                         c = '<div class="producto__skuVariant-img">' + b + '</div>';
 
-                    $(c).appendTo($skuSelector);
+                    $(c).appendTo($skuDinamic);
                 });
+
                 $ean.append(producto.ean);
                 // dotInfo();
             }
@@ -976,71 +981,45 @@ var producto = {
         var $count = $(".product__recomended-content .prateleira").find(".img"),
             $responsive = $(window).width();
 
-        $(".helperComplement").remove();
-        $(".product__recomended-content .prateleira").children().addClass("carousel-recomendados");
-        $(".product__recently-content .prateleira").children().addClass("carousel-vistosReciente");
-
-        $(el).on("init", function () {
-            $(this).addClass('active');
-        });
-
         if ($responsive > 768) {
+            if ($count.length >= 6) {
+                $(".helperComplement").remove();
+                $(".product__recomended-content .prateleira").children().addClass("carousel-recomendados");
+                $(".product__recently-content .prateleira").children().addClass("carousel-vistosReciente");
 
-            if ($count.length > 3) {
+                $(el).on("init", function () {
+                    $(this).addClass('active');
+                });
                 $(el).slick({
-
                     autoplay: true,
                     autoplaySpeed: 2500,
                     slide: 'li',
                     slidesToScroll: 2,
                     slidesToShow: 6,
                     speed: 500,
-                    dots: true,
-                    responsive: [{
-                            breakpoint: 980,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 650,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 2
-                            }
-                        }
-                    ]
-
+                    dots: true
                 });
             }
-        } else {
-            $(el).slick({
+        } else if ($responsive < 758) {
+            if ($count.length >= 2) {
+                $(".helperComplement").remove();
+                $(".product__recomended-content .prateleira").children().addClass("carousel-recomendados");
+                $(".product__recently-content .prateleira").children().addClass("carousel-vistosReciente");
 
-                autoplay: true,
-                autoplaySpeed: 2500,
-                slide: 'li',
-                slidesToScroll: 1,
-                slidesToShow: 4,
-                speed: 500,
-                dots: true,
-                responsive: [{
-                        breakpoint: 980,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 650,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 2
-                        }
-                    }
-                ]
-
-            });
+                $(el).on("init", function () {
+                    $(this).addClass('active');
+                });
+                $(el).slick({
+                    arrows: false,
+                    autoplay: true,
+                    autoplaySpeed: 2500,
+                    slide: 'li',
+                    slidesToScroll: 1,
+                    slidesToShow: 2,
+                    speed: 500,
+                    dots: true
+                });
+            }
         }
 
         $('.carousel-recomendados,.carousel-vistosReciente').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
@@ -1249,6 +1228,7 @@ var categDepto = {
             categDepto.categOptions();
             categDepto.skuImgPrateleira();
             categDepto.eventHasChange();
+            categDepto.changeControls();
             //setInterval(categDepto.traducciones,800);
             setInterval(confiGenerales.mainLazyLoad, 800);
             console.log("categDepto.init()  ˙ω˙");
@@ -1294,7 +1274,7 @@ var categDepto = {
                                 dataType: 'json',
                                 type: 'GET',
                                 crossDomain: true,
-                                success: function(data) {
+                                success: function (data) {
                                     // console.log(data[0].items[0].images);
 
                                     var arr = data[0].items[0].images,
@@ -1427,8 +1407,8 @@ var categDepto = {
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-                return $.getScript(files);
-            }))
+            return $.getScript(files);
+        }))
             .then(function () {
 
                 $(trigger).hcSticky({
@@ -1447,8 +1427,8 @@ var categDepto = {
         var files = ["/arquivos/QD_infinityScroll.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-                return $.getScript(files);
-            }))
+            return $.getScript(files);
+        }))
             .then(function () {
 
                 console.log("cargo el infinity");
@@ -1583,76 +1563,87 @@ var categDepto = {
         });
 
     },
-    skuImgPrateleira: function(){
+    changeControls: function(){
+
+        var aNextTop = $(".pager.top:eq(1) .next"),
+            aPrevTop = $(".pager.top:eq(1) .previous");
+
+        aNextTop.on("click", function () {
+            $(".pager.top:eq(0) .next").click();
+        });
+        aPrevTop.on("click", function () {
+            $(".pager.top:eq(0) .previous").click();
+        });
+
+    },
+    cloneCategControls: function(el){
+        var a = $(el).clone(),
+            $filter = $(".categ__options-bottom.bottom .categ__filters");
+        if($filter.length){
+            $filter.remove();
+            $(".categ__options-bottom.bottom").html(a);
+        }
+    },
+    skuImgPrateleira: function () {
 
         var $prateleiraInfo = $(".prateleira__container");
         // var $prateleiraInfo = $(".prateleira__info");
-        $prateleiraInfo.each(function(){
+        $prateleiraInfo.each(function () {
 
             // $(this).one("mouseenter", function () {
-                var $this = $(this),
-                    $skuInput = $this.find(".prateleira__info .insert-sku-checkbox"),
-                    $inputParent = $this.find(".prateleira__info .is-checklist-item"),
-                    $templateImg = '<div class="prateleira__skuVariant-img"></div>',
-                    $validate = $this.find(".prateleira__info .prateleira__skuVariant-img");
+            var $this = $(this),
+                $skuInput = $this.find(".prateleira__info .insert-sku-checkbox"),
+                $inputParent = $this.find(".prateleira__info .is-checklist-item"),
+                $templateImg = '<div class="prateleira__skuVariant-img"></div>',
+                $validate = $this.find(".prateleira__info .prateleira__skuVariant-img");
 
-                if ($validate.length == 0) {
+            if ($validate.length == 0) {
 
-                    $($templateImg).appendTo($inputParent);
+                $($templateImg).appendTo($inputParent);
 
-                    var skuInputAttr = $skuInput.attr("rel");
-                    // $inputParent.append($templateImg);
-                    $.ajax({
-                        url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=skuId:" + skuInputAttr + "",
-                        dataType: 'json',
-                        type: 'GET',
-                        crossDomain: true,
-                        success: function(data) {
-                            // console.log(data[0].items[0].images);
-                            // console.log(data);
-                            var arr = data[0].items,
-                                dataLink = data[0].link,
-                                $skuVariantImg = $this.find(".prateleira__info .prateleira__skuVariant-img"),
-                                $fadeEl = $this.find(".prateleira__skuVariant-container"),
-                                $lastImg = [];
+                var skuInputAttr = $skuInput.attr("rel");
+                // $inputParent.append($templateImg);
+                $.ajax({
+                    url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=skuId:" + skuInputAttr + "",
+                    dataType: 'json',
+                    type: 'GET',
+                    crossDomain: true,
+                    success: function (data) {
+                        // console.log(data[0].items[0].images);
+                        // console.log(data);
+                        var arr = data[0].items,
+                            dataLink = data[0].link,
+                            $skuVariantImg = $this.find(".prateleira__info .prateleira__skuVariant-img"),
+                            $fadeEl = $this.find(".prateleira__skuVariant-container"),
+                            $lastImg = [];
 
-                            $.each(arr, function (i, val) {
-                                // console.log(val);
-                                var arrImg = val.images,
-                                    a = arrImg.slice(-1)[0].imageTag,
-                                    b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
-                                    c = '<a href= "' + dataLink + '?idsku=' + skuInputAttr + '">' + b + '</a>';
-                                
-                                $(c).appendTo($skuVariantImg);
-                                $fadeEl.fadeIn();
-                            });
-                        }
-                    });
-                }
+                        $.each(arr, function (i, val) {
+                            // console.log(val);
+                            var arrImg = val.images,
+                                arrSku = val.itemId,
+                                a = arrImg.slice(-1)[0].imageTag,
+                                b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
+                                c = '<a href= "' + dataLink + '?idsku=' + arrSku + '">' + b + '</a>';
+                                // attrSku = dataLink + '?idsku=' + arrSku;
+
+                            $(c).appendTo($skuVariantImg);
+                            $fadeEl.fadeIn();
+                        });
+                    }
+                });
+            }
             // });
         });
     },
-    eventHasChange: function(){
+    eventHasChange: function () {
 
-        // var files = ["/arquivos/jquery-hasChange.min.js"];
-
-        // $.when.apply($, $.map(files, function (file) {
-        //     return $.getScript(files);
-        // })).then(function () {
-
-        //     // Bind the event.
-        //     $(window).hashchange();
-        //     $(window).hashchange(function () {
-        //         console.log("test hasChange");
-        //         categDepto.carouselPrateleira();
-        //     });
-
-        // }, function err(jqxhr, textStatus, errorThrown) {
-        //     console.log(textStatus);
-        // });
         $(window).bind('hashchange', function () {
             // console.log("cambio");
-            setTimeout(categDepto.carouselPrateleira, 1200);
+            setTimeout(function(){
+                categDepto.carouselPrateleira();
+                categDepto.changeControls();
+                categDepto.cloneCategControls(".categ__options .categ__filters");
+            }, 1200);
         });
     }
 };
@@ -1761,18 +1752,11 @@ var quickviewControl = {
 
         $iframeContentTop.on("load", function () {
 
-            var $iframeBuySuccess = $(".TB_compraExitosa"),
+            var $iframeThis = $(this),
+                $iframeBuySuccess = $(".TB_compraExitosa"),
                 $thisBtn = $(".buy-button.buy-button-ref"),
                 $ean = $("#quickview__style-number"),
-                producto = {
-                    id: "",
-                    descripcion: "",
-                    ean: "",
-                    caracteristica: "",
-                    stock: "",
-                    marca: "",
-                    url: ""
-                },
+                producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", url: "" },
                 $productoName = $(".notifyme-client-name"),
                 $productoEmail = $(".notifyme-client-email");
 
@@ -1809,16 +1793,18 @@ var quickviewControl = {
                         producto.marca = data[0].brand;
 
                         $label.remove();
-
+                        $skuSelector.eq(0).click().attr("checked", "checked");
+                        $skuSelector.wrap('<div class="dynamic"></div>');
                         // add images to sku selections product
                         $.each(arrItems, function (i, val) {
                             // console.log(val);
                             var arrImg = val.images,
-                                a = arrImg.slice(-1)[0].imageTag,
-                                b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
-                                c = '<div class="producto__skuVariant-img">' + b + '</div>';
+                                $skuDinamic = $(".dynamic"),
+                                sliceIt = arrImg.slice(-1)[0].imageTag,
+                                template = sliceIt.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
+                                c = '<div class="producto__skuVariant-img">' + template + '</div>';
 
-                            $(c).appendTo($skuSelector);
+                            $(c).appendTo($skuDinamic);
                         });
 
                         details.on("click", function () {
@@ -1836,8 +1822,11 @@ var quickviewControl = {
                         $.each(arr, function (i, val) {
                             var a = val.imageTag,
                                 b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-600-").replace(/-height\b/g, "-600").replace(/\s*(width)="[^"]+"\s*/g, " width='600'").replace(/\s*(height)="[^"]+"\s*/g, " height='600'"),
-                                $el = '<div class="slide-thumb">' + b + '</div>';
-                            $elements.push($el);
+                                z = '<div class="slide-thumb">' + b + '</div>';
+                            $elements.push(z);
+                            // $el.appendTo($zoomPad);
+                            // $(z).appendTo($zoomPad);
+                            // $zoomPad.html($elements);
                         });
 
                         $zoomPad.html($elements);
@@ -1954,51 +1943,49 @@ var static = {
     //         return false;
     //     });
     // },
-    anchoring: function(){
+    anchoring: function () {
         // Select all links with hashes
         $('.static__options-anchorLinks-content a[href*="#"]')
-        // Remove links that don't actually link to anything
-        .not('.static__options-anchorLinks-content [href="#"]')
-        .not('.static__options-anchorLinks-content [href="#0"]')
-        .click(function (event) {
-            // On-page links
-            if (
-                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
-                &&
-                location.hostname == this.hostname
-            ) {
-                // Figure out element to scroll to
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                // Does a scroll target exist?
-                if (target.length) {
-                    // Only prevent default if animation is actually gonna happen
-                    event.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: (target.offset().top + 100)
-                    }, 1000, function () {
-                        // Callback after animation
-                        // Must change focus!
-                        var $target = $(target);
-                        $target.focus();
-                        if ($target.is(":focus")) { // Checking if the target was focused
-                            return false;
-                        } else {
-                            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-                            $target.focus(); // Set focus again
-                        };
-                    });
+            // Remove links that don't actually link to anything
+            .not('.static__options-anchorLinks-content [href="#"]')
+            .not('.static__options-anchorLinks-content [href="#0"]')
+            .click(function (event) {
+                // On-page links
+                if (
+                    location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname
+                ) {
+                    // Figure out element to scroll to
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    // Does a scroll target exist?
+                    if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: (target.offset().top + 100)
+                        }, 1000, function () {
+                            // Callback after animation
+                            // Must change focus!
+                            var $target = $(target);
+                            $target.focus();
+                            if ($target.is(":focus")) { // Checking if the target was focused
+                                return false;
+                            } else {
+                                $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                                $target.focus(); // Set focus again
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
     },
     asideSticky: function (trigger) {
 
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-                return $.getScript(files);
-            }))
+            return $.getScript(files);
+        }))
             .then(function () {
 
                 $(trigger).hcSticky({

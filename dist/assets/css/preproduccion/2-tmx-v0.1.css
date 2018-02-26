@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.1
-Ultimo cambio:  20/02/2017 | 12:59m
+Ultimo cambio:  26/02/2017 | 15:27m
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -25,6 +25,8 @@ Negro tumi: #2E2A25
 
 font-family: 'Proxima Nova';
 font-family: 'Proxima Nova bold';
+font-family: 'icon_cart';
+font-family: 'tumi-icon-ft';
 
 ----------------------
 
@@ -145,10 +147,13 @@ f23.Mediaquerie nuestras tiendas
 ============================= */
 
 :root {
-    --borderRojo: 1px solid red;
-    --borderAzul: 1px solid blue;
-    --borderNegro: 1px solid black;
-    --borderNaranja: 1px solid orange;
+    --rojoTumi: #b92335;
+    --grisTumi: #DDDDDD;
+    --grisLightTumi: #ebebeb;
+    --grisFuerteTumi: #ccc;
+    --grisxFuerteTumi: #777;
+    --negroTumi: #2E2A25;
+    --tumiIcon:'tumi-icon-ft';
 }
 
 @font-face {
@@ -160,6 +165,18 @@ f23.Mediaquerie nuestras tiendas
     font-family: 'Proxima Nova bold';
     font-weight: bold;
     src: url('/arquivos/ProximaNova-Bold.css');
+}
+
+@font-face {
+    font-family: 'icon_cart';
+    font-weight: bold;
+    src: url('/arquivos/icon_cart.css');
+}
+
+@font-face {
+    font-family: 'tumi-icon-ft';
+    font-weight: bold;
+    src: url('/arquivos/tumi-icon-ft.css');
 }
 
 html,
@@ -298,7 +315,7 @@ a {
 
 a:hover {
     text-decoration: underline;
-    color: #b92335;
+    color: var(--rojoTumi);
 }
 
 a:visited {
@@ -472,7 +489,7 @@ img {
 
 .header__top-bar {
     width: 100%;
-    background-color: #b92335;
+    background-color: var(--rojoTumi);
     display: flex;
     justify-content: center;
 }
@@ -501,8 +518,9 @@ img {
 }
 
 .header-left__content a {
-    font-size: .8rem;
+    font-size: .73rem;
     font-weight: bold;
+    letter-spacing:0.8px;
     padding: .8rem 1rem;
 }
 
@@ -525,8 +543,9 @@ img {
 }
 
 .header-right__content a {
-    font-size: .8rem;
+    font-size: .73rem;
     font-weight: bold;
+    letter-spacing:0.5px;
     padding: .8rem 1rem;
 }
 
@@ -643,19 +662,21 @@ nav {
 
 .navigation__menu {
     display: flex;
-    width: 90%;
+    width: 80%;
     align-items: flex-end;
 }
 
 .navigation__menu a {
-    font-family: 'Proxima Nova bold';
-    font-size: .8rem;
-    font-weight: bold;
+    font-family: 'Proxima Nova';
+    font-size: .72rem;
+    font-weight: bolder;
     height: 100%;
     padding: 1rem 0;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
+    text-shadow: 0.8px 0 0 currentColor;
+    letter-spacing:1.5px;
     flex: 1;
 }
 
@@ -675,23 +696,24 @@ nav {
     -moz-transition: height .2s ease;
     -o-transition: height .2s ease;
     transition: height .2s ease;
-    background: #b92335;
+    background: var(--rojoTumi);
 }
 
 .navigation__menu a:hover {
-    color: black;
+    color: var(--negroTumi);
 }
 
 #navigation__sale {
-    color: #b92335 !important;
+    color: var(--rojoTumi) !important;
 }
 
 .navigation__searchTrigger:after {
-    font-family: 'FontAwesome';
-    font-size: .8rem;
+    color: var(--rojoTumi);
+    content: '\e80d';
+    font-family: var(--tumiIcon);
+    font-size: .7rem;
     padding-left: .5rem;
-    content: '\f002';
-    color: #b92335;
+    text-shadow: none;
 }
 
 .navigation__right {
@@ -768,7 +790,7 @@ nav {
 .navigation__right--mobile .fa,
 .navigation-cart__container--mobile .amount-items:before {
     font-size: 1.2rem;
-    color: #b92335;
+    color: var(--rojoTumi);
 }
 
 .navigation__center--mobile {
@@ -916,7 +938,7 @@ footer {
 .footer__map {
     width: 300px;
     height: 200px;
-    background-color: #b92335;
+    background-color: var(--rojoTumi);
 }
 
 .footer__rrss {
@@ -1297,7 +1319,7 @@ footer {
         font-family: 'FontAwesome';
         padding-right: 1rem;
         content: '\f055';
-        color: #b92335;
+        color: var(--rojoTumi);
     }
     .footer__nearlocation .footer__title.active:before,
     .footer__navigation .footer__title.active:before {
@@ -1657,7 +1679,7 @@ footer {
     padding: .4rem 0;
     content: 'A\00F1 adir al carrito';
     color: white;
-    background-color: #b92335;
+    background-color: var(--rojoTumi);
 }
 
 .prateleira__buybtn {
@@ -1868,7 +1890,7 @@ footer {
 
 .header-cart__content:hover,
 .navigation-cart__container:hover {
-    background-color: #b92335;
+    background-color: var(--rojoTumi);
 }
 
 .navigation-cart__container:hover .amount-items:before,
@@ -1894,23 +1916,24 @@ footer {
 }
 
 .header-cart__content .amount-items {
-    color: #b92335;
+    color: var(--rojoTumi);
 }
 
 .header-cart__content .amount-items:before {
-    font-family: 'FontAwesome';
+    font-family: 'tumi-icon-ft';
     font-size: .8rem;
     padding-right: .8rem;
-    content: '\f23d';
+    content: '\e80b';
 }
 
 .header-cart__content .amount-items-em {
-    font-size: .7rem;
+    font-size: .9rem;
     font-style: unset;
+    font-family: 'Proxima Nova Bold';
 }
 
 .navigation-cart__container .amount-items {
-    color: #b92335;
+    color: var(--rojoTumi);
 }
 
 .navigation-cart__container .amount-items:before {
@@ -1921,8 +1944,9 @@ footer {
 }
 
 .navigation-cart__container .amount-items-em {
-    font-size: .7rem;
+    font-size: .9rem;
     font-style: unset;
+    font-family: 'Proxima Nova Bold';
 }
 
 .navigation-cart__container {
@@ -1947,9 +1971,9 @@ footer {
 }
 
 .navigation-cart__content .amount-items:before {
-    font-family: 'FontAwesome';
+    font-family: 'tumi-icon-ft';
+    content: '\e80b';
     padding-right: .8rem;
-    content: '\f23d';
 }
 
 .navigation-cart__content .amount-items-em {
@@ -2793,7 +2817,7 @@ ul.rating li span {
 }
 
 .quickview__btn a:hover:before {
-    color: #B92335;
+    color: var(--rojoTumi);
 }
 
 
@@ -2889,9 +2913,10 @@ body.mochila .Hide.Atributos.HideEstilo.active {
 }
 
 .ver-filtros {
-    color: #003a7c;
+    color: var(--rojoTumi);
     display: block !important;
     font-weight: bold;
+    font-size:.75rem;
     margin-bottom: .5rem !important;
     padding: .4rem !important;
     width: 100% !important;
@@ -2905,7 +2930,7 @@ body.mochila .Hide.Atributos.HideEstilo.active {
 
 .navigation-tabs h3.selected,
 .navigation-tabs h4.selected {
-    color: #003a7c;
+    color: var(--rojoTumi);
     display: block;
 }
 
@@ -3166,8 +3191,17 @@ ul.even {
     font-family: "FontAwesome";
     font-size: .55rem;
     top: 40%;
-    right: 5%;
+    right: 12%;
     position: absolute;
+}
+
+.orderBy:after,
+.filterBy:after{
+    content:"";
+    border:0.2px solid #ccc;
+    height:100%;
+    position:absolute;
+    right:30%;
 }
 
 .orderBy {
@@ -3199,14 +3233,17 @@ ul.even {
     background-color: transparent;
     border-radius: 0;
     border: 1px solid #ccc;
-    font-size: .7rem;
+    color:#666;
+    font-size: .75rem;
     font-family: 'Proxima Nova';
-    font-weight: 600;
+    font-weight:bold;
     float: right;
     height: 100%;
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
+    letter-spacing:0.6px;
+    text-shadow: 0.3px 0 0 currentColor;
     width: 100%;
 }
 
@@ -3936,7 +3973,7 @@ ul.pages li.page-number.pgCurrent:after {
 
 .home .slick-next:hover:before,
 .home .slick-prev:hover:before {
-    color: #B92335;
+    color: var(--rojoTumi);
 }
 
 .quickview__container .slick-prev:before,
@@ -4019,6 +4056,11 @@ ul.pages li.page-number.pgCurrent:after {
     }
     .carousel-news .slick-dots {
         position:relative;
+    }
+    .product__container--mobile .slick-dots{
+        bottom:-20px;
+        right:0;
+        width:100%;
     }
 }
 
@@ -4129,7 +4171,7 @@ ul.pages li.page-number.pgCurrent:after {
 
 .js-drilldown-back a {
     color: white;
-    background-color: #b92335;
+    background-color: var(--rojoTumi);
 }
 
 right-off-canvas-menu {
@@ -4268,7 +4310,7 @@ right-off-canvas-menu {
     font-size: 1.2rem;
     margin-right: .3rem;
     content: '\f1f8';
-    color: #b92335;
+    color: var(--rojoTumi);
 }
 
 .off-canvas.position-right .cartTotal {
@@ -4299,7 +4341,7 @@ right-off-canvas-menu {
     height: 50px;
     margin-top: 1rem;
     color: white;
-    background-color: #b92335;
+    background-color: var(--rojoTumi);
     justify-content: center;
     align-items: center;
 }
@@ -4389,6 +4431,7 @@ table thead {
     background-color: white;
     -webkit-box-shadow: 0 5px 2px 0 rgba(0, 0, 0, .2);
     box-shadow: 0 5px 2px 0 rgba(0, 0, 0, .2);
+    z-index:1;
     /*   display:flex; */
 }
 
@@ -4506,12 +4549,13 @@ table thead {
     -moz-box-shadow: 0 3px 4px 0 rgba(50, 50, 50, .2);
     box-shadow: 0 3px 4px 0 rgba(50, 50, 50, .2);
     position: absolute;
-    top: 45px;
+    top: 44px;
     right: 0;
     display: block;
     display: flex;
     width: 100%;
     height: 54px;
+    z-index:11;
     /*     border:1px solid red; */
     background-color: white;
     align-items: center;
@@ -4669,13 +4713,13 @@ table thead {
 }
 
 .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all li:hover a {
-    color: #b92335;
+    color: var(--rojoTumi);
 }
 
 .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all li:first-child {
     font-weight: bold;
     padding: .5rem 0;
-    background-color: #b92335;
+    background-color: var(--rojoTumi);
 }
 
 .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all li:first-child a {
@@ -5530,13 +5574,18 @@ table thead {
 }
 
 .home__tabs-buttons {
-    font-family: 'Proxima Nova bold';
-    font-size: .8rem;
+    font-family: 'Proxima Nova';
+    font-size: .75rem;
     font-weight: bold;
     position: relative;
     width: 30%;
     text-align: center;
     text-transform: uppercase;
+    text-shadow: 0px 0 0 currentColor;
+    letter-spacing:0.8px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .home__tabs-buttons:first-child:after {
@@ -5551,13 +5600,25 @@ table thead {
 
 .home__tabs-buttons.transparent.active {
     line-height: 18px;
-    /*      text-decoration-color: #B92335; */
-    border-bottom: 2px solid #b92335;
+    /*      text-decoration-color: var(--rojoTumi); */
+/*     border-bottom: 2px solid var(--rojoTumi); */
+    position:relative;
 }
 
 .home__tabs-buttons.transparent.active:visited,
 .home__tabs-buttons.transparent.active:focus{
     color:black;
+}
+
+.home__tabs-buttons.active:before{
+    content:"";
+    border:0.57px solid var(--rojoTumi);
+    position:absolute;
+    right:0;
+    left:0;
+    margin:0 auto;
+    bottom:-5px;
+    width:80%;
 }
 
 .home__tabs-content {
@@ -6370,7 +6431,7 @@ h5.span5 {
     border: 0;
 }
 div#vtexIdUI-global-loader{
-    background: url(data:image/gif;base64,R0lGODlhMAAwAPYAAP///2ZmZvX19e3t7eDg4M7OzuPj4/v7+/Pz8ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦4TZK8CPlQYt79qK8iU0o1KDzDcRruqdIrAuu2inHAI718DkHjvvvz220ggADsAAAAAAAAAAAA=) center 35% no-repeat rgb(00, 00, 00)!important;
+    background: url(data:image/gif;base64,R0lGODlhMAAwAPYAAP///2ZmZvX19e3t7eDg4M7OzuPj4/v7+/Pz8ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦4TZK8CPlQYt79qK8iU0o1KDzDcRruqdIrAuu2inHAI718DkHjvvvz220ggADsAAAAAAAAAAAA=) center 35% no-repeat rgb(00, 00, 00)!important;
 	font-family: 'Proxima Nova';
 }
 div#vtexIdUI-auth-selector {
@@ -6796,7 +6857,7 @@ button#sendAccessKeyBtn{
 
 .airlineGuide__content .fa {
     color: #555;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     position: relative;
     width: 100%;
     height: 35px;
@@ -6805,8 +6866,9 @@ button#sendAccessKeyBtn{
 }
 
 .airlineGuide__content .fa.fa-plane:before {
+    content:'\e85d';
+    font-family:var(--tumiIcon);
     display: block;
-    transform: rotate(42deg);
     position: absolute;
 }
 
@@ -6854,7 +6916,7 @@ button#sendAccessKeyBtn{
     position:relative;
     display:flex;
     flex-direction:column;
-    width:30%;
+    width:40%;
 }
 
 .specification{
@@ -6863,7 +6925,7 @@ button#sendAccessKeyBtn{
     font-size: .75rem;
     text-transform: uppercase;
     position:absolute;
-    top:-32px;
+    top:-25px;
     left:0;
     visibility:hidden;
 }
@@ -6886,48 +6948,51 @@ button#sendAccessKeyBtn{
 
 .select.skuList.item-dimension-Colorsku span input{
     display:block;
+    cursor:pointer;
     height:32px;
     width:32px;
     margin:0 !important;
-    position:relative;
-    visibility:hidden;
-
+    -webkit-appearance: none;
+   -moz-appearance:    none;
+   appearance:         none;
+    /*     visibility:hidden;  */
     display:flex;
     flex-direction:column;
     align-items:center;
 }
 
-
-.producto__skuVariant-img,
-.producto__skuVariant-img img{
-    visibility:visible;
-    width:100%;
-}
-
-.select.skuList.item-dimension-Colorsku [type=radio] .producto__skuVariant-img{
+.dynamic .producto__skuVariant-img{
     display:none;
 }
 
-.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(1) .producto__skuVariant-img:nth-child(1),
-.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(2) .producto__skuVariant-img:nth-child(2),
-.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(3) .producto__skuVariant-img:nth-child(3),
-.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(4) .producto__skuVariant-img:nth-child(4),
-.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(5) .producto__skuVariant-img:nth-child(5),
-.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(6) .producto__skuVariant-img:nth-child(6),
-.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(7) .producto__skuVariant-img:nth-child(7),
-.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(8) .producto__skuVariant-img:nth-child(8),
-.select.skuList.item-dimension-Colorsku [type=radio]:nth-child(9) .producto__skuVariant-img:nth-child(9){
+.dynamic:nth-child(1) .producto__skuVariant-img:nth-child(2),
+.dynamic:nth-child(2) .producto__skuVariant-img:nth-child(3),
+.dynamic:nth-child(3) .producto__skuVariant-img:nth-child(4),
+.dynamic:nth-child(4) .producto__skuVariant-img:nth-child(5),
+.dynamic:nth-child(5) .producto__skuVariant-img:nth-child(6),
+.dynamic:nth-child(6) .producto__skuVariant-img:nth-child(7),
+.dynamic:nth-child(7) .producto__skuVariant-img:nth-child(8),
+.dynamic:nth-child(8) .producto__skuVariant-img:nth-child(9),
+.dynamic:nth-child(9) .producto__skuVariant-img:nth-child(10){ 
     display:block;
 }
 
 .producto__skuVariant-img{
+    cursor: pointer;
     height:32px;
-    outline:1px solid #eee;
+    max-width:32px;
+    max-height:32px;
     padding:.1rem .13rem .1rem .1rem;
+    position:absolute;
+    pointer-events:none;
+    outline:1px solid #eee;
+    top:0;
+    width:32px;
+    z-index:1;
 }
 
-.select.skuList.item-dimension-Colorsku [type=radio]:checked .producto__skuVariant-img{
-    outline:2px solid black;
+.dynamic [type=radio]:checked {
+    outline:3px solid black;
 }
 
 .select.skuList.item-dimension-Colorsku label{
@@ -6984,7 +7049,7 @@ button#sendAccessKeyBtn{
     height: 100%;
     text-align: center;
     color: white;
-    background-color: #b92335;
+    background-color: var(--rojoTumi);
 }
 
 .buy-button.buy-button-ref:before {
@@ -6998,7 +7063,7 @@ button#sendAccessKeyBtn{
     content: 'A\00F1 adir al Carrito';
     letter-spacing: 1px;
     /*     text-transform: uppercase; */
-    background-color: #b92335;
+    background-color: var(--rojoTumi);
     align-items: center;
     justify-content: center;
 }
@@ -7223,7 +7288,8 @@ h4.group.Atributos-Tumi {
 }
 
 .select.skuList.item-dimension-Colorsku{
-    width:auto;
+    display:block;
+    width:100%;
 }
 
 
@@ -7407,6 +7473,9 @@ h4.group.Atributos-Tumi {
     .product__shop-container {
         margin: 2rem 0 1rem 0;
     }
+    .producto__skuVariant-img img{
+        height:29px;
+    }
 }
 
 
@@ -7462,7 +7531,7 @@ h4.group.Atributos-Tumi {
 }
 
 .categ__options-bottom {
-    border-top: 3px solid #ccc;
+    border-top: 2.1px solid #ccc;
     padding-top: 1rem;
     width: 100%;
     display: flex;
@@ -7476,6 +7545,7 @@ h4.group.Atributos-Tumi {
 
 .categ__options-bottom.bottom .categ__filters {
     width: 63%;
+    max-width:53%;
 }
 
 .categ__options-bottom.bottom .categ__showFilters {
@@ -8183,7 +8253,7 @@ h4.group.Atributos-Tumi {
 
 .buscavazia__searchTrigger,
 .errorCuatro__searchTrigger {
-    background-color: #B92335;
+    background-color: var(--rojoTumi);
     border-radius: 2px;
     color: white;
     text-align: center;
@@ -9231,7 +9301,7 @@ h4.group.Atributos-Tumi {
 }
 
 .stores_ul::-webkit-scrollbar-thumb {
-    background-color: #B92335;
+    background-color: var(--rojoTumi);
 }
 
 .stores_ul ul{
