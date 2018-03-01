@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio: 23/02/2018
+Ultimo cambio: 01/03/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -21,6 +21,8 @@ b5.Busca, resultado de busca, 404 y error 500
 b6.Account
 b7.Quickview
 b8.Static
+b9.BarbaJS
+b10.Login
 
 -------------------------fin---------------------------------*/
 
@@ -34,6 +36,7 @@ b8.Static
 var $body = $("body"),
     $home = $(".home"),
     $static = $(".static.help"),
+    $login = $("body.login"),
     $categDeptoBuscaResultadoBusca = $(".categoria, .depto, .busca, .resultado-busca"),
     $producto = $(".producto"),
     $responsive = $(window).width(),
@@ -57,6 +60,10 @@ $(function () {
     busca.init();
     quickviewControl.init();
     BarbaWidget.init();
+});
+
+$(window).load(function(){
+    login.init();
 });
 
 /* 
@@ -763,12 +770,19 @@ var producto = {
             producto.compraFichaProducto();
             // producto.productoSticky();
             producto.miniatura();
+            producto.selectSkuOnClick();
             setTimeout(producto.userReview, 3000);
             console.log("producto.init()  ˙ω˙");
         }
 
         // producto.elementosFormato();
 
+    },
+    selectSkuOnClick: function () {
+        var a = $(".skuselector-specification-label");
+        a.on("click", function () {
+            producto.mainImgCarousel();
+        });
     },
     mainImgCarousel: function () {
 
@@ -1221,12 +1235,11 @@ var categDepto = {
         if ($categDepto.length) {
 
             categDepto.traducciones();
-            categDepto.carouselPrateleira();
+            categDepto.showProductos('.categ__elements');
             categDepto.categDeptoAccordion('.search-multiple-navigator h4,.search-multiple-navigator h5', '.search-multiple-navigator h3');
             categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
             // categDepto.infinityScroll();
             categDepto.categOptions();
-            categDepto.skuImgPrateleira();
             categDepto.eventHasChange();
             categDepto.changeControls();
             //setInterval(categDepto.traducciones,800);
@@ -1235,6 +1248,20 @@ var categDepto = {
 
         }
 
+    },
+    showProductos: function (object) {
+        var $object = $(object),
+            $effectOut = function (el) {
+                return el.fadeOut(500);
+            },
+            $effectIn = function (el) {
+                return el.fadeIn(1000).css("display", "flex");
+            };
+
+        $.when($effectIn($object)).done(function () {
+            categDepto.carouselPrateleira();
+            categDepto.skuImgPrateleira();
+        });
     },
     traducciones: function () {
         var $breadCrumb = $(".bread-crumb ul li:eq(0)");
@@ -1298,7 +1325,7 @@ var categDepto = {
 
                                     if (_thisImg.length) {
 
-                                        _thisImg.slick({
+                                        _thisImg.not('.slick-initialized').slick({
                                             arrows: true,
                                             autoplay: false,
                                             autoplaySpeed: 2500,
@@ -1454,6 +1481,7 @@ var categDepto = {
                             confiGenerales.replaceHref();
                             confiGenerales.wishlistOnclick();
                             confiGenerales.compraAsyncVitrina();
+                            categDepto.skuImgPrateleira();
                             // confiGenerales.mainLazyLoad();
                         },
                         // Cálculo do tamanho do footer para que uma nova página seja chamada antes do usuário chegar ao "final" do site
@@ -1563,7 +1591,7 @@ var categDepto = {
         });
 
     },
-    changeControls: function(){
+    changeControls: function () {
 
         var aNextTop = $(".pager.top:eq(1) .next"),
             aPrevTop = $(".pager.top:eq(1) .previous");
@@ -1576,10 +1604,10 @@ var categDepto = {
         });
 
     },
-    cloneCategControls: function(el){
+    cloneCategControls: function (el) {
         var a = $(el).clone(),
             $filter = $(".categ__options-bottom.bottom .categ__filters");
-        if($filter.length){
+        if ($filter.length) {
             $filter.remove();
             $(".categ__options-bottom.bottom").html(a);
         }
@@ -1624,7 +1652,7 @@ var categDepto = {
                                 a = arrImg.slice(-1)[0].imageTag,
                                 b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
                                 c = '<a href= "' + dataLink + '?idsku=' + arrSku + '">' + b + '</a>';
-                                // attrSku = dataLink + '?idsku=' + arrSku;
+                            // attrSku = dataLink + '?idsku=' + arrSku;
 
                             $(c).appendTo($skuVariantImg);
                             $fadeEl.fadeIn();
@@ -1639,10 +1667,12 @@ var categDepto = {
 
         $(window).bind('hashchange', function () {
             // console.log("cambio");
-            setTimeout(function(){
+            setTimeout(function () {
                 categDepto.carouselPrateleira();
                 categDepto.changeControls();
                 categDepto.cloneCategControls(".categ__options .categ__filters");
+                categDepto.skuImgPrateleira();
+                categDepto.changeControls();
             }, 1200);
         });
     }
@@ -1817,33 +1847,30 @@ var quickviewControl = {
                         producto.ean = data[0].items[0].ean;
                         producto.marca = data[0].brand;
 
-                        console.log(data);
+                        // console.log(data);
 
-                        $.each(arr, function (i, val) {
-                            var a = val.imageTag,
-                                b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-600-").replace(/-height\b/g, "-600").replace(/\s*(width)="[^"]+"\s*/g, " width='600'").replace(/\s*(height)="[^"]+"\s*/g, " height='600'"),
-                                z = '<div class="slide-thumb">' + b + '</div>';
-                            $elements.push(z);
-                            // $el.appendTo($zoomPad);
-                            // $(z).appendTo($zoomPad);
-                            // $zoomPad.html($elements);
-                        });
+                        // $.each(arr, function (i, val) {
+                        //     var a = val.imageTag,
+                        //         b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-600-").replace(/-height\b/g, "-600").replace(/\s*(width)="[^"]+"\s*/g, " width='600'").replace(/\s*(height)="[^"]+"\s*/g, " height='600'"),
+                        //         z = '<div class="slide-thumb">' + b + '</div>';
+                        //     $elements.push(z);
+                        // });
 
-                        $zoomPad.html($elements);
+                        // $zoomPad.html($elements);
 
-                        $zoomPad.slick({
-                            arrows: true,
-                            autoplay: false,
-                            autoplaySpeed: 2500,
-                            button: false,
-                            dots: true,
-                            fade: false,
-                            infinite: true,
-                            slidesToScroll: 1,
-                            slidesToShow: 1,
-                            speed: 800,
-                            useTransform: true
-                        });
+                        // $zoomPad.slick({
+                        //     arrows: true,
+                        //     autoplay: false,
+                        //     autoplaySpeed: 2500,
+                        //     button: false,
+                        //     dots: true,
+                        //     fade: false,
+                        //     infinite: true,
+                        //     slidesToScroll: 1,
+                        //     slidesToShow: 1,
+                        //     speed: 800,
+                        //     useTransform: true
+                        // });
                     }
                 });
 
@@ -1962,7 +1989,7 @@ var static = {
                         // Only prevent default if animation is actually gonna happen
                         event.preventDefault();
                         $('html, body').animate({
-                            scrollTop: (target.offset().top + 100)
+                            scrollTop: (target.offset().top - 100)
                         }, 1000, function () {
                             // Callback after animation
                             // Must change focus!
@@ -2085,4 +2112,30 @@ var BarbaWidget = {
             });
         }
     })
+};
+
+/* 
+
+[b10.Login]
+
+============================= */
+
+var login = {
+  init: function(){
+
+      if($login.length){
+          login.insertElements();
+      }
+
+  },  
+  insertElements: function(){
+      var $modalBody = $(".modal-body"),
+          $heading = $(".vtexIdUI-heading"),
+          templateSubHeading = '<h5 class="login__subtitle">Inicie sesión en su cuenta de TUMI</div>',
+          templatePrivacy = '<div class="login__info-container"><div class="login__info-content">Cuando entra en su cuenta, acepta nuestra <a href="/ayuda/politica-privacidad">Politica de Privacidad.</a></div>',
+          $exit = $("#vtexIdUI-global-loader");
+
+      $heading.prepend(templateSubHeading);
+      $modalBody.append(templatePrivacy);
+  }
 };

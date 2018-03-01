@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2017
 Version: 0.1
-Ultimo cambio:  26/02/2017 | 15:27m
+Ultimo cambio:  28/02/2017 | 17:59pm
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -42,8 +42,9 @@ font-family: 'tumi-icon-ft';
 
 --------- Generales -------------
 
-a0.Global
-a1.No script
+a0.Variables
+a1.Global
+a2.Mediaquerie global
 
 --------- Subtemplates -------------
 
@@ -69,8 +70,8 @@ d4.Breadcrumb
 d5.Mediaquerie breadcrumb
 d6.Opinion de usuario
 d7.Mediaquerue opinion de usuario
-d8.Quickview
-d9.Mediaquerie quickview
+--x d8.Quickview
+--x d9.Mediaquerie quickview
 d10.Search navigator
 d11.Mediaquerie search navigator
 d12.Search result time.
@@ -142,7 +143,7 @@ f23.Mediaquerie nuestras tiendas
 
 
 /*
-[a0.Global]
+[a0.Variables]
 
 ============================= */
 
@@ -153,8 +154,18 @@ f23.Mediaquerie nuestras tiendas
     --grisFuerteTumi: #ccc;
     --grisxFuerteTumi: #777;
     --negroTumi: #2E2A25;
-    --tumiIcon:'tumi-icon-ft';
+    --bgTopbarCheckout: #555555;
+    --tumiIcon: 'tumi-icon-ft';
+    --proximaNova: 'Proxima Nova';
+    --proximaNovaBold:'Proxima Nova bold';
+    --borderShadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+    --offsetShadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.08);
 }
+
+/*
+[a1.Globales]
+
+============================= */
 
 @font-face {
     font-family: 'Proxima Nova';
@@ -449,26 +460,32 @@ img {
     background-color: #ddd;
 }
 
+
+/*
+[a2.Mediaqueries global]
+
+============================= */
+
+/* small */
 @media only screen and (max-width: 40em) {
-     ::-webkit-scrollbar-track {
+    ::-webkit-scrollbar-track {
         border: 1px solid #ddd;
         background-color: #f5f5f5;
     }
-     ::-webkit-scrollbar {
+    ::-webkit-scrollbar {
         width: 5px;
         background-color: #f5f5f5;
     }
-     ::-webkit-scrollbar-thumb {
+    ::-webkit-scrollbar-thumb {
         background-color: #DDDDDD;
     }
 }
 
+/* medium */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
 
-/*
-[a1.No script]
-
-============================= */
-
+/* xlarge */
+@media only screen and (min-width: 90.063em) {}
 
 /*
 [b0.Header]
@@ -1748,6 +1765,7 @@ footer {
 
 .prateleira__skuVariant-container .is-checklist-item:last-child{
     margin-right:0;
+    margin-left:0 !important;
 }
 
 .prateleira__skuVariant-img{
@@ -1788,8 +1806,18 @@ footer {
 /* small */
 
 @media only screen and (max-width: 40em) {
-    .prateleira__compare,
-    {
+
+    .categoria .prateleira ul li,
+    .depto .prateleira ul li{
+        width:48%;
+    }
+
+    .prateleira__skuVariant-container .is-checklist-item{
+        height:20px;
+        width:20px !important;
+    }
+
+    .prateleira__compare{
         display: none;
     }
     .prateleira__buybtn {
@@ -1832,6 +1860,17 @@ footer {
     }
     .carousel-news .slick-dots li button:before {
         font-size: 9px;
+    }
+
+    .prateleira__skuVariant-content .product-insertsku{
+        width:100%;
+    }
+
+    .prateleira__skuVariant-content .insert-sku-checklist{
+        position: relative;
+        display: flex;
+        width: 100%;
+        justify-content: center;
     }
 
 }
@@ -2008,9 +2047,9 @@ footer {
 }
 
 .navigation-cart__container--mobile .amount-items:before {
-    font-family: 'FontAwesome';
+    font-family: var(--tumiIcon);
+    content: '\e80b';
     padding-right: .8rem;
-    content: '\f23d';
 }
 
 .navigation-cart__container--mobile .amount-items-em {
@@ -2762,91 +2801,6 @@ ul.rating li span {
 
 
 /*
-[d8.Quickview]
-
-============================= */
-
-.prateleira__quickview {
-    position: relative;
-    z-index:6;
-    width: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-
-.quickview__btn {
-    background-color:white;
-    font-size: .7rem;
-    margin: 0;
-    text-transform: uppercase;
-}
-
-.quickview__btn a {
-    color: transparent;
-    border: 2px solid black;
-    background-color: white;
-    padding: .7rem 0;
-    position: relative;
-    width: 150px;
-    display: flex;
-    justify-content: center;
-}
-
-.quickview__btn a:before {
-    color: black;
-    content: 'Compra R\00E1pida';
-    display: block;
-    font-size: .9rem;
-    font-weight: bold;
-    margin: 0;
-    top: 20%;
-    position: absolute;
-    padding: 0;
-    text-transform: initial;
-    text-decoration: none !important;
-}
-
-.quickview__btn a:hover:before {
-    color: var(--rojoTumi);
-}
-
-
-/*
-[d9.Mediaquerie quickview]
-
-============================= */
-
-
-/* small */
-
-@media only screen and (max-width: 40em) {
-    .prateleira__quickview {
-        display: none;
-    }
-}
-
-
-/* medium */
-
-@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
-
-
-/* xlarge */
-
-@media only screen and (min-width: 90.063em) {}
-
-
-/*
 [d10.Search navigator]
 
 ============================= */
@@ -3496,8 +3450,66 @@ ul.pages li.page-number.pgCurrent:after {
 
 ============================= */
 
+.prateleira__quickview {
+    position: relative;
+    z-index:6;
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.quickview__btn {
+    background-color:white;
+    font-size: .7rem;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.quickview__btn a {
+    color: transparent;
+    border: 2px solid black;
+    background-color: white;
+    padding: .7rem 0;
+    position: relative;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.quickview__btn a:before {
+    color: black;
+    content: 'Compra R\00E1pida';
+    display: block;
+    font-size: .9rem;
+    font-weight: bold;
+    margin: 0;
+    top: 20%;
+    position: absolute;
+    padding: 0;
+    text-transform: initial;
+    text-decoration: none !important;
+}
+
+.quickview__btn a:hover:before {
+    color: var(--rojoTumi);
+}
+
+.quickview .zoomWindow{
+    pointer-events:none;
+}
+
 #TB_ajaxWindowTitle,
-.quickview__content .thumbs,
+/* .quickview__content .thumbs, */
 .quickview__rate strong {
     display: none;
 }
@@ -3540,6 +3552,10 @@ ul.pages li.page-number.pgCurrent:after {
     height: 450px !important;
     position: relative;
     width: 100% !important;
+}
+
+.quickview__content .thumbs{
+    top:15%;
 }
 
 .quickview__container,
@@ -3663,7 +3679,7 @@ ul.pages li.page-number.pgCurrent:after {
     float: none;
     cursor: default;
     margin: 0;
-    pointer-events: initial;
+    pointer-events: none;
     width: 100%;
 }
 
@@ -3707,7 +3723,11 @@ ul.pages li.page-number.pgCurrent:after {
 
 /* small */
 
-@media only screen and (max-width: 40em) {}
+@media only screen and (max-width: 40em) {
+    .prateleira__quickview {
+        display: none;
+    }
+}
 
 
 /* medium */
@@ -6432,7 +6452,7 @@ h5.span5 {
 }
 div#vtexIdUI-global-loader{
     background: url(data:image/gif;base64,R0lGODlhMAAwAPYAAP///2ZmZvX19e3t7eDg4M7OzuPj4/v7+/Pz8ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦4TZK8CPlQYt79qK8iU0o1KDzDcRruqdIrAuu2inHAI718DkHjvvvz220ggADsAAAAAAAAAAAA=) center 35% no-repeat rgb(00, 00, 00)!important;
-	font-family: 'Proxima Nova';
+	font-family: var(--proximaNova);
 }
 div#vtexIdUI-auth-selector {
     padding: 0 .5rem;
@@ -6452,21 +6472,23 @@ div#vtexIdUI-auth-selector {
 }
 button#loginWithAccessKeyBtn,
 button#loginWithUserAndPasswordBtn{
-    background: black;
+    background: var(--negroTumi);
     border-radius: 0;
     border: none;
-    color: white;
-    font-family: 'Proxima Nova';
-    text-shadow: inherit;
     box-shadow: inherit;
+    color: white;
+    font-family: var(--proximaNova);
+    text-shadow: inherit;
+    letter-spacing:0.4px;
     width:100%;
 }
 button#loginWithUserAndPasswordBtn{
-    background-color:#777;
+    color:var(--grisxFuerteTumi);
+    background-color:var(--grisLightTumi);
 }
 button#loginWithAccessKeyBtn span,
 button#loginWithUserAndPasswordBtn span{
-    font-size:.8rem;
+    font-size:.9rem;
 }
 .vtexIdUI-providers-list{
 /*     border:1px solid red; */
@@ -6474,7 +6496,7 @@ button#loginWithUserAndPasswordBtn span{
 }
 .vtexIdUI.ng-scope.vtexIdUI-show-app {
     border-radius: 0;
-   	font-family: 'Proxima Nova';
+   	font-family: var(--proximaNova);
    	height:100% !important;
    	margin-left:0;
    	left:initial;
@@ -6519,10 +6541,10 @@ h4.vtexIdUI-heading span{
 .vtexIdUI .vtexIdUI-heading:before{
     content:"Mi cuenta";
     border-bottom: 2px solid #ddd !important;
-    font-size:1rem;
-    font-weight:bold;
+    font-size:1.2rem;
     display:block;
     margin-bottom:.8rem;
+    letter-spacing:0.8px;
     padding-bottom:.8rem;
     position:relative;
 }
@@ -6536,7 +6558,7 @@ h4.vtexIdUI-heading span{
     content:"";
 }
 span.vtexIdUI-heading{
-    font-family: 'Proxima Nova bold';
+    font-family: var(--proximaNovaBold);
 }
 button#sendAccessKeyBtn, button#confirmLoginAccessKeyBtn, button#classicLoginBtn {
     border: none;
@@ -6594,6 +6616,37 @@ label.control-label{
 button#sendAccessKeyBtn{
     order:-1;
 }
+
+.vtexIdUI .vtexIdUI-providers-list .vtexIdUI-send-email i{
+    display:none;
+}
+
+.login__subtitle{
+    font-size:0.9rem;
+    font-weight:bold;
+    letter-spacing:0.8px;
+}
+
+.login__info-container,
+.login__info-content{
+    display:flex;
+    flex-flow:wrap;
+    justify-content:center;
+    align-items:center;
+}
+
+.login__info-content{
+    color:var(--grisxFuerteTumi);
+    font-size:.8rem;
+    line-height:19px;
+}
+
+.login__info-content a{
+    border-bottom:1px dotted var(--grisxFuerteTumi);
+    color:var(--negroTumi) !important;
+    display:inline-block;
+    font-size:.8rem !important;
+}
 /*
 [f5.Mediaquerie login]
 
@@ -6648,7 +6701,16 @@ button#sendAccessKeyBtn{
     }
     button#loginWithAccessKeyBtn span,
     button#loginWithUserAndPasswordBtn span{
-        font-size:.85rem;
+        font-size:.8rem;
+    }
+    .login__info-content{
+        position:relative;
+        justify-content:center;   
+    }
+    .login__info-content a{
+        bottom:0;
+        left:20%;
+        position:absolute;
     }
 }
 
@@ -7514,6 +7576,7 @@ h4.group.Atributos-Tumi {
 .categ__elements {
     width: 100%;
     display: flex;
+    display:none;
     flex-flow: wrap;
     justify-content: space-between;
 }
@@ -7545,7 +7608,7 @@ h4.group.Atributos-Tumi {
 
 .categ__options-bottom.bottom .categ__filters {
     width: 63%;
-    max-width:53%;
+    max-width:63%;
 }
 
 .categ__options-bottom.bottom .categ__showFilters {
@@ -7729,7 +7792,7 @@ h4.group.Atributos-Tumi {
         width: 80%;
     }
     .categ__filters {
-        width: 80%;
+        width: 100%;
     }
     .categ__options-left {
         width: 100%;
@@ -7741,6 +7804,7 @@ h4.group.Atributos-Tumi {
         width: 70%;
     }
     .categ__options-bottom.bottom .categ__filters {
+        max-width:initial;
         width: 100%;
     }
     .categ__desktop {
