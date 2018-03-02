@@ -37,7 +37,7 @@ var $body = $("body"),
     $home = $(".home"),
     $static = $(".static.help"),
     $login = $("body.login"),
-    $categDeptoBuscaResultadoBusca = $(".categoria, .depto, .busca, .resultado-busca"),
+    $categDeptoBuscaResultadoBusca = $("body.categoria, body.depto, body.busca, body.resultado-busca, body.brand"),
     $producto = $(".producto"),
     $responsive = $(window).width(),
     clog = console.log;
@@ -62,8 +62,12 @@ $(function () {
     BarbaWidget.init();
 });
 
-$(window).load(function(){
+$(window).load(function () {
     login.init();
+    if ($categDeptoBuscaResultadoBusca.length) {
+        categDepto.showProductos('.categ__elements');
+        categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
+    }
 });
 
 /* 
@@ -76,7 +80,7 @@ var confiGenerales = {
 
     init: function () {
 
-        // confiGenerales.mainLazyLoad();
+        confiGenerales.mainLazyLoad();
         // confiGenerales.FormatoDecimales();
         confiGenerales.stickySearch();
         confiGenerales.infoTab();
@@ -526,7 +530,7 @@ var confiGenerales = {
         if ($montoValor == 0) {
 
             // console.log("miniCart vacío");
-            // confiGenerales.mainLazyLoad();
+            confiGenerales.mainLazyLoad();
 
             $emptyBag.addClass("active");
             $cartNumber.removeClass("active");
@@ -534,7 +538,7 @@ var confiGenerales = {
         }
         if ($montoValor > 0) {
 
-            // confiGenerales.mainLazyLoad();
+            confiGenerales.mainLazyLoad();
 
             // console.log("miniCart tiene productos");
 
@@ -1037,7 +1041,7 @@ var producto = {
         }
 
         $('.carousel-recomendados,.carousel-vistosReciente').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-            // confiGenerales.mainLazyLoad();
+            confiGenerales.mainLazyLoad();
             // console.log(nextSlide);
         });
 
@@ -1235,19 +1239,25 @@ var categDepto = {
         if ($categDepto.length) {
 
             categDepto.traducciones();
-            categDepto.showProductos('.categ__elements');
             categDepto.categDeptoAccordion('.search-multiple-navigator h4,.search-multiple-navigator h5', '.search-multiple-navigator h3');
-            categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
             // categDepto.infinityScroll();
             categDepto.categOptions();
             categDepto.eventHasChange();
             categDepto.changeControls();
+            categDepto.filterProducts();
             //setInterval(categDepto.traducciones,800);
-            setInterval(confiGenerales.mainLazyLoad, 800);
+            // setInterval(confiGenerales.mainLazyLoad, 800);
             console.log("categDepto.init()  ˙ω˙");
 
         }
 
+    },
+    filterProducts: function(){
+        $(document).on('change', '.multi-search-checkbox', function () {
+            if (this.checked) {
+                $(".bt-refinar.search-filter-button.even").click();
+            }
+        });
     },
     showProductos: function (object) {
         var $object = $(object),
@@ -1255,7 +1265,7 @@ var categDepto = {
                 return el.fadeOut(500);
             },
             $effectIn = function (el) {
-                return el.fadeIn(1000).css("display", "flex");
+                return el.fadeIn(1500).css("display", "flex");
             };
 
         $.when($effectIn($object)).done(function () {
@@ -1363,34 +1373,40 @@ var categDepto = {
 
         if ($categDepto.length) {
 
-            var $open = $(".HideGRUPO-DE-COR"),
-                $marca = $(".navigation-tabs .Marca, .navigation-tabs h5.Hide.HideMarca"),
-                $activeColor = $(".GRUPO.DE.COR.even, .GRUPO.DE.COR.Atributos, .GRUPO.DE.COR,.GRUPO.DE.COR.even.Características"),
-                $otherMenuOpen = $(".Hide.even.Atributos.HideGRUPO-DE-COR, .Hide.even.Características.HideESTRUTURA,.ESTRUTURA, .Hide.even.Características.HideGRUPO-DE-COR, .Hide.Atributos.HideTalla,.Hide.Atributos.HideColeccion"),
+            var $attrColor = $(".search-multiple-navigator h5.Atributos"),
+                $otherMenuOpen = $(".even.Atributos.Tumi"),
                 $content = $('.navigation-tabs .search-single-navigator ul'),
                 $verFiltros = $content.find('.ver-filtros');
 
-            // $otherMenuOpen = $(".Hide.even.Atributos.HideForma, .Hide.even.Atributos.HideColeccion,.even.Atributos.Forma,.Hide.Atributos.HideForma,.Hide.Atributos.HideColeccion, .Atributos.Coleccion, .Atributos.Forma, .Atributos.Grupo-Color, .HideFaixa-de-preco, .Faixa-de-preco");
+            $attrColor.each(function () {
+                if ($(this).text() == 'Grupo Color') {
+                    $(this).parent().addClass('colorin');
+                }
+            });
+            $(".colorin input").each(function () {
+                var $thisAttr = $(this).attr('value'),
+                    template = '<span class="colorValue' + " " + $thisAttr + '"></span>';
+                $(this).parent().addClass("input-label");
+                $(this).parent().wrap('<div class="contentColorValue"></div>');
+                $(this).parents(".contentColorValue").prepend(template);
+            });
+
+            var $colorin = $(".colorin");
 
             $(trigger).next().hide();
-
             $(secondTrigger).next().hide();
-
             $(secondTrigger).next().next().hide();
 
             $(trigger).on("click", function () {
 
                 $(this).toggleClass("active").next().slideToggle("slow");
-
-                if ($(".categ__aside .HideGRUPO-DE-COR.active").length) {
-
+                if ($colorin.length) {
                     console.log("true");
-                    $activeColor.css({
+                    $(".colorin div:eq(0)").css({
                         "display": "flex",
                         "flex-flow": "row wrap",
                         "justify-content": "flex-start"
                     });
-
                 } else {
                     console.log("false");
                 }
@@ -1406,26 +1422,15 @@ var categDepto = {
                 $verFiltros.parent().prev().addClass('selected').next().slideDown();
             }
 
-            // $open.on("click", function(){
-            //     $activeColor.toggleClass("active");
-            // });
-
-            // $activeColor.addClass("active").next().slideToggle("slow");
-            // $activeColor.toggleClass("active").next().slideToggle("slow");
             $otherMenuOpen.addClass("active").next().slideToggle("slow");
 
-            if ($open.hasClass('active')) {
-                $activeColor.css({
+            if ($colorin.hasClass('active')) {
+                $(".colorin div:eq(0)").css({
                     "display": "flex",
                     "flex-flow": "row wrap",
                     "justify-content": "flex-start"
                 });
             }
-
-            // $marca.css({
-            //     "display": "block"
-            // });
-
         }
 
     },
@@ -1482,7 +1487,7 @@ var categDepto = {
                             confiGenerales.wishlistOnclick();
                             confiGenerales.compraAsyncVitrina();
                             categDepto.skuImgPrateleira();
-                            // confiGenerales.mainLazyLoad();
+                            confiGenerales.mainLazyLoad();
                         },
                         // Cálculo do tamanho do footer para que uma nova página seja chamada antes do usuário chegar ao "final" do site
                         getShelfHeight: function ($this) {
@@ -1531,7 +1536,7 @@ var categDepto = {
                 return el.fadeOut(500);
             },
             $effectIn = function (el) {
-                return el.fadeIn(500);
+                return el.fadeIn(500).css("display", "flex");
             },
             $searchResultsTime = $(".searchResultsTime:eq(0), .sub:eq(0)");
 
@@ -2121,21 +2126,31 @@ var BarbaWidget = {
 ============================= */
 
 var login = {
-  init: function(){
+    init: function () {
 
-      if($login.length){
-          login.insertElements();
-      }
+        if ($login.length) {
+            login.insertElements();
+        }
 
-  },  
-  insertElements: function(){
-      var $modalBody = $(".modal-body"),
-          $heading = $(".vtexIdUI-heading"),
-          templateSubHeading = '<h5 class="login__subtitle">Inicie sesión en su cuenta de TUMI</div>',
-          templatePrivacy = '<div class="login__info-container"><div class="login__info-content">Cuando entra en su cuenta, acepta nuestra <a href="/ayuda/politica-privacidad">Politica de Privacidad.</a></div>',
-          $exit = $("#vtexIdUI-global-loader");
+    },
+    insertElements: function () {
+        var $modalBody = $(".modal-body"),
+            $heading = $(".vtexIdUI-heading"),
+            $loginBody = $(".vtexIdUI-main-content"),
+            $googleBtn = $("#vtexIdUI-google-plus"),
+            templateGoogleBtn = '<div class="login__logo-google"><img src="/arquivos/icon-google-3.png"/></div>',
+            templateClose = '<div class="login__close-btn"></div>',
+            templateSubHeading = '<h5 class="login__subtitle">Inicie sesión en su cuenta de TUMI</div>',
+            templatePrivacy = '<div class="login__info-container"><div class="login__info-content">Cuando entra en su cuenta, acepta nuestra <a href="/ayuda/politica-privacidad">Politica de Privacidad.</a></div>',
+            $exit = $("#vtexIdUI-global-loader");
 
-      $heading.prepend(templateSubHeading);
-      $modalBody.append(templatePrivacy);
-  }
+        $heading.prepend(templateSubHeading);
+        $googleBtn.prepend(templateGoogleBtn);
+        $modalBody.append(templatePrivacy);
+        $loginBody.prepend(templateClose);
+
+        $(".login__close-btn").on("click", function () {
+            window.history.go(-1);
+        });
+    }
 };
