@@ -25,16 +25,20 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 * Ajustes de css en general **20:06pm | 2018-02-26**
 * Se arregló la función para la selección de sku en vitrina, quickview y ficha de producto **20:06pm | 2018-02-26**
 * Evaluación de cambio para el navegador lateral en categoría y departamento,
-Evaluación de minificación y concatenación usando la herramienta de gulpJS para mejorar procesos,
-Ajuste de css para las vistas de producto en categoría y departamento,
-Reajuste completo del checkout a nivel css siendo así lo más parecido posible con [es.tumi](https://es.tumi.com/) y ajustandolo a versiones móviles,
-Implementación de las nuevas tipografías para los iconos de busqueda y carrito,
-Vectorización del logo de tumi para usar la "T" como icono en el checkout
-Traducciones de palabras claves en la hoja de account,
-Evaluación de script en versión mobile para hacer de la imagen principal un carrusel, ya que al cambiar de sku, la función no se ejecuta correctamente otra vez,
-Creación de script en depto y categ para evitar que el usuario se pose sobre la vitrina inmediatamente al cargar la vista de productos y disparar el error 'add' por doble ejecución del slick carousel, asimismo, al cambiar la página con el paginador de categ/depto ejecutar las funciones que influyen directamente en los productos,
-Agregada una funcionalidad que inserta información en el login **15:51pm | 2018-02-26 _ 2018-03-01**
+- Evaluación de minificación y concatenación usando la herramienta de gulpJS para mejorar procesos,
+- Ajuste de css para las vistas de producto en categoría y departamento,
+- Reajuste completo del checkout a nivel css siendo así lo más parecido posible con [es.tumi](https://es.tumi.com/) y ajustandolo a versiones móviles,
+- Implementación de las nuevas tipografías para los iconos de busqueda y carrito,
+- Vectorización del logo de tumi para usar la "T" como icono en el checkout
+- Traducciones de palabras claves en la hoja de account,
+- Evaluación de script en versión mobile para hacer de la imagen principal un carrusel, ya que al cambiar de sku, la función no se ejecuta correctamente otra vez,
+- Creación de script en depto y categ para evitar que el usuario se pose sobre la vitrina inmediatamente al cargar la vista de productos y disparar el error 'add' por doble ejecución del slick carousel, asimismo, al cambiar la página con el paginador de categ/depto ejecutar las funciones que influyen directamente en los productos,
+- Agregada una funcionalidad que inserta información en el login **15:51pm | 2018-02-26 _ 2018-03-01**
 * Desarrollo de script para configuración de barra lateral de navegación para categoría y departamento, además se desarolló la funcionalidad para que al hacer click, se filtraran los productos, más el estilado de los colores. **3:39am | 2018-03-03**
+* Estilado de footer para asemejar lo máximo el diseño de tumi.com **12:11pm | 2018-03-06**
+* Desarrollo de funcionalidad para inhabilitar el checkout cuando éste está en "0" y cuando se eliminen productos del checkout y queda en "0" de igual manera inhabilitarlo **12:11pm | 2018-03-06**
+* Añadido el botón "seguir comprando" en el minicart offcanvas desktop **12:11pm | 2018-03-06**
+* Conformación de features por ficha de producto, estilado con css **12:11pm | 2018-03-06**
 
 
 ### Changed
@@ -50,11 +54,13 @@ Agregada una funcionalidad que inserta información en el login **15:51pm | 2018
 * Ajustes de css para la ficha de producto según el diseño de tumi.com **17:57pm | 2018-02-16**
 * Ajuste de css para el login **7:04pm | 2018-02-20**
 * Desactivación del carrusel de imágenes en el quickview, éste causaba problemas en los productos con más de un sku **6:04pm | 2018-02-28**
-
+* Cambio de html por controlador global para edición de copyright y estilado **12:11pm | 2018-03-06**
+* Cambio de copyright en el checkout y estilado **12:12pm | 2018-03-06**
+* En los departamentos se cambió el estilo por el que está originalmente en tumi.com y se añadió además el título "compra por categoría" **12:12pm | 2018-03-06**
 
 ### Pending
 
 * Las gráficas se cambiaran entre hoy y mañana en la mañana.
 * Los features estarán listo en el mismo tiempo que el punto anterior.
 * Se están terminando detalles finos de diseño.
-* La barra de navegación lateral para las categorías y departamentos quedará con el funcionamiento nativo de vtex el día de hoy mientras se desarrolla el funcionamiento deseado.
+* La barra de navegación lateral para las categorías y departamentos quedará con el funcionamiento nativo de vtex el día de hoy mientras se desarrolla el funcionamiento deseado. (listo)

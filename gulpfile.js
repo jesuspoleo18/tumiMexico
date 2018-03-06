@@ -12,7 +12,8 @@ var gulp = require("gulp"),
     cache = require('gulp-cache'),
     path = {
         srcJS: "dependencias/1.ConcatenarJS/",
-        srcCSS: "dependencias/2.ConcatenarCss/"
+        srcCSS: "dependencias/2.ConcatenarCss/",
+        srcImg: "dist/assets/img/originales/marzo/"
     };
 // watch = require("gulp-watch"),
 // copy = require("gulp-copy"),
@@ -61,12 +62,14 @@ gulp.task("compileCSS", function () {
 
 // img opti
 gulp.task('optiImg', function () {
-    return gulp.src('dist/assets/img/originales/*')
+    return gulp.src([
+            path.srcImg + 'banners-categDepto/*'
+            ])
         // .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
         .pipe(imagemin([
             imageminMozjpeg({
-                quality: 80
+                quality: 60
             })
         ]))
-        .pipe(gulp.dest('dist/assets/img/optimizadas'));
+        .pipe(gulp.dest('dist/assets/img/optimizadas/marzo'));
 });

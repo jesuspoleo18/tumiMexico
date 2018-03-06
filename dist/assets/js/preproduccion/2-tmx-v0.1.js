@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio: 01/03/2018
+Ultimo cambio: 05/03/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -80,7 +80,7 @@ var confiGenerales = {
 
     init: function () {
 
-        confiGenerales.mainLazyLoad();
+        // confiGenerales.mainLazyLoad();
         // confiGenerales.FormatoDecimales();
         confiGenerales.stickySearch();
         confiGenerales.infoTab();
@@ -100,10 +100,28 @@ var confiGenerales = {
         $(window).on('orderFormUpdated.vtex', function (evt, orderForm) {
             // console.log("actualizó");
             confiGenerales.checkEmptyCart();
+            confiGenerales.disableEmptyCart();
         });
         console.log("confiGenerales.init()  ˙ω˙");
     },
 
+    disableEmptyCart: function(){
+        var $triggerCart = $(".header-cart__content, .navigation-cart__container"),
+            $a = $('#offCanvasRight'),
+            $cartSkuRemove = $(".cartSkuRemove");
+
+        $cartSkuRemove.each(function(){
+            $(this).on("click", function() {
+                vtexjs.checkout.getOrderForm().done(function (orderForm) {
+                    // console.log(orderForm.items.length);
+                    if (orderForm.items.length == 0) {
+                        $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
+                        $triggerCart.unbind();
+                    }
+                });     
+            });
+        });
+    },
     stickySearch: function () {
         var $el = $(".ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all");
 
@@ -207,6 +225,9 @@ var confiGenerales = {
     triggerActions: function () {
 
         var $triggerCart = $(".header-cart__content, .navigation-cart__container"),
+            $amountCart = $(".header-cart__content").find(".amount-items-em").text(),
+            $closeMiniCart = $(".minicart__btn-continueShopping"),
+            parseAmountCart = parseInt($amountCart),
             $triggerSearch = $(".navigation__searchTrigger"),
             $triggerSearchMobile = $(".navigation__buttonSearch--mobile"),
             $closeSearch = $(".navigation__closeBar,.navigation__closeBar--mobile"),
@@ -215,9 +236,18 @@ var confiGenerales = {
             $b = $(".navigation__searchBar"),
             $c = $(".navigation__searchBar--mobile");
 
-        $triggerCart.on("click", function (e) {
-            e.preventDefault();
-            $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+        vtexjs.checkout.getOrderForm().done(function (orderForm) {
+            // console.log(orderForm.items.length);
+            if (orderForm.items.length > 0) {
+                $triggerCart.on("click", function (e) {
+                    e.preventDefault();
+                    $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+                });
+            }
+        });
+
+        $closeMiniCart.on("click", function(){
+            $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
         });
 
         $closeSearch.on("click", function (e) {
@@ -497,6 +527,7 @@ var confiGenerales = {
                 var $a = $('#offCanvasRight'),
                     url = $(this).attr('href').split("?")[1],
                     param = url.split("&"),
+                    $triggerCart = $(".header-cart__content, .navigation-cart__container"),
                     item = {
                         id: param[0].split("=")[1],
                         quantity: param[1].split("=")[1],
@@ -507,9 +538,16 @@ var confiGenerales = {
 
                 vtexjs.checkout.addToCart([item], null, 3).done(function (orderForm) {
                     $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
-                    setTimeout(function () {
-                        $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
-                    }, 2000);
+                    // setTimeout(function () {
+                    //     $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
+                    // }, 2000);
+                    if (orderForm.items.length > 0) {
+                        $triggerCart.on("click", function (e) {
+                            e.preventDefault();
+                            $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+                        });
+                    }
+                    confiGenerales.disableEmptyCart();
                     console.log(orderForm);
                 });
             });
@@ -530,7 +568,7 @@ var confiGenerales = {
         if ($montoValor == 0) {
 
             // console.log("miniCart vacío");
-            confiGenerales.mainLazyLoad();
+            // confiGenerales.mainLazyLoad();
 
             $emptyBag.addClass("active");
             $cartNumber.removeClass("active");
@@ -538,7 +576,7 @@ var confiGenerales = {
         }
         if ($montoValor > 0) {
 
-            confiGenerales.mainLazyLoad();
+            // confiGenerales.mainLazyLoad();
 
             // console.log("miniCart tiene productos");
 
@@ -696,7 +734,7 @@ var home = {
         $(".home__tabs-content.news .prateleira").children().addClass("carousel-news");
 
         if ($responsive > 758) {
-            if ($count.length >= 6) {
+            if ($count.length > 6) {
                 $(producto).slick({
                     autoplay: true,
                     autoplaySpeed: 2500,
@@ -707,17 +745,27 @@ var home = {
                     dots: true
                 });
             }
-        } else if ($responsive < 758) {
+        } else if ($responsive < 768) {
             if ($count.length >= 2) {
                 $(producto).slick({
                     arrows: false,
                     autoplay: true,
                     autoplaySpeed: 2500,
                     slide: 'li',
-                    slidesToScroll: 1,
-                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    slidesToShow: 4,
                     speed: 500,
-                    dots: true
+                    dots: true,
+                    responsive: [{
+                        breakpoint: 426,
+                        settings: {
+                            arrows: false,
+                            autoplay: true,
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                            infinite: false
+                        }
+                    }]
                 });
             }
         }
@@ -775,6 +823,7 @@ var producto = {
             // producto.productoSticky();
             producto.miniatura();
             producto.selectSkuOnClick();
+            producto.features();
             setTimeout(producto.userReview, 3000);
             console.log("producto.init()  ˙ω˙");
         }
@@ -782,6 +831,12 @@ var producto = {
         // producto.elementosFormato();
 
     },
+
+    features: function(){
+        var $featureBtn = $(".feature-tab__btn");
+        $featureBtn.text(" ");
+    },
+
     selectSkuOnClick: function () {
         var a = $(".skuselector-specification-label");
         a.on("click", function () {
@@ -1041,7 +1096,7 @@ var producto = {
         }
 
         $('.carousel-recomendados,.carousel-vistosReciente').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-            confiGenerales.mainLazyLoad();
+            // confiGenerales.mainLazyLoad();
             // console.log(nextSlide);
         });
 
@@ -1058,6 +1113,7 @@ var producto = {
                 param = url.split("&"),
                 $url = $(this).attr('href'),
                 $a = $('#offCanvasRight'),
+                $triggerCart = $(".header-cart__content, .navigation-cart__container"),
                 qtyBox = parseInt($('.product__sku-container .qtd.pull-left').val()),
                 // qtyBox = parseInt($('.product__sku-container .box-qtd .qtd').val()),
                 item = {
@@ -1070,9 +1126,16 @@ var producto = {
             vtexjs.checkout.addToCart([item], null, 3).done(function (orderForm) {
 
                 $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
-                setTimeout(function () {
-                    $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
-                }, 2000);
+                if (orderForm.items.length > 0) {
+                    $triggerCart.on("click", function (e) {
+                        e.preventDefault();
+                        $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+                    });
+                }
+                confiGenerales.disableEmptyCart();
+                // setTimeout(function () {
+                //     $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
+                // }, 2000);
                 // console.log(orderForm);
 
             });
@@ -1252,7 +1315,7 @@ var categDepto = {
         }
 
     },
-    filterProducts: function(){
+    filterProducts: function () {
         $(document).on('change', '.multi-search-checkbox', function () {
             if (this.checked) {
                 $(".bt-refinar.search-filter-button.even").click();
@@ -1487,7 +1550,7 @@ var categDepto = {
                             confiGenerales.wishlistOnclick();
                             confiGenerales.compraAsyncVitrina();
                             categDepto.skuImgPrateleira();
-                            confiGenerales.mainLazyLoad();
+                            // confiGenerales.mainLazyLoad();
                         },
                         // Cálculo do tamanho do footer para que uma nova página seja chamada antes do usuário chegar ao "final" do site
                         getShelfHeight: function ($this) {
