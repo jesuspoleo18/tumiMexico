@@ -97,9 +97,6 @@
                                 <!-- product img container -->
                                 <div class="product__img-container">
 
-                                    <!-- img color change -->
-                                    <div class="dark-overlay producto"></div>
-
                                     <!-- img control -->
                                     <vtex.cmc:ProductImage zoom="on" />
 
@@ -212,16 +209,19 @@
                                     <!-- product info content -->
                                     <div class="product__info-content">
                                         <!-- about this item -->
-                                        <div class="product__accordion-trigger">Sobre este artículo</div>
+                                        <div class="product__accordion-trigger about">Sobre este artículo</div>
                                         <div class="product__accordion-content">
                                             <vtex.cmc:ProductDescription/>
                                         </div>
                                         <!-- /.end about this item -->
 
                                         <!-- specifications -->
-                                        <div class="product__accordion-trigger">Características y especificaciones</div>
+                                        <div class="product__accordion-trigger specs">Características y especificaciones</div>
                                         <div class="product__accordion-content">
                                             <vtex.cmc:productSpecification/>
+                                            <div class="product__measure">
+                                                <a href="http://s7d2.scene7.com/is/content/Tumi/Documents/How_do_we_measure.pdf" target="_blank">¿Cómo medimos?</a>
+                                            </div>
                                         </div>
                                         <!-- /.end specifications -->
 

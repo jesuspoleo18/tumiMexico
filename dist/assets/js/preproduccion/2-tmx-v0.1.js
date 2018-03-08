@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2017
 Version: 0.1
-Ultimo cambio: 05/03/2018
+Ultimo cambio: 08/03/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -23,9 +23,9 @@ b7.Quickview
 b8.Static
 b9.BarbaJS
 b10.Login
+b11.Master Data
 
 -------------------------fin---------------------------------*/
-
 
 /* 
 
@@ -64,6 +64,7 @@ $(function () {
 
 $(window).load(function () {
     login.init();
+    producto.selectSkuOnLoad();
     if ($categDeptoBuscaResultadoBusca.length) {
         categDepto.showProductos('.categ__elements');
         categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
@@ -92,7 +93,7 @@ var confiGenerales = {
         confiGenerales.megaMenu('header,.megamenu-buscar.navigation__searchTrigger, main, footer, .navigation__right');
         confiGenerales.compraAsyncVitrina();
         confiGenerales.checkEmptyCart();
-        confiGenerales.masterData();
+        confiGenerales.masterDataTrigger();
         confiGenerales.sliderStatic();
         //confiGenerales.modalStatic();
         confiGenerales.replaceHref();
@@ -104,21 +105,20 @@ var confiGenerales = {
         });
         console.log("confiGenerales.init()  ˙ω˙");
     },
-
-    disableEmptyCart: function(){
-        var $triggerCart = $(".header-cart__content, .navigation-cart__container"),
+    disableEmptyCart: function () {
+        var $triggerCart = $(".header-cart__content, .navigation-cart__container,.navigation-cart__container--mobile"),
             $a = $('#offCanvasRight'),
             $cartSkuRemove = $(".cartSkuRemove");
 
-        $cartSkuRemove.each(function(){
-            $(this).on("click", function() {
+        $cartSkuRemove.each(function () {
+            $(this).on("click", function () {
                 vtexjs.checkout.getOrderForm().done(function (orderForm) {
                     // console.log(orderForm.items.length);
                     if (orderForm.items.length == 0) {
                         $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
                         $triggerCart.unbind();
                     }
-                });     
+                });
             });
         });
     },
@@ -141,52 +141,6 @@ var confiGenerales = {
             $(".corpGiving").addClass("slide" + ($(this).index() + 1));
         });
     },
-    /*modalStatic: function () {
-        $(".environment .readMore").click(function(e){
-            e.preventDefault();
-            var parent = $(this).parents('table'),
-                info = $(this).parents('.bottomRow').find('.moreInfoBlock .' + $(this).attr('id'));
-            
-            if(!parent.hasClass('dimmed')) {
-                parent.addClass('dimmed');
-                info.removeClass('hidden');
-                info.css('marginTop', (parent.height() - info.height())/2);
-            }
-        });
-
-        $(".environment .moreInfoLayer .closeBtn span").click(function(e){
-            e.preventDefault();
-            $(".environment table").removeClass('dimmed');
-            $(this).parents('.moreInfoLayer').addClass('hidden');
-            $('.overlayforpopup').addClass('hidden');
-        });
-        
-        $(".cntr-environment-blocks .readMore").click(function(e){
-            e.preventDefault();
-            var parent = $(this).parents('ul'),
-                info = $(this).parents('.bottomRow').find('.moreInfoBlock .' + $(this).attr('id'));
-            
-        
-            if($('.overlayforpopup').hasClass('hidden')) {
-                $('.overlayforpopup').removeClass('hidden');
-                info.removeClass('hidden');
-                info.css('marginTop', (parent.height() - info.height())/2);
-            }
-        });
-        $('.cntr-environment-blocks').carousel({
-            itemsPerTransition: '1',
-            nextPrevActions: true,
-            pagination: false,
-            continuous: false,
-            insertPrevAction: function () {
-                return $('<a href="#" class="rs-carousel-action rs-carousel-action-prev"><span class="icon icon-prev"></span></a>').appendTo('#prev-env');
-            },
-            insertNextAction: function (){
-                return $('<a href="#" class="rs-carousel-action rs-carousel-action-next"><span class="icon icon-next"></span></a>').appendTo('#next-env');
-            }
-        });
-        
-    }, */
     infoTab: function () {
         var $news = $("[data-click='news']"),
             $sellers = $("[data-click='sellers']"),
@@ -246,7 +200,7 @@ var confiGenerales = {
             }
         });
 
-        $closeMiniCart.on("click", function(){
+        $closeMiniCart.on("click", function () {
             $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
         });
 
@@ -527,7 +481,7 @@ var confiGenerales = {
                 var $a = $('#offCanvasRight'),
                     url = $(this).attr('href').split("?")[1],
                     param = url.split("&"),
-                    $triggerCart = $(".header-cart__content, .navigation-cart__container"),
+                    $triggerCart = $(".header-cart__content, .navigation-cart__containe"),
                     item = {
                         id: param[0].split("=")[1],
                         quantity: param[1].split("=")[1],
@@ -586,109 +540,181 @@ var confiGenerales = {
         }
     },
 
-    masterData: function () {
+    masterDataTrigger: function () {
 
-        $('#contacto-submit').on("click", function (e) {
+        var $submitNewsletter = $(".submit__newsletter");
 
+        $submitNewsletter.on("click", function (e) {
+            confiGenerales.newsletter();    
             e.preventDefault();
-            contacto();
         });
+    },
+    clearData: function () {
 
-        $('#newsletter_submit').on("click", function (e) {
+        var $email = $("#tm_email");
+        // $content = $(".footer-newsletter__content"),
+        // $accepted = $(".estatico"),
+        // $input = $("input:checkbox"),
+        $email.val("");
+        // $content.find($input).removeAttr('checked');
+        // $nombre.val("");
 
-            var $femenino = $('#sn_femenino:checked'),
-                $masculino = $('#sn_masculino:checked'),
-                $errorGenderMessage = '<span>Por favor, complete todos los campos</span>';
+        // if ($accepted.length) {
+        //     $(".estatico-content__contenido input[type='text'],.estatico-content__contenido input[type='email']").val('');
+        // }
+    },
+    newsletter: function () {
 
-            if ($femenino.length || $masculino.length) {
-                newsletter();
-                $("#errorGender").hide();
+        var newsletter = { mail: "", nombre: "" },
+            datos = {};
+
+        datos.tm_email = $('#tm_email').val();
+        newsletter.mail = $('#tm_email').val();
+
+        // GET
+        var Attr = {
+            isNewsletterOptIn: true
+        };
+        /* 
+            getFromMasterData() busca en MD si el correo ya fue registrado antes desde vtex
+            como por ejemplo: 'desde el checkout', si es así, busca en esa entidad de datos y
+            el correo tiene o no el isNewsletterOptIn marcado false o vacío y lo sobreescribe
+            por true.
+        */
+        if (masterDataVtex.getFromMasterData('CL', 'email=' +newsletter.mail, 'email') != undefined) {
+            var validateNews = masterDataVtex.getFromMasterData('CL', 'email=' +newsletter.mail, 'isNewsletterOptIn'),
+                responseNews = validateNews.isNewsletterOptIn;
+            console.log(responseNews);
+
+            if (responseNews == false || responseNews == null) {
+                masterDataVtex.postOrPatchInMasterData('CL',newsletter.mail, Attr, 'PATCH');
+                $.ajax({
+                    accept: 'application/vnd.vtex.ds.v10+json',
+                    contentType: 'application/json; charset=utf-8',
+                    crossDomain: true,
+                    data: JSON.stringify(datos),
+                    type: 'POST',
+                    url: '//api.vtexcrm.com.br/tumimx/dataentities/TN/documents',
+
+                    success: function (data) {
+                        var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                        $.when.apply($, $.map(files, function (file) {
+                            return $.getScript(files);
+                        })).then(function () {
+                            swal({
+                                title: 'Felicitaciones, ahora empezará a recibir actualizaciones y ofertas especiales por correo electrónico.',
+                                type: 'success',
+                                // showCancelButton: true,
+                                confirmButtonColor: '#2E2A25',
+                                // cancelButtonColor: '#bbb',
+                                // cancelButtonText: 'OK',
+                                confirmButtonText: 'OK'
+                            });
+                        }, function err(jqxhr, textStatus, errorThrown) {
+                            console.log(textStatus);
+                        });
+                        confiGenerales.clearData();
+                    },
+                    error: function (data) {
+                        // $('#NewsError').foundation('reveal', 'open');
+                        var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                        $.when.apply($, $.map(files, function (file) {
+                            return $.getScript(files);
+                        })).then(function () {
+                            swal({
+                                title: 'Verifique que su correo esté bien escrito.',
+                                type: 'error',
+                                // showCancelButton: true,
+                                confirmButtonColor: '#b92335',
+                                // cancelButtonColor: '#bbb',
+                                // cancelButtonText: 'OK',
+                                confirmButtonText: 'OK'
+                            });
+                        }, function err(jqxhr, textStatus, errorThrown) {
+                            console.log(textStatus);
+                        });
+                    }
+                });
             } else {
-                $("#errorGender").html($errorGenderMessage).show();
+                var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                $.when.apply($, $.map(files, function (file) {
+                    return $.getScript(files);
+                })).then(function () {
+                    swal({
+                        title: 'Usted ya está subscrito a nuestro newsletter.',
+                        type: 'info',
+                        // showCancelButton: true,
+                        // confirmButtonColor: '#E4002B',
+                        // cancelButtonColor: '#bbb',
+                        // cancelButtonText: 'OK',
+                        confirmButtonText: 'OK'
+                    });
+                    confiGenerales.clearData();
+                }, function err(jqxhr, textStatus, errorThrown) {
+                    console.log(textStatus);
+                });
             }
-
-            e.preventDefault();
-        });
-
-        function newsletter() {
-
-            var datos = {};
-
-            datos.sn_name = $('#sn_name').val();
-            datos.sn_email = $('#sn_email').val();
-            datos.sn_femenino = $('#sn_femenino:checked').val();
-            datos.sn_masculino = $('#sn_masculino:checked').val();
-
+            // postOrPatchInMasterData('CL', newsletter.mail, Attr, 'PATCH');
+        } else {
+            /* 
+                Si el cliente no existe en la entidad de datos de CL postOrPatchInMasterData() 
+                inyecta los datos de nombre y email a la entidad de datos CL y le activa automaticamente
+                el cluster isNewsletterOptIn
+            */
+            console.log("no existe");
+            masterDataVtex.postOrPatchInMasterData('CL', newsletter.mail, Attr, 'POST');
             $.ajax({
-
                 accept: 'application/vnd.vtex.ds.v10+json',
                 contentType: 'application/json; charset=utf-8',
                 crossDomain: true,
                 data: JSON.stringify(datos),
                 type: 'POST',
-                url: '//api.vtexcrm.com.br/lojasamsonite/dataentities/SN/documents',
+                url: '//api.vtexcrm.com.br/tumimx/dataentities/TN/documents',
+                success: function (data) {
+                    var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
 
-                success: function success(data) {
-
-                    $('#NewsAprob').foundation('reveal', 'open');
-                    clearData();
+                    $.when.apply($, $.map(files, function (file) {
+                        return $.getScript(files);
+                    })).then(function () {
+                        swal({
+                            title: 'Sus datos han sido registrados con éxito.',
+                            type: 'success',
+                            // showCancelButton: true,
+                            confirmButtonColor: '#2E2A25',
+                            // cancelButtonColor: '#bbb',
+                            // cancelButtonText: 'OK',
+                            confirmButtonText: 'OK'
+                        });
+                    }, function err(jqxhr, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    });
+                    confiGenerales.clearData();
                 },
-                error: function error(data) {
+                error: function (data) {
+                    var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
 
-                    $('#NewsError').foundation('reveal', 'open');
+                    $.when.apply($, $.map(files, function (file) {
+                        return $.getScript(files);
+                    })).then(function () {
+                        swal({
+                            title: 'Verifique que su correo esté bien escrito.',
+                            type: 'error',
+                            // showCancelButton: true,
+                            confirmButtonColor: '#b92335',
+                            // cancelButtonColor: '#bbb',
+                            // cancelButtonText: 'OK',
+                            confirmButtonText: 'OK'
+                        });
+                    }, function err(jqxhr, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    });
                 }
             });
         }
 
-        function clearData() {
-
-            var $accepted = $(".estatico"),
-                $content = $(".footer-newsletter__content"),
-                $input = $("input:checkbox"),
-                $nombre = $("#sn_name"),
-                $email = $("#sn_email");
-
-            $content.find($input).removeAttr('checked');
-            $nombre.val("");
-            $email.val("");
-
-            if ($accepted.length) {
-                $(".estatico-content__contenido input[type='text'],.estatico-content__contenido input[type='email']").val('');
-            }
-        }
-
-        function contacto() {
-
-            var datos = {};
-
-            datos.sc_nombre = $('#sc_nombre').val();
-            datos.sc_apellido = $('#sc_apellido').val();
-            datos.sc_email = $("#sc_email").val();
-            datos.sc_telefono = $("#sc_telefono").val();
-            datos.sc_ciudad = $("#sc_ciudad").val();
-            datos.sc_asunto = $("#sc_asunto").val();
-            datos.sc_mensaje = $("#sc_mensaje").val();
-
-            $.ajax({
-
-                accept: 'application/vnd.vtex.ds.v10+json',
-                contentType: 'application/json; charset=utf-8',
-                crossDomain: true,
-                data: JSON.stringify(datos),
-                type: 'POST',
-                url: '//api.vtexcrm.com.br/lojasamsonite/dataentities/SC/documents',
-
-                success: function success(data) {
-
-                    $('#NewsAprob').foundation('reveal', 'open');
-                    clearData();
-                },
-                error: function error(data) {
-
-                    $('#NewsError').foundation('reveal', 'open');
-                }
-            });
-        }
     },
 
     replaceHref: function () {
@@ -813,7 +839,7 @@ var producto = {
 
         if ($producto.length) {
 
-            producto.mainImgCarousel();
+            // producto.mainImgCarousel();
             producto.traducciones();
             producto.qtdControl();
             producto.textoProducto();
@@ -822,7 +848,7 @@ var producto = {
             producto.compraFichaProducto();
             // producto.productoSticky();
             producto.miniatura();
-            producto.selectSkuOnClick();
+            // producto.selectSkuOnClick();
             producto.features();
             setTimeout(producto.userReview, 3000);
             console.log("producto.init()  ˙ω˙");
@@ -831,17 +857,70 @@ var producto = {
         // producto.elementosFormato();
 
     },
+    skuOnChange: function () {
+        var x = $(".dynamic"),
+            colorProducto = $(".product__container .productName").text(),
+            colorProductoPop = colorProducto.split(" "),
+            templateColor = '<span class="specificaction__color"></span>';
 
-    features: function(){
-        var $featureBtn = $(".feature-tab__btn");
-        $featureBtn.text(" ");
-    },
+        $(".specification").append(templateColor);
+        $(".specificaction__color").text(colorProductoPop.pop());
+        producto.mainImgCarousel();
 
-    selectSkuOnClick: function () {
-        var a = $(".skuselector-specification-label");
-        a.on("click", function () {
-            producto.mainImgCarousel();
+        x.find("input").on("click", function () {
+            vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
+                setTimeout(function () {
+                    var colorProducto = $(".product__container .productName").text(),
+                        colorProductoPop = colorProducto.split(" ");
+                    $(".specificaction__color").text(colorProductoPop.pop());
+                    producto.mainImgCarousel();
+                }, 800);
+            });
         });
+    },
+    features: function () {
+        var $featureBtn = $(".feature-tab__btn"),
+            $featureContent = $(".feature-info__content"),
+            $featureParent = $(".product__extra-container"),
+            $featureDescription = $(".product__container .feature__info-description"),
+            $infoTitle = $(".product__container .feature-info__title");
+
+        $featureBtn.text(" ");
+
+        $infoTitle.each(function () {
+            var $this = $(this),
+                thisClass = $this.attr("class"),
+                classSplit = $.trim(thisClass.split("title")[1]),
+                featureBtn = $(".product__container .feature-tab__btn");
+            // console.log(classSplit);
+            $this.parent().addClass(classSplit);
+            $('.product__container .' + classSplit + ':hidden').show();
+        });
+
+        $featureDescription.eq(0).addClass("active");
+
+        $featureBtn.on("click", function () {
+            var $this = $(this),
+                thisClass = $this.attr("class"),
+                thisClassSplit = $.trim(thisClass.split("btn")[1]);
+
+            $('.product__container .feature__info-description.' + thisClassSplit + '').addClass("active").siblings().removeClass("active");
+
+        });
+        // checking for empty features
+        if ($featureContent.is(':empty')){
+            $featureParent.remove();
+        }
+    },
+    selectSkuOnLoad: function () {
+        var a = $(".group_0"),
+            x = $(".dynamic:eq(0)"),
+            b = a.find("input:checked");
+        if (b.length == 0) {
+            x.find("input").attr("checked", "checked");
+            x.find("input").change();
+            producto.skuOnChange();
+        }
     },
     mainImgCarousel: function () {
 
@@ -850,6 +929,7 @@ var producto = {
         if ($responsive <= 725) {
 
             vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
+                console.log(product);
                 console.log(product.productId);
                 mainProductId = product.productId;
             });
@@ -874,8 +954,9 @@ var producto = {
                     });
 
                     $zoomPad.html($elements);
-
-                    $zoomPad.slick({
+                    // console.log($elements.pop());
+                    $zoomPad.find(".slide-thumb:last-child").remove();
+                    $zoomPad.not('.slick-initialized').slick({
                         arrows: false,
                         autoplay: false,
                         autoplaySpeed: 2500,
@@ -980,8 +1061,23 @@ var producto = {
     },
     textoProducto: function () {
 
-        var producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", cantidad: "" },
-            $ean = $(".ean");
+        var producto = {
+                id: "",
+                descripcion: "",
+                ean: "",
+                caracteristica: "",
+                stock: "",
+                marca: "",
+                cantidad: "",
+                coleccion: ""
+            },
+            $productDescription = $(".productDescription"),
+            shadowTemplate = '<div class="dark-overlay producto"></div>',
+            templateEan = '<div class="style__ean">Style:<span class="ean"></span></div>';
+
+        
+        $(".product__container #include").prepend(shadowTemplate);
+        $productDescription.prepend(templateEan);
 
         vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
 
@@ -991,11 +1087,12 @@ var producto = {
             if (JSON.stringify(producto.stock) === 'false') {
 
                 var $erase = $(".pull-left.box-qtd, .despacho, .producto-sticky-container--compra .buy-button.buy-button-ref, .producto-sticky-container--compra .portal-notify-me-ref, .basica-precio .cuotas-container, .product__available-container"),
-                    $toAppend = $(".producto-sticky-container--compra .product__shop-content"),
-                    $noDisponible = '<h2 class="no-disponible">Produto no disponible</h2>';
-
+                    $toAppend = $(".product__shop-content"),
+                    $noDisponible = '<div class="product__not-available">Proximamente</div>';
+                
+                $(".product__sku-container").addClass("not-available");
                 $erase.remove();
-                $toAppend.append($noDisponible);
+                $toAppend.prepend($noDisponible);
 
             } else {
                 console.log("available");
@@ -1011,18 +1108,37 @@ var producto = {
             type: 'GET',
             crossDomain: true,
             success: function (data) {
-                // console.log(data);
-                // console.log(data[0].items[0].images);
+
                 var arr = data[0].items,
-                    $label = $(".dimension-Colorsku"),
+                    $label = $(".dimension-Colorsku,.dimension-Color"),
+                    airLine = $(".product__airlineGuide"),
+                    $colectionEl = $(".product__collection"),
                     $skuSelector = $(".skuselector-specification-label");
 
-                $label.remove();
-                // $skuSelector.eq(0).click().attr("checked", "checked");
-                // producto.selectCurrentSku();
+                // adding ean code
+                producto.ean = data[0].productReference;
+                $(".style__ean .ean").html(producto.ean);
 
+                // adding colection name
+                if (data[0].Colección != undefined && data[0].Colección != undefined) {
+                    producto.coleccion = data[0].Colección[0];
+                    $colectionEl.html(producto.coleccion);
+                }else if(data[0].Colección == undefined && data[0].Colección == undefined){
+                    $colectionEl.html("");
+                }
+
+                // removing label checkbox
+                $label.remove();
+
+                // Check for carry on attr
+                if (data[0]["CARRY ON"] != undefined && data[0]["CARRY ON"] != undefined) {
+                    airLine.addClass("active");
+                }
+
+                // wrapping all dynamic classes in $skuSelector
                 $skuSelector.wrap('<div class="dynamic"></div>');
 
+                // looping data items
                 $.each(arr, function (i, val) {
                     // console.log(val);
                     var arrImg = val.images,
@@ -1034,36 +1150,67 @@ var producto = {
                     $(c).appendTo($skuDinamic);
                 });
 
-                $ean.append(producto.ean);
-                // dotInfo();
+                // Checking for classes length
+                if ($(".Caracteristicas-Exteriores").length) {
+                    var $caractExt = $(".Caracteristicas-Exteriores"),
+                        $caractExtClass = $(".Caracteristicas-Exteriores").attr("class"),
+                        $caractExtSplit = $.trim($caractExtClass.split("field")[1]);
+                    $caractExt.parent().addClass($caractExtSplit);
+                    dotInfo();
+                }
+                if($(".Caracteristicas-Interiores").length){
+                    var $caractInt = $(".Caracteristicas-Interiores"),
+                        $caractIntClass = $(".Caracteristicas-Interiores").attr("class"),
+                        $caractIntSplit = $.trim($caractIntClass.split("field")[1]);
+                    $caractInt.parent().addClass($caractIntSplit);
+                }
             }
         });
 
         function dotInfo() {
 
-            var $texto = $(".caracteristicas-content .productDescription").text(),
-                $container = $(".caracteristicas-content .productDescription"),
-                $result = $texto.replace(/\*/g, '<p class="space"></p><span class="dot">• </span>');
+            var $textoExt = $("td.Caracteristicas-Exteriores").text(),
+                $textoInt = $("td.Caracteristicas-Interiores").text(),
+                $containerExt = $("td.Caracteristicas-Exteriores"),
+                $containerInt = $("td.Caracteristicas-Interiores"),
+                $resultExt = $textoExt.replace(/\|/g, '<p class="space"></p><span class="dot">• </span>'),
+                $resultInt = $textoInt.replace(/\|/g, '<p class="space"></p><span class="dot">• </span>');
 
-            $container.html($result);
+            $containerExt.html($resultExt);
+            $containerInt.html($resultInt);
         }
 
     },
     carousel: function (el) {
 
-        var $count = $(".product__recomended-content .prateleira").find(".img"),
-            $responsive = $(window).width();
-
         if ($responsive > 768) {
-            if ($count.length >= 6) {
-                $(".helperComplement").remove();
-                $(".product__recomended-content .prateleira").children().addClass("carousel-recomendados");
-                $(".product__recently-content .prateleira").children().addClass("carousel-vistosReciente");
 
-                $(el).on("init", function () {
+            $(".helperComplement").remove();
+
+            var $countRecomended = $(".product__recomended-content .prateleira").find(".img"),
+                $countRecently = $(".product__recently-content .prateleira").find(".img");
+
+            if ($countRecomended.length >= 6) {
+                $(".product__recomended-content .prateleira").children().addClass("carousel-recomendados");
+                $('.carousel-recomendados').on("init", function () {
                     $(this).addClass('active');
                 });
-                $(el).slick({
+                $('.carousel-recomendados').slick({
+                    autoplay: true,
+                    autoplaySpeed: 2500,
+                    slide: 'li',
+                    slidesToScroll: 2,
+                    slidesToShow: 6,
+                    speed: 500,
+                    dots: true
+                });
+            }
+            if ($countRecently.length >= 6) {
+                $(".product__recently-content .prateleira").children().addClass("carousel-vistosReciente");
+                $('.carousel-vistosReciente').on("init", function () {
+                    $(this).addClass('active');
+                });
+                $('.carousel-vistosReciente').slick({
                     autoplay: true,
                     autoplaySpeed: 2500,
                     slide: 'li',
@@ -1074,6 +1221,7 @@ var producto = {
                 });
             }
         } else if ($responsive < 758) {
+            var $count = $(".product__recomended-content .prateleira").find(".img");
             if ($count.length >= 2) {
                 $(".helperComplement").remove();
                 $(".product__recomended-content .prateleira").children().addClass("carousel-recomendados");
@@ -1276,12 +1424,20 @@ var producto = {
 
     },
     accordion: function (trigger, content) {
+        var $descriptionEl = $(".product__accordion-trigger");
 
+        // hiding content
         $(content).hide();
-
+        // execute accordion
         $(trigger).on("click", function () {
             $(this).toggleClass("active").next().slideToggle("slow");
             return false;
+        });
+        // open descripcion
+        $descriptionEl.each(function(){
+            if($(this).text()=="Sobre este artículo"){
+                $(this).addClass("active").next().addClass("active").slideToggle("slow");
+            }
         });
     }
 };
@@ -1302,8 +1458,8 @@ var categDepto = {
         if ($categDepto.length) {
 
             categDepto.traducciones();
+            categDepto.infinityScroll();
             categDepto.categDeptoAccordion('.search-multiple-navigator h4,.search-multiple-navigator h5', '.search-multiple-navigator h3');
-            // categDepto.infinityScroll();
             categDepto.categOptions();
             categDepto.eventHasChange();
             categDepto.changeControls();
@@ -1390,7 +1546,10 @@ var categDepto = {
                                     });
 
                                     var z = '' + $elements[0] + '',
+                                        $arrows = $(".prateleira__container:hover .slick-next, .prateleira__container:hover.slick-prev"),
                                         $slickThumb = _thisImg.find(".slide-thumb.hover"),
+                                        imgHref = $img.attr("href"),
+
                                         $slickThumbLast = _thisImg.find(".slide-thumb:last-child");
 
                                     $slickThumbLast.remove();
@@ -1411,6 +1570,12 @@ var categDepto = {
                                             speed: 800,
                                             useTransform: true
                                         });
+
+                                        var $dragable = _thisImg.find(".slick-list.draggable");
+                                        // $img.attr("href","");
+                                        // $dragable.on("click", function(){
+                                        //     window.location.href = imgHref;
+                                        // });
                                         $img.on("click", function (e) {
                                             e.preventDefault();
                                         });
@@ -1437,7 +1602,7 @@ var categDepto = {
         if ($categDepto.length) {
 
             var $attrColor = $(".search-multiple-navigator h5.Atributos"),
-                $otherMenuOpen = $(".even.Atributos.Tumi"),
+                // $otherMenuOpen = $(".even.Atributos.Tumi, .refino.Atributos.Tumi.colorin"),
                 $content = $('.navigation-tabs .search-single-navigator ul'),
                 $verFiltros = $content.find('.ver-filtros');
 
@@ -1454,7 +1619,8 @@ var categDepto = {
                 $(this).parents(".contentColorValue").prepend(template);
             });
 
-            var $colorin = $(".colorin");
+            var $colorin = $(".colorin h5"),
+                $otherMenuOpen = $(".Atributos.Tumi.colorin h5");
 
             $(trigger).next().hide();
             $(secondTrigger).next().hide();
@@ -1465,7 +1631,7 @@ var categDepto = {
                 $(this).toggleClass("active").next().slideToggle("slow");
                 if ($colorin.length) {
                     console.log("true");
-                    $(".colorin div:eq(0)").css({
+                    $(".categ__content .colorin div:eq(0), .categ__aside.mobile .colorin div:eq(0)").css({
                         "display": "flex",
                         "flex-flow": "row wrap",
                         "justify-content": "flex-start"
@@ -1488,7 +1654,7 @@ var categDepto = {
             $otherMenuOpen.addClass("active").next().slideToggle("slow");
 
             if ($colorin.hasClass('active')) {
-                $(".colorin div:eq(0)").css({
+                $(".categ__content .colorin div:eq(0), .categ__aside.mobile .colorin div:eq(0)").css({
                     "display": "flex",
                     "flex-flow": "row wrap",
                     "justify-content": "flex-start"
@@ -1502,8 +1668,8 @@ var categDepto = {
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        }))
+                return $.getScript(files);
+            }))
             .then(function () {
 
                 $(trigger).hcSticky({
@@ -1522,15 +1688,15 @@ var categDepto = {
         var files = ["/arquivos/QD_infinityScroll.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        }))
+                return $.getScript(files);
+            }))
             .then(function () {
 
                 console.log("cargo el infinity");
 
-                var $desktop = $(".prateleira[id*=ResultItems]:first");
+                var $desktop = $(".prateleira[id*=ResultItems]");
 
-                if ($responsive > 650) {
+                if ($responsive < 650) {
 
                     // console.log("tablet pa arriba");
 
@@ -1546,10 +1712,10 @@ var categDepto = {
                         // Callback quando uma requisição ajax da prateleira é completada
                         callback: function () {
                             console.log("se cargaron más productos desktop");
-                            confiGenerales.replaceHref();
-                            confiGenerales.wishlistOnclick();
-                            confiGenerales.compraAsyncVitrina();
-                            categDepto.skuImgPrateleira();
+                            // confiGenerales.replaceHref();
+                            // confiGenerales.wishlistOnclick();
+                            // confiGenerales.compraAsyncVitrina();
+                            // categDepto.skuImgPrateleira();
                             // confiGenerales.mainLazyLoad();
                         },
                         // Cálculo do tamanho do footer para que uma nova página seja chamada antes do usuário chegar ao "final" do site
@@ -1682,54 +1848,56 @@ var categDepto = {
     },
     skuImgPrateleira: function () {
 
-        var $prateleiraInfo = $(".prateleira__container");
-        // var $prateleiraInfo = $(".prateleira__info");
-        $prateleiraInfo.each(function () {
+        if ($responsive > 426) {
+            var $prateleiraInfo = $(".prateleira__container");
+            // var $prateleiraInfo = $(".prateleira__info");
+            $prateleiraInfo.each(function () {
 
-            // $(this).one("mouseenter", function () {
-            var $this = $(this),
-                $skuInput = $this.find(".prateleira__info .insert-sku-checkbox"),
-                $inputParent = $this.find(".prateleira__info .is-checklist-item"),
-                $templateImg = '<div class="prateleira__skuVariant-img"></div>',
-                $validate = $this.find(".prateleira__info .prateleira__skuVariant-img");
+                // $(this).one("mouseenter", function () {
+                var $this = $(this),
+                    $skuInput = $this.find(".prateleira__info .insert-sku-checkbox"),
+                    $inputParent = $this.find(".prateleira__info .is-checklist-item"),
+                    $templateImg = '<div class="prateleira__skuVariant-img"></div>',
+                    $validate = $this.find(".prateleira__info .prateleira__skuVariant-img");
 
-            if ($validate.length == 0) {
+                if ($validate.length == 0) {
 
-                $($templateImg).appendTo($inputParent);
+                    $($templateImg).appendTo($inputParent);
 
-                var skuInputAttr = $skuInput.attr("rel");
-                // $inputParent.append($templateImg);
-                $.ajax({
-                    url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=skuId:" + skuInputAttr + "",
-                    dataType: 'json',
-                    type: 'GET',
-                    crossDomain: true,
-                    success: function (data) {
-                        // console.log(data[0].items[0].images);
-                        // console.log(data);
-                        var arr = data[0].items,
-                            dataLink = data[0].link,
-                            $skuVariantImg = $this.find(".prateleira__info .prateleira__skuVariant-img"),
-                            $fadeEl = $this.find(".prateleira__skuVariant-container"),
-                            $lastImg = [];
+                    var skuInputAttr = $skuInput.attr("rel");
+                    // $inputParent.append($templateImg);
+                    $.ajax({
+                        url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=skuId:" + skuInputAttr + "",
+                        dataType: 'json',
+                        type: 'GET',
+                        crossDomain: true,
+                        success: function (data) {
+                            // console.log(data[0].items[0].images);
+                            // console.log(data);
+                            var arr = data[0].items,
+                                dataLink = data[0].link,
+                                $skuVariantImg = $this.find(".prateleira__info .prateleira__skuVariant-img"),
+                                $fadeEl = $this.find(".prateleira__skuVariant-container"),
+                                $lastImg = [];
 
-                        $.each(arr, function (i, val) {
-                            // console.log(val);
-                            var arrImg = val.images,
-                                arrSku = val.itemId,
-                                a = arrImg.slice(-1)[0].imageTag,
-                                b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
-                                c = '<a href= "' + dataLink + '?idsku=' + arrSku + '">' + b + '</a>';
-                            // attrSku = dataLink + '?idsku=' + arrSku;
+                            $.each(arr, function (i, val) {
+                                // console.log(val);
+                                var arrImg = val.images,
+                                    arrSku = val.itemId,
+                                    a = arrImg.slice(-1)[0].imageTag,
+                                    b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
+                                    c = '<a href= "' + dataLink + '?idsku=' + arrSku + '">' + b + '</a>';
+                                // attrSku = dataLink + '?idsku=' + arrSku;
 
-                            $(c).appendTo($skuVariantImg);
-                            $fadeEl.fadeIn();
-                        });
-                    }
-                });
-            }
-            // });
-        });
+                                $(c).appendTo($skuVariantImg);
+                                $fadeEl.fadeIn();
+                            });
+                        }
+                    });
+                }
+                // });
+            });
+        }
     },
     eventHasChange: function () {
 
@@ -1854,7 +2022,17 @@ var quickviewControl = {
                 $iframeBuySuccess = $(".TB_compraExitosa"),
                 $thisBtn = $(".buy-button.buy-button-ref"),
                 $ean = $("#quickview__style-number"),
-                producto = { id: "", descripcion: "", ean: "", caracteristica: "", stock: "", marca: "", url: "" },
+                producto = {
+                    id: "",
+                    descripcion: "",
+                    ean: "",
+                    caracteristica: "",
+                    stock: "",
+                    marca: "",
+                    cantidad: "",
+                    coleccion: "",
+                    url:""
+                },
                 $productoName = $(".notifyme-client-name"),
                 $productoEmail = $(".notifyme-client-email");
 
@@ -1885,6 +2063,10 @@ var quickviewControl = {
                             $label = $(".dimension-Colorsku"),
                             $skuSelector = $(".skuselector-specification-label"),
                             $elements = [];
+
+                        // adding ean code
+                        producto.ean = data[0].productReference;
+                        $ean.html(producto.ean);
 
                         producto.descripcion = data[0]['Descripción Larga'];
                         producto.ean = data[0].items[0].ean;
@@ -1958,10 +2140,11 @@ var quickviewControl = {
 
                     e.preventDefault();
 
-                    vtexjs.checkout.getOrderForm().done(function (e) {
+                    vtexjs.checkout.getOrderForm().done(function () {
 
                         vtexjs.checkout.addToCart([item], null, 3).done(function (orderForm) {
-                            window.parent.quickviewControl.refreshMiniCart();
+                            var orderFormItem = orderForm.items.length;
+                            window.parent.quickviewControl.refreshMiniCart(orderFormItem);
                         });
                     });
                 });
@@ -1969,16 +2152,23 @@ var quickviewControl = {
             }); // /.fin getCurrentProductWithVariations.
         });
     },
-    refreshMiniCart: function () {
+    refreshMiniCart: function (x) {
         var $a = $('#offCanvasRight');
 
         vtexjs.checkout.getOrderForm();
         $("#TB_overlay", document.body).remove();
         $("#TB_window", document.body).remove();
         $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
-        setTimeout(function () {
-            $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
-        }, 2000);
+        // setTimeout(function () {
+        //     $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
+        // }, 2000);
+        if (x > 0) {
+            $triggerCart.on("click", function (e) {
+                e.preventDefault();
+                $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+            });
+        }
+        confiGenerales.disableEmptyCart();
     },
     qtdControl: function () {
 
@@ -1988,7 +2178,6 @@ var quickviewControl = {
             qty = {
                 cantidad: ""
             };
-
         if ($btnComprarProduto.length) {
 
             var $recebeQtyForm = $('.product__sku-container');
@@ -2079,8 +2268,8 @@ var static = {
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        }))
+                return $.getScript(files);
+            }))
             .then(function () {
 
                 $(trigger).hcSticky({
@@ -2215,5 +2404,79 @@ var login = {
         $(".login__close-btn").on("click", function () {
             window.history.go(-1);
         });
+    }
+};
+
+/* 
+
+[b11.Master Data]
+
+============================= */
+
+var masterDataVtex = {
+
+    getFromMasterData: function (name, where, fields) {
+
+        var store = 'tumimx',
+            urlProtocol = window.location.protocol,
+            apiUrl = urlProtocol + '//api.vtex.com/' + store + '/dataentities/' + name + '/search?_where=' + where + '&_fields=' + fields,
+            dataR,
+            response;
+
+        $.ajax({
+            "headers": {
+                "Accept": "application/vnd.vtex.masterdata.v10.profileSchema+json"
+            },
+            "url": apiUrl,
+            "async": false,
+            "crossDomain": true,
+            "type": "GET",
+
+            success: function (dataR) {
+                response = dataR[0];
+                // console.log("");
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                response = dataR;
+                console.log("textStatus: " + textStatus + " errorThrown: " + errorThrown);
+            }
+
+        });
+
+        return response;
+
+    },
+    postOrPatchInMasterData: function (name, email, fields, type) {
+
+        // var urlProtocol = window.location.protocol;
+        var store = 'tumimx',
+            apiUrl = '//api.vtexcrm.com.br/' + store + '/dataentities/' + name + '/documents',
+            who = {
+                "email": email
+            },
+            data = $.extend(who, fields),
+            response;
+
+        $.ajax({
+
+            "headers": {
+                "Accept": "application/vnd.vtex.ds.v10+json",
+                "Content-Type": "application/json"
+            },
+            "url": apiUrl,
+            "async": false,
+            "crossDomain": true,
+            "type": type,
+            "data": JSON.stringify(data),
+
+            success: function (data) {
+                console.log("el post se envío");
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log("textStatus: " + textStatus + " errorThrown: " + errorThrown);
+            }
+
+        });
+
     }
 };

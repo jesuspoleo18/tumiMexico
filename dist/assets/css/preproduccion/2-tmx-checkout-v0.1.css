@@ -4,7 +4,7 @@
 
 Projecto:  TUMI MX - 2017
 Version: 0.1
-Ultimo cambio: 06/03/18
+Ultimo cambio: 08/03/18
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -50,6 +50,8 @@ a3.Header.
 a4.Mediaquerie header.
 a5.Footer.
 a6.Mediaquerie footer.
+a7.Navigator.
+a8.Mediaquerie navigator.
 
 --------- estilos de controladores -------------
 
@@ -62,6 +64,10 @@ c0.Cupon.
 c1.Mediaquerie Cupon.
 c2.Modal.
 c3.Mediaquerie modal.
+c4.Formulario sexo.
+c5.Mediaquerie formulario sexo.
+c6.Boton enviar a MD.
+c7.Mediaquerie boton enviar a MD.
 
 --------- estilos de pagina --------------------
 
@@ -86,10 +92,15 @@ d5.Mediaquerie perfil.
     --grisFuerteTumi: #ccc;
     --grisxFuerteTumi: #777;
     --negroTumi: #2E2A25;
+    --negroMedium: #555;
+    --negroTumiLighter: #444;
     --bgTopbarCheckout: #555555;
     --tumiIcon: 'tumi-icon-ft';
     --proximaNova: 'Proxima Nova';
+    --proximaNovaBold: 'Proxima Nova bold';
+    --proximaNovaTh: 'Proxima Nova Th';
     --borderShadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+    --textShadow: 0.6px 0 0 currentColor;
     --offsetShadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.08);
 }
 
@@ -223,6 +234,81 @@ table.cart-items thead th.shipping-date,
 
 ============================= */
 
+.header__language {
+    display: none;
+}
+
+.header__content {
+    position: relative;
+    display: flex;
+    width: 100%;
+    z-index: 1;
+    flex-flow: wrap;
+    align-items: center;
+}
+
+.header__top-bar {
+    width: 100%;
+    background-color: var(--grisxFuerteTumi);
+    display: flex;
+    justify-content: center;
+}
+
+.top-bar__text a {
+    font-size: .8rem;
+    padding: .2rem 0;
+    color: white;
+}
+
+.header__elements {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.header__left,
+.header__center,
+.header-right {
+    width: 33%;
+}
+
+.header-left__content {
+    display: flex;
+}
+
+.header-left__content a {
+    font-size: .73rem;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    padding: .8rem 1rem;
+}
+
+.header__center {
+    padding-top: 1rem;
+}
+
+.header-center__content {
+    display: flex;
+    justify-content: center;
+}
+
+.header-center__content img {
+    max-width: 124px;
+}
+
+.header-right__content {
+    visibility: hidden;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-right__content a {
+    font-size: .73rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    padding: .8rem 1rem;
+}
+
 .checkout__header-container,
 .checkout__header-content {
     width: 100%;
@@ -235,6 +321,7 @@ table.cart-items thead th.shipping-date,
 .checkout__header-container {
     background: var(--bgTopbarCheckout);
     margin-bottom: 3rem;
+    display: none;
 }
 
 .checkout__topbar {
@@ -429,6 +516,127 @@ table.cart-items thead th.shipping-date,
 @media only screen and (min-width: 90.063em) {}
 
 /*
+[a7.Navigator]
+
+============================= */
+
+.megamenu-ideasRegalos,
+.megamenu-buscar {
+    display: none;
+}
+
+nav {
+    position: relative;
+    z-index: 0;
+}
+
+.navigation__content {
+    position: relative;
+    margin-top: .5rem;
+    margin-bottom: 2rem;
+    display: block;
+    width: 100%;
+}
+
+.navigation__elements {
+    display: flex;
+    width: 100%;
+    height: 48px;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.navigation__left,
+.navigation__center,
+.navigation__right {
+    width: 20.3%;
+}
+
+.navigation__elements.is-stuck .navigation__left,
+.navigation__elements.is-stuck .navigation__center,
+.navigation__elements.is-stuck .navigation__right {
+    width: 21.3%;
+}
+
+.navigation__elements.is-stuck .navigation__center {
+    width: 100%;
+}
+
+.navigation__left,
+.navigation__right {
+    pointer-events: none;
+}
+
+.navigation__elements.is-stuck {
+    align-items: center;
+}
+
+.navigation__elements.is-stuck .navigation__left a,
+.navigation__elements.is-stuck .navigation__center {
+    display: flex;
+    align-items: flex-end;
+}
+
+.navigation__elements.is-stuck .navigation__left img,
+.navigation__elements.is-stuck .navigation__right {
+    pointer-events: initial;
+    opacity: 1;
+}
+
+.navigation__left img {
+    max-width: 124px;
+    opacity: 0;
+}
+
+.navigation__center {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.navigation__menu {
+    display: flex;
+    width: 50%;
+    align-items: flex-end;
+}
+
+.navigation__menu a {
+    font-family: var(--proximaNova);
+    font-size: .72rem;
+    font-weight: bolder;
+    padding: .8rem 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: var(--textShadow);
+    letter-spacing: 1.5px;
+    flex: 1;
+}
+
+.navigation__menu a:hover:before {
+    position: absolute;
+    top: initial;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    content: '';
+    -webkit-transition: height .2s ease;
+    -moz-transition: height .2s ease;
+    -o-transition: height .2s ease;
+    transition: height .2s ease;
+    background: var(--rojoTumi);
+}
+
+/*
+[a8.Mediaquerie navigator]
+
+============================= */
+
+/*
 [c0.Cupon]
 
 ============================= */
@@ -573,6 +781,165 @@ table.cart-items thead th.shipping-date,
 [c3.Mediaquerie modal]
 
 ============================= */
+
+
+/* 
+
+[c4.Formulario sexo ]
+
+*/
+
+.client-first-name,
+.client-last-name {
+    display: block !important;
+    margin-bottom: 1rem;
+    position: relative !important;
+}
+
+.sexForm__container {
+    /* border:1px solid red; */
+    display: block;
+    /*     margin-bottom:1rem; */
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    /* display:none; */
+}
+
+.sexForm__container .newsletter__femenino,
+.sexForm__container .newsletter__masculino {
+    /*  border:1px solid blue; */
+}
+
+.sexForm__container .newsletter__masculino {
+    margin-left: 1rem;
+}
+
+.sexForm__container [type="checkbox"] {
+    /*   border: 1px solid #dfdfdf;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    height: 20px;
+    -webkit-appearance: none;
+    appearance:none;
+    max-width:30px;
+    position:relative; */
+}
+
+.sexForm__container [type="checkbox"]:checked.visto-femenino:before {
+    background-color: #003a7c;
+    border-radius: 50%;
+    color: white;
+    content: "";
+    font-family: 'FontAwesome';
+    font-size: .5rem;
+    text-align: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sexForm__container [type="checkbox"]:checked.visto-masculino:before {
+    background-color: #003a7c;
+    border-radius: 50%;
+    color: white;
+    content: "";
+    font-family: 'FontAwesome';
+    font-size: .5rem;
+    text-align: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sexForm__container .newsletter__femenino,
+.sexForm__container .newsletter__masculino {
+    /* padding:0 .8rem; */
+    display: flex;
+    /* justify-content:center; */
+    flex-flow: wrap;
+    align-items: center;
+}
+
+.sexForm__container .newsletter__femenino label,
+.sexForm__container .newsletter__masculino label {
+    color: #7F8C8D;
+    font-size: .6rem;
+    display: block;
+    margin-top: .3rem;
+    margin-left: .3rem;
+    position: relative;
+    text-transform: uppercase;
+    /*     width:100%; */
+}
+
+.sexForm__container .newsletter__femenino {}
+
+.sexForm__container .newsletter__masculino {}
+
+#errorGender {
+    color: red;
+    margin: 0;
+    margin: .5rem 0;
+}
+
+/* 
+
+[c5.Mediaquerie formulario sexo ]
+
+*/
+
+/* 
+
+[c6.Boton enviar a MD ]
+
+*/
+
+.submit.btn-submit-wrapper {
+    /*   border:1px solid red; */
+    display: block;
+    min-height: 50px;
+    position: relative;
+}
+
+#go-to-payment,
+#go-to-shipping {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.tp_checkout {
+    background-color: transparent;
+    border-radius: 0;
+    border: 0;
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute !important;
+    top: 0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+
+#is-corporate-client {
+    display: none;
+}
+
+/* 
+
+[c7.Mediaquerie boton enviar a MD ]
+
+*/
 
 /*
 [d0.Carrito]
@@ -1028,8 +1395,6 @@ table.cart-items tbody tr td.item-remove i:hover:before {
 
 ============================= */
 
-.orderform-template {}
-
 .orderform-template .step.active {
     box-shadow: var(--offsetShadow);
 }
@@ -1135,7 +1500,7 @@ table.cart-items tbody tr td.item-remove i:hover:before {
 }
 
 .box-client-info-pj {
-    border-bottom: 1px solid var(--grisFuerteTumi);
+    /*     border-bottom: 1px solid var(--grisFuerteTumi); */
     margin-bottom: 1rem;
 }
 
@@ -1146,6 +1511,7 @@ table.cart-items tbody tr td.item-remove i:hover:before {
     padding-bottom: .5rem;
     text-transform: uppercase;
     width: auto;
+    display: none;
 }
 
 .corporate-hide-link:before {
@@ -1198,6 +1564,11 @@ table.cart-items tbody tr td.item-remove i:hover:before {
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     width: 30%;
+}
+
+.link-edit {
+    display: inline-block;
+    margin-right: .5rem;
 }
 
 .shipping-data .create a,
@@ -1285,6 +1656,7 @@ table.cart-items tbody tr td.item-remove i:hover:before {
 }
 
 .cart-fixed {
+    max-height: 600px;
     width: 100%;
 }
 
@@ -1342,4 +1714,12 @@ table.cart-items tbody tr td.item-remove i:hover:before {
 
 /* xlarge */
 
-@media only screen and (min-width: 90.063em) {}
+@media only screen and (min-width: 90.063em) {
+    .orderform-template .summary-template-holder table tfoot tr {
+        justify-content: space-between;
+    }
+    .cart-fixed.affix-top.cart-fixed-transition {
+        /*         border:1px solid red; */
+        max-height: 493px;
+    }
+}

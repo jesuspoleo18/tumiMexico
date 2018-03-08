@@ -36,9 +36,16 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 - Agregada una funcionalidad que inserta información en el login **15:51pm | 2018-02-26 _ 2018-03-01**
 * Desarrollo de script para configuración de barra lateral de navegación para categoría y departamento, además se desarolló la funcionalidad para que al hacer click, se filtraran los productos, más el estilado de los colores. **3:39am | 2018-03-03**
 * Estilado de footer para asemejar lo máximo el diseño de tumi.com **12:11pm | 2018-03-06**
-* Desarrollo de funcionalidad para inhabilitar el checkout cuando éste está en "0" y cuando se eliminen productos del checkout y queda en "0" de igual manera inhabilitarlo **12:11pm | 2018-03-06**
+* Desarrollo de funcionalidad para inhabilitar el minicart cuando éste está en "0" y cuando se eliminen productos del minicart y queda en "0" de igual manera inhabilitarlo **12:11pm | 2018-03-06**
 * Añadido el botón "seguir comprando" en el minicart offcanvas desktop **12:11pm | 2018-03-06**
 * Conformación de features por ficha de producto, estilado con css **12:11pm | 2018-03-06**
+* Script para sustituir los pipes "|" en las características de producto por "*" y discriminar cuándo el producto tiene caracterísitcas exteriores e interiores  **5:30pm | 2018-03-06**
+* Agregando el header en el checkout, creación de script para identificar los eventos del checkout **4:30pm | 2018-03-07**
+* Ajuste de estilos en la ficha de producto **4:30pm | 2018-03-07**
+* Configuración de master data **11:55am | 2018-03-08**
+* Puliendo detalles de features y añadiendo la función que asigna mediante API la colección de los productos **12:45am | 2018-03-08**
+* Discriminando con javascript que los features sólo se vean en producto con contenido **1:00pm | 2018-03-08**
+* Configurando script para newsletter **1:00pm | 2018-03-08**
 
 
 ### Changed
@@ -57,10 +64,8 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 * Cambio de html por controlador global para edición de copyright y estilado **12:11pm | 2018-03-06**
 * Cambio de copyright en el checkout y estilado **12:12pm | 2018-03-06**
 * En los departamentos se cambió el estilo por el que está originalmente en tumi.com y se añadió además el título "compra por categoría" **12:12pm | 2018-03-06**
+* Ajuste de scripts para carruseles en ficha de producto ya que se estaban ejecutando los dos carruseles con un sólo script y fallaba al tener diferentes cantidades de productos **3:30pm | 2018-03-06**
+* Cambio de imágenes en megamenu **8:40am | 2018-03-06**
+* Cambio de imágenes y ajustes en la sección de "colecciones" **8:40am | 2018-03-07**
 
 ### Pending
-
-* Las gráficas se cambiaran entre hoy y mañana en la mañana.
-* Los features estarán listo en el mismo tiempo que el punto anterior.
-* Se están terminando detalles finos de diseño.
-* La barra de navegación lateral para las categorías y departamentos quedará con el funcionamiento nativo de vtex el día de hoy mientras se desarrolla el funcionamiento deseado. (listo)
