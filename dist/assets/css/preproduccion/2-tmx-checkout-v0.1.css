@@ -4,7 +4,7 @@
 
 Projecto:  TUMI MX - 2018
 Version: 0.1
-Ultimo cambio: 13/03/18
+Ultimo cambio: 14/03/18
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -91,6 +91,7 @@ d5.Mediaquerie perfil.
     --grisLightTumi: #ebebeb;
     --grisFuerteTumi: #ccc;
     --grisxFuerteTumi: #777;
+    --grisStrong: #5C5A5A;
     --negroTumi: #2E2A25;
     --negroMedium: #555;
     --negroTumiLighter: #444;
@@ -253,7 +254,7 @@ table.cart-items thead th.shipping-date,
 
 .header__top-bar {
     width: 100%;
-    background-color: var(--grisxFuerteTumi);
+    background-color: var(--grisStrong);
     display: flex;
     justify-content: center;
 }
@@ -838,8 +839,25 @@ nav {
     /* display:none; */
 }
 
+.sexForm__container .newsletter__femenino,
+.sexForm__container .newsletter__masculino {
+    /*  border:1px solid blue; */
+}
+
 .sexForm__container .newsletter__masculino {
     margin-left: 1rem;
+}
+
+.sexForm__container [type="checkbox"] {
+    /*   border: 1px solid #dfdfdf;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    height: 20px;
+    -webkit-appearance: none;
+    appearance:none;
+    max-width:30px;
+    position:relative; */
 }
 
 .sexForm__container [type="checkbox"]:checked.visto-femenino:before {
@@ -894,6 +912,10 @@ nav {
     text-transform: uppercase;
     /*     width:100%; */
 }
+
+.sexForm__container .newsletter__femenino {}
+
+.sexForm__container .newsletter__masculino {}
 
 #errorGender {
     color: red;
@@ -1331,7 +1353,7 @@ table.cart-items tbody tr td.item-remove i:hover:before {
     .container-order-form,
     .checkout-container {
         /*         border:1px solid red; */
-        height: 80%;
+        height: 100%;
         width: 80%;
         font-family: var(--proximaNova);
         display: flex !important;
@@ -1667,6 +1689,7 @@ table.cart-items tbody tr td.item-remove i:hover:before {
 
 .cart-fixed {
     max-height: 600px;
+    max-width: 272px;
     width: 100%;
 }
 

@@ -1850,6 +1850,33 @@ footer {
     margin: 0;
 }
 
+.prateleira__skuVariant-content .insert-sku-checklist.more {
+    /*     border:1px solid red; */
+    max-height: 20px;
+    max-width: 100px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-flow: wrap;
+}
+
+.prateleira__sku-more {
+    display: none;
+    font-family: var(--proximaNova);
+    font-size: .8rem;
+    position: absolute;
+    right: -1%;
+}
+
+.prateleira__sku-more:before {
+    content: "+";
+}
+
+.prateleira__skuVariant-content .insert-sku-checklist.more .prateleira__sku-more {
+    display: block;
+}
+
 .prateleira__skuVariant-container .is-checklist-item {
     /*         border:1px solid blue; */
     margin: 0;
@@ -3815,6 +3842,10 @@ ul.pages li.page-number.pgCurrent:after {
     margin-left: 1rem;
 }
 
+.quickview__style .skuReference {
+    font-family: var(--proximaNova);
+}
+
 .quickview__toCollection,
 .quickview__productDetail a {
     color: #2E2A25;
@@ -3854,6 +3885,14 @@ ul.pages li.page-number.pgCurrent:after {
     font-size: .8rem;
     text-transform: uppercase;
     margin-top: .5rem;
+}
+
+.quickview__stock span:before {
+    font-family: var(--tumiIcon);
+    font-weight: normal;
+    padding-right: .5rem;
+    content: '\e808';
+    color: #ccc;
 }
 
 .quickview__buy-btn {
@@ -5633,7 +5672,33 @@ table thead {
 
 /* small */
 
-@media only screen and (max-width: 40em) {}
+@media only screen and (max-width: 40em) {
+    .airlineGuide__title {
+        font-size: .9rem;
+    }
+    .airlineGuide__airline,
+    .airlineGuide__text {
+        font-size: .7rem;
+    }
+    .airlineGuide__list {
+        text-align: center;
+    }
+    .airlineGuide__list li,
+    .airlineDetail {
+        font-size: .7rem;
+        text-align: center;
+    }
+    .airlineGuide__row {
+        height: auto;
+    }
+    .airlineGuide__sizesDetail {
+        height: auto;
+    }
+    .airlineGuide__airlineTitle,
+    .airlineGuide__sizes {
+        padding-top: 2rem;
+    }
+}
 
 /* medium */
 
@@ -7438,7 +7503,7 @@ button#sendAccessKeyBtn {
 .select.skuList .group_0 {
     /*         border:1px solid red; */
     position: relative;
-    height: 36px;
+    height: 38px;
     overflow: hidden;
     width: 95%;
     display: flex;
@@ -7515,6 +7580,7 @@ button#sendAccessKeyBtn {
     background-size: contain;
 }
 
+.dynamic[class*="Anthracite/Black"],
 .dynamic.Antracita {
     background: url(http://s7d2.scene7.com/is/image/Tumi/1033051009_sw?hei=30&wid=30&fmt=jpeg&qlt=75) no-repeat center center;
     background-size: contain;
@@ -7569,13 +7635,9 @@ button#sendAccessKeyBtn {
     background-size: contain;
 }
 
+.dynamic[class*="Camo/Grey"],
 .dynamic.Green.Camo {
     background: url(http://s7d2.scene7.com/is/image/Tumi/103518T619_sw?hei=30&wid=30&fmt=jpeg&qlt=75) no-repeat center center;
-    background-size: contain;
-}
-
-.dynamic.Green.Camo/Grey {
-    background: url(http://s7d2.scene7.com/is/image/Tumi/955766617_sw?hei=30&wid=30&fmt=jpeg&qlt=75) no-repeat center center;
     background-size: contain;
 }
 
@@ -7842,7 +7904,8 @@ button#sendAccessKeyBtn {
     text-transform: uppercase;
 }
 
-.style__ean .ean {
+.style__ean .ean,
+.style__ean .skuReference {
     font-family: var(--proximaNova);
     font-weight: lighter;
     font-size: .8rem;
@@ -8417,6 +8480,10 @@ h4.group.Atributos-Tumi {
     }
     .price-best-price {
         font-size: 1.2rem;
+    }
+    .airlineGuide__container .airlineGuide__content {
+        display: block;
+        margin-top: 6rem;
     }
 }
 

@@ -66,9 +66,11 @@ $(window).load(function () {
     login.init();
     $(".helperComplement").remove();
     producto.addMoreSku();
+    
     if ($producto.length) {
         producto.selectSkuOnLoad();
     }
+    quickviewControl.selectSkuOnLoad();
     if ($categDeptoBuscaResultadoBusca.length) {
         categDepto.showProductos('.categ__elements');
         categDepto.asideSticky('.categ__aside .navigation-tabs, .categ__aside .navigation');
@@ -841,8 +843,12 @@ var producto = {
             vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
                 setTimeout(function () {
                     var colorProducto = $(".product__container .productName").text(),
-                        colorProductoPop = colorProducto.split(" ");
+                        colorProductoPop = colorProducto.split(" "),
+                        $codDisplay = $(".style__ean .ean"),
+                        $skuRef = $(".skuReference");
+
                     $(".specificaction__color").text(colorProductoPop.pop());
+                    $codDisplay.text($skuRef.text());
                     // producto.mainImgCarousel();
                     producto.noStock();
                 }, 800);
@@ -1113,11 +1119,14 @@ var producto = {
     },
     noStock: function () {
         var a = $(".buy-button.buy-button-ref"),
-            b = $(".product__shop-container");
+            b = $(".product__shop-container"),
+            c = $(".product__available-text");
         if (a.css('display') == 'none') {
             b.fadeOut(500);
+            c.text("No disponible");
         } else {
             b.fadeIn(500);
+            c.text("En Stock");
         }
     },
     carousel: function (el) {
@@ -1503,7 +1512,7 @@ var categDepto = {
                     if ($validate.length > 0) {
                         // console.log("vitrina ejecutada");
                     } else if ($validate.length == 0) {
-
+                        $img.removeAttr("href");
                         $($template).prependTo(_thisImg);
 
                         _thisParent.each(function () {
@@ -1878,7 +1887,7 @@ var categDepto = {
                             var arr = data[0].items,
                                 dataLink = data[0].link,
                                 $skuVariantImg = $this.find(".prateleira__info .prateleira__skuVariant-img"),
-                                $fadeEl = $this.find(".prateleira__skuVariant-container"),
+                                $fadeEl = $this.find(".prateleira__skuVariant-container,.product-insertsku.must-login"),
                                 $lastImg = [];
 
                             $.each(arr, function (i, val) {
@@ -1891,6 +1900,15 @@ var categDepto = {
                                 // attrSku = dataLink + '?idsku=' + arrSku;
 
                                 $(c).appendTo($skuVariantImg);
+                                if ($this.find(".prateleira__skuVariant-container .insert-sku-checklist li").length > 3){
+                                    var $skuMoreParent = $this.find(".prateleira__skuVariant-container .insert-sku-checklist"),
+                                        $skuMoreTemplate =  '<span class="prateleira__sku-more"></span>';
+                                    $skuMoreParent.addClass("more");
+                                    if ($this.find(".prateleira__skuVariant-container .prateleira__sku-more").length == 0){
+                                        $skuMoreParent.append($skuMoreTemplate);
+                                        $this.find(".prateleira__skuVariant-container .prateleira__sku-more").text($this.find(".prateleira__skuVariant-container .insert-sku-checklist li").length);
+                                    }
+                                }
                                 $fadeEl.fadeIn();
                             });
                         }
@@ -2398,7 +2416,7 @@ var quickviewControl = {
                 $iframeBuySuccess = $(".TB_compraExitosa"),
                 $thisBtn = $(".buy-button.buy-button-ref"),
                 $ean = $("#quickview__style-number"),
-                producto = {
+                thisProducto = {
                     id: "",
                     descripcion: "",
                     ean: "",
@@ -2419,12 +2437,12 @@ var quickviewControl = {
 
             vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
 
-                producto.stock = product.available;
-                producto.id = product.productId;
+                thisProducto.stock = product.available;
+                thisProducto.id = product.productId;
                 console.log(product);
 
                 $.ajax({
-                    url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + producto.id + "",
+                    url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + thisProducto.id + "",
                     dataType: 'json',
                     type: 'GET',
                     crossDomain: true,
@@ -2438,25 +2456,36 @@ var quickviewControl = {
                             $zoomPad = $(".quickview__img-content .zoomPad"),
                             $label = $(".dimension-Colorsku"),
                             $skuSelector = $(".skuselector-specification-label"),
+                            $colectionEl = $(".quickview__collection"),
                             $elements = [];
 
                         // adding ean code
-                        producto.ean = data[0].productReference;
-                        $ean.html(producto.ean);
+                        thisProducto.ean = data[0].productReference;
+                        $ean.html(thisProducto.ean);
 
-                        producto.descripcion = data[0]['Descripción Larga'];
-                        producto.ean = data[0].items[0].ean;
-                        producto.marca = data[0].brand;
+                        // adding colection name
+                        if (data[0].Colección != undefined && data[0].Colección != undefined) {
+                            thisProducto.coleccion = data[0].Colección[0];
+                            $colectionEl.html(thisProducto.coleccion);
+                        } else if (data[0].Colección == undefined && data[0].Colección == undefined) {
+                            $colectionEl.html("");
+                        }
 
+                        // defining variables
+                        thisProducto.descripcion = data[0]['Descripción Larga'];
+                        thisProducto.ean = data[0].items[0].ean;
+                        thisProducto.marca = data[0].brand;
+
+                        // removing labels from skus
                         $label.remove();
                         $skuSelector.eq(0).click().attr("checked", "checked");
-                        $skuSelector.wrap('<div class="dynamic"></div>');
                         $skuSelector.wrap('<div class="dynamic"></div>');
                         var $dynamic = $(".dynamic");
                         $dynamic.each(function () {
                             var inputAttr = $(this).find("input").val();
                             $(this).addClass(inputAttr);
                         });
+                        quickviewControl.skuOnChange();
                         // add images to sku selections product
                         // $.each(arrItems, function (i, val) {
                         //     // console.log(val);
@@ -2475,9 +2504,9 @@ var quickviewControl = {
                         // console.log(data[0].items[0].images);
                         // producto.descripcion = data[0]['Descripción Larga'];
                         // producto.caracteristica = data[0].Características[0];
-                        producto.descripcion = data[0].description;
-                        producto.ean = data[0].items[0].ean;
-                        producto.marca = data[0].brand;
+                        thisProducto.descripcion = data[0].description;
+                        thisProducto.ean = data[0].items[0].ean;
+                        thisProducto.marca = data[0].brand;
 
                         // console.log(data);
 
@@ -2572,6 +2601,59 @@ var quickviewControl = {
 
         }
 
+    },
+    selectSkuOnLoad: function () {
+
+        if($("body.quickview").length){
+            var a = $(".group_0"),
+                x = $(".dynamic:eq(0)"),
+                b = a.find("input:checked");
+            if (b.length == 0) {
+                x.find("input").attr("checked", "checked");
+                x.find("input").change();
+                setTimeout(function(){
+                    quickviewControl.noStock();
+                    quickviewControl.skuOnChange
+                }, 800);
+            }
+        }
+    },
+    noStock: function () {
+        var a = $(".buy-button.buy-button-ref"),
+            b = $(".quickview__buy-btn"),
+            c = $(".quickview__stock span");
+        if (a.css('display') == 'none') {
+            b.fadeOut(500);
+            c.text("No disponible");
+        } else {
+            b.fadeIn(500);
+            c.text("En Stock");
+        }
+    },
+    skuOnChange: function () {
+        var x = $(".dynamic"),
+            colorProducto = x.attr("class"),
+            colorProductoPop = colorProducto.split("dynamic "),
+            templateColor = '<span class="specificaction__color"></span>';
+
+        if ($(".specificaction__color").length == 0) {
+            $(".specification").append(templateColor);
+        }
+        $(".specificaction__color").text(colorProductoPop.pop());
+        // producto.mainImgCarousel();
+
+        $(".skuselector-specification-label.input-dimension-Color").on("click", function () {
+            vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
+                setTimeout(function () {
+                    var $colorProducto = $(".quickview__name .productName").text(),
+                        colorProductoPop = $colorProducto.split(" ");
+
+                    $(".specificaction__color").text(colorProductoPop.pop());
+                    // producto.mainImgCarousel();
+                    quickviewControl.noStock();
+                }, 800);
+            });
+        });
     }
 };
 
