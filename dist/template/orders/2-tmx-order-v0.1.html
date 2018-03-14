@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce"
+    lang="es">
+
+<!-- head -->
+
+<head>
+
+    <title>
+        <vtex.cmc:searchTitle /> </title>
+    <meta name="description" content="" />
+    <vtex:template id="2-tmx-head" />
+
+</head>
+<!-- /.end head -->
+
+<!-- body -->
+
+<body>
+
+    <!-- off-canvas-wrap -->
+    <div class="off-canvas-wrapper">
+
+        <!-- inner-wrap -->
+        <div class="off-canvas-content" data-off-canvas-content="">
+
+            <!-- header -->
+            <header id="header">
+                <vtex:template id="2-tmx-header" />
+            </header>
+            <!-- /.end header -->
+
+            <!-- navigation -->
+            <nav>
+                <vtex:template id="2-tmx-navigator" />
+            </nav>
+            <!-- /.end navigation -->
+
+            <!-- static container -->
+            <main>
+                <!-- orders container -->
+
+                <section class="orders-container">
+
+                    <!-- orders content -->
+
+                    <div class="orders-content">
+
+                        <!-- contenido orders -->
+
+                        <section class="orders-content__contenido">
+
+                            <div class="orders__data">
+
+                                <vtex.cmc:orderList/>
+
+                            </div>
+
+                        </section>
+                        <!-- /.fin contenido orders -->
+
+                    </div>
+                    <!-- /.fin orders content -->
+
+                </section>
+                <!-- /.fin orders container -->
+            </main>
+            <!-- /.end static container -->
+
+            <!-- footer -->
+            <footer>
+                <vtex:template id="2-tmx-footer" />
+            </footer>
+            <!-- /.end footer -->
+
+        </div>
+        <!-- /.end inner-wrap -->
+
+    </div>
+    <!-- /.end off-canvas-wrap -->
+
+</body>
+<!-- /.end body -->
+
+</html>
