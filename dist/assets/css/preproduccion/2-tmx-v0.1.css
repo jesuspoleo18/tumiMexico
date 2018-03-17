@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2018
 Version: 0.1
-Ultimo cambio:  14/03/2018 | 10:33 pm
+Ultimo cambio:  15/03/2018 | 10:37 am
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -1373,6 +1373,9 @@ footer {
     .footer__copyrights-content {
         flex-direction: column;
     }
+    .footer__tracer-btn {
+        padding: .8rem 0;
+    }
 }
 
 /* medium */
@@ -1999,6 +2002,17 @@ footer {
     .resultado-busca .prateleira {
         flex-flow: wrap;
     }
+    .depto .prateleira ul,
+    .categoria .prateleira ul,
+    .resultado-busca .prateleira ul {
+        justify-content: space-between;
+    }
+    .depto .prateleira ul li,
+    .categoria .prateleira ul li,
+    .resultado-busca .prateleira ul li {
+        margin: 0;
+        margin-bottom: .9rem;
+    }
     .prateleira.n2colunas ul li.last {
         margin-left: 0;
     }
@@ -2007,9 +2021,6 @@ footer {
     }
     .prateleira__container {
         padding-bottom: 1rem;
-    }
-    .prateleira ul li {
-        margin: .14rem .14rem;
     }
 }
 
@@ -3826,7 +3837,9 @@ ul.pages li.page-number.pgCurrent:after {
 }
 
 .quickview__related {
+    /*     border:1px solid red; */
     margin-top: .5rem;
+    width: 100%;
     display: flex;
 }
 
@@ -3839,11 +3852,15 @@ ul.pages li.page-number.pgCurrent:after {
 }
 
 .quickview__style {
+    /*     border:1px solid blue; */
     margin-left: 1rem;
+    width: 80%;
+    display: flex;
 }
 
 .quickview__style .skuReference {
     font-family: var(--proximaNova);
+    margin-left: .3rem;
 }
 
 .quickview__toCollection,
@@ -4439,7 +4456,7 @@ ul.pages li.page-number.pgCurrent:after {
     position: absolute;
     top: 20%;
     padding-left: .5rem;
-    content: '\f095';
+    /*     content: '\f095'; */
 }
 
 .navigation__closebutton--right,
@@ -5663,6 +5680,20 @@ table thead {
     right: 30%;
     transform: translateY(-50%);
     position: absolute;
+}
+
+#airlineGuide {
+    /*     border:1px solid red; */
+    height: auto;
+    overflow: auto !important;
+    min-height: auto;
+}
+
+.airlineGuide__container {
+    display: block;
+    position: relative;
+    height: auto;
+    min-height: initial;
 }
 
 /*

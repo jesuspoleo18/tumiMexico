@@ -1512,7 +1512,6 @@ var categDepto = {
                     if ($validate.length > 0) {
                         // console.log("vitrina ejecutada");
                     } else if ($validate.length == 0) {
-                        $img.removeAttr("href");
                         $($template).prependTo(_thisImg);
 
                         _thisParent.each(function () {
@@ -1545,6 +1544,8 @@ var categDepto = {
                                         $slickThumb = _thisImg.find(".slide-thumb.hover"),
                                         imgHref = $img.attr("href"),
                                         $slickThumbLast = _thisImg.find(".slide-thumb:last-child");
+
+                                    $img.removeAttr("href");
 
                                     $slickThumbLast.remove();
                                     _thisImg.find("img:eq(0)").appendTo($slickThumb);
@@ -1584,10 +1585,10 @@ var categDepto = {
                                                     var $thisDragable = $(this),
                                                         $dragableImg = $thisDragable.find("img"),
                                                         $toRemove = $thisDragable.find("img:gt(3)");
-                                                    if ($dragableImg.length > 3) {
                                                         $dragableImg.on("click", function(){
                                                             window.location.href = imgHref;
                                                         });
+                                                    if ($dragableImg.length > 3) {
                                                         $thisDragable.addClass("error");
                                                         $toRemove.remove();
                                                     }
@@ -1858,7 +1859,7 @@ var categDepto = {
     },
     skuImgPrateleira: function () {
 
-        if ($responsive > 426) {
+        if ($responsive > 650) {
             var $prateleiraInfo = $(".prateleira__container");
             // var $prateleiraInfo = $(".prateleira__info");
             $prateleiraInfo.each(function () {
