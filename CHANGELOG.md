@@ -4,6 +4,27 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 
 ## [Unreleased](https://github.com/jesuspoleo18/tumiMexico/commits/master)
 
+## [1.0.2](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.2) - 2018-03-17
+
+### Added
+
+#### 2018-03-17
+
+* Ajustes de css en indice de la hoja estilo sobre el codigo usado por AG para el login y el botón de compra en mobile **1:15am | 2018-03-17**
+* Reforma de la sección de powerby y tecnología al final del website así como estilado y ajuste en dispositivos móviles **1:15am | 2018-03-17**
+* Ajuste de banners en dispositivos tablet y display de productos en home **1:17am | 2018-03-17**
+
+### Changed
+
+--
+
+### Pending
+
+* Crear dos popUp, uno de entrada("newsletter") y uno de salida ("high on demand")
+* Activar los decimales
+* Arreglar el mal display de los colores en el filtro lateral
+* Recordar Solicitar los accesos para el remitente del correo de soporte tumi
+
 ## [1.0.1](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.1) - 2018-03-14
 
 ### Added
@@ -23,14 +44,6 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 ### Changed
 
 --
-
-### Pending
-
-* Crear dos popUp, uno de entrada("newsletter") y uno de salida ("high on demand")
-* Terminar redirección de banners y links
-* Activar los decimales
-* Arreglar el mal display de los colores en el filtro lateral
-* Recordar Solicitar los accesos para el remitente del correo de soporte tumi
 
 ## [1.0.0](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.0) - 2018-03-14
 

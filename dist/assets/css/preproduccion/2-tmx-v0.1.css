@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2018
 Version: 0.1
-Ultimo cambio:  15/03/2018 | 10:37 am
+Ultimo cambio:  17/03/2018 | 1:04 am
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -1236,6 +1236,45 @@ footer {
     width: 60%;
 }
 
+.footer__powerby,
+.footer__powerby-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__powerby-content {
+    /*     border:1px solid red; */
+    padding: .5rem 0;
+    width: 30%;
+}
+
+.footer__powerby-content a {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__powerby-content span {
+    color: var(--negroMedium);
+    font-family: var(--proximaNova);
+    font-weight: bold;
+    font-size: .6rem;
+    text-transform: uppercase;
+    margin-right: .8rem;
+}
+
+.footer__powerby-content img {
+    max-height: 30px;
+}
+
+#bottom-bar {
+    display: none;
+}
+
 /*
 [b5.Mediaquerie footer]
 
@@ -1297,7 +1336,7 @@ footer {
     }
     .footer__bottom {
         background-color: white;
-        padding: 1rem;
+        padding: 1rem 0 0 0;
         width: 100%;
         display: flex;
         flex-flow: wrap;
@@ -1375,6 +1414,36 @@ footer {
     }
     .footer__tracer-btn {
         padding: .8rem 0;
+    }
+    .footer__powerby,
+    .footer__powerby-content {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-flow: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer__powerby {
+        background-color: var(--grisFuerteTumi);
+        margin-top: 1rem;
+    }
+    .footer__powerby-content {
+        padding: .5rem 0;
+    }
+    .footer__powerby-content a {
+        /*         border:1px solid red; */
+        width: 48%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer__powerby-content span {
+        font-size: .5rem;
+        margin-right: .1rem;
+    }
+    .footer__powerby-content img {
+        max-height: 25px;
     }
 }
 
@@ -2046,7 +2115,7 @@ footer {
         margin: 0;
     }
     .home .prateleira.n6colunas ul {
-        flex-flow: wrap;
+        flex-flow: nowrap;
     }
     .prateleira .carousel-news {
         margin-bottom: 0;
@@ -4802,7 +4871,7 @@ table thead {
 }
 
 .navigation__megamenu-block.col-2 {
-    opacity: 0;
+    opacity: 1;
     width: 45%;
 }
 
@@ -5155,7 +5224,7 @@ table thead {
     -webkit-transition: all .8s;
     -o-transition: all .8s;
     transition: all .8s;
-    z-index: 3;
+    z-index: 5000;
     justify-content: center;
     align-items: center;
 }
@@ -6139,6 +6208,11 @@ table thead {
     }
     .home__categorias-container {
         margin-top: 0;
+    }
+    .home__categorias-banner--mobile {
+        max-height: 350px;
+        overflow: hidden;
+        width: 100%;
     }
 }
 
@@ -7195,6 +7269,54 @@ button#sendAccessKeyBtn {
         bottom: 0;
         left: 20%;
         position: absolute;
+    }
+    .vtexIdUI.ng-scope.vtexIdUI-show-app {
+        width: 80%;
+        left: 10%;
+        height: 75% !important;
+        top: 10%;
+        right: 0;
+    }
+    .vtexIdUI-main-content {
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
+    #vtexIdContainer {
+        position: absolute;
+        width: 100%;
+        height: 75%;
+        top: 10%;
+        left: 0;
+        z-index: 9999;
+        perspective: 800px;
+    }
+    .vtexIdUI .vtexIdUI-heading {
+        clear: initial !important;
+        display: block;
+        margin-top: 1.5rem;
+    }
+    .login__info-content a {
+        bottom: inherit;
+        left: inherit;
+        position: relative;
+    }
+    .categ__options-bottom {
+        border-top: none;
+        padding-top: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .product__shop-container--mobile {
+        display: block;
+    }
+    .product__shop-container--mobile,
+    .product__shop-content {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }
 
@@ -8607,6 +8729,9 @@ h4.group.Atributos-Tumi {
     }
     .producto__see-more {
         right: -10%;
+    }
+    .product__shop-container--mobile {
+        display: none;
     }
 }
 
