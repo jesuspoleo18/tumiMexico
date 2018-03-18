@@ -4,6 +4,31 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 
 ## [Unreleased](https://github.com/jesuspoleo18/tumiMexico/commits/master)
 
+## [1.0.3](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.3) - 2018-03-18
+
+### Added
+
+#### 2018-03-18
+
+--
+
+### Changed
+
+#### 2018-03-18
+
+* El menu de "ver todos" en el menu offcanvas de "viajes" seguía redirigiendo a una página incorrecta. Fue cambiado. **14:16pm | 2018-03-18**
+* La línea gris sobre la categoría se ocultó. **14:16pm | 2018-03-18**
+* Modificación de la función "noStock" para discriminar por tamaño de pantalla y no se vieran dos botones de compra en la ficha de producto. **14:48pm | 2018-03-18**
+* Arreglo de las funciones que corregian los decimales y miles en la ficha de producto y el offcanvas minicart. **15:56pm | 2018-03-18**
+
+### Pending
+
+* Crear dos popUp, uno de entrada("newsletter") y uno de salida ("high on demand")
+* Arreglar el mal display de los colores en el filtro lateral
+<!-- * Activar los decimales -->
+<!-- * Recordar Solicitar los accesos para el remitente del correo de soporte tumi -->
+
+
 ## [1.0.2](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.2) - 2018-03-17
 
 ### Added
@@ -21,8 +46,8 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 ### Pending
 
 * Crear dos popUp, uno de entrada("newsletter") y uno de salida ("high on demand")
-* Activar los decimales
 * Arreglar el mal display de los colores en el filtro lateral
+* Activar los decimales
 * Recordar Solicitar los accesos para el remitente del correo de soporte tumi
 
 ## [1.0.1](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.1) - 2018-03-14

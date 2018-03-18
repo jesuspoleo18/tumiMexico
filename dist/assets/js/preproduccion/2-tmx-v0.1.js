@@ -3,8 +3,8 @@
 [js - principal ]
 
 Projecto:  Tumi México - 2018
-Version: 0.1
-Ultimo cambio: 14/03/2018
+Version: 1.0.2
+Ultimo cambio: 18/03/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -98,17 +98,14 @@ var confiGenerales = {
         // confiGenerales.stickyNav();
         confiGenerales.megaMenu('header,.megamenu-buscar.navigation__searchTrigger, main, footer, .navigation__right');
         confiGenerales.compraAsyncVitrina();
-        confiGenerales.checkEmptyCart();
         confiGenerales.masterDataTrigger();
         confiGenerales.sliderStatic();
         //confiGenerales.modalStatic();
         confiGenerales.replaceHref();
         confiGenerales.bodyPaint();
-        confiGenerales.elementosFormato();
         confiGenerales.offCanvasIos();
         $(window).on('orderFormUpdated.vtex', function (evt, orderForm) {
             // console.log("actualizó");
-            confiGenerales.checkEmptyCart();
             confiGenerales.disableEmptyCart();
         });
         console.log("confiGenerales.init()  ˙ω˙");
@@ -436,37 +433,6 @@ var confiGenerales = {
             });
         });
     },
-    checkEmptyCart: function () {
-
-        var $emptyBag = $(".middle-container__content-popCart .emptyBag"),
-            $NoEmptyBag = $(".middle-container__content-popCart .emptyBag.active"),
-            $cartNumber = $(".middle-container__content-cart"),
-            $cartFooter = $(".middle-container__content-popCart .cartFooter"),
-            $monto = $(".middle-container__content-popCart .vtexsc-text").text().replace('R$', ''),
-            $montoValor = parseFloat($monto);
-
-        // console.log($montoValor);
-
-        if ($montoValor == 0) {
-
-            // console.log("miniCart vacío");
-            // confiGenerales.mainLazyLoad();
-
-            $emptyBag.addClass("active");
-            $cartNumber.removeClass("active");
-            $cartFooter.removeClass("clearfix");
-        }
-        if ($montoValor > 0) {
-
-            // confiGenerales.mainLazyLoad();
-
-            // console.log("miniCart tiene productos");
-
-            $NoEmptyBag.removeClass("active");
-            $cartNumber.addClass("active");
-            $cartFooter.removeClass("clearfix");
-        }
-    },
     masterDataTrigger: function () {
 
         var $submitNewsletter = $(".submit__newsletter");
@@ -727,7 +693,7 @@ var home = {
         $(".helperComplement").remove();
         $(".home__tabs-content.news .prateleira").children().addClass("carousel-news");
 
-        if ($responsive > 758) {
+        if ($responsive > 770) {
             if ($count.length > 6) {
                 $(producto).slick({
                     autoplay: true,
@@ -739,7 +705,7 @@ var home = {
                     dots: true
                 });
             }
-        } else if ($responsive < 768) {
+        } else if ($responsive < 750) {
             if ($count.length >= 2) {
                 $(producto).slick({
                     arrows: false,
@@ -816,8 +782,7 @@ var producto = {
             producto.compraFichaProducto();
             producto.productoSticky();
             producto.miniatura();
-            producto.elementosFormato();
-            producto.formatoPrecioFichaProductoReplace(".skuBestPrice");
+            // producto.formatoPrecioFichaProductoReplace(".skuBestPrice");
             // producto.selectSkuOnClick();
             producto.features();
             setTimeout(producto.userReview, 3000);
@@ -851,6 +816,7 @@ var producto = {
                     $codDisplay.text($skuRef.text());
                     // producto.mainImgCarousel();
                     producto.noStock();
+                    producto.formatoPrecioFichaProductoReplace(".skuBestPrice");
                 }, 800);
             });
         });
@@ -1118,15 +1084,17 @@ var producto = {
         }
     },
     noStock: function () {
-        var a = $(".buy-button.buy-button-ref"),
-            b = $(".product__shop-container"),
-            c = $(".product__available-text");
-        if (a.css('display') == 'none') {
-            b.fadeOut(500);
-            c.text("No disponible");
+        var $a = $(".buy-button.buy-button-ref"),
+            $b = $(".product__shop-container"),
+            $c = $(".product__available-text");
+        if ($a.css('display') == 'none') {
+            $b.fadeOut(500);
+            $c.text("No disponible");
         } else {
-            b.fadeIn(500);
-            c.text("En Stock");
+            if($responsive > 425){
+                $b.fadeIn(500);
+            }
+            $c.text("En Stock");
         }
     },
     carousel: function (el) {
@@ -1367,52 +1335,23 @@ var producto = {
             }
         });
     },
-    formatoPrecioFichaProducto: function (seletor) {
-
-        $(seletor).each(function () {
-
-            var novoConteudoPreco = $(this).text();
-
-            if (novoConteudoPreco.indexOf(',') > -1) {
-
-                var padrao = /([$\s\d.]*)([,\d]+)/gm;
-
-                novoConteudoPreco = novoConteudoPreco.replace(padrao, '$1').replace(',', '');
-
-                $(this).html(novoConteudoPreco);
-
-            }
-
-        });
-
-    },
     formatoPrecioFichaProductoReplace: function (seletor) {
 
         $(seletor).each(function () {
 
             var novoConteudoPreco = $(this).text();
 
-            if (novoConteudoPreco.indexOf(',') > -1) {
+            if (novoConteudoPreco.indexOf(',00') > -1) {
 
                 var padrao = /([$\s\d.]*)([,\d]+)/gm;
 
                 novoConteudoPreco = novoConteudoPreco.replace(".", "-").replace(",", ".").replace("-", ",");
+                // novoConteudoPreco = novoConteudoPreco.replace(".", "-").replace(",", ".").replace("-", ",");
 
                 $(this).html(novoConteudoPreco);
 
             }
 
-        });
-
-    },
-    elementosFormato: function () {
-
-        var $ajaxStopElems = '.skuBestPrice, .price-best-price, span.vtexsc-text, .bestPrice, .orders .db.mt0.mb2.f6.fw6 span,.orders .db.w-100.f6.fw5.mid-gray.tr.tl-l.f5-l span';
-
-        producto.formatoPrecioFichaProducto($ajaxStopElems);
-
-        $(document).ajaxStop(function () {
-            producto.formatoPrecioFichaProducto($ajaxStopElems);
         });
 
     }

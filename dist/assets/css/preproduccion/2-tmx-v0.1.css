@@ -3,8 +3,8 @@
 [Stylesheet - principal ]
 
 Projecto:  Tumi Mexico - 2018
-Version: 0.1
-Ultimo cambio:  17/03/2018 | 1:04 am
+Version: 1.0.2
+Ultimo cambio:  18/03/2018 | 14:19 pm
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -1529,12 +1529,16 @@ footer {
         padding-bottom: .8rem;
     }
     .footer__bottom {
+        padding: 0;
         width: 100%;
+        display: flex;
+        flex-flow: wrap;
     }
     .footer__logo {
         width: 30%;
     }
     .footer__copyrights {
+        padding-right: 2rem;
         width: 70%;
     }
     .footer__mobile {
@@ -1542,6 +1546,8 @@ footer {
         justify-content: center;
     }
     .footer__rrss {
+        padding: 1rem 0;
+        padding-left: 2rem;
         width: 30%;
     }
     .footer__socialmedia {
@@ -1555,6 +1561,15 @@ footer {
     }
     .footer__row.contact .footer__col:nth-child(1) {
         border: 0;
+    }
+    .footer__powerby {
+        background-color: var(--grisFuerteTumi);
+    }
+    .footer__powerby-content {
+        width: 50%;
+    }
+    .footer__tracer-btn {
+        padding: .8rem 0;
     }
 }
 
@@ -2117,8 +2132,9 @@ footer {
     .home .prateleira.n6colunas ul {
         flex-flow: nowrap;
     }
-    .prateleira .carousel-news {
+    .home .prateleira.n6colunas .carousel-news {
         margin-bottom: 0;
+        flex-flow: nowrap;
         justify-content: center;
         align-items: center;
     }
@@ -8980,6 +8996,9 @@ h4.group.Atributos-Tumi {
     }
     .categ__elements {
         display: flex;
+    }
+    .categ__options-bottom {
+        border-top: none;
     }
 }
 
