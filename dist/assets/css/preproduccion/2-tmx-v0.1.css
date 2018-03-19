@@ -3,8 +3,8 @@
 [Stylesheet - principal ]
 
 Projecto:  Tumi Mexico - 2018
-Version: 1.0.2
-Ultimo cambio:  18/03/2018 | 14:19 pm
+Version: 1.0.3
+Ultimo cambio:  19/03/2018 | 12:58 pm
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -2105,6 +2105,15 @@ footer {
     }
     .prateleira__container {
         padding-bottom: 1rem;
+    }
+    .static .prateleira.n6colunas .carousel-busca {
+        flex-flow: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .carousel-busca .slick-dots {
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -10408,6 +10417,25 @@ h4.group.Atributos-Tumi {
         padding-top: 2rem;
         width: 100%;
     }
+    .static__options-anchorLinks-content a {
+        padding: 0;
+    }
+    .static__options-anchorLinks-content {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-evenly;
+    }
+    .static__infoContent-container {
+        width: 95%;
+    }
+    .static__sideBarNavigation-container {
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+    .static__infoContent-content {
+        padding: 0 .8rem;
+        width: 100%;
+    }
 }
 
 /* medium */
@@ -10851,6 +10879,7 @@ h4.group.Atributos-Tumi {
         font-weight: bold;
         margin-top: 1.4rem;
         text-transform: uppercase;
+        text-align:center;
         letter-spacing: 2px;
     }
     .siteMap .static__infoContent-content {

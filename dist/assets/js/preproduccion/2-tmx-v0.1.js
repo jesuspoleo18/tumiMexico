@@ -3,7 +3,7 @@
 [js - principal ]
 
 Projecto:  Tumi México - 2018
-Version: 1.0.2
+Version: 1.0.3
 Ultimo cambio: 18/03/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
@@ -643,11 +643,11 @@ var confiGenerales = {
 
         } else { console.log("porcentaje desactivado"); }
 
-        producto.formatoPrecioFichaProductoReplace(".bestPrice,.vtexsc-text");
+        producto.formatoPrecioFichaProductoReplace(".bestPrice,.vtexsc-text,.skuBestPrice");
         porcentaje();
 
         $(document).ajaxStop(function () {
-            producto.formatoPrecioFichaProductoReplace(".bestPrice,.vtexsc-text");
+            producto.formatoPrecioFichaProductoReplace(".bestPrice,.vtexsc-text,.skuBestPrice");
             porcentaje();
         });
 
@@ -1091,7 +1091,7 @@ var producto = {
             $b.fadeOut(500);
             $c.text("No disponible");
         } else {
-            if($responsive > 425){
+            if($responsive > 440){
                 $b.fadeIn(500);
             }
             $c.text("En Stock");
@@ -1883,6 +1883,7 @@ var busca = {
     init: function init() {
         busca.fraseBusqueda();
         busca.resultadoBusqueda();
+        busca.carouselBusca(".carousel-busca");
     },
 
     fraseBusqueda: function () {
@@ -1950,6 +1951,55 @@ var busca = {
             // }
 
             // $resultText.html(decodeURIComponent(urlText));
+        }
+    },
+    carouselBusca: function(producto){
+
+        var $buscavazia = $(".static.buscavazia, .static.cuatro"),
+            $resultadoBusca = $(".resultado-busca");
+
+        if ($buscavazia.length) {
+            var $count = $(".static__recomendations .prateleira").find(".img");
+
+            $(".helperComplement").remove();
+            $(".static__recomendations .prateleira").children().addClass("carousel-busca");
+
+            if ($responsive > 770) {
+                if ($count.length > 6) {
+                    $(producto).slick({
+                        autoplay: true,
+                        autoplaySpeed: 2500,
+                        slide: 'li',
+                        slidesToScroll: 2,
+                        slidesToShow: 6,
+                        speed: 500,
+                        dots: true
+                    });
+                }
+            } else if ($responsive < 750) {
+                if ($count.length >= 2) {
+                    $(producto).slick({
+                        arrows: false,
+                        autoplay: true,
+                        autoplaySpeed: 2500,
+                        slide: 'li',
+                        slidesToScroll: 2,
+                        slidesToShow: 4,
+                        speed: 500,
+                        dots: true,
+                        responsive: [{
+                            breakpoint: 426,
+                            settings: {
+                                arrows: false,
+                                autoplay: true,
+                                slidesToShow: 2,
+                                slidesToScroll: 1,
+                                infinite: false
+                            }
+                        }]
+                    });
+                }
+            }
         }
     }
 };
@@ -2553,7 +2603,7 @@ var quickviewControl = {
                 x.find("input").change();
                 setTimeout(function(){
                     quickviewControl.noStock();
-                    quickviewControl.skuOnChange
+                    quickviewControl.skuOnChange();
                 }, 800);
             }
         }
@@ -2619,18 +2669,6 @@ var static = {
         $content.clone().appendTo($container);
         BarbaWidget.addClassNoBarba();
     },
-    // anchoring: function () {
-    //     var $root = $('html, body'),
-    //         $trigger = $('.static__options-anchorLinks-content a');
-
-    //     $($trigger).on("click", function (e) {
-    //         e.preventDefault();
-    //         $root.animate({
-    //             scrollTop: ($($.attr(this, 'href')).offset(100).top + 100)
-    //         }, 500);
-    //         return false;
-    //     });
-    // },
     anchoring: function () {
         // Select all links with hashes
         $('.static__options-anchorLinks-content a[href*="#"]')
@@ -2676,11 +2714,13 @@ var static = {
             }))
             .then(function () {
 
-                $(trigger).hcSticky({
-                    top: 80,
-                    bottomEnd: 0,
-                    responsive: true
-                });
+                if($responsive > 450){
+                    $(trigger).hcSticky({
+                        top: 80,
+                        bottomEnd: 0,
+                        responsive: true
+                    });
+                }
 
             }, function err(jqxhr, textStatus, errorThrown) {
                 // handle error

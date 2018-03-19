@@ -20,6 +20,8 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 * La línea gris sobre la categoría se ocultó. **14:16pm | 2018-03-18**
 * Modificación de la función "noStock" para discriminar por tamaño de pantalla y no se vieran dos botones de compra en la ficha de producto. **14:48pm | 2018-03-18**
 * Arreglo de las funciones que corregian los decimales y miles en la ficha de producto y el offcanvas minicart. **15:56pm | 2018-03-18**
+* Mediaquerie de paginas estaticas para version mobile. **15:56pm | 2018-03-18**
+* Modificacion del script que ejecuta el sidebar lateral en paginas estaticas para que solo funcione sobre dispositivos moviles. **15:56pm | 2018-03-18**
 
 ### Pending
 
