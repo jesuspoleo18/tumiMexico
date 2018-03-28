@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2018
 Version: 1.0.3
-Ultimo cambio: 18/03/2018
+Ultimo cambio: 27/03/2018 | 17:43pm
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -66,7 +66,7 @@ $(window).load(function () {
     login.init();
     $(".helperComplement").remove();
     producto.addMoreSku();
-    
+
     if ($producto.length) {
         producto.selectSkuOnLoad();
     }
@@ -110,7 +110,7 @@ var confiGenerales = {
         });
         console.log("confiGenerales.init()  ˙ω˙");
     },
-    offCanvasIos: function(){
+    offCanvasIos: function () {
         var $a = $(".navigation__left--mobile"),
             $b = $("#offCanvasLeft");
         if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
@@ -459,9 +459,9 @@ var confiGenerales = {
     newsletter: function () {
 
         var newsletter = {
-                mail: "",
-                nombre: ""
-            },
+            mail: "",
+            nombre: ""
+        },
             datos = {};
 
         datos.tm_email = $('#tm_email').val();
@@ -798,7 +798,7 @@ var producto = {
             colorProductoPop = colorProducto.split("dynamic "),
             templateColor = '<span class="specificaction__color"></span>';
 
-        if ($(".specificaction__color").length == 0){
+        if ($(".specificaction__color").length == 0) {
             $(".specification").append(templateColor);
         }
         $(".specificaction__color").text(colorProductoPop.pop());
@@ -961,15 +961,15 @@ var producto = {
     textoProducto: function () {
 
         var thisProducto = {
-                id: "",
-                descripcion: "",
-                ean: "",
-                caracteristica: "",
-                stock: "",
-                marca: "",
-                cantidad: "",
-                coleccion: ""
-            },
+            id: "",
+            descripcion: "",
+            ean: "",
+            caracteristica: "",
+            stock: "",
+            marca: "",
+            cantidad: "",
+            coleccion: ""
+        },
             $productDescription = $(".productDescription"),
             shadowTemplate = '<div class="dark-overlay producto"></div>',
             templateEan = '<div class="style__ean">Style:<span class="ean"></span></div>';
@@ -1023,7 +1023,7 @@ var producto = {
                 // wrapping all dynamic classes in $skuSelector
                 $skuSelector.wrap('<div class="dynamic"></div>');
                 var $dynamic = $(".dynamic");
-                $dynamic.each(function(){
+                $dynamic.each(function () {
                     var inputAttr = $(this).find("input").val();
                     $(this).addClass(inputAttr);
                 });
@@ -1071,13 +1071,13 @@ var producto = {
         }
 
     },
-    addMoreSku: function(){
+    addMoreSku: function () {
         var $dynamic = $(".dynamic");
         if ($dynamic.length > 6) {
             var templateMore = '<span class="producto__see-more">More</span>',
                 $targetMore = $(".group_0");
             $targetMore.parent().prepend(templateMore);
-            $(".producto__see-more").on("click", function(){
+            $(".producto__see-more").on("click", function () {
                 $(this).fadeOut(500);
                 $(this).next().addClass("more");
             });
@@ -1091,7 +1091,7 @@ var producto = {
             $b.fadeOut(500);
             $c.text("No disponible");
         } else {
-            if($responsive > 440){
+            if ($responsive > 440) {
                 $b.fadeIn(500);
             }
             $c.text("En Stock");
@@ -1411,10 +1411,10 @@ var categDepto = {
         var $breadCrumb = $(".bread-crumb ul li:eq(0)");
         $breadCrumb.html("<a href='/'>Home</a>");
     },
-    carouselPratError: function(){
+    carouselPratError: function () {
         var $prat = $(".prateleira__container");
-        
-        $prat.each(function(){
+
+        $prat.each(function () {
             $(this).on("mouseenter", function () {
                 var $accepted = $(this).find(".slick-list.draggable");
                 if ($accepted.length) {
@@ -1524,9 +1524,9 @@ var categDepto = {
                                                     var $thisDragable = $(this),
                                                         $dragableImg = $thisDragable.find("img"),
                                                         $toRemove = $thisDragable.find("img:gt(3)");
-                                                        $dragableImg.on("click", function(){
-                                                            window.location.href = imgHref;
-                                                        });
+                                                    $dragableImg.on("click", function () {
+                                                        window.location.href = imgHref;
+                                                    });
                                                     if ($dragableImg.length > 3) {
                                                         $thisDragable.addClass("error");
                                                         $toRemove.remove();
@@ -1618,8 +1618,8 @@ var categDepto = {
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-                return $.getScript(files);
-            }))
+            return $.getScript(files);
+        }))
             .then(function () {
 
                 $(trigger).hcSticky({
@@ -1638,8 +1638,8 @@ var categDepto = {
         var files = ["/arquivos/QD_infinityScroll.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-                return $.getScript(files);
-            }))
+            return $.getScript(files);
+        }))
             .then(function () {
 
                 console.log("cargo el infinity");
@@ -1826,25 +1826,26 @@ var categDepto = {
                             // console.log(data);
                             var arr = data[0].items,
                                 dataLink = data[0].link,
+                                dataLinkSplit = '/' + dataLink.split("/")[3] + '/p',
                                 $skuVariantImg = $this.find(".prateleira__info .prateleira__skuVariant-img"),
                                 $fadeEl = $this.find(".prateleira__skuVariant-container,.product-insertsku.must-login"),
                                 $lastImg = [];
 
                             $.each(arr, function (i, val) {
                                 // console.log(val);
-                                var arrImg = val.images,
+                                var arrImg = val.images[0],
                                     arrSku = val.itemId,
                                     a = arrImg.slice(-1)[0].imageTag,
                                     b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
-                                    c = '<a href= "' + dataLink + '?idsku=' + arrSku + '">' + b + '</a>';
+                                    c = '<a href= "' + dataLinkSplit + '?idsku=' + arrSku + '">' + b + '</a>';
                                 // attrSku = dataLink + '?idsku=' + arrSku;
 
                                 $(c).appendTo($skuVariantImg);
-                                if ($this.find(".prateleira__skuVariant-container .insert-sku-checklist li").length > 3){
+                                if ($this.find(".prateleira__skuVariant-container .insert-sku-checklist li").length > 3) {
                                     var $skuMoreParent = $this.find(".prateleira__skuVariant-container .insert-sku-checklist"),
-                                        $skuMoreTemplate =  '<span class="prateleira__sku-more"></span>';
+                                        $skuMoreTemplate = '<span class="prateleira__sku-more"></span>';
                                     $skuMoreParent.addClass("more");
-                                    if ($this.find(".prateleira__skuVariant-container .prateleira__sku-more").length == 0){
+                                    if ($this.find(".prateleira__skuVariant-container .prateleira__sku-more").length == 0) {
                                         $skuMoreParent.append($skuMoreTemplate);
                                         $this.find(".prateleira__skuVariant-container .prateleira__sku-more").text($this.find(".prateleira__skuVariant-container .insert-sku-checklist li").length);
                                     }
@@ -1953,7 +1954,7 @@ var busca = {
             // $resultText.html(decodeURIComponent(urlText));
         }
     },
-    carouselBusca: function(producto){
+    carouselBusca: function (producto) {
 
         var $buscavazia = $(".static.buscavazia, .static.cuatro"),
             $resultadoBusca = $(".resultado-busca");
@@ -2594,14 +2595,14 @@ var quickviewControl = {
     },
     selectSkuOnLoad: function () {
 
-        if($("body.quickview").length){
+        if ($("body.quickview").length) {
             var a = $(".group_0"),
                 x = $(".dynamic:eq(0)"),
                 b = a.find("input:checked");
             if (b.length == 0) {
                 x.find("input").attr("checked", "checked");
                 x.find("input").change();
-                setTimeout(function(){
+                setTimeout(function () {
                     quickviewControl.noStock();
                     quickviewControl.skuOnChange();
                 }, 800);
@@ -2710,11 +2711,11 @@ var static = {
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-                return $.getScript(files);
-            }))
+            return $.getScript(files);
+        }))
             .then(function () {
 
-                if($responsive > 450){
+                if ($responsive > 450) {
                     $(trigger).hcSticky({
                         top: 80,
                         bottomEnd: 0,
