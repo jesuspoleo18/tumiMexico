@@ -3,8 +3,8 @@
 [Stylesheet - principal ]
 
 Projecto:  Tumi Mexico - 2018
-Version: 1.0.3
-Ultimo cambio:  19/03/2018 | 12:58 pm
+Version: 1.0.4
+Ultimo cambio:  28/03/2018 | 20:20 pm
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -21,13 +21,16 @@ Gris Strong: #5C5A5A
 Negro tumi: #2E2A25
 Negro medium: #555
 Negro lighter: #444
+Negro bold:#222222
 
 ----------------------
 
 [Tipografia ]
 
-font-family: 'Proxima Nova';
-font-family: 'Proxima Nova bold';
+font-family: 'Proxima Nova Light';
+font-family: 'Proxima Nova Regular';
+font-family: 'Proxima Nova Medium'
+font-family: 'Proxima Nova Bold';
 font-family: 'icon_cart';
 font-family: 'tumi-icon-ft';
 
@@ -157,6 +160,7 @@ f25.Mediaquerie mapa del sitio
 ============================= */
 
 :root {
+    /* colores */
     --rojoTumi: #b92335;
     --grisTumi: #DDDDDD;
     --grisLightTumi: #ebebeb;
@@ -165,12 +169,19 @@ f25.Mediaquerie mapa del sitio
     --grisStrong: #5C5A5A;
     --negroTumi: #2E2A25;
     --negroMedium: #555;
+    --negroBold: #222222;
     --negroTumiLighter: #444;
     --bgTopbarCheckout: #555555;
+    /* fuentes */
     --tumiIcon: 'tumi-icon-ft';
     --proximaNova: 'Proxima Nova';
     --proximaNovaBold: 'Proxima Nova bold';
     --proximaNovaTh: 'Proxima Nova Th';
+    --tumiFontLight: 'Proxima Nova Light';
+    --tumiFontRegular: 'Proxima Nova Regular';
+    --tumiFontMedium: 'Proxima Nova Medium';
+    --tumiFontBold: 'Proxima Nova Bold';
+    /* efectos */
     --borderShadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
     --textShadow: 0.6px 0 0 currentColor;
     --offsetShadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.08);
@@ -195,6 +206,34 @@ f25.Mediaquerie mapa del sitio
     font-family: 'Proxima Nova bold';
     font-weight: bold;
     src: url('/arquivos/ProximaNova-Bold.css');
+}
+
+@font-face {
+    font-family: 'Proxima Nova Light';
+    src: url("/arquivos/ProximaNovaLight.css") format("woff");
+    /* font-weight: lighter; */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proxima Nova Regular';
+    src: url("/arquivos/ProximaNovaRegular.css") format("woff");
+    /* font-weight: normal; */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proxima Nova Medium';
+    src: url("/arquivos/ProximaNovaMedium.css") format("woff");
+    /* font-weight: ; */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proxima Nova Bold';
+    src: url("/arquivos/ProximaNovaBold.css") format("woff");
+    /* font-weight: normal; */
+    font-style: normal;
 }
 
 @font-face {
@@ -279,6 +318,7 @@ mark,
 audio,
 video {
     font-size: 100%;
+    font-family: var(--tumiFontRegular);
     margin: 0;
     padding: 0;
     vertical-align: baseline;
@@ -338,7 +378,8 @@ a {
     margin: 0;
     padding: 0;
     text-decoration: none;
-    color: #2e2a25;
+    /*     color: #2e2a25; */
+    color: #222;
     outline: 0;
     background: transparent;
 }
@@ -415,7 +456,7 @@ p,
 strong,
 a,
 .busca [type=text] {
-    font-family: 'Proxima Nova';
+    font-family: var(--tumiFontRegular);
 }
 
 .secret-lead {
@@ -534,9 +575,10 @@ img {
 }
 
 .top-bar__text a {
-    font-size: .8rem;
-    padding: .5rem 0;
     color: white;
+    font-size: .75rem;
+    padding: .4rem 0;
+    letter-spacing: .025em;
 }
 
 .header__elements {
@@ -556,14 +598,15 @@ img {
 }
 
 .header-left__content a {
-    font-size: .73rem;
-    font-weight: bold;
-    letter-spacing: 0.8px;
+    color: #222;
+    font-family: var(--tumiFontMedium);
+    font-size: .688rem;
+    letter-spacing: .025em;
     padding: .8rem 1rem;
 }
 
 .header__center {
-    padding-top: 1rem;
+    padding-top: 1.3rem;
 }
 
 .header-center__content {
@@ -638,7 +681,7 @@ nav {
     display: flex;
     width: 100%;
     height: 48px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
     background-color: white;
     align-items: flex-end;
     justify-content: space-between;
@@ -700,16 +743,15 @@ nav {
 }
 
 .navigation__menu a {
-    font-family: 'Proxima Nova';
+    font-family: var(--tumiFontBold);
     font-size: .72rem;
-    font-weight: bolder;
     height: 100%;
     padding: 1rem 0;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    text-shadow: var(--textShadow);
-    letter-spacing: 1.5px;
+    /*     text-shadow: var(--textShadow); */
+    letter-spacing: .04em;
     flex: 1;
 }
 
@@ -926,7 +968,14 @@ footer {
     display: flex;
     width: 100%;
     padding: 1.5rem 3rem;
-    justify-content: space-evenly;
+    /*     justify-content: space-evenly; */
+}
+
+.footer__col-1,
+.footer__col-2,
+.footer__col-3 {
+    width: 33%;
+    flex: auto;
 }
 
 .footer__col-2 {
@@ -935,10 +984,9 @@ footer {
 
 .footer__title,
 .footer__title a {
-    color: var(--negroTumiLighter);
-    font-family: var(--proximaNovaBold);
-    font-size: .88rem;
-    font-weight: bold;
+    color: #222;
+    font-family: var(--tumiFontBold);
+    font-size: .81rem;
     margin-bottom: .2rem;
     text-transform: uppercase;
     width: 100%;
@@ -953,9 +1001,12 @@ footer {
 }
 
 .footer__elements a {
-    font-size: .88rem;
-    line-height: 28px;
-    text-shadow: 0.1px 0 0 currentColor;
+    font-size: .81rem;
+    font-family: var(--tumiFontRegular);
+    margin: .75rem 0;
+    letter-spacing: .025em;
+    line-height: 1.333333333;
+    /*     text-shadow: 0.1px 0 0 currentColor; */
 }
 
 .footer__nearlocation {
@@ -1041,6 +1092,10 @@ footer {
     max-width: 220px;
     position: relative;
     width: 100%;
+}
+
+.footer__forms a {
+    line-height: 1.75rem;
 }
 
 .footer__forms .fa {
@@ -1582,6 +1637,20 @@ footer {
     .footer__nearlocation {
         width: 48.7%;
     }
+    .footer__navigation {
+        border-right: none;
+        border-right: 1px solid white;
+        display: flex;
+        width: 100%;
+        padding: 1.5rem 0rem 1.5rem 3rem;
+        justify-content: space-evenly;
+    }
+    .footer__col-1,
+    .footer__col-2,
+    .footer__col-3 {
+        width: 33%;
+        flex: auto;
+    }
 }
 
 /*
@@ -1634,6 +1703,7 @@ footer {
     width: 32.3%;
     margin: 0 .24rem;
     margin-bottom: .48rem;
+    /*     height:493px; */
     padding: 0 1rem;
     padding-top: 0;
     position: relative;
@@ -1810,6 +1880,35 @@ footer {
     /*     border:1px solid gray; */
     width: 100%;
     justify-content: center;
+    flex-flow: wrap;
+}
+
+.producto__colection {
+    /*     display:none; */
+    font-size: .68rem;
+    color: #777;
+    letter-spacing: .1em;
+    line-height: .81rem;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: .8rem;
+    margin-bottom: .2rem;
+    width: 100%;
+}
+
+.categoria .producto__colection,
+.depto .producto__colection,
+.busca .producto__colection,
+.resultado-busca .producto__colection,
+.brand .producto__colection {
+    font-weight: 400;
+    font-size: 10px;
+    color: #777;
+    padding-top: 3px;
+    letter-spacing: .06em;
+    margin: 0;
+    margin-top: .2rem;
+    margin-bottom: .8rem;
 }
 
 .prateleira__outstock {
@@ -1827,17 +1926,20 @@ footer {
 }
 
 .producto__nombre-content {
-    font-size: 12px;
+    color: #222;
+    font-size: .75rem;
+    font-family: var(--tumiFontRegular);
     overflow: hidden;
     text-align: center;
     text-transform: capitalize;
-    text-shadow: 0.1px 0 0 currentColor;
+    /*     text-shadow: 0.1px 0 0 currentColor; */
     letter-spacing: .04em;
-    margin-top: .5rem;
-    width: 200px;
+    line-height: 14px;
+    /*     margin-top: .5rem; */
+    /*     width: 200px;
     white-space: nowrap;
     text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis; */
 }
 
 .prateleira__price-content:hover,
@@ -2484,12 +2586,11 @@ footer {
 ============================= */
 
 .product__breadcrumb {
-    font-family: 'Proxima Nova';
     /*     border:var(--borderNegro); */
     font-size: .8rem;
     width: 100%;
     margin-top: .5rem;
-    margin-bottom: .5rem;
+    margin-bottom: .8rem;
 }
 
 .bread-crumb {
@@ -2504,12 +2605,13 @@ footer {
 
 .bread-crumb ul li,
 .bread-crumb ul li a {
-    color: #777;
+    color: #666;
     display: block;
+    font-family: var(--tumiFontRegular);
     font-size: .75rem;
-    font-weight: bold;
     position: relative;
     padding: 0 .3rem;
+    letter-spacing: .025em;
 }
 
 .bread-crumb ul li {
@@ -3180,13 +3282,13 @@ body.mochilas .Hide.Atributos.HideColeccion.active,
 .navigation-tabs h3:after,
 .navigation-tabs h5.even:after,
 .navigation-tabs h5:after {
-    content: "\f067";
-    color: #777;
+    content: "\e819";
+    color: #555;
     display: block;
-    font-family: 'FontAwesome';
-    font-size: .7rem;
-    font-weight: lighter;
-    top: 33%;
+    font-family: var(--tumiIcon);
+    font-size: .5rem;
+    top: 20%;
+    transform: translateY(50%);
     right: initial;
     left: 0;
     position: absolute;
@@ -3445,8 +3547,8 @@ ul.even {
 }
 
 .resultado-busca-numero .value {
-    color: #999999;
-    font-weight: bold;
+    font-size: 12px;
+    color: #999;
 }
 
 .resultado-busca-numero .value:after {
@@ -3512,15 +3614,15 @@ ul.even {
     border: 1px solid #ccc;
     color: #666;
     font-size: .75rem;
-    font-family: 'Proxima Nova';
-    font-weight: bold;
+    font-family: var(--tumiFontBold);
+    /*     font-weight: bold; */
     float: right;
     height: 100%;
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
     letter-spacing: 0.6px;
-    text-shadow: 0.3px 0 0 currentColor;
+    /*     text-shadow: 0.3px 0 0 currentColor; */
     width: 100%;
 }
 
@@ -3940,16 +4042,17 @@ ul.pages li.page-number.pgCurrent:after {
 .quickview__collection,
 .quickview__style {
     color: #777;
-    font-family: 'Proxima Nova Bold';
-    font-size: .8rem;
+    font-family: var(--tumiFontBold);
+    font-size: .75rem;
     text-transform: uppercase;
 }
 
 .quickview__style {
     /*     border:1px solid blue; */
     margin-left: 1rem;
-    width: 80%;
+    width: 60%;
     display: flex;
+    justify-content: flex-end;
 }
 
 .quickview__style .skuReference {
@@ -3959,10 +4062,9 @@ ul.pages li.page-number.pgCurrent:after {
 
 .quickview__toCollection,
 .quickview__productDetail a {
-    color: #2E2A25;
-    font-size: .8rem;
-    font-family: 'Proxima Nova';
-    font-weight: bold;
+    color: #222;
+    font-size: .75rem;
+    font-family: var(--tumiFontRegular);
     text-decoration: underline;
     padding: 0 1rem 0 .5rem;
 }
@@ -3993,7 +4095,7 @@ ul.pages li.page-number.pgCurrent:after {
     color: #777;
     display: block;
     font-family: 'Proxima Nova Bold';
-    font-size: .8rem;
+    font-size: .75rem;
     text-transform: uppercase;
     margin-top: .5rem;
 }
@@ -4190,6 +4292,12 @@ ul.pages li.page-number.pgCurrent:after {
     justify-content: center;
 }
 
+.slide__message-content * {
+    -webkit-transition: all .8s ease;
+    -o-transition: all .8s ease;
+    transition: all .8s ease;
+}
+
 .slide__img {
     width: 100%;
 }
@@ -4211,9 +4319,19 @@ ul.pages li.page-number.pgCurrent:after {
 
 .slide__message-CTA {
     border: 2px solid black;
-    font-weight: bold;
+    font-family: var(--tumiFontRegular);
+    /*     font-weight: bold; */
     margin-top: 1rem;
     padding: .8rem;
+    webkit-transition: all .8s ease;
+    -o-transition: all .8s ease;
+    transition: all .8s ease;
+}
+
+.slide__message-CTA:hover {
+    border: 2px solid var(--rojoTumi);
+    color: var(--rojoTumi);
+    text-decoration: none;
 }
 
 .slick-dots {
@@ -7381,18 +7499,18 @@ button#sendAccessKeyBtn {
 
 .product__container .product__content {
     display: flex;
-    /*     border: var(--borderAzul); */
+    /*     border:1px solid red; */
     width: 80%;
     flex-flow: wrap;
     justify-content: space-between;
 }
 
 .product__left-side {
-    width: 59%;
+    width: 56%;
 }
 
 .product__right-side {
-    width: 33.5%;
+    width: 35%;
 }
 
 .product__left-side-container,
@@ -7433,7 +7551,7 @@ button#sendAccessKeyBtn {
 }
 
 .product__name {
-    font-family: 'Proxima Nova';
+    font-family: var(--tumiFontRegular);
     font-size: 1.5rem;
     line-height: 28px;
 }
@@ -7445,10 +7563,11 @@ button#sendAccessKeyBtn {
 
 .product__collection,
 .product__style {
-    color: #2E2A25;
-    font-family: 'Proxima Nova Bold';
-    font-size: .8rem;
+    color: var(--negroBold);
+    font-family: var(--tumiFontBold);
+    font-size: .75rem;
     text-transform: uppercase;
+    letter-spacing: .04em;
 }
 
 .product__toCollection,
@@ -7502,9 +7621,8 @@ button#sendAccessKeyBtn {
 }
 
 .product__available-text {
-    font-family: var(--proximaNovaBold);
+    font-family: var(--tumiFontBold);
     font-size: .75rem;
-    font-weight: bold;
     text-transform: uppercase;
     color: #555;
 }
@@ -7600,9 +7718,8 @@ button#sendAccessKeyBtn {
 }
 
 .airlineGuide__content .main {
-    color: #555;
-    font-family: 'Proxima Nova';
-    font-weight: bold;
+    color: var(--negroBold);
+    font-family: var(--tumiFontRegular);
     font-size: .9rem;
     text-align: center;
     width: 100%;
@@ -7616,10 +7733,12 @@ button#sendAccessKeyBtn {
 }
 
 .airlineGuide__content a {
-    font-size: .8rem;
+    font-family: var(--tumiFontRegular);
+    font-size: .75rem;
     text-align: center;
     margin-top: .8rem;
     text-decoration: underline;
+    text-transform: capitalize;
     width: 100%;
 }
 
@@ -7653,11 +7772,10 @@ button#sendAccessKeyBtn {
 .specification {
     /*         border:1px solid blue; */
     color: var(--negroMedium);
-    font-family: var(--proximaNovaBold);
+    font-family: var(--tumiFontBold);
     font-size: .75rem;
-    font-weight: bold;
     text-transform: uppercase;
-    text-shadow: 0.5px 0 0 currentColor;
+    /*     text-shadow: 0.5px 0 0 currentColor; */
     position: absolute;
     top: -25px;
     left: 0;
@@ -7933,7 +8051,7 @@ button#sendAccessKeyBtn {
 .pull-left.box-qtd:before {
     content: "cant.:";
     color: #555;
-    font-family: 'Proxima Nova bold';
+    font-family: var(--tumiFontBold);
     font-size: .75rem;
     text-transform: uppercase;
     top: -70%;
@@ -7987,11 +8105,12 @@ button#sendAccessKeyBtn {
 .buy-button.buy-button-ref:before {
     background-color: var(--rojoTumi);
     content: 'A\00F1 adir al Carrito';
-    font-family: var(--proximaNovaBold);
-    font-size: .9rem;
+    font-family: var(--tumiFontBold);
+    font-size: .85rem;
     height: 100%;
-    letter-spacing: 1px;
+    letter-spacing: .085rem;
     position: absolute;
+    text-transform: capitalize;
     visibility: visible;
     width: 100%;
     /*     text-transform: uppercase; */
@@ -8016,12 +8135,13 @@ button#sendAccessKeyBtn {
 }
 
 .product__accordion-trigger {
+    border-bottom: 2px solid #ccc;
     cursor: pointer;
-    font-family: 'Proxima Nova';
-    font-size: .9rem;
+    font-family: var(--tumiFontRegular);
+    font-size: .93rem;
     width: 100%;
     padding: .6rem 0;
-    border-bottom: 2px solid #ccc;
+    letter-spacing: .04rem;
 }
 
 .product__accordion-trigger.rate {
@@ -8067,15 +8187,16 @@ button#sendAccessKeyBtn {
 
 .productDescription {
     color: #777;
-    font-family: 'Proxima Nova';
+    font-family: var(--tumiFontRegular);
     font-size: .9rem;
     line-height: 22px;
+    letter-spacing: .02em;
     padding-left: 1.5rem;
 }
 
 .style__ean {
     color: var(--negroMedium);
-    font-family: var(--proximaNovaBold);
+    font-family: var(--tumiFontBold);
     font-weight: bold;
     font-size: .8rem;
     margin-bottom: .5rem;
@@ -8129,8 +8250,6 @@ button#sendAccessKeyBtn {
     margin: 0 0;
     width: 20%;
 }
-
-.prateleira ul li {}
 
 .producto__help {
     padding-bottom: 1rem;
@@ -8207,9 +8326,10 @@ h4.group.Atributos-Tumi {
 }
 
 #caracteristicas table th {
-    font-family: var(--proximaNovaBold);
-    text-transform: uppercase;
     color: var(--negroMedium);
+    font-family: var(--tumiFontBold);
+    text-transform: uppercase;
+    letter-spacing: .025em;
 }
 
 #caracteristicas table td:first-letter,
@@ -8243,7 +8363,9 @@ h4.group.Atributos-Tumi {
 #caracteristicas table tr.Caracteristicas-Interiores td,
 #caracteristicas table tr.Caracteristicas-Exteriores th,
 #caracteristicas table tr.Caracteristicas-Interiores th {
+    font-size: .83rem;
     line-height: 20px;
+    letter-spacing: .02em;
     min-width: 100% !important;
     max-width: 100% !important;
     width: 100%;
@@ -8727,7 +8849,7 @@ h4.group.Atributos-Tumi {
 
 @media only screen and (min-width: 90.063em) {
     .product__container .product__content {
-        width: 57%;
+        width: 70%;
     }
     .product__shop-content {
         height: 50px;
@@ -10879,7 +11001,7 @@ h4.group.Atributos-Tumi {
         font-weight: bold;
         margin-top: 1.4rem;
         text-transform: uppercase;
-        text-align:center;
+        text-align: center;
         letter-spacing: 2px;
     }
     .siteMap .static__infoContent-content {

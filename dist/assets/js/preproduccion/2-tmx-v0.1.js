@@ -3,8 +3,8 @@
 [js - principal ]
 
 Projecto:  Tumi México - 2018
-Version: 1.0.3
-Ultimo cambio: 27/03/2018 | 17:43pm
+Version: 1.0.4
+Ultimo cambio: 28/03/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -40,8 +40,9 @@ var $body = $("body"),
     $categDeptoBuscaResultadoBusca = $("body.categoria, body.depto, body.busca, body.resultado-busca, body.brand"),
     $producto = $(".producto"),
     $responsive = $(window).width(),
+    store = 'https://tumimx.vtexcommercestable.com.br/',
+    tumiSearchApi = store +'api/catalog_system/pub/products/search/',
     clog = console.log;
-
 /* 
 
 [b0.Init]
@@ -60,6 +61,7 @@ $(function () {
     busca.init();
     quickviewControl.init();
     BarbaWidget.init();
+    categDepto.colectionOnProducts();
 });
 
 $(window).load(function () {
@@ -87,23 +89,23 @@ var confiGenerales = {
 
     init: function () {
 
-        // confiGenerales.mainLazyLoad();
-        // confiGenerales.FormatoDecimales();
-        confiGenerales.stickySearch();
-        confiGenerales.infoTab();
-        confiGenerales.triggerActions();
-        confiGenerales.elementosFormato();
-        // confiGenerales.accordion('.footer__title', '.footer__elements');
-        confiGenerales.backTop();
-        // confiGenerales.stickyNav();
-        confiGenerales.megaMenu('header,.megamenu-buscar.navigation__searchTrigger, main, footer, .navigation__right');
-        confiGenerales.compraAsyncVitrina();
-        confiGenerales.masterDataTrigger();
-        confiGenerales.sliderStatic();
-        //confiGenerales.modalStatic();
-        confiGenerales.replaceHref();
-        confiGenerales.bodyPaint();
-        confiGenerales.offCanvasIos();
+        // this.mainLazyLoad();
+        // this.FormatoDecimales();
+        this.stickySearch();
+        this.infoTab();
+        this.triggerActions();
+        this.elementosFormato();
+        // this.accordion('.footer__title', '.footer__elements');
+        this.backTop();
+        // this.stickyNav();
+        this.megaMenu('header,.megamenu-buscar.navigation__searchTrigger, main, footer, .navigation__right');
+        this.compraAsyncVitrina();
+        this.masterDataTrigger();
+        this.sliderStatic();
+        //this.modalStatic();
+        this.replaceHref();
+        this.bodyPaint();
+        this.offCanvasIos();
         $(window).on('orderFormUpdated.vtex', function (evt, orderForm) {
             // console.log("actualizó");
             confiGenerales.disableEmptyCart();
@@ -682,7 +684,7 @@ var home = {
     init: function init() {
 
         if ($home.length) {
-            home.carousel('.home-slide', '.carousel-news');
+            this.carousel('.home-slide', '.carousel-news');
             console.log("home.init()  ˙ω˙");
         }
     },
@@ -773,19 +775,19 @@ var producto = {
 
         if ($producto.length) {
 
-            // producto.mainImgCarousel();
-            producto.traducciones();
-            producto.qtdControl();
-            producto.textoProducto();
-            producto.carousel('.carousel-recomendados,.carousel-vistosReciente');
-            producto.accordion('.product__accordion-trigger', '.product__accordion-content');
-            producto.compraFichaProducto();
-            producto.productoSticky();
-            producto.miniatura();
-            // producto.formatoPrecioFichaProductoReplace(".skuBestPrice");
-            // producto.selectSkuOnClick();
-            producto.features();
-            setTimeout(producto.userReview, 3000);
+            // this.mainImgCarousel();
+            this.traducciones();
+            this.qtdControl();
+            this.textoProducto();
+            this.carousel('.carousel-recomendados,.carousel-vistosReciente');
+            this.accordion('.product__accordion-trigger', '.product__accordion-content');
+            this.compraFichaProducto();
+            this.productoSticky();
+            this.miniatura();
+            // this.formatoPrecioFichaProductoReplace(".skuBestPrice");
+            // this.selectSkuOnClick();
+            this.features();
+            setTimeout(this.userReview, 3000);
             console.log("producto.init()  ˙ω˙");
         }
 
@@ -879,7 +881,7 @@ var producto = {
             });
 
             $.ajax({
-                url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + mainProductId + "",
+                url: tumiSearchApi +'?fq=productId:' + mainProductId,
                 dataType: 'json',
                 type: 'GET',
                 crossDomain: true,
@@ -988,7 +990,7 @@ var producto = {
         });
 
         $.ajax({
-            url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + thisProducto.id + "",
+            url: tumiSearchApi +'?fq=productId:' + thisProducto.id,
             dataType: 'json',
             type: 'GET',
             crossDomain: true,
@@ -1372,13 +1374,13 @@ var categDepto = {
 
         if ($categDepto.length) {
 
-            categDepto.traducciones();
-            categDepto.infinityScroll();
-            categDepto.categDeptoAccordion('.search-multiple-navigator h4,.search-multiple-navigator h5', '.search-multiple-navigator h3');
-            categDepto.categOptions();
-            categDepto.eventHasChange();
-            categDepto.changeControls();
-            categDepto.filterProducts();
+            this.traducciones();
+            this.infinityScroll();
+            this.categDeptoAccordion('.search-multiple-navigator h4,.search-multiple-navigator h5', '.search-multiple-navigator h3');
+            this.categOptions();
+            this.eventHasChange();
+            this.changeControls();
+            this.filterProducts();
             //setInterval(categDepto.traducciones,800);
             // setInterval(confiGenerales.mainLazyLoad, 800);
             console.log("categDepto.init()  ˙ω˙");
@@ -1459,7 +1461,7 @@ var categDepto = {
                             // console.log(_thisId);
 
                             $.ajax({
-                                url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + catalogProductId + "",
+                                url: tumiSearchApi + '?fq=productId:' + catalogProductId,
                                 dataType: 'json',
                                 type: 'GET',
                                 crossDomain: true,
@@ -1663,6 +1665,7 @@ var categDepto = {
                         callback: function () {
                             console.log("se cargaron más productos desktop");
                             // confiGenerales.replaceHref();
+                            categDepto.colectionOnProducts();
                             // confiGenerales.wishlistOnclick();
                             // confiGenerales.compraAsyncVitrina();
                             // categDepto.skuImgPrateleira();
@@ -1817,7 +1820,7 @@ var categDepto = {
                     var skuInputAttr = $skuInput.attr("rel");
                     // $inputParent.append($templateImg);
                     $.ajax({
-                        url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=skuId:" + skuInputAttr + "",
+                        url: tumiSearchApi +'?fq=skuId:' + skuInputAttr + "",
                         dataType: 'json',
                         type: 'GET',
                         crossDomain: true,
@@ -1833,12 +1836,13 @@ var categDepto = {
 
                             $.each(arr, function (i, val) {
                                 // console.log(val);
-                                var arrImg = val.images[0],
+                                var arrImg = val.images,
                                     arrSku = val.itemId,
                                     a = arrImg.slice(-1)[0].imageTag,
                                     b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
                                     c = '<a href= "' + dataLinkSplit + '?idsku=' + arrSku + '">' + b + '</a>';
                                 // attrSku = dataLink + '?idsku=' + arrSku;
+                                // console.log(data[0].items[0]);
 
                                 $(c).appendTo($skuVariantImg);
                                 if ($this.find(".prateleira__skuVariant-container .insert-sku-checklist li").length > 3) {
@@ -1871,6 +1875,38 @@ var categDepto = {
                 categDepto.changeControls();
             }, 1200);
         });
+    },
+    colectionOnProducts: function(){
+        var catalogProductId,
+            $prat = $(".prateleira__container");
+        
+        $prat.each(function () {
+            var _thisPrat = $(this),
+                _thisParent = _thisPrat.parent().find(".prateleira__price-container"),
+                _thisProductName = _thisPrat.find(".producto__nombre-content");
+            _thisParent.each(function () {
+                var _thisId = $(this).find(".wrapper-buy-button-asynchronous").attr("class").split("bba")[1];
+                catalogProductId = _thisId;
+                $.ajax({
+                    url: tumiSearchApi + '?fq=productId:' + catalogProductId,
+                    dataType: 'json',
+                    type: 'GET',
+                    crossDomain: true,
+                    success: function (data) {
+                        var a = data[0].Colección,
+                            colectionTemplate = '<div class="producto__colection"></div>';
+                        
+                        if ($categDeptoBuscaResultadoBusca.length == 0){
+                            _thisProductName.before(colectionTemplate);
+                            _thisPrat.find('.producto__colection').text(a);
+                        }else{
+                            _thisProductName.after(colectionTemplate);
+                            _thisPrat.find('.producto__colection').text(a);
+                        }
+                    }
+                });
+            });
+        });
     }
 };
 
@@ -1882,9 +1918,9 @@ var categDepto = {
 
 var busca = {
     init: function init() {
-        busca.fraseBusqueda();
-        busca.resultadoBusqueda();
-        busca.carouselBusca(".carousel-busca");
+        this.fraseBusqueda();
+        this.resultadoBusqueda();
+        this.carouselBusca(".carousel-busca");
     },
 
     fraseBusqueda: function () {
@@ -2023,17 +2059,17 @@ var account = {
 
         if ($account.length) {
 
-            account.loadRegionComuna();
-            account.addresUpdate();
-            account.addresDeletePop();
-            account.addresDeleteClick();
-            account.showContentAccount();
-            setInterval(account.traducciones, 2000);
+            this.loadRegionComuna();
+            this.addresUpdate();
+            this.addresDeletePop();
+            this.addresDeleteClick();
+            this.showContentAccount();
+            setInterval(this.traducciones, 2000);
 
             $('#formAddressNew').submit(function (e) {
 
                 e.preventDefault();
-                account.createAddress();
+                this.createAddress();
             });
             console.log("controles generales");
         }
@@ -2395,7 +2431,7 @@ var account = {
 var quickviewControl = {
 
     init: function () {
-        quickviewControl.quickViewAsyncBuy();
+        this.quickViewAsyncBuy();
     },
     quickViewAsyncBuy: function () {
 
@@ -2657,9 +2693,9 @@ var quickviewControl = {
 var static = {
     init: function () {
         if ($static.length) {
-            static.sideBarUpdate();
-            static.anchoring();
-            static.asideSticky('.static__sideBarNavigation-container');
+            this.sideBarUpdate();
+            this.anchoring();
+            this.asideSticky('.static__sideBarNavigation-container');
             console.log("static.init()  ˙ω˙");
         }
     },
@@ -2826,7 +2862,7 @@ var login = {
     init: function () {
 
         if ($login.length) {
-            login.insertElements();
+            this.insertElements();
         }
 
     },
