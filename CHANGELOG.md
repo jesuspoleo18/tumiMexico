@@ -4,6 +4,22 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 
 ## [Unreleased](https://github.com/jesuspoleo18/tumiMexico/commits/master)
 
+## [1.0.3](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.4) - 2018-03-28
+
+### Added
+
+#### 2018-03-28
+
+* Creación de script que discrimina si estás en home on vista de catálogo para añadir la colección consultada por API según id de producto.
+
+### Changed
+
+* Modificación de tipografías generales del sitio.
+* Ajustes generales de css.
+* Ajuste de Css para ficha de producto según resolución 1536w.
+
+#### 2018-03-28
+
 ## [1.0.3](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.3) - 2018-03-18
 
 ### Added
