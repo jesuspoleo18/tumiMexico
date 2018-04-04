@@ -784,6 +784,7 @@ var producto = {
             this.compraFichaProducto();
             this.productoSticky();
             this.miniatura();
+            this.onLoadNoStock();
             // this.formatoPrecioFichaProductoReplace(".skuBestPrice");
             // this.selectSkuOnClick();
             this.features();
@@ -950,13 +951,9 @@ var producto = {
             };
 
         if ($btnComprarProduto.length) {
-
             if ($recebeQtyForm.length) {
-
                 $recebeQtyForm.prepend($templateQty);
-
             }
-
         }
 
     },
@@ -1097,6 +1094,12 @@ var producto = {
                 $b.fadeIn(500);
             }
             $c.text("En Stock");
+        }
+    },
+    onLoadNoStock:function(){
+        var windowHref = window.location.href;
+        if(windowHref.indexOf('idsku') > -1){
+            producto.noStock();
         }
     },
     carousel: function (el) {
@@ -1386,7 +1389,6 @@ var categDepto = {
             console.log("categDepto.init()  ˙ω˙");
 
         }
-
     },
     filterProducts: function () {
         $(document).on('change', '.multi-search-checkbox', function () {
@@ -1549,7 +1551,7 @@ var categDepto = {
     },
     categDeptoAccordion: function (trigger, secondTrigger) {
 
-        var $categDepto = $(".depto, .categoria, .resultado-busca");
+        var $categDepto = $(".depto, .categoria, .resultado-busca, .brand, .busca");
 
         if ($categDepto.length) {
 
@@ -1558,11 +1560,31 @@ var categDepto = {
                 $content = $('.navigation-tabs .search-single-navigator ul'),
                 $verFiltros = $content.find('.ver-filtros');
 
+            // another triggers
+            $(trigger).next().hide();
+            $(secondTrigger).next().hide();
+            $(secondTrigger).next().next().hide();
+
+            $(trigger).on("click", function () {
+                $(this).toggleClass("active").next().slideToggle("slow");
+                return false;
+            });
+            $(secondTrigger).on("click", function () {
+                $(this).toggleClass("active").nextAll("h4,.filtro-ativo").slideToggle("slow");
+                return false;
+            });
+            if ($verFiltros.length) {
+                $verFiltros.parent().prev().addClass('selected').next().slideDown();
+            }
+            // $otherMenuOpen.addClass("active").next().slideToggle("slow");
+
+            // colorin: add class to h4.attr
             $attrColor.each(function () {
                 if ($(this).text() == 'Grupo Color') {
                     $(this).parent().addClass('colorin');
                 }
             });
+            // colorin: on each this, wrap and construct divs
             $(".colorin input").each(function () {
                 var $thisAttr = $(this).attr('value'),
                     template = '<span class="colorValue' + " " + $thisAttr + '"></span>';
@@ -1570,17 +1592,12 @@ var categDepto = {
                 $(this).parent().wrap('<div class="contentColorValue"></div>');
                 $(this).parents(".contentColorValue").prepend(template);
             });
-
+            // colorin: define elements for colorin
             var $colorin = $(".colorin h5"),
                 $otherMenuOpen = $(".Atributos.Tumi.colorin h5");
 
-            $(trigger).next().hide();
-            $(secondTrigger).next().hide();
-            $(secondTrigger).next().next().hide();
-
-            $(trigger).on("click", function () {
-
-                $(this).toggleClass("active").next().slideToggle("slow");
+            // colorin: on click event add css if exist
+            $colorin.on("click", function () {
                 if ($colorin.length) {
                     console.log("true");
                     $(".categ__content .colorin div:eq(0), .categ__aside.mobile .colorin div:eq(0)").css({
@@ -1593,18 +1610,6 @@ var categDepto = {
                 }
                 return false;
             });
-
-            $(secondTrigger).on("click", function () {
-                $(this).toggleClass("active").nextAll("h4,.filtro-ativo").slideToggle("slow");
-                return false;
-            });
-
-            if ($verFiltros.length) {
-                $verFiltros.parent().prev().addClass('selected').next().slideDown();
-            }
-
-            // $otherMenuOpen.addClass("active").next().slideToggle("slow");
-
             if ($colorin.hasClass('active')) {
                 $(".categ__content .colorin div:eq(0), .categ__aside.mobile .colorin div:eq(0)").css({
                     "display": "flex",
@@ -1612,6 +1617,7 @@ var categDepto = {
                     "justify-content": "flex-start"
                 });
             }
+
         }
 
     },
@@ -2469,7 +2475,7 @@ var quickviewControl = {
                 console.log(product);
 
                 $.ajax({
-                    url: "https://tumimx.vtexcommercestable.com.br/api/catalog_system/pub/products/search/?fq=productId:" + thisProducto.id + "",
+                    url: tumiSearchApi+'/?fq=productId:'+ thisProducto.id,
                     dataType: 'json',
                     type: 'GET',
                     crossDomain: true,

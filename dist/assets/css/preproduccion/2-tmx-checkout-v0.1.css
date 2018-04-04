@@ -4,7 +4,7 @@
 
 Projecto:  TUMI MX - 2018
 Version: 0.1
-Ultimo cambio: 15/03/18
+Ultimo cambio: 02/04/18 | 18:42 pm
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -23,8 +23,10 @@ Negro tumi: #2E2A25
 
 [Tipografia ]
 
-font-family: 'Proxima Nova';
-font-family: 'Proxima Nova bold';
+font-family: 'Proxima Nova Light';
+font-family: 'Proxima Nova Regular';
+font-family: 'Proxima Nova Medium'
+font-family: 'Proxima Nova Bold';
 font-family: 'icon_cart';
 font-family: 'tumi-icon-ft';
 
@@ -86,6 +88,7 @@ d5.Mediaquerie perfil.
 ============================= */
 
 :root {
+    /* colores */
     --rojoTumi: #b92335;
     --grisTumi: #DDDDDD;
     --grisLightTumi: #ebebeb;
@@ -94,12 +97,19 @@ d5.Mediaquerie perfil.
     --grisStrong: #5C5A5A;
     --negroTumi: #2E2A25;
     --negroMedium: #555;
+    --negroBold: #222222;
     --negroTumiLighter: #444;
     --bgTopbarCheckout: #555555;
+    /* fuentes */
     --tumiIcon: 'tumi-icon-ft';
     --proximaNova: 'Proxima Nova';
     --proximaNovaBold: 'Proxima Nova bold';
     --proximaNovaTh: 'Proxima Nova Th';
+    --tumiFontLight: 'Proxima Nova Light';
+    --tumiFontRegular: 'Proxima Nova Regular';
+    --tumiFontMedium: 'Proxima Nova Medium';
+    --tumiFontBold: 'Proxima Nova Bold';
+    /* efectos */
     --borderShadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
     --textShadow: 0.6px 0 0 currentColor;
     --offsetShadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.08);
@@ -134,7 +144,7 @@ d5.Mediaquerie perfil.
 }
 
 body {
-    font-family: var(--proximaNova);
+    font-family: var(--tumiFontRegular);
 }
 
 p {
@@ -808,6 +818,12 @@ nav {
     color: white;
     font-weight: bold;
     letter-spacing: 0.8px;
+}
+
+.modal-header {
+    background: var(--negroTumi);
+    color: white;
+    font-family: var(--proximaNova);
 }
 
 /*
@@ -1562,12 +1578,26 @@ table.cart-items tbody tr td.item-remove i:hover:before {
 .btn-go-to-payment,
 .address-save,
 #payment-data-submit,
-#btn-client-pre-email {
+#btn-client-pre-email,
+.modal-footer .btn,
+.shipping-sla-button {
     background: var(--rojoTumi);
     box-shadow: none;
     border: 0;
     border-radius: 0;
     font-size: .8rem;
+}
+
+.shipping-sla-button {
+    font-family: var(--tumiFontLight);
+    background-color: var(--grisTumi) !important;
+    box-shadow: none !important;
+    text-transform: capitalize;
+}
+
+.modal-footer .btn {
+    color: white;
+    box-shadow: none;
 }
 
 #go-to-shipping:hover,
@@ -1576,7 +1606,8 @@ table.cart-items tbody tr td.item-remove i:hover:before {
 .btn-go-to-payment:hover,
 .address-save:hover,
 #payment-data-submit:hover,
-#btn-client-pre-email:hover {
+#btn-client-pre-email:hover,
+.modal-footer .btn:hover {
     background: var(--rojoTumi);
 }
 
