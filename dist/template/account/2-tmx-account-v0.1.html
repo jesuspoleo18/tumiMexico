@@ -57,24 +57,27 @@
 
                             </div>
 
-                            <div class="account__profile-data">
+                            <!-- account cards container -->
+                            <div class="account__cards-container">
 
-                                <vtex.cmc:accountUserProfile />
+                                <!-- profile data -->
+                                <div class="account__profile-data">
+                                    <vtex.cmc:accountUserProfile />
+                                </div>
+                                
+                                <!-- address data -->
+                                <div class="account__addres-data">
+                                    <vtex.cmc:accountAddress/>
+                                </div>
+                                
+                                <!-- orders data -->
+                                <div class="account__orders">
+                                    <h1 class="account__title">Mis pedidos</h1>
+                                    <a href="/account/orders" class="btn account">Revisar mis pedidos</a>
+                                </div>
 
                             </div>
-
-                            <div class="account__addres-data">
-
-                                <vtex.cmc:accountAddress/>
-
-                            </div>
-
-                            <div class="account__orders">
-
-                                <h1 class="account__title">Mis pedidos</h1>
-
-                                <a href="/account/orders" class="btn account">Revisar mis pedidos</a>
-                            </div>
+                            <!-- /.end account cards container -->
 
                         </section>
                         <!-- /.fin contenido account -->

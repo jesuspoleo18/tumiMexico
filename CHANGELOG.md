@@ -4,7 +4,33 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 
 ## [Unreleased](https://github.com/jesuspoleo18/tumiMexico/commits/master)
 
-## [1.0.3](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.4) - 2018-03-28
+## [1.0.5](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.5) - 2018-04-04
+
+### Added
+
+#### 2018-04-04
+
+* Se agregó la funcionalidad para que el nombre de la colección del producto redirija a la colección padre del producto.
+
+### Changed
+
+#### 2018-04-04 al 2018-04-05
+
+* Resuelto el por qué al entrar desde el SKU en la vista de vitrina la API arroja una instrucción incorrecta y no se cambia el texto del stock, la función que se encargaba de comprar ésto, no se ejecutaba al cargar la página.
+* Revisión del account/orders a fondo, sacar detalles de traducciones, scripts que no deban ejecutarse y diseño sin estilar según línea de diseño de la marca.
+* Revisión de por qué la colección '19 degree aluminum' no está en el menú de 'colecciones'.
+* Activación de selector de SKU en versiones móviles.
+* La colección 'Latitud' que está en el menu de 'colecciones' nos lleva a resultado de busqueda vacía, se ocultó temporalmente.
+* Revisamos por qué ciertas colecciones no están indexadas en VTEX.
+* La imagen de este producto'Chaqueta de plumon plegable Negro' no estaba cargando, se solucionó con la republicación del catálogo.
+* Los nombres sobre las colecciones en el landing de 'colecciones' al tener estado 'visited' o 'focus' cambia a negro. Ahora está corregido. 
+* Revisar los titles de las páginas ya que en algunos salía el nombre de lipault.
+* Se ajustó estéticamente el menú de colecciones similar al de tumi.com
+* Revisión de carrito abandonado, estilado y redirección de compra.
+* Revisión de fecha de entrega en 'Pedido aprobado' y 'Pedido enviado'.
+* La función 'skuOnLoad' de la ficha de producto y del quickview sufrieron modificaciones para que al entrar desde la vista catálogo no seleccionara inmediatamente el primer SKU que pinta el controlador de vtex.
+
+## [1.0.4](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.4) - 2018-03-28
 
 ### Added
 

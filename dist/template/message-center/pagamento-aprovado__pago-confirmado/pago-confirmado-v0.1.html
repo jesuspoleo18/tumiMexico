@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{{_accountInfo.TradingName}}</title>
+
+    <style>
+        body {
+            color: #757e98;
+            margin: 0;
+            padding: 0;
+            min-width: 100% !important;
+            font-family: 'Open Sans', sans-serif;
+            background: #f3f3f3;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin: 0 auto;
+        }
+
+        .h2 {
+            color: #a9a9a9;
+            padding: 0 0 15px 0;
+            font-size: 24px;
+            line-height: 28px;
+            font-weight: bold;
+        }
+
+        .nombre-cliente {
+            color: #757e98;
+            padding: 0 0 15px 0;
+            font-size: 20px;
+            line-height: 24px;
+            font-weight: bold;
+        }
+
+        .innerpadding {
+            padding: 30px 30px 30px 30px;
+        }
+
+        .innerpadding2 {
+            padding: 0px 30px 0px 30px;
+        }
+
+        .innerpadding-border {
+            border-bottom: 1px solid #f2eeed;
+            border-top: 1px solid #f2eeed;
+        }
+
+        .innerpadding-borderTop {
+            border-top: 1px solid #f2eeed;
+            padding: 5px;
+        }
+
+        .infoCompra-txt,
+        .infoEntrega-title {
+            padding: 5px 0 5px 0;
+            font-weight: bold;
+        }
+
+        .totales-tabla {
+            text-align: right;
+        }
+
+        .totales-tabla tr {
+            display: inline-block;
+        }
+
+        /*Responsive*/
+
+        @media only screen and (max-width: 820px) {
+            body {
+                width: auto !important;
+                font-family: 'Open Sans', Sans-serif !important;
+            }
+            .table-inner {
+                width: 90% !important;
+                max-width: 90%!important;
+            }
+            .table-full {
+                width: 100%!important;
+                max-width: 100%!important;
+                text-align: center !important;
+            }
+            .table-medium {
+                width: 30%!important;
+                max-width: 30%!important;
+                text-align: center !important;
+            }
+        }
+
+        @media only screen and (max-width: 479px) {
+            body {
+                width: auto !important;
+                font-family: 'Open Sans', Sans-serif !important;
+            }
+            .table-inner {
+                width: 90% !important;
+                text-align: center !important;
+            }
+            .table-full {
+                width: 100%!important;
+                max-width: 100%!important;
+                text-align: center !important;
+            }
+            .table-medium {
+                width: 50%!important;
+                max-width: 50%!important;
+                text-align: center !important;
+            }
+        }
+    </style>
+
+</head>
+
+<body bgcolor="#f3f3f3" marginwidth="0" marginheight="0" style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;"
+    offset="0" topmargin="0" leftmargin="0">
+
+    <table bgcolor="#f3f3f3" width="100%" border="0" cellpadding="0" cellspacing="0">
+
+        <!--[if (gte mso 9)|(IE)]>
+        <table width="800" align="center" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+            <td>
+        <![endif]-->
+        <table width="800" class="table-inner" style="max-width: 800px; margin: 2rem auto;" bgcolor="#ffffff" align="center" border="0"
+            cellpadding="0" cellspacing="0">
+
+            <!-- CONTENIDO -->
+            <tbody>
+
+                <!-- Header -->
+                <tr>
+                    <td bgcolor="#ffffff" align="left" height="100" style="padding: 0 30px; border-bottom: solid 1px #727272;">
+
+                        <a href="http://www.tumi.com.mx" style="display: block;">
+                            <img src="http://lipaultmx.vtexcommercestable.com.br/arquivos/tumi-logo-150-26.jpg" width="auto" height="50" border="0">
+                        </a>
+
+                    </td>
+                </tr>
+                <!-- /.fin Header -->
+
+                <!-- Texto Principal / Nombre -->
+                <tr>
+                    <td class="innerpadding infoNombre">
+                        <table width="800" border="0" cellspacing="0" cellpadding="0" class="table-full">
+                            <tbody>
+                                <tr>
+                                    <td class="h2" data-size="Title">
+                                        Su pago fue aprobado
+                                        <span style="font-size:16px;color:#BBB;display:block;">Realizado el: {{formatDate creationDate}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="nombre-cliente">
+                                        Hola
+                                        <strong>{{clientProfileData.firstName}},</strong>
+                                        <br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bodycopyInformado">
+                                        Usted recibirá un nuevo correo electrónico cuando los productos se envíen al transportista.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <!-- /fin. Texto Principal / Nombre -->
+
+                <!-- Info Direccion -->
+                <tr>
+                    <td class="innerpadding2 infoDireccion">
+                        {{#if giftRegistryData}}
+                        <table width="800" border="0" cellspacing="0" cellpadding="0" class="table-full">
+                            <tbody>
+                                <tr>
+                                    <td class="infoCompra-txt">
+                                        Dirección de entrega
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="infoCompra-txt">
+                                        {{giftRegistryData.description}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {{else}}
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table width="187" align="left" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                        <![endif]-->
+                        <table width="800" border="0" cellspacing="0" cellpadding="0" class="table-full">
+                            <tbody>
+                                <tr>
+                                    <td class="infoCompra-txt">
+                                        Dirección de entrega
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="infoCompra-p">
+                                        <strong>{{shippingData.address.receiverName}} </strong>
+                                        <br> {{shippingData.address.street}} - {{shippingData.address.number}} - {{shippingData.address.complement}}
+                                        -{{shippingData.address.neighborhood}}
+                                        <br> {{shippingData.address.city}} - {{shippingData.address.state}}
+                                        <br> {{shippingData.address.postalCode}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                        <![endif]-->
+                        {{/if}}
+                    </td>
+                </tr>
+
+                <!-- Info pedido/fecha/medio pago de la compra/ -->
+                <tr style="margin-top:10px;">
+                    <td class="innerpadding2 infoCompra">
+                        <table width="800" border="0" cellspacing="0" cellpadding="0" class="innerpadding-border table-full">
+                            <tbody>
+                                <tr>
+                                    <td class="infoCompra-txt">
+                                        Pedido nº:
+                                        <span>{{orderId}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="infoCompra-txt">
+                                        Su pedido será entregado por:
+                                        <span>{{shippingData.logisticsInfo.0.selectedSla}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="infoCompra-txt">
+                                        Medio de Pago:
+                                        <!-- <span>{{paymentData.transactions.0.payments.0.group}}</span> -->
+                                        {{#each paymentData.transactions}} {{#each payments}}
+                                        <span>{{paymentSystemName}}</span>
+                                        {{#if lastDigits}} final {{lastDigits}} {{/if}}
+                                        <br />
+                                        <span>$ {{formatCurrency value}} </span>
+                                        {{#eq installments 1}} {{else}} (en {{installments}}x) {{/eq}}
+                
+                                        <br /> {{/each}} {{/each}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <!-- /.fin Info pedido/fecha/medio pago de la compra/ -->
+
+                <!-- Estatus -->
+                <tr>
+                    <td class="innerpadding borderbottom botellasEstatus" align="center">
+
+                        <table width="187" align="left" border="0" cellpadding="0" cellspacing="0" class="table-full">
+                            <tbody>
+                                <tr>
+                                    <td height="auto" align="center">
+                                        <strong style="vertical-align:center; font-size:16px; color:#BBB;">✓</strong>
+                                        <strong style="font-size:14px; color:#BBB;">PEDIDO REALIZADO</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table width="10" align="left" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                        <![endif]-->
+                        <table width="10" align="left" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td height="10">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                        <![endif]-->
+
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table width="187" align="left" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                        <![endif]-->
+                        <table width="187" align="left" border="0" cellpadding="0" cellspacing="0" class="table-full">
+                            <tbody>
+                                <tr>
+                                    <td height="auto" align="center">
+                                        <strong style="vertical-align:center; font-size:16px; color:#51bc00;">✓</strong>
+                                        <strong style="font-size:14px; color:#51bc00;">PAGO CONFIRMADO</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                        <![endif]-->
+
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table width="10" align="left" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                        <![endif]-->
+                        <table width="10" align="left" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td height="10">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                        <![endif]-->
+
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table width="187" align="left" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                        <![endif]-->
+                        <table width="187" align="left" border="0" cellpadding="0" cellspacing="0" class="table-full">
+                            <tbody>
+                                <tr>
+                                    <td height="auto" align="center">
+                                        <strong style="vertical-align:center; font-size:16px; color:#BBB">✓</strong>
+                                        <strong style="font-size:14px; color:#BBB">PEDIDO PREPARADO</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                        <![endif]-->
+
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table width="10" align="left" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                        <![endif]-->
+                        <table width="10" align="left" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td height="10">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                        <![endif]-->
+
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table width="187" align="left" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                        <![endif]-->
+                        <table width="187" align="left" border="0" cellpadding="0" cellspacing="0" class="table-full">
+                            <tbody>
+                                <tr>
+                                    <td height="auto" align="center">
+                                         <!-- #BBB  #51bc00-->
+                                        <strong style="vertical-align:center; font-size:16px; color: #BBB;">✓</strong>
+                                        <strong style="font-size:14px; color:#BBB;">PEDIDO ENVIADO</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                        <![endif]-->
+
+                    </td>
+                </tr>
+                <!-- /.fin Estatus -->
+
+                <!-- Info Entrga -->
+                <tr>
+                    <td class="innerpadding infoDespacho">
+
+                        <table width="800" border="0" cellspacing="0" cellpadding="0" bgcolor="#ebebeb" class="table-full">
+                            <tbody>
+                                <tr>
+                                    <td class="infoEntrega-title" style="padding: 15px 15px 0px 15px;">
+                                        FECHA DE ENTREGA
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="infoEntrega-txt" style="padding: 15px;">
+                                        <!-- AQUI VIENE EL IF DE FECHAS DE ENTREGA-->
+                                        {{#eq shippingData.logisticsInfo.0.selectedSla 'DHL Express'}} {{#each shippingData.logisticsInfo}} {{#eq itemIndex 0}} {{!--
+                                        Modo de entrega --}} {{!-- Indica el rango de entrega en caso de envío --}} {{#hasSubStr
+                                        selectedSla 'DHL Express'}} {{#each slas}} {{#eq id ../selectedSla}} {{#if deliveryWindow}}
+                                        Entre {{formatDate deliveryWindow.startDateUtc}}hs y {{formatDate deliveryWindow.endDateUtc}}hs
+                                        {{else}} A partir de {{#unless shippingEstimateDate}} {{#hasSubStr shippingEstimate
+                                        'bd'}} {{replace shippingEstimate 'bd' ' días hábiles.'}} {{else}} {{replace shippingEstimate
+                                        'd' ' días.'}} {{/hasSubStr}} {{else}} {{formatDate shippingEstimateDate}} {{/unless}}
+                                        {{/if}} {{/eq}} {{/each}} {{/hasSubStr}} {{/eq}} {{/each}}{{/eq}} {{#eq shippingData.logisticsInfo.0.selectedSla
+                                        'DHL Economy Select'}} {{#each shippingData.logisticsInfo}} {{#eq itemIndex 0}} {{!--
+                                        Modo de entrega --}} {{!-- Indica el rango de entrega en caso de envío --}} {{#hasSubStr
+                                        selectedSla 'DHL Economy Select'}} {{#each slas}} {{#eq id ../selectedSla}} {{#if
+                                        deliveryWindow}} Entre {{formatDate deliveryWindow.startDateUtc}}hs y {{formatDate
+                                        deliveryWindow.endDateUtc}}hs {{else}} A partir de {{#unless shippingEstimateDate}}
+                                        {{#hasSubStr shippingEstimate 'bd'}} {{replace shippingEstimate 'bd' ' días hábiles.'}}
+                                        {{else}} {{replace shippingEstimate 'd' ' días.'}} {{/hasSubStr}} {{else}} {{formatDate
+                                        shippingEstimateDate}} {{/unless}} {{/if}} {{/eq}} {{/each}} {{/hasSubStr}} {{/eq}}
+                                        {{/each}}{{/eq}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+                <!-- /.fin Info Entrga -->
+
+                <tr>
+                    <td class="innerpadding2 productosDespacho" valign="middle">
+
+                        {{#each items}}
+                        <table width="800" border="0" cellspacing="0" cellpadding="0" class="table-full innerpadding-borderTop" style="border-top: 1px solid #f2eeed; padding: 5px;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 5px;">
+                                        <table width="200" align="left" border="0" cellpadding="0" cellspacing="0" class="table-medium">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="imagen" height="50" align="left" valign="middle">
+                                                        <a href="http://tumimx.vtexcommercestable.com.br{{detailUrl}}" style="text-decoration: none;">
+                                                            <img src="{{imageUrl}}" alt="{{name}}" width="auto" height="100">
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <!--[if (gte mso 9)|(IE)]>
+                                        <table width="10" align="left" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                                        <![endif]-->
+                                        <table width="10" align="left" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td height="10" valign="middle">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                                        <![endif]-->
+
+                                        <!--[if (gte mso 9)|(IE)]>
+                                        <table width="300" align="left" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                                        <![endif]-->
+                                        <table width="300" align="left" border="0" cellpadding="0" cellspacing="0" class="table-medium">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="info" height="50" align="left" valign="middle">
+                                                        <a href="http://tumimx.vtexcommercestable.com.br{{detailUrl}}" class="name" style="text-decoration: none; color: #182b5b; font-weight: bold;">{{name}}</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                                        <![endif]-->
+
+                                        <!--[if (gte mso 9)|(IE)]>
+                                        <table width="10" align="left" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                                        <![endif]-->
+                                        <table width="10" align="left" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td height="10" valign="middle">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                                        <![endif]-->
+
+                                        <!--[if (gte mso 9)|(IE)]>
+                                        <table width="200" align="right" cellpadding="0" cellspacing="0" border="0"><tr><td>
+                                        <![endif]-->
+                                        <table width="200" align="right" border="0" cellpadding="0" cellspacing="0" class="table-medium">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="price" height="50" align="right" valign="middle">
+                                                        {{quantity}} X
+                                                        <span class="value" style="color: #e50016; font-weight: bold;">$ {{formatCurrency sellingPrice}}</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--[if (gte mso 9)|(IE)]></td></tr></table>
+                                        ![endif]-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {{/each}}
+                    </td>
+                </tr>
+
+                <!-- TOTAL -->
+                <tr>
+                    <td class="innerpadding innerpadding-border productosTotal" style="border-top: 1px solid #f2eeed; border-bottom: 1px solid #f2eeed;">
+                        <!--[if (gte mso 9)|(IE)]>
+                    <table width="200" align="right" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                        <td>
+                    <![endif]-->
+                        <table cellspacing="0" cellpadding="4" border="0" align="right" style="margin-bottom:15px;padding-top:7px;padding-bottom:7px;padding-left:7px;padding-right:7px;">
+                            <tbody>
+                                {{#each totals}} {{#if value}}
+                                <tr>
+                                    <td valign="top" align="right" style="color:#2a2f32;">
+                                        {{#eq id "Items"}}Items{{/eq}} {{#eq id "Shipping"}}Entrega{{/eq}} {{#eq id "Discounts"}}Descuentos{{/eq}} {{#eq id "Tax"}}Taxas{{/eq}}
+                                        {{#eq id "Change"}}Alterações{{/eq}}
+                                    </td>
+                                    <td valign="top" align="right" style="text-align:left;">
+                                        $ {{formatCurrency value}}
+                                    </td>
+                                </tr>
+                                {{/if}} {{/each}} {{#if value}}
+                                <tr>
+                                    <td valign="top" align="right" style="color:#e50016; font-weight:bold;">
+                                        Total
+                                    </td>
+                                    <td valign="top" align="right" style="color:#e50016; font-weight:bold; text-align:left;">
+                                        $ {{formatCurrency value}}
+                                    </td>
+                                </tr>
+                                {{/if}}
+                            </tbody>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        </tr>
+                    </table>
+                    <![endif]-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <small>*Te recordamos que el plazo de entrega será considerado después de recibida la confirmación del pago</small>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="innerpadding">
+                        Atentamente,
+                        <br>
+                        <strong>Equipo Tumi.</strong>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <!--[if (gte mso 9)|(IE)]>
+        </td></tr>
+    </table>
+    <![endif]-->
+
+</body>
+
+</html>

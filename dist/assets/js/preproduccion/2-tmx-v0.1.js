@@ -3,8 +3,8 @@
 [js - principal ]
 
 Projecto:  Tumi México - 2018
-Version: 1.0.4
-Ultimo cambio: 28/03/2018
+Version: 1.0.5
+Ultimo cambio: 05/04/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -62,6 +62,7 @@ $(function () {
     quickviewControl.init();
     BarbaWidget.init();
     categDepto.colectionOnProducts();
+    account.init();
 });
 
 $(window).load(function () {
@@ -804,7 +805,7 @@ var producto = {
         if ($(".specificaction__color").length == 0) {
             $(".specification").append(templateColor);
         }
-        $(".specificaction__color").text(colorProductoPop.pop());
+        // $(".specificaction__color").text(colorProductoPop.pop());
         // producto.mainImgCarousel();
 
         $(".skuselector-specification-label.input-dimension-Color").on("click", function () {
@@ -859,15 +860,24 @@ var producto = {
         }
     },
     selectSkuOnLoad: function () {
-        var a = $(".group_0"),
-            x = $(".dynamic:eq(0)"),
-            b = a.find("input:checked");
-        if (b.length == 0) {
-            x.find("input").attr("checked", "checked");
-            x.find("input").change();
-            producto.skuOnChange();
-            producto.noStock();
+        // var a = $(".group_0"),
+        //     x = $(".dynamic:eq(0)"),
+        //     b = a.find("input:checked");
+        // if (b.length == 0) {
+        //     x.find("input").attr("checked", "checked");
+        //     x.find("input").change();
+        //     producto.skuOnChange();
+        //     producto.noStock();
+        // }
+        var $specificationColor = $(".specificaction__color"),
+            $skuChecked = $(".skuselector-specification-label.input-dimension-Color:checked"),
+            $skuCheckedParent = $skuChecked.parent().attr("class"),
+            skuCheckedSplit = $skuCheckedParent.split("dynamic ");
+
+        if($skuChecked.length && $specificationColor.length){
+            $specificationColor.html(skuCheckedSplit.pop());
         }
+
     },
     mainImgCarousel: function () {
 
@@ -996,7 +1006,8 @@ var producto = {
                 var arr = data[0].items,
                     $label = $(".dimension-Colorsku,.dimension-Color"),
                     airLine = $(".product__airlineGuide"),
-                    $colectionEl = $(".product__collection, .product__allColection a"),
+                    $colectionEl = $(".product__collection, .product__allColection a, .product__toCollection"),
+                    uriColection = '?Mode=M&map=c,specificationFilter_406',
                     $skuSelector = $(".skuselector-specification-label");
 
                 // adding ean code
@@ -1006,7 +1017,10 @@ var producto = {
                 // adding colection name
                 if (data[0].Colección != undefined && data[0].Colección != undefined) {
                     thisProducto.coleccion = data[0].Colección[0];
+                    var uriConcatColection = '/' + thisProducto.coleccion + uriColection;
+                    // clog(uriConcatColection);
                     $colectionEl.html(thisProducto.coleccion);
+                    $('.product__toCollection').attr('href', uriConcatColection);
                 } else if (data[0].Colección == undefined && data[0].Colección == undefined) {
                     $colectionEl.html("");
                 }
@@ -1085,15 +1099,19 @@ var producto = {
     noStock: function () {
         var $a = $(".buy-button.buy-button-ref"),
             $b = $(".product__shop-container"),
-            $c = $(".product__available-text");
+            $c = $(".product__available-text"),
+            $d = $(".product__airlineGuide");
+
         if ($a.css('display') == 'none') {
             $b.fadeOut(500);
             $c.text("No disponible");
+            $d.addClass('no-border-bottom');
         } else {
             if ($responsive > 440) {
                 $b.fadeIn(500);
             }
             $c.text("En Stock");
+            $d.removeClass('no-border-bottom');
         }
     },
     onLoadNoStock:function(){
@@ -1558,7 +1576,10 @@ var categDepto = {
             var $attrColor = $(".search-multiple-navigator h5.Atributos"),
                 // $otherMenuOpen = $(".even.Atributos.Tumi, .refino.Atributos.Tumi.colorin"),
                 $content = $('.navigation-tabs .search-single-navigator ul'),
+                $colection = $("h5.Atributos:contains('Colección')"),
                 $verFiltros = $content.find('.ver-filtros');
+
+            $colection.hide();
 
             // another triggers
             $(trigger).next().hide();
@@ -1674,7 +1695,7 @@ var categDepto = {
                             categDepto.colectionOnProducts();
                             // confiGenerales.wishlistOnclick();
                             // confiGenerales.compraAsyncVitrina();
-                            // categDepto.skuImgPrateleira();
+                            categDepto.skuImgPrateleira();
                             // confiGenerales.mainLazyLoad();
                         },
                         // Cálculo do tamanho do footer para que uma nova página seja chamada antes do usuário chegar ao "final" do site
@@ -1807,7 +1828,7 @@ var categDepto = {
     },
     skuImgPrateleira: function () {
 
-        if ($responsive > 650) {
+        // if ($responsive > 650) {
             var $prateleiraInfo = $(".prateleira__container");
             // var $prateleiraInfo = $(".prateleira__info");
             $prateleiraInfo.each(function () {
@@ -1867,7 +1888,7 @@ var categDepto = {
                 }
                 // });
             });
-        }
+        // }
     },
     eventHasChange: function () {
 
@@ -1899,15 +1920,19 @@ var categDepto = {
                     type: 'GET',
                     crossDomain: true,
                     success: function (data) {
-                        var a = data[0].Colección,
+                        var colection = data[0].Colección,
                             colectionTemplate = '<div class="producto__colection"></div>';
                         
                         if ($categDeptoBuscaResultadoBusca.length == 0){
                             _thisProductName.before(colectionTemplate);
-                            _thisPrat.find('.producto__colection').text(a);
+                            if(colection.length){
+                                _thisPrat.find('.producto__colection').html(colection);
+                            }
                         }else{
                             _thisProductName.after(colectionTemplate);
-                            _thisPrat.find('.producto__colection').text(a);
+                            if (colection.length) {
+                                _thisPrat.find('.producto__colection').html(colection);
+                            }
                         }
                     }
                 });
@@ -2065,7 +2090,7 @@ var account = {
 
         if ($account.length) {
 
-            this.loadRegionComuna();
+            // this.loadRegionComuna();
             this.addresUpdate();
             this.addresDeletePop();
             this.addresDeleteClick();
@@ -2081,16 +2106,21 @@ var account = {
         }
     },
 
-    traducciones: function traducciones() {
+    traducciones: function() {
 
         var $apellido = $(".profile-detail-display-nickname .title:contains('Apelido:')"),
+            $nombre = $(".control-label:contains('Nome:')"),
             $telefono = $(".profile-detail-display-cellphone .title:contains('Telefone Comercial')");
 
         $apellido.text('Apellido:' + ' ');
         $telefono.text('Teléfono Comercial:' + ' ');
+        if($nombre.length){
+            clog('Nome: existe');
+            $nombre.text('Nombre:' + ' ');
+        }
     },
 
-    loadRegionComuna: function loadRegionComuna() {
+    loadRegionComuna: function() {
 
         $.ajax({
 
@@ -2161,7 +2191,7 @@ var account = {
         });
     },
 
-    createAddress: function createAddress() {
+    createAddress: function() {
 
         var country = $("meta[name='country']").attr("content"),
             addressName = $('#aliasDireccion').val(),
@@ -2209,7 +2239,7 @@ var account = {
         });
     },
 
-    addresUpdate: function addresUpdate() {
+    addresUpdate: function() {
 
         $(".address-update").on("click", function () {
 
@@ -2265,7 +2295,7 @@ var account = {
         });
     },
 
-    addresDeletePop: function addresDeletePop() {
+    addresDeletePop: function() {
 
         $(".delete").on("click", function () {
 
@@ -2277,7 +2307,7 @@ var account = {
         });
     },
 
-    addresDeleteClick: function addresDeleteClick() {
+    addresDeleteClick: function() {
 
         $("#address-delete").on("click", function () {
 
@@ -2313,7 +2343,7 @@ var account = {
         });
     },
 
-    showContentAccount: function showContentAccount() {
+    showContentAccount: function() {
 
         init();
 
@@ -2488,8 +2518,9 @@ var quickviewControl = {
                             details = $(".quickview__productDetail a"),
                             $zoomPad = $(".quickview__img-content .zoomPad"),
                             $label = $(".dimension-Colorsku"),
+                            uriColection = '?Mode=M&map=c,specificationFilter_406',
                             $skuSelector = $(".skuselector-specification-label"),
-                            $colectionEl = $(".quickview__collection"),
+                            $colectionEl = $(".quickview__collection, .quickview__toCollection"),
                             $elements = [];
 
                         // adding ean code
@@ -2499,7 +2530,9 @@ var quickviewControl = {
                         // adding colection name
                         if (data[0].Colección != undefined && data[0].Colección != undefined) {
                             thisProducto.coleccion = data[0].Colección[0];
+                            var uriConcatColection = '/' + thisProducto.coleccion + uriColection;
                             $colectionEl.html(thisProducto.coleccion);
+                            $('.quickview__toCollection').attr('href', uriConcatColection);
                         } else if (data[0].Colección == undefined && data[0].Colección == undefined) {
                             $colectionEl.html("");
                         }
@@ -2511,7 +2544,7 @@ var quickviewControl = {
 
                         // removing labels from skus
                         $label.remove();
-                        $skuSelector.eq(0).click().attr("checked", "checked");
+                        // $skuSelector.eq(0).click().attr("checked", "checked");
                         $skuSelector.wrap('<div class="dynamic"></div>');
                         var $dynamic = $(".dynamic");
                         $dynamic.each(function () {
@@ -2533,6 +2566,9 @@ var quickviewControl = {
 
                         details.on("click", function () {
                             window.top.location.href = thisUrl;
+                        });
+                        $(".quickview__toCollection").on("click", function () {
+                            window.top.location.href = $(this).attr('href');
                         });
                         // console.log(data[0].items[0].images);
                         // producto.descripcion = data[0]['Descripción Larga'];
@@ -2638,16 +2674,24 @@ var quickviewControl = {
     selectSkuOnLoad: function () {
 
         if ($("body.quickview").length) {
-            var a = $(".group_0"),
-                x = $(".dynamic:eq(0)"),
-                b = a.find("input:checked");
-            if (b.length == 0) {
-                x.find("input").attr("checked", "checked");
-                x.find("input").change();
-                setTimeout(function () {
-                    quickviewControl.noStock();
-                    quickviewControl.skuOnChange();
-                }, 800);
+            // var a = $(".group_0"),
+            //     x = $(".dynamic:eq(0)"),
+            //     b = a.find("input:checked");
+            // if (b.length == 0) {
+            //     x.find("input").attr("checked", "checked");
+            //     x.find("input").change();
+            //     setTimeout(function () {
+            //         quickviewControl.noStock();
+            //         quickviewControl.skuOnChange();
+            //     }, 800);
+            // }
+            var $specificationColor = $(".specificaction__color"),
+                $skuChecked = $(".skuselector-specification-label.input-dimension-Color:checked"),
+                $skuCheckedParent = $skuChecked.parent().attr("class"),
+                skuCheckedSplit = $skuCheckedParent.split("dynamic ");
+
+            if ($skuChecked.length && $specificationColor.length) {
+                $specificationColor.html(skuCheckedSplit.pop());
             }
         }
     },
@@ -2672,7 +2716,7 @@ var quickviewControl = {
         if ($(".specificaction__color").length == 0) {
             $(".specification").append(templateColor);
         }
-        $(".specificaction__color").text(colorProductoPop.pop());
+        // $(".specificaction__color").text(colorProductoPop.pop());
         // producto.mainImgCarousel();
 
         $(".skuselector-specification-label.input-dimension-Color").on("click", function () {

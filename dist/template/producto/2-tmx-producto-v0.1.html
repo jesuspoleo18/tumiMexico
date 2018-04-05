@@ -57,6 +57,13 @@
                         <div class="product__price--mobile">
                             <vtex.cmc:skuPrice/>
                         </div>
+                        <!-- product shop container -->
+                        <!--<div class="product__shopcontainermobile">
+                            <div class="product__shop-content">
+                                <vtex.cmc:BuyButton />
+                            </div>
+                        </div>-->
+                        <!-- /.end product shop container -->
                         <!-- product available container -->
                         <div class="product__available--mobile">
                             <p class="product__available-text">En stock</p>
@@ -298,9 +305,47 @@
                                 <!-- title -->
                                 <div class="product__extra-title">TUMI hacia la innovación a través del diseño</div>
                                 <!-- tabs button -->
-                                <div class="product__extra-tabs-button"></div>
+                                <div class="product__extra-tabs-button">
+                                    <!-- tabs navigation -->
+                                    <div class="feature-tab__container">
+                                        <div class="feature-tab__content">
+                                            <div class="feature-tab__btn tumiAddABag">Sistema Add-A-Bag</div>
+                                            <div class="feature-tab__btn tumiAirGradeAlHandle">Manija de extensión de aluminio de calidad aeronáutica</div>
+                                            <div class="feature-tab__btn tumiAntibacterialLining">Revestimiento antibacterial</div>
+                                            <div class="feature-tab__btn tumiConvertible">Adaptable</div>
+                                            <div class="feature-tab__btn tumiDuraFold">DuraFold™</div>
+                                            <div class="feature-tab__btn tumiEasyGlide">Ruedas de fácil deslizamiento</div>
+                                            <div class="feature-tab__btn tumiEReader">eReader</div>
+                                            <div class="feature-tab__btn tumiFoldable">Plegable</div>
+                                            <div class="feature-tab__btn tumiFXTBallist">FXT Ballistic®</div>
+                                            <div class="feature-tab__btn tumiHighlyDurable">Sumamente duradero</div>
+                                            <div class="feature-tab__btn tumiHTLS">HTLS Polyester®</div>
+                                            <div class="feature-tab__btn tumiIDlock">ID Lock™</div>
+                                            <div class="feature-tab__btn tumiLeverLock">Lever Lock™</div>
+                                            <div class="feature-tab__btn tumiLightweight">Liviana</div>
+                                            <div class="feature-tab__btn tumiOmegaClosure">Omega Closure System®</div>
+                                            <div class="feature-tab__btn tumiPatArtShoulderSt">Correa articulada para el hombro patentada de Tumi</div>
+                                            <div class="feature-tab__btn tumiProtectivePocket">Bolsillo protector</div>
+                                            <div class="feature-tab__btn tumiRemoveLapCovCar">Funda desmontable para ordenador portátil</div>
+                                            <div class="feature-tab__btn tumiSecureSlide">Sujetador de correa de hombro Secure Slide®</div>
+                                            <div class="feature-tab__btn tumiTPass">T-Pass®</div>
+                                            <div class="feature-tab__btn tumiTracer">Tumi Tracer®</div>
+                                            <div class="feature-tab__btn tumiWaterproofPocket">Bolsillo impermeable</div>
+                                            <div class="feature-tab__btn tumiWaterResistant">Resistentes al agua</div>
+                                            <div class="feature-tab__btn tumiXBrace45Handle">Sistema de manijas X-Brace 45®</div>
+                                        </div>
+                                    </div>
+                                    <!-- /.end tabs navigation -->
+                                </div>
+
                                 <!-- tabs content -->
-                                <div class="product__extra-tabs-content"></div>
+                                <div class="product__extra-tabs-content">
+                                    <div class="feature-info__container">
+                                        <div class="feature-info__content">
+                                            <vtex.cmc:productDescriptionShort />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.end product extra content -->
 
@@ -328,30 +373,30 @@
 
                     <!-- producto sticky container -->
                     <section class="producto-sticky-container true">
-                    
+
                         <!-- producto sticky content -->
                         <div class="producto-sticky-content">
-                    
+
                             <div class="producto-sticky-container--info">
                                 <div class="producto-sticky-container--info-imagen">
                                     <vtex.cmc:ProductImage />
                                 </div>
-                    
+
                                 <div class="producto-sticky-container--info-texto">
                                     <vtex.cmc:productName />
                                     <div class="descripcion-larga"></div>
                                 </div>
                             </div>
-                    
+
                             <div class="producto-sticky-container--compra">
                                 <div class="product__shop-content">
                                     <vtex.cmc:BuyButton />
                                 </div>
                             </div>
-                    
+
                         </div>
                         <!-- /.end producto sticky content -->
-                    
+
                     </section>
                     <!-- /.end producto sticky container -->
 
@@ -391,7 +436,7 @@
                     </button>
                 </div>
                 <!-- /.end modal airlineGuide -->
-                
+
                 <!-- modal user review -->
                 <div class="reveal large" id="userReview" data-reveal="" data-close-on-click="true" data-animation-in="scale-in-up" data-animation-out="scale-out-down">
                     <button class="close-button" data-close="" aria-label="Close reveal" type="button">
