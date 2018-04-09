@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2018
 Version: 1.0.5
-Ultimo cambio: 05/04/2018
+Ultimo cambio: 09/04/2018
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -41,7 +41,7 @@ var $body = $("body"),
     $producto = $(".producto"),
     $responsive = $(window).width(),
     store = 'https://tumimx.vtexcommercestable.com.br/',
-    tumiSearchApi = store +'api/catalog_system/pub/products/search/',
+    tumiSearchApi = store + 'api/catalog_system/pub/products/search/',
     clog = console.log;
 /* 
 
@@ -462,9 +462,9 @@ var confiGenerales = {
     newsletter: function () {
 
         var newsletter = {
-            mail: "",
-            nombre: ""
-        },
+                mail: "",
+                nombre: ""
+            },
             datos = {};
 
         datos.tm_email = $('#tm_email').val();
@@ -640,11 +640,17 @@ var confiGenerales = {
             $porcentaje.each(function () {
 
                 var valor = $(this).text();
-                if (valor == 0) { $(this).remove(); } else { $(this).text(valor.split(',')[0] + '%'); }
+                if (valor == 0) {
+                    $(this).remove();
+                } else {
+                    $(this).text(valor.split(',')[0] + '%');
+                }
 
             });
 
-        } else { console.log("porcentaje desactivado"); }
+        } else {
+            console.log("porcentaje desactivado");
+        }
 
         producto.formatoPrecioFichaProductoReplace(".bestPrice,.vtexsc-text,.skuBestPrice");
         porcentaje();
@@ -662,8 +668,7 @@ var confiGenerales = {
 
                 if (valor == 0) {
                     $(this).remove();
-                }
-                else {
+                } else {
                     $(this).text(valor.replace(',0', ''));
                 }
 
@@ -771,9 +776,7 @@ var home = {
 var producto = {
 
     init: function () {
-
         var $producto = $("body.producto");
-
         if ($producto.length) {
 
             // this.mainImgCarousel();
@@ -786,14 +789,27 @@ var producto = {
             this.productoSticky();
             this.miniatura();
             this.onLoadNoStock();
+            this.imageSticky('.product__left-side-container');
             // this.formatoPrecioFichaProductoReplace(".skuBestPrice");
             // this.selectSkuOnClick();
             this.features();
             setTimeout(this.userReview, 3000);
             console.log("producto.init()  ˙ω˙");
         }
-
-        // producto.elementosFormato();
+    },
+    imageSticky: function (trigger) {
+        var files = ["/arquivos/hc-sticky.min.js"];
+        $.when.apply($, $.map(files, function (file) {
+            return $.getScript(files);
+        })).then(function () {
+            $(trigger).hcSticky({
+                top: 80,
+                bottomEnd: 0,
+                responsive: true
+            });
+        }, function err(jqxhr, textStatus, errorThrown) {
+            // handle error
+        });
 
     },
     skuOnChange: function () {
@@ -870,11 +886,11 @@ var producto = {
         //     producto.noStock();
         // }
         var $specificationColor = $(".specificaction__color"),
-            $skuChecked = $(".skuselector-specification-label.input-dimension-Color:checked"),
-            $skuCheckedParent = $skuChecked.parent().attr("class"),
-            skuCheckedSplit = $skuCheckedParent.split("dynamic ");
+            $skuChecked = $(".skuselector-specification-label.input-dimension-Color:checked");
 
-        if($skuChecked.length && $specificationColor.length){
+        if ($skuChecked.length && $specificationColor.length) {
+            var $skuCheckedParent = $skuChecked.parent().attr("class"),
+                skuCheckedSplit = $skuCheckedParent.split("dynamic ");
             $specificationColor.html(skuCheckedSplit.pop());
         }
 
@@ -892,7 +908,7 @@ var producto = {
             });
 
             $.ajax({
-                url: tumiSearchApi +'?fq=productId:' + mainProductId,
+                url: tumiSearchApi + '?fq=productId:' + mainProductId,
                 dataType: 'json',
                 type: 'GET',
                 crossDomain: true,
@@ -970,15 +986,15 @@ var producto = {
     textoProducto: function () {
 
         var thisProducto = {
-            id: "",
-            descripcion: "",
-            ean: "",
-            caracteristica: "",
-            stock: "",
-            marca: "",
-            cantidad: "",
-            coleccion: ""
-        },
+                id: "",
+                descripcion: "",
+                ean: "",
+                caracteristica: "",
+                stock: "",
+                marca: "",
+                cantidad: "",
+                coleccion: ""
+            },
             $productDescription = $(".productDescription"),
             shadowTemplate = '<div class="dark-overlay producto"></div>',
             templateEan = '<div class="style__ean">Style:<span class="ean"></span></div>';
@@ -997,7 +1013,7 @@ var producto = {
         });
 
         $.ajax({
-            url: tumiSearchApi +'?fq=productId:' + thisProducto.id,
+            url: tumiSearchApi + '?fq=productId:' + thisProducto.id,
             dataType: 'json',
             type: 'GET',
             crossDomain: true,
@@ -1114,9 +1130,9 @@ var producto = {
             $d.removeClass('no-border-bottom');
         }
     },
-    onLoadNoStock:function(){
+    onLoadNoStock: function () {
         var windowHref = window.location.href;
-        if(windowHref.indexOf('idsku') > -1){
+        if (windowHref.indexOf('idsku') > -1) {
             producto.noStock();
         }
     },
@@ -1196,37 +1212,60 @@ var producto = {
 
         $btnFichaProducto.bind('click', function () {
 
-            var url = $(this).attr('href').split("?")[1],
-                param = url.split("&"),
-                $url = $(this).attr('href'),
-                $a = $('#offCanvasRight'),
-                $triggerCart = $(".header-cart__content, .navigation-cart__container"),
-                qtyBox = parseInt($('.product__container .qtd.pull-left').val()),
-                // qtyBox = parseInt($('.product__sku-container .box-qtd .qtd').val()),
-                item = {
-                    id: param[0].split("=")[1],
-                    quantity: qtyBox,
-                    // quantity: param[1].split("=")[1], 
-                    seller: param[2].split("=")[1]
-                };
+            var $this = $(this),
+                $href = $this.attr('href');
 
-            vtexjs.checkout.addToCart([item], null, 3).done(function (orderForm) {
+            if ($href === "javascript:alert('Por favor, selecione o modelo desejado.');") {
+                var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
 
-                $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
-                if (orderForm.items.length > 0) {
-                    $triggerCart.on("click", function (e) {
-                        e.preventDefault();
-                        $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+                $.when.apply($, $.map(files, function (file) {
+                    return $.getScript(files);
+                })).then(function () {
+                    swal({
+                        html: 'Debes seleccionar un color.',
+                        showCloseButton: true,
+                        type: 'warning',
+                        confirmButtonColor: '#2E2A25',
+                        confirmButtonText: 'Volver',
+                        timer: 2500
                     });
-                }
-                confiGenerales.disableEmptyCart();
-                // setTimeout(function () {
-                //     $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
-                // }, 2000);
-                // console.log(orderForm);
+                }, function err(jqxhr, textStatus, errorThrown) {
+                    console.log(textStatus);
+                });
+                return false;
 
-            });
+            } else {
+                var url = $(this).attr('href').split("?")[1],
+                    param = url.split("&"),
+                    $url = $(this).attr('href'),
+                    $a = $('#offCanvasRight'),
+                    $triggerCart = $(".header-cart__content, .navigation-cart__container"),
+                    qtyBox = parseInt($('.product__container .qtd.pull-left').val()),
+                    // qtyBox = parseInt($('.product__sku-container .box-qtd .qtd').val()),
+                    item = {
+                        id: param[0].split("=")[1],
+                        quantity: qtyBox,
+                        // quantity: param[1].split("=")[1], 
+                        seller: param[2].split("=")[1]
+                    };
 
+                vtexjs.checkout.addToCart([item], null, 3).done(function (orderForm) {
+
+                    $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+                    if (orderForm.items.length > 0) {
+                        $triggerCart.on("click", function (e) {
+                            e.preventDefault();
+                            $a.foundation('open', event, "[data-toggle=offCanvasLeft]");
+                        });
+                    }
+                    confiGenerales.disableEmptyCart();
+                    // setTimeout(function () {
+                    //     $a.foundation('close', event, "[data-toggle=offCanvasLeft]");
+                    // }, 2000);
+                    // console.log(orderForm);
+
+                });
+            }
             return false;
 
         });
@@ -1648,18 +1687,17 @@ var categDepto = {
 
         $.when.apply($, $.map(files, function (file) {
             return $.getScript(files);
-        }))
-            .then(function () {
+        })).then(function () {
 
-                $(trigger).hcSticky({
-                    top: 80,
-                    bottomEnd: 100,
-                    responsive: true
-                });
-
-            }, function err(jqxhr, textStatus, errorThrown) {
-                // handle error
+            $(trigger).hcSticky({
+                top: 80,
+                bottomEnd: 100,
+                responsive: true
             });
+
+        }, function err(jqxhr, textStatus, errorThrown) {
+            // handle error
+        });
 
     },
     infinityScroll: function () {
@@ -1667,8 +1705,8 @@ var categDepto = {
         var files = ["/arquivos/QD_infinityScroll.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        }))
+                return $.getScript(files);
+            }))
             .then(function () {
 
                 console.log("cargo el infinity");
@@ -1829,65 +1867,65 @@ var categDepto = {
     skuImgPrateleira: function () {
 
         // if ($responsive > 650) {
-            var $prateleiraInfo = $(".prateleira__container");
-            // var $prateleiraInfo = $(".prateleira__info");
-            $prateleiraInfo.each(function () {
+        var $prateleiraInfo = $(".prateleira__container");
+        // var $prateleiraInfo = $(".prateleira__info");
+        $prateleiraInfo.each(function () {
 
-                // $(this).one("mouseenter", function () {
-                var $this = $(this),
-                    $skuInput = $this.find(".prateleira__info .insert-sku-checkbox"),
-                    $inputParent = $this.find(".prateleira__info .is-checklist-item"),
-                    $templateImg = '<div class="prateleira__skuVariant-img"></div>',
-                    $validate = $this.find(".prateleira__info .prateleira__skuVariant-img");
+            // $(this).one("mouseenter", function () {
+            var $this = $(this),
+                $skuInput = $this.find(".prateleira__info .insert-sku-checkbox"),
+                $inputParent = $this.find(".prateleira__info .is-checklist-item"),
+                $templateImg = '<div class="prateleira__skuVariant-img"></div>',
+                $validate = $this.find(".prateleira__info .prateleira__skuVariant-img");
 
-                if ($validate.length == 0) {
+            if ($validate.length == 0) {
 
-                    $($templateImg).appendTo($inputParent);
+                $($templateImg).appendTo($inputParent);
 
-                    var skuInputAttr = $skuInput.attr("rel");
-                    // $inputParent.append($templateImg);
-                    $.ajax({
-                        url: tumiSearchApi +'?fq=skuId:' + skuInputAttr + "",
-                        dataType: 'json',
-                        type: 'GET',
-                        crossDomain: true,
-                        success: function (data) {
-                            // console.log(data[0].items[0].images);
-                            // console.log(data);
-                            var arr = data[0].items,
-                                dataLink = data[0].link,
-                                dataLinkSplit = '/' + dataLink.split("/")[3] + '/p',
-                                $skuVariantImg = $this.find(".prateleira__info .prateleira__skuVariant-img"),
-                                $fadeEl = $this.find(".prateleira__skuVariant-container,.product-insertsku.must-login"),
-                                $lastImg = [];
+                var skuInputAttr = $skuInput.attr("rel");
+                // $inputParent.append($templateImg);
+                $.ajax({
+                    url: tumiSearchApi + '?fq=skuId:' + skuInputAttr + "",
+                    dataType: 'json',
+                    type: 'GET',
+                    crossDomain: true,
+                    success: function (data) {
+                        // console.log(data[0].items[0].images);
+                        // console.log(data);
+                        var arr = data[0].items,
+                            dataLink = data[0].link,
+                            dataLinkSplit = '/' + dataLink.split("/")[3] + '/p',
+                            $skuVariantImg = $this.find(".prateleira__info .prateleira__skuVariant-img"),
+                            $fadeEl = $this.find(".prateleira__skuVariant-container,.product-insertsku.must-login"),
+                            $lastImg = [];
 
-                            $.each(arr, function (i, val) {
-                                // console.log(val);
-                                var arrImg = val.images,
-                                    arrSku = val.itemId,
-                                    a = arrImg.slice(-1)[0].imageTag,
-                                    b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
-                                    c = '<a href= "' + dataLinkSplit + '?idsku=' + arrSku + '">' + b + '</a>';
-                                // attrSku = dataLink + '?idsku=' + arrSku;
-                                // console.log(data[0].items[0]);
+                        $.each(arr, function (i, val) {
+                            // console.log(val);
+                            var arrImg = val.images,
+                                arrSku = val.itemId,
+                                a = arrImg.slice(-1)[0].imageTag,
+                                b = a.replace(/[#~]/g, "").replace(/-width-\b/g, "-30-").replace(/-height\b/g, "-30").replace(/\s*(width)="[^"]+"\s*/g, " width='30'").replace(/\s*(height)="[^"]+"\s*/g, " height='30'"),
+                                c = '<a href= "' + dataLinkSplit + '?idsku=' + arrSku + '">' + b + '</a>';
+                            // attrSku = dataLink + '?idsku=' + arrSku;
+                            // console.log(data[0].items[0]);
 
-                                $(c).appendTo($skuVariantImg);
-                                if ($this.find(".prateleira__skuVariant-container .insert-sku-checklist li").length > 3) {
-                                    var $skuMoreParent = $this.find(".prateleira__skuVariant-container .insert-sku-checklist"),
-                                        $skuMoreTemplate = '<span class="prateleira__sku-more"></span>';
-                                    $skuMoreParent.addClass("more");
-                                    if ($this.find(".prateleira__skuVariant-container .prateleira__sku-more").length == 0) {
-                                        $skuMoreParent.append($skuMoreTemplate);
-                                        $this.find(".prateleira__skuVariant-container .prateleira__sku-more").text($this.find(".prateleira__skuVariant-container .insert-sku-checklist li").length);
-                                    }
+                            $(c).appendTo($skuVariantImg);
+                            if ($this.find(".prateleira__skuVariant-container .insert-sku-checklist li").length > 3) {
+                                var $skuMoreParent = $this.find(".prateleira__skuVariant-container .insert-sku-checklist"),
+                                    $skuMoreTemplate = '<span class="prateleira__sku-more"></span>';
+                                $skuMoreParent.addClass("more");
+                                if ($this.find(".prateleira__skuVariant-container .prateleira__sku-more").length == 0) {
+                                    $skuMoreParent.append($skuMoreTemplate);
+                                    $this.find(".prateleira__skuVariant-container .prateleira__sku-more").text($this.find(".prateleira__skuVariant-container .insert-sku-checklist li").length);
                                 }
-                                $fadeEl.fadeIn();
-                            });
-                        }
-                    });
-                }
-                // });
-            });
+                            }
+                            $fadeEl.fadeIn();
+                        });
+                    }
+                });
+            }
+            // });
+        });
         // }
     },
     eventHasChange: function () {
@@ -1903,10 +1941,10 @@ var categDepto = {
             }, 1200);
         });
     },
-    colectionOnProducts: function(){
+    colectionOnProducts: function () {
         var catalogProductId,
             $prat = $(".prateleira__container");
-        
+
         $prat.each(function () {
             var _thisPrat = $(this),
                 _thisParent = _thisPrat.parent().find(".prateleira__price-container"),
@@ -1922,13 +1960,13 @@ var categDepto = {
                     success: function (data) {
                         var colection = data[0].Colección,
                             colectionTemplate = '<div class="producto__colection"></div>';
-                        
-                        if ($categDeptoBuscaResultadoBusca.length == 0){
+
+                        if ($categDeptoBuscaResultadoBusca.length == 0) {
                             _thisProductName.before(colectionTemplate);
-                            if(colection.length){
+                            if (colection.length) {
                                 _thisPrat.find('.producto__colection').html(colection);
                             }
-                        }else{
+                        } else {
                             _thisProductName.after(colectionTemplate);
                             if (colection.length) {
                                 _thisPrat.find('.producto__colection').html(colection);
@@ -2106,7 +2144,7 @@ var account = {
         }
     },
 
-    traducciones: function() {
+    traducciones: function () {
 
         var $apellido = $(".profile-detail-display-nickname .title:contains('Apelido:')"),
             $nombre = $(".control-label:contains('Nome:')"),
@@ -2114,13 +2152,13 @@ var account = {
 
         $apellido.text('Apellido:' + ' ');
         $telefono.text('Teléfono Comercial:' + ' ');
-        if($nombre.length){
+        if ($nombre.length) {
             clog('Nome: existe');
             $nombre.text('Nombre:' + ' ');
         }
     },
 
-    loadRegionComuna: function() {
+    loadRegionComuna: function () {
 
         $.ajax({
 
@@ -2182,7 +2220,7 @@ var account = {
                                     return c.codigo == $(_this).val();
                                 });
                                 $("#spnNombreComuna").text(comuna.nombre);
-                            } else { }
+                            } else {}
                         });
                     }
                 });
@@ -2191,7 +2229,7 @@ var account = {
         });
     },
 
-    createAddress: function() {
+    createAddress: function () {
 
         var country = $("meta[name='country']").attr("content"),
             addressName = $('#aliasDireccion').val(),
@@ -2239,7 +2277,7 @@ var account = {
         });
     },
 
-    addresUpdate: function() {
+    addresUpdate: function () {
 
         $(".address-update").on("click", function () {
 
@@ -2295,7 +2333,7 @@ var account = {
         });
     },
 
-    addresDeletePop: function() {
+    addresDeletePop: function () {
 
         $(".delete").on("click", function () {
 
@@ -2307,7 +2345,7 @@ var account = {
         });
     },
 
-    addresDeleteClick: function() {
+    addresDeleteClick: function () {
 
         $("#address-delete").on("click", function () {
 
@@ -2343,7 +2381,7 @@ var account = {
         });
     },
 
-    showContentAccount: function() {
+    showContentAccount: function () {
 
         init();
 
@@ -2505,7 +2543,7 @@ var quickviewControl = {
                 console.log(product);
 
                 $.ajax({
-                    url: tumiSearchApi+'/?fq=productId:'+ thisProducto.id,
+                    url: tumiSearchApi + '/?fq=productId:' + thisProducto.id,
                     dataType: 'json',
                     type: 'GET',
                     crossDomain: true,
@@ -2686,11 +2724,11 @@ var quickviewControl = {
             //     }, 800);
             // }
             var $specificationColor = $(".specificaction__color"),
-                $skuChecked = $(".skuselector-specification-label.input-dimension-Color:checked"),
-                $skuCheckedParent = $skuChecked.parent().attr("class"),
-                skuCheckedSplit = $skuCheckedParent.split("dynamic ");
+                $skuChecked = $(".skuselector-specification-label.input-dimension-Color:checked");
 
             if ($skuChecked.length && $specificationColor.length) {
+                var $skuCheckedParent = $skuChecked.parent().attr("class"),
+                    skuCheckedSplit = $skuCheckedParent.split("dynamic ");
                 $specificationColor.html(skuCheckedSplit.pop());
             }
         }
@@ -2797,8 +2835,8 @@ var static = {
         var files = ["/arquivos/hc-sticky.min.js"];
 
         $.when.apply($, $.map(files, function (file) {
-            return $.getScript(files);
-        }))
+                return $.getScript(files);
+            }))
             .then(function () {
 
                 if ($responsive > 450) {

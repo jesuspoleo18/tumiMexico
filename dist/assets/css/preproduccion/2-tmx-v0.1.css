@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2018
 Version: 1.0.5
-Ultimo cambio:  05/04/2018 | 15:25 pm
+Ultimo cambio:  09/04/2018 | 10:38 am
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -1307,6 +1307,10 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.footer__powerby {
+    display: none;
 }
 
 .footer__powerby-content {
@@ -7868,13 +7872,17 @@ button#sendAccessKeyBtn {
 
 .producto__see-more {
     cursor: pointer;
-    font-family: var(--proximaNova);
+    font-family: var(--tumiFontMedium);
     font-size: .8rem;
     position: absolute;
     text-transform: uppercase;
     top: 50%;
     transform: translateY(-50%);
     right: 0;
+}
+
+.producto__see-more:before {
+    content: "+ ";
 }
 
 .select.skuList label {
@@ -8911,6 +8919,10 @@ h4.group.Atributos-Tumi {
     }
     .qtd.pull-left {
         height: 35px;
+        padding-left: 1.2rem;
+    }
+    .pull-left.box-qtd:before {
+        top: -65%;
     }
     .bts.pull-left .btn.btn-mais,
     .bts.pull-left .btn.btn-menos {
@@ -8926,7 +8938,7 @@ h4.group.Atributos-Tumi {
         width: 50%;
     }
     .producto__see-more {
-        right: -10%;
+        right: -5%;
     }
     .product__shop-container--mobile {
         display: none;

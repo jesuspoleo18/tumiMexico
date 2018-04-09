@@ -8,6 +8,13 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 
 ### Added
 
+#### 2018-04-09
+
+* Añadida función para hacer sticky a la imágen del producto si la información de la derecha es muy larga.
+* Agregado el sweet alert para la selección de sku color si no ha sido seleccionado.
+* Se ocultó temporalmente la barra de los logos vtex y ecomsur.
+* Corregido un error presentado en la ficha de producto al buscar la clase 'dinamyc'.
+
 #### 2018-04-04
 
 * Se agregó la funcionalidad para que el nombre de la colección del producto redirija a la colección padre del producto.
