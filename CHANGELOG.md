@@ -4,6 +4,20 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 
 ## [Unreleased](https://github.com/jesuspoleo18/tumiMexico/commits/master)
 
+## [1.0.6](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.6) - 2018-04-XX
+
+### Added
+
+#### 2018-04-15
+
+* Creación de entidad de datos para factura.
+* Creación de apliación en MD para factura.
+* Integración de Javascript en el OP y estilado de formulario.
+* Revisión de integración y registro de datos.
+
+
+### Changed
+
 ## [1.0.5](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.5) - 2018-04-04
 
 ### Added

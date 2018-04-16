@@ -1,0 +1,61 @@
+<div id="divFormCompraFactura" class="wrapFormFactura">
+    <form id="formCompraFactura">
+        <div class="factura-title">Formulario Factura</div>
+        <div class="factura-column-one">
+            <div class="rut">
+                <span>RFC</span>
+                <input type="text" id="txtRut">
+                <span id="spnErrorRut" class="error"></span>
+            </div>
+            <div class="razonSocial">
+                <span>Rázon Social</span>
+                <input type="text" id="txtRazonSocial" maxlength="50">
+                <span id="spnErrorRazonSocial" class="error"></span>
+            </div>
+        </div>
+        <div class="factura-column-two">
+            <div class="direccion">
+                <span>Calle</span>
+                <input type="text" id="txtDireccion" maxlength="100">
+                <span id="spnErrorDireccion" class="error"></span>
+            </div>
+            <div class="numero">
+                <span>Nro. Ext</span>
+                <input type="text" id="txtNumero" maxlength="10">
+                <span id="spnErrorNumero" class="error"></span>
+            </div>
+            <div class="numero">
+                <span>Nro. Int</span>
+                <input type="text" id="txtNumeroDepto" maxlength="10">
+            </div>
+            <div class="region">
+                <span>Estado</span>
+                <input type="text" id="txtRegion" maxlength="30">
+                <span id="spnErrorRegion" class="error"></span>
+            </div>
+            <div class="comuna">
+                <span>Colonia</span>
+                <input type="text" id="txtComuna" maxlength="30">
+                <span id="spnErrorComuna" class="error"></span>
+            </div>
+        </div>
+        <div class="factura-column-three">
+            <div class="emailContacto">
+                <span>Email Contacto</span>
+                <input type="text" id="txtEmailContacto" maxlength="50">
+                <span id="spnErrorEmailContacto" class="error"></span>
+            </div>
+            <div class="telefono">
+                <span>Teléfono</span>
+                <input type="text" id="txtTelefono" maxlength="11">
+                <span id="spnErrorTelefono" class="error"></span>
+            </div>
+            <div class="factura-button">
+                <button id="btnFacturaOrden">Enviar datos factura</button>
+            </div>
+            <div class="factura-button">
+                <button id="btnLimpiar">Limpiar datos factura</button>
+            </div>
+        </div>
+    </form>
+</div>

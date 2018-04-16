@@ -830,12 +830,20 @@ var producto = {
                     var colorProducto = $(".product__container .productName").text(),
                         colorProductoPop = colorProducto.split(" "),
                         $codDisplay = $(".style__ean .ean"),
+                        bestPrice = product.skus[0].bestPriceFormated,
+                        $bestPrice = $(".product__price"),
+                        bestPriceTemplate = '<strong class="skuBestPrice">' + bestPrice +'</strong>',
                         $skuRef = $(".skuReference");
 
                     $(".specificaction__color").text(colorProductoPop.pop());
                     $codDisplay.text($skuRef.text());
                     // producto.mainImgCarousel();
-                    producto.noStock();
+                    if (producto.noStock() === true) {
+                        $bestPrice.html("");
+                        // console.log(bestPriceEver);
+                    }else{
+                        $bestPrice.html(bestPriceTemplate);
+                    }
                     producto.formatoPrecioFichaProductoReplace(".skuBestPrice");
                 }, 800);
             });
@@ -1122,12 +1130,14 @@ var producto = {
             $b.fadeOut(500);
             $c.text("No disponible");
             $d.addClass('no-border-bottom');
+            return true;
         } else {
             if ($responsive > 440) {
                 $b.fadeIn(500);
             }
             $c.text("En Stock");
             $d.removeClass('no-border-bottom');
+            return false;
         }
     },
     onLoadNoStock: function () {
@@ -2740,9 +2750,11 @@ var quickviewControl = {
         if (a.css('display') == 'none') {
             b.fadeOut(500);
             c.text("No disponible");
+            return true;
         } else {
             b.fadeIn(500);
             c.text("En Stock");
+            return false;
         }
     },
     skuOnChange: function () {
@@ -2761,11 +2773,19 @@ var quickviewControl = {
             vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
                 setTimeout(function () {
                     var $colorProducto = $(".quickview__name .productName").text(),
-                        colorProductoPop = $colorProducto.split(" ");
+                        colorProductoPop = $colorProducto.split(" "),
+                        bestPrice = product.skus[0].bestPriceFormated,
+                        $bestPrice = $(".quickview__price"),
+                        bestPriceTemplate = '<strong class="skuBestPrice">' + bestPrice + '</strong>';
 
                     $(".specificaction__color").text(colorProductoPop.pop());
                     // producto.mainImgCarousel();
-                    quickviewControl.noStock();
+                    if (quickviewControl.noStock() === true) {
+                        $bestPrice.html("");
+                        // console.log(bestPriceEver);
+                    } else {
+                        $bestPrice.html(bestPriceTemplate);
+                    }
                 }, 800);
             });
         });
