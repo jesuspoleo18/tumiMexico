@@ -11,13 +11,36 @@ var gulp = require("gulp"),
     imageminMozjpeg = require('imagemin-mozjpeg'),
     cache = require('gulp-cache'),
     path = {
+        // Concat files
         srcJS: "dependencias/1.ConcatenarJS/",
         srcCSS: "dependencias/2.ConcatenarCss/",
-        srcImg: "dist/assets/img/originales/marzo/"
+        srcImg: "dist/assets/img/originales/marzo/",
+
+        // minify files
+        srcMiniJs: "dist/assets/js/preproduccion/",
+        srcMiniCss: "dist/assets/css/preproduccion/"
     };
 // watch = require("gulp-watch"),
 // copy = require("gulp-copy"),
 // bower = require("gulp-bower"),
+
+// build minify files
+gulp.task("minify", function () {
+    return gulp.src([
+        // path.srcMiniJs + '2-tmx-v0.1.js'
+        path.srcMiniCss + '2-tmx-v0.1.css'
+    ])
+    // JS
+    // .pipe(sourcemaps.init())
+    // .pipe(rename("2-tmx-v0.1.min.js"))
+    // .pipe(uglify())
+
+    // CSS
+    .pipe(minifyCSS())
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+    .pipe(rename("2-tmx-v0.1.min.css"))
+    .pipe(gulp.dest("dependencias/4.Minificar"));
+});
 
 //build bundle js
 gulp.task("compileJS", function () {

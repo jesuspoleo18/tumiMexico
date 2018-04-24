@@ -3,8 +3,8 @@
 [js - principal ]
 
 Projecto:  Tumi México - 2018
-Version: 1.0.5
-Ultimo cambio: 09/04/2018
+Version: 1.0.6
+Ultimo cambio: 2018/04/24
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -12,6 +12,7 @@ Primary use:  ecommerce.
 
 [Tabla de contenido ]
 
+a0.Globales
 b0.Init
 b1.Configuraciones generales
 b2.Home
@@ -438,7 +439,7 @@ var confiGenerales = {
     },
     masterDataTrigger: function () {
 
-        var $submitNewsletter = $(".submit__newsletter");
+        var $submitNewsletter = $(".submit__newsletter,#popUp__promocional");
 
         $submitNewsletter.on("click", function (e) {
             confiGenerales.newsletter();
@@ -467,8 +468,13 @@ var confiGenerales = {
             },
             datos = {};
 
-        datos.tm_email = $('#tm_email').val();
-        newsletter.mail = $('#tm_email').val();
+        if ($('#tm_email').val() === ''){
+            datos.tm_email = $('#pc_email').val();
+            newsletter.mail = $('#pc_email').val();
+        }else{
+            datos.tm_email = $('#tm_email').val();
+            newsletter.mail = $('#tm_email').val();
+        }
 
         // GET
         var Attr = {
@@ -590,6 +596,9 @@ var confiGenerales = {
                     }, function err(jqxhr, textStatus, errorThrown) {
                         console.log(textStatus);
                     });
+                    if (typeof CoverPop.start !== "undefined") {
+                        CoverPop.close();
+                    }
                     confiGenerales.clearData();
                 },
                 error: function (data) {

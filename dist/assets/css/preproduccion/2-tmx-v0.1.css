@@ -3,8 +3,8 @@
 [Stylesheet - principal ]
 
 Projecto:  Tumi Mexico - 2018
-Version: 1.0.5
-Ultimo cambio:  24/04/2018 | 10:04 am
+Version: 1.0.6
+Ultimo cambio:  24/04/2018 | 11:28 am
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -2295,6 +2295,7 @@ footer {
     .prateleira ul li {
         max-height: 482px;
         margin: 0 .20rem;
+        margin-bottom: .48rem;
     }
     .categ__products.active .prateleira ul li {
         max-height: 563px;

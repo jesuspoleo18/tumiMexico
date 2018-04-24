@@ -1,0 +1,858 @@
+/*----------------------------inicio--------------------------------
+
+[Stylesheet - mantencion ]
+
+Projecto:  Tumi Mexico - 2018
+Version: 1.0.6
+Ultimo cambio:  24/04/2018 | 12:19 am
+Asignado a:  mantencion.
+Primary use:  ecommerce. 
+
+----------------------
+
+[Colores ]
+
+Rojo tumi: #B92335
+Gris tumi: #DDDDDD
+Gris suave: #ebebeb
+Gris fuerte tumi: #ccc
+Gris xfuerte tumi: #777
+Gris Strong: #5C5A5A
+Negro tumi: #2E2A25
+Negro medium: #555
+Negro lighter: #444
+Negro bold:var(--negroTumi)
+
+----------------------
+
+[Tipografia ]
+
+font-family: 'Proxima Nova Light';
+font-family: 'Proxima Nova Regular';
+font-family: 'Proxima Nova Medium'
+font-family: 'Proxima Nova Bold';
+font-family: 'icon_cart';
+font-family: 'tumi-icon-ft';
+
+----------------------
+
+[Guia mediaqueries ]
+
+@media only screen and (max-width: 40em) { }
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { }
+@media screen and (min-width: 64em) {}
+@media only screen and (min-width: 90.063em) { }
+
+----------------------
+
+[Tabla de contenido ]
+
+--------- Generales -------------
+
+a0.Variables
+a1.Global
+a2.Mediaquerie global
+
+--------- Subtemplates -------------
+
+b0.Header
+b1.Mediaquerie header
+b2.Navigator
+b3.Mediaquerie navigator
+b4.Footer
+b5.Mediaquerie footer
+
+--------- Vitrinas -------------
+
+c0.Prateleira principal
+c1.Mediaquerie prateleira principal
+
+--------- Controladores -------------
+
+d0.Mini cart
+d1.Mediaquerie mini cart
+d2.Zoom
+d3.Mediaquerie zoom
+d4.Breadcrumb
+d5.Mediaquerie breadcrumb
+d6.Opinion de usuario
+d7.Mediaquerue opinion de usuario
+--x d8.Quickview
+--x d9.Mediaquerie quickview
+d10.Search navigator
+d11.Mediaquerie search navigator
+d12.Search result time.
+d13.Mediaquerie search result time.
+d14.Compare
+d15.Mediaquerie compare
+d16.Quickview
+d17.Mediaquerie quickview
+d18.Flag
+d19.Mediaquerie flag
+
+--------- Componentes -------------
+
+e0.Despacho y disponibilidad en tienda
+e1.Mediaquerie despacho y disponibilidad en tienda
+e2.Carruseles
+e3.Mediaquerie carrusles
+e4.Off canvas
+e5.Mediaquerie off canvas
+e6.Megamenu
+e7.Mediaquerie megamenu
+e8.Buscador
+e9.Mediaquerie buscador
+e10.Resultado desplegable de buscador
+e11.Mediaquerie resultado desplegable de buscador
+e12.Producto sticky
+e13.Mediaquerie producto sticky
+e14.Redes sociales
+e15.Mediaquerie redes sociales
+e16.Airline guides
+e17.Mediaquerie airline guides
+e18.Productos relaciones recien vistos
+e19.Mediaquerie productos relaciones recien vistos
+e20.Infinity Scroll
+e21.Mediaquerie Infinity scroll
+e22.Cover pop
+e23.Mediaquerie cover pop
+
+--------- Estilos de pagina -------------
+
+f0.Home
+f1.Mediaquerie home
+f2.Account
+f3.Mediaquerie account
+f4.Login
+f5.Mediaquerie login
+f6.Producto
+    f6_a.Features
+f7.Mediaquerie producto
+    f7_a.Mediaquerie features
+f8.Categoria
+f9.Mediaquerie categoria
+f10.Departamento
+f11.Mediaquerie departamento
+f12.Busca
+f13.Mediaquerie busca
+f14.Marca
+f15.Mediaquerie marca
+f16.Giftlist
+f17.Mediaquerie giftlist
+f18.Estatico
+    f18_a.La historia tumi
+    f18_b.La diferencia tumi
+    f18_c.Responsabilidad empresarial Tumi
+f19.Mediaquerie estatico
+    f19_a.Mediaquerie la historia tumi
+    f19_b.Mediaquerie la diferencia tumi
+    f19_c.Mediaquerie responsabilidad empresarial Tumi
+f20.Sistema
+f21.Mediaquerie sistema
+f22.Nuestras tiendas
+f23.Mediaquerie nuestras tiendas
+f24.Mapa del sitio
+f25.Mediaquerie mapa del sitio
+f26.Orders
+f27.Mediaquerie orders
+
+-------------------------fin---------------------------------*/
+
+/*
+[a0.Variables]
+
+=============================*/
+
+/* :root {
+
+     COLORES 
+
+    --rojoTumi: #b92335;
+    --grisTumi: #DDDDDD;
+    --grisLightTumi: #ebebeb;
+    --grisFuerteTumi: #ccc;
+    --grisxFuerteTumi: #777;
+    --grisStrong: #5C5A5A;
+    --negroTumi: #2E2A25;
+    --negroMedium: #555;
+    --negroBold: var(--negroTumi);
+    --negroTumiLighter: #444;
+    --bgTopbarCheckout: #555555;
+
+     FUENTES 
+
+    --tumiIcon: 'tumi-icon-ft';
+    --proximaNova: 'Proxima Nova';
+    --proximaNovaBold: 'Proxima Nova bold';
+    --proximaNovaTh: 'Proxima Nova Th';
+    --tumiFontLight: 'Proxima Nova Light';
+    --tumiFontRegular: 'Proxima Nova Regular';
+    --tumiFontMedium: 'Proxima Nova Medium';
+    --tumiFontBold: 'Proxima Nova Bold';
+
+     EFECTOS 
+
+    --borderShadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+    --textShadow: 0.6px 0 0 currentColor;
+    --offsetShadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.08);
+    --bottomShadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+} */
+
+/*
+[a1.Global]
+
+=============================*/
+
+/*
+[a2.Mediaquerie global]
+
+=============================*/
+
+/*
+[b0.Header]
+
+=============================*/
+
+/*
+[b1.Mediaquerie header]
+
+=============================*/
+
+/*
+[b2.Navigator]
+
+=============================*/
+
+/*
+[b3.Mediaquerie navigator]
+
+=============================*/
+
+/*
+[b4.Footer]
+
+=============================*/
+
+/*
+[b5.Mediaquerie footer]
+
+=============================*/
+
+/*
+[c0.Prateleira principal]
+
+=============================*/
+
+/*
+[c1.Mediaquerie prateleira principal]
+
+=============================*/
+
+/*
+[d0.Mini cart]
+
+=============================*/
+
+/*
+[d1.Mediaquerie mini cart]
+
+=============================*/
+
+/*
+[d2.Zoom]
+
+=============================*/
+
+/*
+[d3.Mediaquerie zoom]
+
+=============================*/
+
+/*
+[d4.Breadcrumb]
+
+=============================*/
+
+/*
+[d5.Mediaquerie breadcrumb]
+
+=============================*/
+
+/*
+[d6.Opinion de usuario]
+
+=============================*/
+
+/*
+[d7.Mediaquerue opinion de usuario]
+
+=============================*/
+
+/*
+[d10.Search navigator]
+
+=============================*/
+
+/*
+[d11.Mediaquerie search navigator]
+
+=============================*/
+
+/*
+[d12.Search result time.]
+
+=============================*/
+
+/*
+[d13.Mediaquerie search result time.]
+
+=============================*/
+
+/*
+[d14.Compare]
+
+=============================*/
+
+/*
+[d15.Mediaquerie compare]
+
+=============================*/
+
+/*
+[d16.Quickview]
+
+=============================*/
+
+/*
+[d17.Mediaquerie quickview]
+
+=============================*/
+
+/*
+[d18.Flag]
+
+=============================*/
+
+/*
+[d19.Mediaquerie flag]
+
+=============================*/
+
+/*
+[e0.Despacho y disponibilidad en tienda]
+
+=============================*/
+
+/*
+[e1.Mediaquerie despacho y disponibilidad en tienda]
+
+=============================*/
+
+/*
+[e2.Carruseles]
+
+=============================*/
+
+/*
+[e3.Mediaquerie carrusles]
+
+=============================*/
+
+/*
+[e4.Off canvas]
+
+=============================*/
+
+/*
+[e5.Mediaquerie off canvas]
+
+=============================*/
+
+/*
+[e6.Megamenu]
+
+=============================*/
+
+/*
+[e7.Mediaquerie megamenu]
+
+=============================*/
+
+/*
+[e8.Buscador]
+
+=============================*/
+
+/*
+[e9.Mediaquerie buscador]
+
+=============================*/
+
+/*
+[e10.Resultado desplegable de buscador]
+
+=============================*/
+
+/*
+[e11.Mediaquerie resultado desplegable de buscador]
+
+=============================*/
+
+/*
+[e12.Producto sticky]
+
+=============================*/
+
+/*
+[e13.Mediaquerie producto sticky]
+
+=============================*/
+
+/*
+[e14.Redes sociales]
+
+=============================*/
+
+/*
+[e15.Mediaquerie redes sociales]
+
+=============================*/
+
+/*
+[e16.Airline guides]
+
+=============================*/
+
+/*
+[e17.Mediaquerie airline guides]
+
+=============================*/
+
+/*
+[e18.Productos relaciones recien vistos]
+
+=============================*/
+
+/*
+[e19.Mediaquerie productos relaciones recien vistos]
+
+=============================*/
+
+/*
+[e20.Infinity Scroll]
+
+=============================*/
+
+/*
+[e21.Mediaquerie Infinity scroll]
+
+=============================*/
+
+/*
+[e22.Cover pop]
+
+=============================*/
+
+/* .CoverPop-open,
+.CoverPop-open body {
+    overflow: hidden;
+} */
+
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#CoverPop-cover {
+    display: none;
+    position: fixed;
+    overflow-y: scroll;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    -webkit-animation: fade-in .25s ease-in;
+    -moz-animation-name: fade-in .25s ease-in;
+    -ms-animation-name: fade-in .25s ease-in;
+    -o-animation-name: fade-in .25s ease-in;
+    animation-name: fade-in .25s ease-in;
+}
+
+.coverOverlay {
+    background-color: #000;
+    display: block;
+    height: 100%;
+    opacity: .5;
+    position: fixed;
+    /*     pointer-events: none; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.coverPop__title {
+    font-family: var(--tumiFontBold);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 1rem 0;
+    margin-bottom: .5rem;
+    padding-bottom: 1rem;
+    position: relative;
+    letter-spacing: .075rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.coverPop__title:after {
+    content: "";
+    border-top: 1.5px solid #777;
+    margin-top: 1.5rem;
+    width: 8%;
+}
+
+.coverPop__message {
+    color: var(--negroMedium);
+    font-family: var(--tumiFontRegular);
+    text-align: center;
+    margin-bottom: 1.2rem;
+}
+
+.coverPopDisplay #CoverPop-cover {
+    display: block;
+}
+
+.CoverPop-open #CoverPop-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CoverPop-content {
+    max-width: 500px;
+    position: relative;
+}
+
+.CoverPop-close {
+    color: transparent;
+    top: 0;
+    right: 0;
+    padding: .5rem .8rem;
+    position: absolute;
+}
+
+.CoverPop-close:hover,
+.CoverPop-close:visited {
+    color: transparent;
+}
+
+.CoverPop-close:before {
+    content: "\e813";
+    color: var(--grisStrong);
+    background-color: transparent;
+    font-family: var(--tumiIcon);
+    font-size: .8rem;
+    visibility: visible;
+    padding: .5rem .8rem;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.coverPop__tempContent {
+    background: white;
+    padding: 1rem 1rem;
+}
+
+.coverPop__emailPromo {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.coverPop__emailPromo [type="submit"] {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.coverPop__emailPromo [type="email"] {
+    margin-bottom: .2rem;
+}
+
+.coverPop__emailExiste {
+    display: none;
+}
+
+.coverPop__emailExiste h1 {
+    color: red;
+}
+
+.coverPop__emailPromo-container,
+.coverPop__emailPromo-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coverPop__submit {
+    position: relative;
+    width: 50%;
+}
+
+#popUp__promocional {
+    background-color: var(--grisFuerteTumi);
+    color: transparent;
+    position: absolute;
+    z-index: 1;
+    top: 5%;
+    right: 2px;
+    width: 40px;
+    height: 34px;
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.coverPop__submit .fa-long-arrow-right {
+    color: white;
+    font-size: .5rem;
+    position: absolute;
+    z-index: 2;
+    top: 36%;
+    transform: translateY(-50%);
+    right: 7%;
+    pointer-events: none;
+}
+
+.coverPop__submit .fa-long-arrow-right:before {
+    content: "\e803";
+    /*     display:none; */
+    font-family: var(--tumiIcon);
+}
+
+/*
+[e23.Mediaquerie cover pop]
+
+=============================*/
+
+/* small */
+
+@media only screen and (max-width: 40em) {
+    .coverPop__tempContent {
+        padding: 1rem;
+    }
+    .coverPop__emailPromo {
+        margin-top: .5rem;
+    }
+    .coverPop__emailPromo .btn.submit {
+        width: 100%;
+    }
+    .coverPop__submit {
+        width: 100%;
+    }
+}
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {}
+
+/*
+[f0.Home]
+
+=============================*/
+
+/*
+[f1.Mediaquerie home]
+
+=============================*/
+
+/*
+[f2.Account]
+
+=============================*/
+
+/*
+[f3.Mediaquerie account]
+
+=============================*/
+
+/*
+[f4.Login]
+
+=============================*/
+
+/*
+[f5.Mediaquerie login]
+
+=============================*/
+
+/*
+[f6.Producto]
+
+=============================*/
+
+/*
+[f6_a.Features]
+
+=============================*/
+
+/*
+[f7.Mediaquerie producto]
+
+=============================*/
+
+/*
+[f7_a.Mediaquerie features]
+
+=============================*/
+
+/*
+[f8.Categoria]
+
+=============================*/
+
+/*
+[f9.Mediaquerie categoria]
+
+=============================*/
+
+/*
+[f10.Departamento]
+
+=============================*/
+
+/*
+[f11.Mediaquerie departamento]
+
+=============================*/
+
+/*
+[f12.Busca]
+
+=============================*/
+
+/*
+[f13.Mediaquerie busca]
+
+=============================*/
+
+/*
+[f14.Marca]
+
+=============================*/
+
+/*
+[f15.Mediaquerie marca]
+
+=============================*/
+
+/*
+[f16.Giftlist]
+
+=============================*/
+
+/*
+[f17.Mediaquerie giftlist]
+
+=============================*/
+
+/*
+[f18.Estatico]
+
+=============================*/
+
+/*
+[f18_a.La historia tumi]
+
+=============================*/
+
+/*
+[f18_b.La diferencia tumi]
+
+=============================*/
+
+/*
+[f18_c.Responsabilidad empresarial Tumi]
+
+=============================*/
+
+/*
+[f19.Mediaquerie estatico]
+
+=============================*/
+
+/*
+[f19_a.Mediaquerie la historia tumi]
+
+=============================*/
+
+/*
+[f19_b.Mediaquerie la diferencia tumi]
+
+=============================*/
+
+/*
+[f19_c.Mediaquerie responsabilidad empresarial Tumi]
+
+=============================*/
+
+/*
+[f20.Sistema]
+
+=============================*/
+
+/*
+[f21.Mediaquerie sistema]
+
+=============================*/
+
+/*
+[f22.Nuestras tiendas]
+
+=============================*/
+
+/*
+[f23.Mediaquerie nuestras tiendas]
+
+=============================*/
+
+/*
+[f24.Mapa del sitio]
+
+=============================*/
+
+/*
+[f25.Mediaquerie mapa del sitio]
+
+=============================*/
+
+/*
+[f26.Orders]
+
+=============================*/
+
+/*
+[f27.Mediaquerie orders]
+
+=============================*/
+
+/* -------------------------/.end stylesheet ---------------------------------*/
