@@ -8,19 +8,19 @@ El documento con la información general del sitio la pueden ver [aquí](https:/
 ## Mejoras / Nuevos módulos
 
 |DESARROLLOS NO NATIVOS PARA FUNCIONALIDADES EXTRA|
-|----------------------------------|
-| Disponibilidad de producto en ficha de producto según tumi.com | 
-| Pasador de imágenes en vista catálogo | 
-| Formato de características según tumi.com | 
-| Modulo de features por producto | 
-| Cambio de vista fullwidth en vista catálogo |
-| Manipulación de filtros y pasadores de imágenes en vista catálogo según tumi.com | 
-| Cambio de headers según eventos del checkout | 
-| Inclusión de atributos debajo de nombre de producto en vista catálogo |
-| Carga asíncrona de páginas estáticas |
-| MiniCart activo sólo con productos |
-| Imágenes sobre controlador de sku por producto en vista catálogo |
-| Intervención de login |
+|:---|
+| 1- Disponibilidad de producto en ficha de producto según tumi.com | 
+| 2- Pasador de imágenes en vista catálogo | 
+| 3- Formato de características según tumi.com | 
+| 4- Modulo de features por producto | 
+| 5- Cambio de vista fullwidth en vista catálogo |
+| 6- Manipulación de filtros y pasadores de imágenes en vista catálogo según tumi.com | 
+| 7- Cambio de headers según eventos del checkout | 
+| 8- Inclusión de atributos debajo de nombre de producto en vista catálogo |
+| 9- Carga asíncrona de páginas estáticas |
+| 10- MiniCart activo sólo con productos |
+| 11- Imágenes sobre controlador de sku por producto en vista catálogo |
+| 12- Intervención de login |
 
 ## Changelog
 
