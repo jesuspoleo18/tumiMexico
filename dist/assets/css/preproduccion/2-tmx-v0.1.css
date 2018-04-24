@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2018
 Version: 1.0.5
-Ultimo cambio:  09/04/2018 | 10:38 am
+Ultimo cambio:  24/04/2018 | 10:04 am
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -2294,6 +2294,7 @@ footer {
 @media only screen and (min-width: 90.063em) {
     .prateleira ul li {
         max-height: 482px;
+        margin: 0 .20rem;
     }
     .categ__products.active .prateleira ul li {
         max-height: 563px;
@@ -7527,6 +7528,11 @@ button#sendAccessKeyBtn {
 .product__container--mobile,
 .product__shop-content .pull-left.box-qtd {
     display: none;
+}
+
+.valor-dividido,
+.preco-a-vista {
+    display: none !important;
 }
 
 .product__content {
