@@ -7,7 +7,7 @@ El documento con la información general del sitio la pueden ver [aquí](https:/
 
 ## Mejoras / Nuevos módulos
 
-|DESARROLLOS NO NATIVOS PARA FUNCIONALIDADES EXTRA|  |
+|DESARROLLOS NO NATIVOS PARA FUNCIONALIDADES EXTRA|
 |----------------------------------|
 | Disponibilidad de producto en ficha de producto según tumi.com | 
 | Pasador de imágenes en vista catálogo | 
