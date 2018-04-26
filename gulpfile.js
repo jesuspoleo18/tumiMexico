@@ -27,19 +27,20 @@ var gulp = require("gulp"),
 // build minify files
 gulp.task("minify", function () {
     return gulp.src([
-        // path.srcMiniJs + '2-tmx-v0.1.js'
-        path.srcMiniCss + '2-tmx-v0.1.css'
+        path.srcMiniJs + '2-tmx-v0.1.js'
+        // path.srcMiniCss + '2-tmx-v0.1.css'
     ])
     // JS
-    // .pipe(sourcemaps.init())
-    // .pipe(rename("2-tmx-v0.1.min.js"))
-    // .pipe(uglify())
+    .pipe(sourcemaps.init())
+    .pipe(rename("2-tmx-v0.2.min.js"))
+    .pipe(uglify())
+    .pipe(gulp.dest("dependencias/4.Minificar"));
 
     // CSS
-    .pipe(minifyCSS())
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
-    .pipe(rename("2-tmx-v0.1.min.css"))
-    .pipe(gulp.dest("dependencias/4.Minificar"));
+    // .pipe(minifyCSS())
+    // .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+    // .pipe(rename("2-tmx-v0.1.min.css"))
+    // .pipe(gulp.dest("dependencias/4.Minificar"));
 });
 
 //build bundle js

@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2018
 Version: 1.0.6
-Ultimo cambio: 2018/04/24
+Ultimo cambio: 2018/04/26
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -904,7 +904,11 @@ var producto = {
         // }
         var $specificationColor = $(".specificaction__color"),
             $skuChecked = $(".skuselector-specification-label.input-dimension-Color:checked");
-
+        
+        if ($(".skuselector-specification-label.input-dimension-Color").length == 1) {
+            $(".skuselector-specification-label.input-dimension-Color").click();
+        }
+        
         if ($skuChecked.length && $specificationColor.length) {
             var $skuCheckedParent = $skuChecked.parent().attr("class"),
                 skuCheckedSplit = $skuCheckedParent.split("dynamic ");

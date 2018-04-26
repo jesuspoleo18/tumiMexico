@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2018
 Version: 1.0.6
-Ultimo cambio:  24/04/2018 | 12:19 am
+Ultimo cambio:  2018/04/26 | 17:24 pm
 Asignado a:  mantencion.
 Primary use:  ecommerce. 
 
@@ -243,10 +243,52 @@ f27.Mediaquerie orders
 
 =============================*/
 
+.prateleira__outstock {
+    letter-spacing: .075rem;
+    min-height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
 /*
 [c1.Mediaquerie prateleira principal]
 
 =============================*/
+
+/* small */
+
+@media only screen and (max-width: 40em) {
+    .prateleira__outstock {
+        /*         padding-bottom:0; */
+        min-height: initial;
+    }
+}
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+    .prateleira ul li {
+        width: 47%;
+    }
+    .prateleira__info {
+        height: 158px;
+        max-height: 158px;
+    }
+}
+
+/* large up */
+
+@media screen and (min-width: 64em) {
+    .prateleira__info {
+        height: 130px;
+        max-height: 130px;
+        min-height: 130px;
+    }
+}
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {}
 
 /*
 [d0.Mini cart]
@@ -272,6 +314,22 @@ f27.Mediaquerie orders
 [d4.Breadcrumb]
 
 =============================*/
+
+.resultado-busca .bread-crumb ul li:last-child strong {
+    display: block;
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+
+.resultado-busca .bread-crumb ul li:last-child:after {
+    content: " ";
+}
+
+.busca-texto-livre-elimina {
+    font-family: var(--tumiFontBold);
+    background-color: var(--grisTumi);
+}
 
 /*
 [d5.Mediaquerie breadcrumb]
@@ -735,6 +793,26 @@ f27.Mediaquerie orders
 
 =============================*/
 
+/* small */
+
+@media only screen and (max-width: 40em) {}
+
+/* medium */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+    .categ__content {
+        width: 95%;
+    }
+}
+
+/* large */
+
+@media screen and (min-width: 64em) {}
+
+/* xlarge */
+
+@media only screen and (min-width: 90.063em) {}
+
 /*
 [f10.Departamento]
 
@@ -849,6 +927,11 @@ f27.Mediaquerie orders
 [f26.Orders]
 
 =============================*/
+
+.db.dib-ns.mb3.mb0-ns:last-child,
+.myo-cancel-btn {
+    display: none !important;
+}
 
 /*
 [f27.Mediaquerie orders]

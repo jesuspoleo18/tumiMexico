@@ -4,7 +4,7 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 
 ## [Unreleased](https://github.com/jesuspoleo18/tumiMexico/commits/master)
 
-## [1.0.6](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.6) - 2018-04-24
+## [1.0.6](https://github.com/jesuspoleo18/tumiMexico/releases/tag/v1.0.6) - 2018-04-26
 
 ### Added
 
@@ -17,8 +17,16 @@ Todos los cambios hechos en el proyecto serán documentados en este archivo de c
 
 ### Changed
 
+#### 2018-04-26
+
+* Fix para que en los productos sin stock con un sólo SKU consultara su disponibilidad y cambiara el estado de disponible.
+* Fix de css para alto de grilla en vista catálogo para xlarge, large, medium y mobile.
+* Correción de 'sua búsqueda' en el buscador.
+* Ajuste css de la 'x' en resultado búsqueda.
+
 #### 2018-04-24
 
+* Creación de archivos de mantención CSS y JS.
 * Adición de coverPop.Js
 * Update de footer.
 * Ajuste de margen en grilla de productos en vista catálogo para resolución de 1536.
