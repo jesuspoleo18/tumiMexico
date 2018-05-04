@@ -4,7 +4,7 @@
 
 Projecto:  Tumi Mexico - 2018
 Version: 1.0.6
-Ultimo cambio:  2018/04/26 | 17:24 pm
+Ultimo cambio:  2018/05/03 | 15:10 pm
 Asignado a:  mantencion.
 Primary use:  ecommerce. 
 
@@ -465,6 +465,14 @@ f27.Mediaquerie orders
 [e13.Mediaquerie producto sticky]
 
 =============================*/
+
+/* large */
+
+@media screen and (min-width: 64em) {
+    .producto-sticky-container {
+        display: none !important;
+    }
+}
 
 /*
 [e14.Redes sociales]

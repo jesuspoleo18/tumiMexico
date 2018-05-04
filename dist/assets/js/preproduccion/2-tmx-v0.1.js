@@ -191,7 +191,11 @@ var confiGenerales = {
             placeholder: " ",
             value: " "
         });
-        $c.length ? console.log("˙ω˙ icono agregado") : $a.before($b);
+        if($c.length){
+            console.log("˙ω˙ icono agregado");
+        }else{
+            $a.before($b);
+        }
     },
     triggerActions: function () {
 
@@ -322,7 +326,11 @@ var confiGenerales = {
         //hide or show the "back to top" link
         $(window).scroll(function () {
 
-            $(this).scrollTop() > offset ? $back_to_top.addClass('back-to-top-is-visible') : $back_to_top.removeClass('back-to-top-is-visible back-to-top-fade-out');
+            if($(this).scrollTop() > offset){
+                $back_to_top.addClass('back-to-top-is-visible');
+            }else{
+                $back_to_top.removeClass('back-to-top-is-visible back-to-top-fade-out');
+            }
 
             if ($(this).scrollTop() > offset_opacity) {
                 $back_to_top.addClass('back-to-top-fade-out');
@@ -719,7 +727,15 @@ var home = {
                     slidesToScroll: 2,
                     slidesToShow: 6,
                     speed: 500,
-                    dots: true
+                    dots: true,
+                    responsive: [{
+                        breakpoint: 490,
+                        settings: {
+                            autoplay: true,
+                            slidesToScroll: 1,
+                            slidesToShow: 4
+                        }
+                    }]
                 });
             }
         } else if ($responsive < 750) {
@@ -1180,7 +1196,15 @@ var producto = {
                     slidesToScroll: 2,
                     slidesToShow: 6,
                     speed: 500,
-                    dots: true
+                    dots: true,
+                    responsive: [{
+                        breakpoint: 490,
+                        settings: {
+                            autoplay: true,
+                            slidesToScroll: 1,
+                            slidesToShow: 2
+                        }
+                    }]
                 });
             }
             if ($countRecently.length >= 6) {
@@ -1195,7 +1219,15 @@ var producto = {
                     slidesToScroll: 2,
                     slidesToShow: 6,
                     speed: 500,
-                    dots: true
+                    dots: true,
+                    responsive: [{
+                        breakpoint: 490,
+                        settings: {
+                            autoplay: true,
+                            slidesToScroll: 1,
+                            slidesToShow: 2
+                        }
+                    }]
                 });
             }
         } else if ($responsive < 758) {
@@ -1981,18 +2013,21 @@ var categDepto = {
                     type: 'GET',
                     crossDomain: true,
                     success: function (data) {
-                        var colection = data[0].Colección,
-                            colectionTemplate = '<div class="producto__colection"></div>';
 
-                        if ($categDeptoBuscaResultadoBusca.length == 0) {
-                            _thisProductName.before(colectionTemplate);
-                            if (colection.length) {
-                                _thisPrat.find('.producto__colection').html(colection);
-                            }
-                        } else {
-                            _thisProductName.after(colectionTemplate);
-                            if (colection.length) {
-                                _thisPrat.find('.producto__colection').html(colection);
+                        if (data[0].Colección != undefined && data[0].Colección != undefined) {
+                            var colection = data[0].Colección,
+                                colectionTemplate = '<div class="producto__colection"></div>';
+
+                            if ($categDeptoBuscaResultadoBusca.length == 0) {
+                                _thisProductName.before(colectionTemplate);
+                                if (colection.length) {
+                                    _thisPrat.find('.producto__colection').html(colection);
+                                }
+                            } else {
+                                _thisProductName.after(colectionTemplate);
+                                if (colection.length) {
+                                    _thisPrat.find('.producto__colection').html(colection);
+                                }
                             }
                         }
                     }
@@ -2203,12 +2238,12 @@ var account = {
                 data = $.parseJSON(json);
                 //console.log(data);
 
-                for (region in data) {
+                for (var region in data) {
                     regiones.push({
                         id: region,
                         nombre: region
                     });
-                    for (comuna in data[region]) {
+                    for (var comuna in data[region]) {
                         comunas.push({
                             id: comuna,
                             id_region: region,
@@ -2254,8 +2289,8 @@ var account = {
 
     createAddress: function () {
 
-        var country = $("meta[name='country']").attr("content"),
-            addressName = $('#aliasDireccion').val(),
+        var addressName = $('#aliasDireccion').val(),
+            country = $("meta[name='country']").attr("content"),
             receiverName = $('#destinatario').val(),
             addressType = '1',
             postalCode = $('#cmbComuna').val(),
@@ -2263,7 +2298,7 @@ var account = {
             number = $('#numeroDireccion').val(),
             neighborhood = $('#spnNombreComuna').text(),
             city = '-',
-            country = $('#country').val(),
+            // country = $('#country').val(),
             complement = $('#pisoDireccion').val(),
             reference = '-',
             state = $('#cmbRegion').val(),
@@ -2329,18 +2364,18 @@ var account = {
 
                     success: function success(data) {
 
-                        $('#aliasDireccion').val(data['addressName']);
-                        $('#destinatario').val(data['receiverName']);
+                        $('#aliasDireccion').val(data.addressName);
+                        $('#destinatario').val(data.receiverName);
                         $('1');
-                        $('#cmbComuna').val(data['city']);
-                        $('#direccion').val(data['street']);
-                        $('#numeroDireccion').val(data['number']);
-                        $('#pisoDireccion').val(data['complement']);
+                        $('#cmbComuna').val(data.city);
+                        $('#direccion').val(data.street);
+                        $('#numeroDireccion').val(data.number);
+                        $('#pisoDireccion').val(data.complement);
                         $('-');
                         $('-');
-                        $('span#spnNombreComuna').text(data['spnNombreComuna']);
-                        $('#cmbRegion').val(data['state']);
-                        $('#addressId').val(encodeURIComponent(data['addressName']));
+                        $('span#spnNombreComuna').text(data.spnNombreComuna);
+                        $('#cmbRegion').val(data.state);
+                        $('#addressId').val(encodeURIComponent(data.addressName));
                     },
 
                     error: function error() {
