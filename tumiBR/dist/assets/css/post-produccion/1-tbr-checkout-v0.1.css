@@ -2,9 +2,9 @@
 
 [Stylesheet - checkout ]
 
-Projecto:  TUMI MX - 2018
+Projecto:  TUMI BR - 2018
 Version: 1.0.7
-Ultimo cambio: 2018/05/04 | 12:36 pm
+Ultimo cambio: 2018/05/04 | 12:57 am
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -35,8 +35,8 @@ font-family: 'tumi-icon-ft';
 [Guia mediaqueries ]
 
 @media only screen and (max-width: 40em) { }
-@media only screen and (min-width: 40.063em) and (max-width: 64em) { }
 @media screen and (min-width: 64em) {}
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { }
 @media only screen and (min-width: 90.063em) { }
 
 ----------------------
@@ -70,8 +70,6 @@ c4.Formulario sexo.
 c5.Mediaquerie formulario sexo.
 c6.Boton enviar a MD.
 c7.Mediaquerie boton enviar a MD.
-c8.Factura.
-c9.Mediaquerie factura.
 
 --------- estilos de pagina --------------------
 
@@ -123,11 +121,6 @@ d5.Mediaquerie perfil.
 ============================= */
 
 @font-face {
-    font-family: 'Proxima Nova Th';
-    src: url('/arquivos/proxima-nova-thin.css');
-}
-
-@font-face {
     font-family: 'Proxima Nova';
     src: url('/arquivos/ProximaNova-Regular.css');
 }
@@ -136,34 +129,6 @@ d5.Mediaquerie perfil.
     font-family: 'Proxima Nova bold';
     font-weight: bold;
     src: url('/arquivos/ProximaNova-Bold.css');
-}
-
-@font-face {
-    font-family: 'Proxima Nova Light';
-    src: url("/arquivos/ProximaNovaLight.css") format("woff");
-    /* font-weight: lighter; */
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Proxima Nova Regular';
-    src: url("/arquivos/ProximaNovaRegular.css") format("woff");
-    /* font-weight: normal; */
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Proxima Nova Medium';
-    src: url("/arquivos/ProximaNovaMedium.css") format("woff");
-    /* font-weight: ; */
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Proxima Nova Bold';
-    src: url("/arquivos/ProximaNovaBold.css") format("woff");
-    /* font-weight: normal; */
-    font-style: normal;
 }
 
 @font-face {
@@ -294,7 +259,7 @@ span.f6.link.dim.br1.ph3.pv2.mb2.dib.white.bg-green {
 }
 
 .ph3-ns.w-70-ns.db.center {
-    font-family: var(--tumiFontRegular);
+    font-family: 'Proxima Nova bold';
 }
 
 article.undefined.w-100.fl.tl.bg-white.br1.shadow-00.min-h-14rem {
@@ -322,7 +287,6 @@ a.hover-no-underline.fr.dib.ml3.mb2.dib.w-20-l.w-100.ba.link.tc.pv3.pv2-l.ph3.br
     border: 2px solid #2E2A25;
     border-radius: 0;
     background: #ffffff;
-    color: #333333;
 }
 
 /*
@@ -348,11 +312,7 @@ a.hover-no-underline.fr.dib.ml3.mb2.dib.w-20-l.w-100.ba.link.tc.pv3.pv2-l.ph3.br
 
 /* medium */
 
-@media only screen and (min-width: 40.063em) and (max-width: 64em) {
-    .w-70-ns {
-        width: 90%;
-    }
-}
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
 
 /* xlarge */
 
@@ -487,7 +447,6 @@ a.hover-no-underline.fr.dib.ml3.mb2.dib.w-20-l.w-100.ba.link.tc.pv3.pv2-l.ph3.br
     font-size: .75rem;
     font-weight: bold;
     letter-spacing: 0.6px;
-    display: none;
 }
 
 .checkout__info {
@@ -553,9 +512,6 @@ a.hover-no-underline.fr.dib.ml3.mb2.dib.w-20-l.w-100.ba.link.tc.pv3.pv2-l.ph3.br
     }
     .headerCheckout__SafeSite img {
         width: 30%;
-    }
-    .header-left__content a {
-        font-size: .6rem;
     }
 }
 
@@ -798,11 +754,7 @@ nav {
 
 /* medium */
 
-@media only screen and (min-width: 40.063em) and (max-width: 64em) {
-    .navigation__menu {
-        width: 80%;
-    }
-}
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {}
 
 /* xlarge */
 
@@ -984,12 +936,17 @@ nav {
     /* display:none; */
 }
 
+.sexForm__container .newsletter__femenino,
+.sexForm__container .newsletter__masculino {
+    /*  border:1px solid blue; */
+}
+
 .sexForm__container .newsletter__masculino {
     margin-left: 1rem;
 }
 
-/* .sexForm__container [type="checkbox"] {
-      border: 1px solid #dfdfdf;
+.sexForm__container [type="checkbox"] {
+    /*   border: 1px solid #dfdfdf;
     border-radius: 50%;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -997,8 +954,8 @@ nav {
     -webkit-appearance: none;
     appearance:none;
     max-width:30px;
-    position:relative;
-} */
+    position:relative; */
+}
 
 .sexForm__container [type="checkbox"]:checked.visto-femenino:before {
     background-color: #003a7c;
@@ -1052,6 +1009,10 @@ nav {
     text-transform: uppercase;
     /*     width:100%; */
 }
+
+.sexForm__container .newsletter__femenino {}
+
+.sexForm__container .newsletter__masculino {}
 
 #errorGender {
     color: red;
@@ -1108,150 +1069,6 @@ nav {
 [c7.Mediaquerie boton enviar a MD ]
 
 */
-
-/* 
-
-[c8.Factura ]
-
-*/
-
-.wrapFormFactura {
-    /*     border:1px solid red; */
-    width: 100%;
-    position: relative;
-    display: flex;
-}
-
-.wrapFormFactura form {
-    /*     border:1px solid blue; */
-    width: 100%;
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center;
-}
-
-.wrapFormFactura form .error {
-    color: var(--rojoTumi);
-    position: absolute;
-    right: 0;
-    bottom: 4%;
-}
-
-.factura-title {
-    /*     color:var(--grisxFuerteTumi); */
-    border-bottom: 1px solid var(--grisFuerteTumi);
-    font-family: var(--tumiFontMedium);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    padding-bottom: .5rem;
-    /*     text-transform:uppercase; */
-    width: 100%;
-}
-
-.factura-column-one,
-.factura-column-two,
-.factura-column-three {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-flow: wrap;
-    /*     justify-content:space-between; */
-}
-
-.factura-column-one div,
-.factura-column-two div,
-.factura-column-three div {
-    width: 100%;
-    display: flex;
-    flex-flow: wrap;
-}
-
-.factura-column-one div {
-    /*     border:1px solid red; */
-    position: relative;
-    /*     width:48%; */
-}
-
-.factura-column-two div,
-.factura-column-three div {
-    /*     width:33.3%; */
-}
-
-.factura-column-one div span,
-.factura-column-two div span,
-.factura-column-three div span {
-    color: var(--grisxFuerteTumi);
-    font-size: .7rem;
-    text-transform: uppercase;
-    letter-spacing: .075rem;
-}
-
-.factura-column-one div input,
-.factura-column-two div input,
-.factura-column-three div input {
-    border-radius: 0;
-    color: var(--negroMedium);
-    font-family: var(--tumiFontMedium);
-    /*     margin-right:1rem; */
-    margin-bottom: 1.5rem;
-    height: 35px;
-    width: 100%;
-}
-
-.factura-column-one div:last-child input,
-.factura-column-two div:last-child input,
-.factura-column-three div:last-child input {
-    /*     border:1px solid black; */
-    margin-right: 0;
-}
-
-.factura-column-three div.factura-button {
-    width: 20%;
-}
-
-.telefono {
-    margin-bottom: 1rem;
-}
-
-/* 
-
-[c9.Mediaquerie factura ]
-
-*/
-
-/* small */
-
-@media only screen and (max-width: 40em) {
-    .wrapFormFactura {
-        justify-content: center;
-    }
-    .wrapFormFactura form {
-        margin-bottom: 3rem;
-        width: 90%;
-    }
-    .factura-column-three div.factura-button {
-        width: 45%;
-    }
-    .telefono {
-        margin-bottom: 0;
-    }
-}
-
-/* medium */
-
-@media only screen and (min-width: 40.063em) and (max-width: 64em) {
-    .factura-column-three div.factura-button {
-        width: 28%;
-    }
-}
-
-/* large */
-
-@media screen and (min-width: 64em) {}
-
-/* xlarge */
-
-@media only screen and (min-width: 90.063em) {}
 
 /*
 [d0.Carrito]
@@ -1844,22 +1661,12 @@ table.cart-items tbody tr td.item-remove i:hover:before {
 #payment-data-submit,
 #btn-client-pre-email,
 .modal-footer .btn,
-.shipping-sla-button,
-#btnFacturaOrden,
-#btnLimpiar {
+.shipping-sla-button {
     background: var(--rojoTumi);
     box-shadow: none;
     border: 0;
     border-radius: 0;
     font-size: .8rem;
-}
-
-#btnFacturaOrden,
-#btnLimpiar {
-    color: white;
-    font-family: var(--tumiFontLight);
-    padding: .5rem .5rem;
-    letter-spacing: .075rem;
 }
 
 .shipping-sla-button {
@@ -1881,15 +1688,8 @@ table.cart-items tbody tr td.item-remove i:hover:before {
 .address-save:hover,
 #payment-data-submit:hover,
 #btn-client-pre-email:hover,
-.modal-footer .btn:hover,
-#btnFacturaOrden:hover,
-#btnLimpiar:hover {
+.modal-footer .btn:hover {
     background: var(--rojoTumi);
-}
-
-#btnFacturaOrden:hover,
-#btnLimpiar:hover {
-    color: white;
 }
 
 .ship-filled-data,

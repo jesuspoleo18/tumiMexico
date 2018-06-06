@@ -2,9 +2,9 @@
 
 [Stylesheet - mantencion ]
 
-Projecto:  Tumi Mexico - 2018
+Projecto:  Tumi Brasil - 2018
 Version: 1.0.7
-Ultimo cambio:  2018/05/04 | 13:23 pm
+Ultimo cambio:  2018/05/04 | 13:47 pm
 Asignado a:  mantencion.
 Primary use:  ecommerce. 
 
@@ -243,13 +243,6 @@ f27.Mediaquerie orders
 
 =============================*/
 
-.prateleira__outstock {
-    letter-spacing: .075rem;
-    min-height: 100px;
-    align-items: center;
-    justify-content: center;
-}
-
 /*
 [c1.Mediaquerie prateleira principal]
 
@@ -326,22 +319,6 @@ f27.Mediaquerie orders
 [d4.Breadcrumb]
 
 =============================*/
-
-.resultado-busca .bread-crumb ul li:last-child strong {
-    display: block;
-    position: relative;
-    width: 100%;
-    display: flex;
-}
-
-.resultado-busca .bread-crumb ul li:last-child:after {
-    content: " ";
-}
-
-.busca-texto-livre-elimina {
-    font-family: var(--tumiFontBold);
-    background-color: var(--grisTumi);
-}
 
 /*
 [d5.Mediaquerie breadcrumb]
@@ -423,6 +400,11 @@ f27.Mediaquerie orders
 
 =============================*/
 
+.slick-next::before,
+[dir="rtl"] .slick-prev::before {
+    content: "→";
+}
+
 /*
 [e3.Mediaquerie carrusles]
 
@@ -477,14 +459,6 @@ f27.Mediaquerie orders
 [e13.Mediaquerie producto sticky]
 
 =============================*/
-
-/* medium up */
-
-@media only screen and (min-width: 40.063em) {
-    .producto-sticky-container.true {
-        display: none !important;
-    }
-}
 
 /*
 [e14.Redes sociales]
@@ -812,26 +786,6 @@ f27.Mediaquerie orders
 [f9.Mediaquerie categoria]
 
 =============================*/
-
-/* small */
-
-@media only screen and (max-width: 40em) {}
-
-/* medium */
-
-@media only screen and (min-width: 40.063em) and (max-width: 64em) {
-    .categ__content {
-        width: 95%;
-    }
-}
-
-/* large */
-
-@media screen and (min-width: 64em) {}
-
-/* xlarge */
-
-@media only screen and (min-width: 90.063em) {}
 
 /*
 [f10.Departamento]
