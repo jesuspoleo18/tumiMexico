@@ -4,7 +4,7 @@
 
 Projecto:  Tumi México - 2018
 Version: 1.0.6
-Ultimo cambio: 2018/04/26
+Ultimo cambio: 2018/06/06 | 11:14am
 Asignado a:  implementacion.
 Primary use:  ecommerce. 
 
@@ -191,11 +191,7 @@ var confiGenerales = {
             placeholder: " ",
             value: " "
         });
-        if($c.length){
-            console.log("˙ω˙ icono agregado");
-        }else{
-            $a.before($b);
-        }
+        $c.length ? console.log("˙ω˙ icono agregado") : $a.before($b);
     },
     triggerActions: function () {
 
@@ -326,11 +322,7 @@ var confiGenerales = {
         //hide or show the "back to top" link
         $(window).scroll(function () {
 
-            if($(this).scrollTop() > offset){
-                $back_to_top.addClass('back-to-top-is-visible');
-            }else{
-                $back_to_top.removeClass('back-to-top-is-visible back-to-top-fade-out');
-            }
+            $(this).scrollTop() > offset ? $back_to_top.addClass('back-to-top-is-visible') : $back_to_top.removeClass('back-to-top-is-visible back-to-top-fade-out');
 
             if ($(this).scrollTop() > offset_opacity) {
                 $back_to_top.addClass('back-to-top-fade-out');
@@ -448,9 +440,14 @@ var confiGenerales = {
     masterDataTrigger: function () {
 
         var $submitNewsletter = $(".submit__newsletter,#popUp__promocional");
+        var $submitPrimeraCompra = $("#popUp__promocional2");
 
         $submitNewsletter.on("click", function (e) {
             confiGenerales.newsletter();
+            e.preventDefault();
+        });
+        $submitPrimeraCompra.on("click", function (e) {
+            confiGenerales.primeraCompra();
             e.preventDefault();
         });
     },
@@ -476,10 +473,10 @@ var confiGenerales = {
             },
             datos = {};
 
-        if ($('#tm_email').val() === ''){
+        if ($('#tm_email').val() === '') {
             datos.tm_email = $('#pc_email').val();
             newsletter.mail = $('#pc_email').val();
-        }else{
+        } else {
             datos.tm_email = $('#tm_email').val();
             newsletter.mail = $('#tm_email').val();
         }
@@ -630,6 +627,83 @@ var confiGenerales = {
                 }
             });
         }
+
+    },
+    primeraCompra: function () {
+
+        var newsletter = {
+                mail: "",
+                nombre: ""
+            },
+            datos = {};
+
+
+        datos.email = $('.coverPop__submit #email').val();
+        datos.nombre = $('.coverPop__submit #nombre').val();
+
+        if (masterDataVtex.getFromMasterData('PC', 'email=' + datos.email, 'email') != undefined) {
+            var validateNews = masterDataVtex.getFromMasterData('PC', 'email=' + datos.email);
+            //responseNews = validateNews.isNewsletterOptIn;
+            console.log(validateNews)
+        }
+        /* 
+                Si el cliente no existe en la entidad de datos de CL postOrPatchInMasterData() 
+                inyecta los datos de nombre y email a la entidad de datos CL y le activa automaticamente
+                el cluster isNewsletterOptIn
+            */
+        console.log("no existe");
+        //masterDataVtex.postOrPatchInMasterData('CL', datos.email, Attr, 'POST');
+        $.ajax({
+            accept: 'application/vnd.vtex.ds.v10+json',
+            contentType: 'application/json; charset=utf-8',
+            crossDomain: true,
+            data: JSON.stringify(datos),
+            type: 'POST',
+            url: '//api.vtexcrm.com.br/tumimx/dataentities/PC/documents',
+            success: function (data) {
+                var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                $.when.apply($, $.map(files, function (file) {
+                    return $.getScript(files);
+                })).then(function () {
+                    swal({
+                        title: 'Sus datos han sido registrados con éxito.',
+                        type: 'success',
+                        // showCancelButton: true,
+                        confirmButtonColor: '#2E2A25',
+                        // cancelButtonColor: '#bbb',
+                        // cancelButtonText: 'OK',
+                        confirmButtonText: 'OK'
+                    });
+                }, function err(jqxhr, textStatus, errorThrown) {
+                    console.log(textStatus);
+                });
+                if (typeof CoverPop.start !== "undefined") {
+                    CoverPop.close();
+                }
+                confiGenerales.clearData();
+            },
+            error: function (data) {
+                var files = ["https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.4.1/sweetalert2.all.min.js"];
+
+                $.when.apply($, $.map(files, function (file) {
+                    return $.getScript(files);
+                })).then(function () {
+                    swal({
+                        title: 'Verifique que su correo esté bien escrito.',
+                        type: 'error',
+                        // showCancelButton: true,
+                        confirmButtonColor: '#b92335',
+                        // cancelButtonColor: '#bbb',
+                        // cancelButtonText: 'OK',
+                        confirmButtonText: 'OK'
+                    });
+                }, function err(jqxhr, textStatus, errorThrown) {
+                    console.log(textStatus);
+                });
+            }
+        });
+
 
     },
     replaceHref: function () {
@@ -838,10 +912,12 @@ var producto = {
 
     },
     skuOnChange: function () {
-        var x = $(".dynamic"),
-            colorProducto = x.attr("class"),
-            colorProductoPop = colorProducto.split("dynamic "),
-            templateColor = '<span class="specificaction__color"></span>';
+        var x = $(".dynamic");
+        var colorProducto = x.attr("class");
+        var colorProductoPop = colorProducto.split("dynamic ");
+        var templateColor = '<span class="specificaction__color"></span>';
+        var skuValue;
+        var inputValue;
 
         if ($(".specificaction__color").length == 0) {
             $(".specification").append(templateColor);
@@ -852,13 +928,24 @@ var producto = {
         $(".skuselector-specification-label.input-dimension-Color").on("click", function () {
             vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
                 setTimeout(function () {
-                    var colorProducto = $(".product__container .productName").text(),
-                        colorProductoPop = colorProducto.split(" "),
-                        $codDisplay = $(".style__ean .ean"),
-                        bestPrice = product.skus[0].bestPriceFormated,
-                        $bestPrice = $(".product__price"),
-                        bestPriceTemplate = '<strong class="skuBestPrice">' + bestPrice +'</strong>',
-                        $skuRef = $(".skuReference");
+                    $(".group_0 input:checked").each(function (i, val) {
+                        //         console.log($(this).attr('value'));
+                        inputValue = $(this).attr('value');
+                    });
+                    $.each(product.skus, function (i, val) {
+                        // 		console.log(this.values[0]);
+                        if (this.values[0] == inputValue) {
+                            skuValue = this.bestPriceFormated;
+                        }
+                    });
+                    var colorProducto = $(".product__container .productName").text();
+                    var colorProductoPop = colorProducto.split(" ");
+                    var $codDisplay = $(".style__ean .ean");
+                    var bestPrice = skuValue;
+                    // var bestPrice = product.skus[0].bestPriceFormated;
+                    var $bestPrice = $(".product__price");
+                    var bestPriceTemplate = '<strong class="skuBestPrice">' + bestPrice + '</strong>';
+                    var $skuRef = $(".skuReference");
 
                     $(".specificaction__color").text(colorProductoPop.pop());
                     $codDisplay.text($skuRef.text());
@@ -866,7 +953,7 @@ var producto = {
                     if (producto.noStock() === true) {
                         $bestPrice.html("");
                         // console.log(bestPriceEver);
-                    }else{
+                    } else {
                         $bestPrice.html(bestPriceTemplate);
                     }
                     producto.formatoPrecioFichaProductoReplace(".skuBestPrice");
@@ -920,11 +1007,11 @@ var producto = {
         // }
         var $specificationColor = $(".specificaction__color"),
             $skuChecked = $(".skuselector-specification-label.input-dimension-Color:checked");
-        
+
         if ($(".skuselector-specification-label.input-dimension-Color").length == 1) {
             $(".skuselector-specification-label.input-dimension-Color").click();
         }
-        
+
         if ($skuChecked.length && $specificationColor.length) {
             var $skuCheckedParent = $skuChecked.parent().attr("class"),
                 skuCheckedSplit = $skuCheckedParent.split("dynamic ");
@@ -2238,12 +2325,12 @@ var account = {
                 data = $.parseJSON(json);
                 //console.log(data);
 
-                for (var region in data) {
+                for (region in data) {
                     regiones.push({
                         id: region,
                         nombre: region
                     });
-                    for (var comuna in data[region]) {
+                    for (comuna in data[region]) {
                         comunas.push({
                             id: comuna,
                             id_region: region,
@@ -2289,8 +2376,8 @@ var account = {
 
     createAddress: function () {
 
-        var addressName = $('#aliasDireccion').val(),
-            country = $("meta[name='country']").attr("content"),
+        var country = $("meta[name='country']").attr("content"),
+            addressName = $('#aliasDireccion').val(),
             receiverName = $('#destinatario').val(),
             addressType = '1',
             postalCode = $('#cmbComuna').val(),
@@ -2298,7 +2385,7 @@ var account = {
             number = $('#numeroDireccion').val(),
             neighborhood = $('#spnNombreComuna').text(),
             city = '-',
-            // country = $('#country').val(),
+            country = $('#country').val(),
             complement = $('#pisoDireccion').val(),
             reference = '-',
             state = $('#cmbRegion').val(),
@@ -2364,18 +2451,18 @@ var account = {
 
                     success: function success(data) {
 
-                        $('#aliasDireccion').val(data.addressName);
-                        $('#destinatario').val(data.receiverName);
+                        $('#aliasDireccion').val(data['addressName']);
+                        $('#destinatario').val(data['receiverName']);
                         $('1');
-                        $('#cmbComuna').val(data.city);
-                        $('#direccion').val(data.street);
-                        $('#numeroDireccion').val(data.number);
-                        $('#pisoDireccion').val(data.complement);
+                        $('#cmbComuna').val(data['city']);
+                        $('#direccion').val(data['street']);
+                        $('#numeroDireccion').val(data['number']);
+                        $('#pisoDireccion').val(data['complement']);
                         $('-');
                         $('-');
-                        $('span#spnNombreComuna').text(data.spnNombreComuna);
-                        $('#cmbRegion').val(data.state);
-                        $('#addressId').val(encodeURIComponent(data.addressName));
+                        $('span#spnNombreComuna').text(data['spnNombreComuna']);
+                        $('#cmbRegion').val(data['state']);
+                        $('#addressId').val(encodeURIComponent(data['addressName']));
                     },
 
                     error: function error() {
@@ -2806,10 +2893,10 @@ var quickviewControl = {
         }
     },
     skuOnChange: function () {
-        var x = $(".dynamic"),
-            colorProducto = x.attr("class"),
-            colorProductoPop = colorProducto.split("dynamic "),
-            templateColor = '<span class="specificaction__color"></span>';
+        var x = $(".dynamic");
+        var colorProducto = x.attr("class");
+        var colorProductoPop = colorProducto.split("dynamic ");
+        var templateColor = '<span class="specificaction__color"></span>';
 
         if ($(".specificaction__color").length == 0) {
             $(".specification").append(templateColor);
@@ -2820,11 +2907,22 @@ var quickviewControl = {
         $(".skuselector-specification-label.input-dimension-Color").on("click", function () {
             vtexjs.catalog.getCurrentProductWithVariations().done(function (product) {
                 setTimeout(function () {
-                    var $colorProducto = $(".quickview__name .productName").text(),
-                        colorProductoPop = $colorProducto.split(" "),
-                        bestPrice = product.skus[0].bestPriceFormated,
-                        $bestPrice = $(".quickview__price"),
-                        bestPriceTemplate = '<strong class="skuBestPrice">' + bestPrice + '</strong>';
+                    $(".group_0 input:checked").each(function (i, val) {
+                        //         console.log($(this).attr('value'));
+                        inputValue = $(this).attr('value');
+                    });
+                    $.each(product.skus, function (i, val) {
+                        // 		console.log(this.values[0]);
+                        if (this.values[0] == inputValue) {
+                            skuValue = this.bestPriceFormated;
+                        }
+                    });
+                    var $colorProducto = $(".quickview__name .productName").text();
+                    var colorProductoPop = $colorProducto.split(" ");
+                    // var bestPrice = product.skus[0].bestPriceFormated;
+                    var bestPrice = skuValue;
+                    var $bestPrice = $(".quickview__price");
+                    var bestPriceTemplate = '<strong class="skuBestPrice">' + bestPrice + '</strong>';
 
                     $(".specificaction__color").text(colorProductoPop.pop());
                     // producto.mainImgCarousel();
